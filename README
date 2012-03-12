@@ -1,0 +1,6 @@
+For building you will need https://github.com/panter/org.vaadin.mvp.
+Download source code and build it with command:
+> mvn clean install
+
+For building project you can use:
+> mvn clean install jetty:run
