@@ -20,23 +20,29 @@ package com.evidence.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+@Entity
+@ToString
+public class State implements Serializable {
 
-	private static final long serialVersionUID = -1583374331013986853L;
+	private static final long serialVersionUID = 1L;
 
-	@Getter	@Setter
+	@Id
+	@Getter
+	@Column(unique = true, nullable=false, length=2)
+	private String code;
+
+	@Getter
+	@Column(nullable=false, length=100)
 	private String name;
-	
-	@Getter	@Setter
-	private String surName;
 }

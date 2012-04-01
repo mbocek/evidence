@@ -22,12 +22,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.evidence.dao.ResponsiblePersonDAO;
-import com.evidence.dto.ChildrenDTO;
-import com.evidence.entity.Person;
+import com.evidence.dao.KindergardenDAO;
+import com.evidence.dto.KindergardenDTO;
+import com.evidence.entity.Kindergarden;
 import com.evidence.utility.DTOConverter;
 
 /**
@@ -36,24 +35,19 @@ import com.evidence.utility.DTOConverter;
  */
 @Service
 @Transactional(readOnly = true)
-public class UserService {
+public class KindergardenService {
 
 	@Autowired
-	private ResponsiblePersonDAO personDao;
+	private KindergardenDAO kindergardenDao;
 
-	public String getInfo() {
-		return "info data";
+	public List<KindergardenDTO> getAll() {
+		List<Kindergarden> kindergardens = kindergardenDao.findAll();
+		return DTOConverter.convertList(kindergardens, KindergardenDTO.class);
 	}
 
-	@Transactional(propagation = Propagation.REQUIRED)
-	public void addChild(ChildrenDTO child) {
-//		Person person = DTOConverter.convert(child, Person.class);
-//		personDao.create(person);
+	public void addKindergarden(KindergardenDTO kindergarden) {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	public List<ChildrenDTO> getAll() {
-//		List<Person> persons = personDao.findAll();
-//		return DTOConverter.convertList(persons, ChildrenDTO.class);
-		return null;
-	}
+
 }

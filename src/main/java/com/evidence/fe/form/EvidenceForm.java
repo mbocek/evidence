@@ -16,27 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.form;
 
-import java.io.Serializable;
-
-import javax.persistence.MappedSuperclass;
-
-import lombok.Getter;
-import lombok.Setter;
+import com.evidence.fe.annotation.MetaModel;
+import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Form;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+public class EvidenceForm extends Form {
 
-	private static final long serialVersionUID = -1583374331013986853L;
-
-	@Getter	@Setter
-	private String name;
+	private static final long serialVersionUID = 1L;
 	
-	@Getter	@Setter
-	private String surName;
+	public void addFooter(Component component) {
+		this.getFooter().addComponent(component);
+	}
+
+	public void setItemDataSource(Model model, MetaModel metaModel) {
+		Class<? extends Model> clazz = model.getClass();
+		BeanItem beanItem = new BeanItem(model);
+		this.setItemDataSource(beanItem);
+		this.setVisibleItemProperties(metaModel.getOrderedFields());
+	}
 }

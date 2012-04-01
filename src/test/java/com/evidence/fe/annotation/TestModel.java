@@ -16,27 +16,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.annotation;
 
-import java.io.Serializable;
-
-import javax.persistence.MappedSuperclass;
-
+import lombok.Delegate;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
+import com.evidence.fe.form.EvidenceFormFieldFactory;
+import com.evidence.fe.form.Model;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+@ToString
+@AutomaticForm(formFieldFactory=EvidenceFormFieldFactory.class)
+public class TestModel implements Model {
 
-	private static final long serialVersionUID = -1583374331013986853L;
+	@Caption("Name")
+	@Order(1)
+	@Getter @Setter
+	public String name;
 
-	@Getter	@Setter
-	private String name;
+	@Caption("Absolut Name")
+	@Order(3)
+	@Getter @Setter
+	private String absoluteName;
 	
-	@Getter	@Setter
-	private String surName;
+	@Delegate
+	private RawModel rawModel = new RawModel();
+	
+	@Delegate
+	@Order(2)
+	private TestInnerModel innerModel = new TestInnerModel();
 }

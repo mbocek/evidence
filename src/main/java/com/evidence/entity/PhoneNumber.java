@@ -20,23 +20,28 @@ package com.evidence.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Embeddable;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+@Embeddable
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class PhoneNumber implements Serializable {
 
-	private static final long serialVersionUID = -1583374331013986853L;
+	private static final long serialVersionUID = 1L;
 
-	@Getter	@Setter
-	private String name;
+	@Getter
+	private String countryCode;
 	
-	@Getter	@Setter
-	private String surName;
+	@Getter
+	private String phoneNumber;	
 }

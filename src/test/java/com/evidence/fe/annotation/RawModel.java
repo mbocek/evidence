@@ -16,27 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.annotation;
 
-import java.io.Serializable;
-
-import javax.persistence.MappedSuperclass;
-
-import lombok.Getter;
-import lombok.Setter;
+import com.evidence.fe.form.Model;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+public class RawModel implements Model {
 
-	private static final long serialVersionUID = -1583374331013986853L;
-
-	@Getter	@Setter
-	private String name;
-	
-	@Getter	@Setter
-	private String surName;
 }

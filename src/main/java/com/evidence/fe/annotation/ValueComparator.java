@@ -16,27 +16,31 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.annotation;
 
-import java.io.Serializable;
-
-import javax.persistence.MappedSuperclass;
-
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Comparator;
+import java.util.Map;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+public class ValueComparator implements Comparator<String> {
 
-	private static final long serialVersionUID = -1583374331013986853L;
+	private Map<String, Double> base;
 
-	@Getter	@Setter
-	private String name;
-	
-	@Getter	@Setter
-	private String surName;
+	public ValueComparator(Map<String, Double> base) {
+		this.base = base;
+	}
+
+	@Override
+	public int compare(String key1, String key2) {
+		if (base.get(key1) < base.get(key2)) {
+			return -1;
+		} else if (base.get(key1).equals(base.get(key2))) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
 }

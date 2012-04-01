@@ -20,7 +20,7 @@ package com.evidence.dao;
 
 import static org.junit.Assert.assertEquals;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,26 +28,37 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.evidence.dao.PersonDAO;
-import com.evidence.entity.Person;
+import com.evidence.entity.Contact;
+import com.evidence.entity.ResponsibilityType;
+import com.evidence.entity.ResponsiblePerson;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext.xml")
 @Transactional
-public class PersonDAOTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring/transaction.xml")
+public class ResponsiblePersonDAOTest extends DbUnitDaoTest {
 
-    @Resource
-    PersonDAO personDAO;
+    @Inject
+    private ResponsiblePersonDAO personDAO;
+    
+    @Inject
+    private ResponsibilityTypeDAO responsibilityTypeDAO;
+    
+    @Inject
+    private ContactDAO contactDAO;
     
 	@Test
 	public void testCreate() {
-		Person person = new Person();
+		ResponsibilityType father = responsibilityTypeDAO.read(ResponsibilityType.Type.FATHER.name());
+		Contact contact = contactDAO.read(1L);
+		ResponsiblePerson person = new ResponsiblePerson();
 		person.setName("name");
 		person.setSurName("surName");
+		person.setType(father);
+		person.setContact(contact);
 		personDAO.create(person);
 		assertEquals(personDAO.findAll().get(0).getName(), "name");
 	}

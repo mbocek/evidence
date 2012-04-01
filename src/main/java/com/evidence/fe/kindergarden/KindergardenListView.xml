@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:UiBinder xmlns:ui="urn:org.vaadin.mvp.uibinder" 
+	xmlns:e="urn:org.vaadin.mvp.uibinder.event" 
+	xmlns:v="urn:import:com.vaadin.ui"
+	xmlns:m="urn:org.vaadin.mvp.uibinder.message"
+	v:margin="true">
+
+	<v:Label styleName="h2" m:caption="kindergarden.caption.administration" />
+
+	<v:Table ui:field="kindergardenList" width="100%" e:itemClick="editUser" immediate="true" selectable="true" multiSelect="false" />
+
+	<v:HorizontalLayout spacing="true">
+		<v:Button m:caption="kindergarden.list.add" styleName="small" e:click="addKindergarden" />
+		<v:Button m:caption="kindergarden.list.remove" styleName="small" e:click="removeKindergarden" />
+	</v:HorizontalLayout>
+</ui:UiBinder>

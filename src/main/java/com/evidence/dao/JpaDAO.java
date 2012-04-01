@@ -19,13 +19,6 @@
 package com.evidence.dao;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,19 +29,9 @@ import org.slf4j.LoggerFactory;
  * @param <T> class for persistence support
  * @param <Id> primary key of entity
  */
-public abstract class JpaDAO<T, Id extends Serializable> {
+public abstract class JpaDAO<T, Id extends Serializable> extends JpaImmutableDAO<T, Id> {
 	
 	private static final Logger log = LoggerFactory.getLogger(JpaDAO.class);
-	protected Class<T> entityClass;
-
-	@PersistenceContext(name = "entityManagerFactory")
-	protected EntityManager entityManager;
-
-	@SuppressWarnings("unchecked")
-	public JpaDAO() {
-		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
-		this.entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
-	}
 
 	public void create(T entity) {
 		if (log.isTraceEnabled()) {
@@ -72,30 +55,5 @@ public abstract class JpaDAO<T, Id extends Serializable> {
 			log.trace("  With contents: " + String.valueOf(entity));
 		}
 		return this.entityManager.merge(entity);
-	}
-
-	public T findById(Id id) {
-		return this.entityManager.find(entityClass, id);
-	}
-
-	public T read(Id id) {
-		if (log.isTraceEnabled()) {
-			log.trace("Reading entity for id: " + id);
-		}
-		T entry = this.entityManager.find(this.entityClass, id);
-		if (entry == null) {
-			throw new EntityNotFoundException("Entity for class " + this.entityClass + " with id " + id
-					+ " can not be found!");
-		}
-		return entry;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<T> findAll() {
-		if (log.isTraceEnabled()) {
-			log.trace("Reading all entities");
-		}
-		Query query = this.entityManager.createQuery("from " + this.entityClass.getName());
-		return query.getResultList();
 	}
 }

@@ -16,27 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.kindergarden;
 
-import java.io.Serializable;
+import org.vaadin.mvp.uibinder.IUiBindable;
+import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import javax.persistence.MappedSuperclass;
-
-import lombok.Getter;
-import lombok.Setter;
+import com.vaadin.ui.Table;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+public class KindergardenListView extends VerticalLayout implements IKindergardenListView, IUiBindable {
 
-	private static final long serialVersionUID = -1583374331013986853L;
+	private static final long serialVersionUID = 3807396569678708848L;
 
-	@Getter	@Setter
-	private String name;
-	
-	@Getter	@Setter
-	private String surName;
+	@UiField
+	private Table kindergardenList;
+
+	@Override
+	public Table getKindergardenList() {
+		return kindergardenList;
+	}
 }

@@ -20,10 +20,12 @@ package com.evidence.fe.menu;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.BasePresenter;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.evidence.fe.children.ChildrenPresenter;
+import com.evidence.fe.kindergarden.KindergardenPresenter;
 import com.evidence.fe.main.MainEventBus;
 import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.Tree;
@@ -39,11 +41,15 @@ public class MenuPresenter extends BasePresenter<IMenuView, MainEventBus> {
 
 	@Override
 	public void bind() {
-		MenuEntry userAdminEntry = new MenuEntry(this.getMessage("menu.userChildren", this.getView().getLocale()),
-				ChildrenPresenter.class);
 		Tree tree = this.view.getTree();
-		tree.addItem(userAdminEntry);
-		tree.setChildrenAllowed(userAdminEntry, false);
+		addEntry(tree, this.getMessage("menu.kinderGarden", this.getView().getLocale()), KindergardenPresenter.class);
+		addEntry(tree, this.getMessage("menu.child", this.getView().getLocale()), ChildrenPresenter.class);
+	}
+	
+	private void addEntry(Tree tree, String caption, Class<? extends BasePresenter<?, ? extends EventBus>> presenterType) {
+		MenuEntry entry = new MenuEntry(caption, presenterType);
+		tree.addItem(entry);
+		tree.setChildrenAllowed(entry, false);
 	}
 
 	public void onSelectMenu(ValueChangeEvent event) {

@@ -16,27 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.dao;
 
-import java.io.Serializable;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.MappedSuperclass;
+import com.evidence.entity.Contact;
 
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
-
-	private static final long serialVersionUID = -1583374331013986853L;
-
-	@Getter	@Setter
-	private String name;
+@Repository
+public class ContactDAO extends JpaDAO<Contact, Long> {
 	
-	@Getter	@Setter
-	private String surName;
 }

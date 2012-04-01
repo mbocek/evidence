@@ -16,27 +16,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.kindergarden;
 
-import java.io.Serializable;
-
-import javax.persistence.MappedSuperclass;
-
-import lombok.Getter;
-import lombok.Setter;
+import com.evidence.fe.form.EvidenceFormFieldFactory;
+import com.vaadin.data.Item;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Field;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+public class KinedrgardenDetailFormFieldFactory implements EvidenceFormFieldFactory {
 
-	private static final long serialVersionUID = -1583374331013986853L;
+	private static final long serialVersionUID = 1L;
 
-	@Getter	@Setter
-	private String name;
-	
-	@Getter	@Setter
-	private String surName;
+	/* (non-Javadoc)
+	 * @see com.vaadin.ui.FormFieldFactory#createField(com.vaadin.data.Item, java.lang.Object, com.vaadin.ui.Component)
+	 */
+	@Override
+	public Field createField(Item item, Object propertyId, Component uiContext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -16,18 +16,44 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.dao;
+package com.evidence.dto;
 
-import org.springframework.stereotype.Repository;
+import javax.validation.constraints.NotNull;
 
-import com.evidence.entity.Person;
+import lombok.Delegate;
+import lombok.Getter;
+import lombok.Setter;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.evidence.fe.annotation.AutomaticForm;
+import com.evidence.fe.annotation.Caption;
+import com.evidence.fe.annotation.Order;
+import com.evidence.fe.form.Model;
+import com.evidence.fe.kindergarden.KinedrgardenDetailFormFieldFactory;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Repository("personDAO")
-public class PersonDAO extends JpaDAO<Person, Long> {
+@AutomaticForm(formFieldFactory=KinedrgardenDetailFormFieldFactory.class)
+public class KindergardenDTO implements Model {
+
+	@Getter @Setter
+	@NotNull
+	private Long id;
 	
+	@Getter @Setter
+	@NotEmpty
+	@Caption("kindergarden.detail.name")
+	@Order(1)
+	private String name;
+
+	@Delegate
+	@Order(2)
+	private AddressDTO address = new AddressDTO();
+	
+	@Getter @Setter
+	@Order(3)
+	private String fullAddress; 
 }

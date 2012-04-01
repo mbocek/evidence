@@ -16,27 +16,30 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.kindergarden;
 
-import java.io.Serializable;
+import org.vaadin.mvp.uibinder.IUiBindable;
+import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import javax.persistence.MappedSuperclass;
-
-import lombok.Getter;
-import lombok.Setter;
+import com.evidence.dto.KindergardenDTO;
+import com.evidence.fe.form.EvidenceForm;
+import com.vaadin.ui.Form;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+public class KindergardenDetail extends VerticalLayout implements Layout, IUiBindable, IKindergardenDetail {
 
-	private static final long serialVersionUID = -1583374331013986853L;
+	private static final long serialVersionUID = 6155789894644060488L;
 
-	@Getter	@Setter
-	private String name;
-	
-	@Getter	@Setter
-	private String surName;
+	@UiField
+	private EvidenceForm kindergardenForm;
+
+	@Override
+	public EvidenceForm getKindergardenForm() {
+		return this.kindergardenForm;
+	}
 }

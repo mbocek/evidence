@@ -33,6 +33,16 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>
+					<excludes>
+						<exclude>**/DbUnitDaoTest.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>			
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>aspectj-maven-plugin</artifactId>
 				<version>${aspectj-maven-plugin.version}</version>
@@ -40,6 +50,11 @@
 					<!-- Required as the plugin does not resolve this by default -->
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
+					<forceAjcCompile>true</forceAjcCompile>
+					<sources />
+					<weaveDirectories>
+						<weaveDirectory>${project.build.directory}/classes</weaveDirectory>
+					</weaveDirectories>
 					<aspectLibraries>
 						<aspectLibrary>
 							<groupId>org.springframework</groupId>
@@ -162,17 +177,24 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>
-											org.codehaus.mojo
-										</groupId>
-										<artifactId>
-											gwt-maven-plugin
-										</artifactId>
-										<versionRange>
-											[2.2.0,)
-										</versionRange>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>gwt-maven-plugin</artifactId>
+										<versionRange>[2.2.0,)</versionRange>
 										<goals>
 											<goal>resources</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.vaadin</groupId>
+										<artifactId>vaadin-maven-plugin</artifactId>
+										<versionRange>[1.0.2,)</versionRange>
+										<goals>
+											<goal>update-widgetset</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
@@ -181,21 +203,16 @@
 								</pluginExecution>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>com.vaadin</groupId>
-										<artifactId>
-											vaadin-maven-plugin
-										</artifactId>
-										<versionRange>
-											[1.0.2,)
-										</versionRange>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>aspectj-maven-plugin</artifactId>
+										<versionRange>[${aspectj-maven-plugin.version},)</versionRange>
 										<goals>
-											<goal>
-												update-widgetset
-											</goal>
+											<goal>compile</goal>
+											<goal>test-compile</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<execute/>
+										<execute />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -228,6 +245,11 @@
 			<version>${org.hibernate.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+		</dependency>		
+		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${aspectjrt.version}</version>
@@ -258,6 +280,11 @@
 			<artifactId>dozer</artifactId>
 			<version>5.3.2</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.hsqldb</groupId>
@@ -274,6 +301,12 @@
 			<artifactId>org.vaadin.mvp.spring</artifactId>
 			<version>0.9.2-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>0.10.8</version>
+			<scope>provided</scope>
+		</dependency>		
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -287,85 +320,13 @@
 			<version>${org.springframework.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>2.4.8</version>
+			<scope>test</scope>
+		</dependency>		
 	</dependencies>
-
-<!-- 	<profiles> -->
-<!-- 		<profile> -->
-<!-- 			<id>aspectj</id> -->
-<!-- 			<activation> -->
-<!-- 				<file> -->
-<!-- 					<exists>src/config/activate-aspectj-profile</exists> -->
-<!-- 				</file> -->
-<!-- 			</activation> -->
-<!-- 			<build> -->
-<!-- 				<plugins> -->
-<!-- 					Will no more needed when http://jira.codehaus.org/browse/MASPECTJ-9 -->
-<!-- 						is available --> 
-<!-- 					<plugin> -->
-<!-- 						<groupId>org.apache.maven.plugins</groupId> -->
-<!-- 						<artifactId>maven-antrun-plugin</artifactId> -->
-<!-- 						<version>1.6</version> -->
-<!-- 						<dependencies> -->
-<!-- 							<dependency> -->
-<!-- 								<groupId>org.aspectj</groupId> -->
-<!-- 								<artifactId>aspectjrt</artifactId> -->
-<!-- 								<version>${aspectjrt.version}</version> -->
-<!-- 							</dependency> -->
-<!-- 							<dependency> -->
-<!-- 								<groupId>org.aspectj</groupId> -->
-<!-- 								<artifactId>aspectjtools</artifactId> -->
-<!-- 								<version>${aspectjrt.version}</version> -->
-<!-- 							</dependency> -->
-<!-- 						</dependencies> -->
-<!-- 						<executions> -->
-<!-- 							<execution> -->
-<!-- 								<id>weave-classes</id> -->
-<!-- 								<phase>process-classes</phase> -->
-<!-- 								<goals> -->
-<!-- 									<goal>run</goal> -->
-<!-- 								</goals> -->
-<!-- 								<configuration> -->
-<!-- 									<target> -->
-<!-- 										<taskdef -->
-<!-- 											resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties" -->
-<!-- 											classpathref="maven.plugin.classpath" /> -->
-<!-- 										<iajc destDir="${project.build.directory}/classes" -->
-<!-- 											inpath="${project.build.directory}/classes"  -->
-<!-- 											source="${maven.compiler.source}" -->
-<!-- 											target="${maven.compiler.target}"  -->
-<!-- 											aspectPath="${org.springframework:spring-aspects:jar}" -->
-<!-- 											classpathRef="maven.compile.classpath"  -->
-<!-- 											Xlint="ignore" /> -->
-<!-- 									</target> -->
-<!-- 								</configuration> -->
-<!-- 							</execution> -->
-<!-- 							<execution> -->
-<!-- 								<id>weave-test-classes</id> -->
-<!-- 								<phase>process-test-classes</phase> -->
-<!-- 								<goals> -->
-<!-- 									<goal>run</goal> -->
-<!-- 								</goals> -->
-<!-- 								<configuration> -->
-<!-- 									<target> -->
-<!-- 										<taskdef -->
-<!-- 											resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties" -->
-<!-- 											classpathref="maven.plugin.classpath" /> -->
-<!-- 										<iajc destDir="${project.build.directory}/test-classes" -->
-<!-- 											inpath="${project.build.directory}/test-classes"  -->
-<!-- 											source="${maven.compiler.source}" -->
-<!-- 											target="${maven.compiler.target}"  -->
-<!-- 											aspectPath="${org.springframework:spring-aspects:jar}" -->
-<!-- 											classpathRef="maven.compile.classpath"  -->
-<!-- 											Xlint="ignore" /> -->
-<!-- 									</target> -->
-<!-- 								</configuration> -->
-<!-- 							</execution> -->
-<!-- 						</executions> -->
-<!-- 					</plugin> -->
-<!-- 				</plugins> -->
-<!-- 			</build> -->
-<!-- 		</profile> -->
-<!-- 	</profiles> -->
 
 	<repositories>
 		<repository>

@@ -16,27 +16,36 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.kindergarden;
 
-import java.io.Serializable;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.eventbus.annotation.Event;
 
-import javax.persistence.MappedSuperclass;
-
-import lombok.Getter;
-import lombok.Setter;
+import com.evidence.fe.main.MainPresenter;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.ui.Window;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@MappedSuperclass
-public abstract class Person implements Serializable {
+public interface KindergardenEventBus extends EventBus {
 
-	private static final long serialVersionUID = -1583374331013986853L;
+	@Event(handlers = { KindergardenPresenter.class })
+	public void addKindergarden();
 
-	@Getter	@Setter
-	private String name;
+	@Event(handlers = { KindergardenPresenter.class })
+	public void removeKindergarden();
+
+	@Event(handlers = { MainPresenter.class })
+	public void showDialog(Window dialog);
+
+	@Event(handlers = { KindergardenPresenter.class })
+	public void saveUser();
+
+	@Event(handlers = { KindergardenPresenter.class })
+	public void cancelEditUser();
 	
-	@Getter	@Setter
-	private String surName;
+	@Event(handlers = { KindergardenPresenter.class })
+	public void editUser(ItemClickEvent event);
 }

@@ -20,32 +20,7 @@
 	<context:component-scan base-package="org.vaadin.mvp" />
 	<context:component-scan base-package="com.evidence" />
 
-	<!-- ================================================================= -->
-	<!-- Transaction definition                                            -->
-	<!-- ================================================================= -->
-	<tx:annotation-driven />
+	<context:property-placeholder location="classpath:/config.properties"/>
 	
-	<!-- ================================================================= -->
-	<!-- Message source definition                                         -->
-	<!-- ================================================================= -->
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<value>classpath:messages</value>
-			</list>
-		</property>
-	</bean>
-
-	<!-- ================================================================= -->
-	<!-- Persistence definition                                            -->
-	<!-- ================================================================= -->
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="MyPersistenceUnit" />
-	</bean>
-
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 </beans>
