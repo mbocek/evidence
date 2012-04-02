@@ -16,44 +16,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.dto;
+package com.evidence.service;
 
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
-import lombok.Delegate;
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.evidence.fe.annotation.AutomaticForm;
-import com.evidence.fe.annotation.Caption;
-import com.evidence.fe.annotation.Order;
-import com.evidence.fe.form.Model;
-import com.evidence.fe.kindergarden.KinedrgardenDetailFormFieldFactory;
+import com.evidence.dao.KindergartenDAO;
+import com.evidence.dto.KindergartenDTO;
+import com.evidence.entity.Kindergarten;
+import com.evidence.utility.DTOConverter;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@AutomaticForm(formFieldFactory=KinedrgardenDetailFormFieldFactory.class)
-public class KindergardenDTO implements Model {
+@Service
+@Transactional(readOnly = true)
+public class KindergartenService {
 
-	@Getter @Setter
-	@NotNull
-	private Long id;
-	
-	@Getter @Setter
-	@NotEmpty
-	@Caption("kindergarden.detail.name")
-	@Order(1)
-	private String name;
+	@Autowired
+	private KindergartenDAO kindergartenDao;
 
-	@Delegate
-	@Order(2)
-	private AddressDTO address = new AddressDTO();
-	
-	@Getter @Setter
-	@Order(3)
-	private String fullAddress; 
+	public List<KindergartenDTO> getAll() {
+		List<Kindergarten> kindergartens = kindergartenDao.findAll();
+		return DTOConverter.convertList(kindergartens, KindergartenDTO.class);
+	}
+
+	public void addKindergarten(KindergartenDTO kindergarten) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

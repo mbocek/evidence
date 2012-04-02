@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarden;
+package com.evidence.fe.kindergarten;
 
 import org.vaadin.mvp.uibinder.IUiBindable;
 import org.vaadin.mvp.uibinder.annotation.UiField;
@@ -28,15 +28,15 @@ import com.vaadin.ui.VerticalLayout;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class KindergardenListView extends VerticalLayout implements IKindergardenListView, IUiBindable {
+public class KindergartenListView extends VerticalLayout implements IKindergartenListView, IUiBindable {
 
 	private static final long serialVersionUID = 3807396569678708848L;
 
 	@UiField
-	private Table kindergardenList;
+	private Table kindergartenList;
 
 	@Override
-	public Table getKindergardenList() {
-		return kindergardenList;
+	public Table getKindergartenList() {
+		return kindergartenList;
 	}
 }

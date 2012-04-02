@@ -16,28 +16,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarden;
+package com.evidence.fe.kindergarten;
 
-import com.evidence.fe.form.EvidenceFormFieldFactory;
-import com.vaadin.data.Item;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.Field;
+import org.vaadin.mvp.uibinder.IUiBindable;
+import org.vaadin.mvp.uibinder.annotation.UiField;
+
+import com.evidence.fe.form.EvidenceForm;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class KinedrgardenDetailFormFieldFactory implements EvidenceFormFieldFactory {
+public class KindergartenDetail extends VerticalLayout implements Layout, IUiBindable, IKindergartenDetail {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6155789894644060488L;
 
-	/* (non-Javadoc)
-	 * @see com.vaadin.ui.FormFieldFactory#createField(com.vaadin.data.Item, java.lang.Object, com.vaadin.ui.Component)
-	 */
+	@UiField
+	private EvidenceForm kindergartenForm;
+
 	@Override
-	public Field createField(Item item, Object propertyId, Component uiContext) {
-		// TODO Auto-generated method stub
-		return null;
+	public EvidenceForm getKindergartenForm() {
+		return this.kindergartenForm;
 	}
-
 }

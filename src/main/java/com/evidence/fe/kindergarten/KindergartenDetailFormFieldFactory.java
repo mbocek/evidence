@@ -16,38 +16,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
+package com.evidence.fe.kindergarten;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.evidence.dao.KindergardenDAO;
-import com.evidence.dto.KindergardenDTO;
-import com.evidence.entity.Kindergarden;
-import com.evidence.utility.DTOConverter;
+import com.evidence.fe.form.EvidenceFormFieldFactory;
+import com.vaadin.data.Item;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Field;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Service
-@Transactional(readOnly = true)
-public class KindergardenService {
+public class KindergartenDetailFormFieldFactory implements EvidenceFormFieldFactory {
 
-	@Autowired
-	private KindergardenDAO kindergardenDao;
+	private static final long serialVersionUID = 1L;
 
-	public List<KindergardenDTO> getAll() {
-		List<Kindergarden> kindergardens = kindergardenDao.findAll();
-		return DTOConverter.convertList(kindergardens, KindergardenDTO.class);
-	}
-
-	public void addKindergarden(KindergardenDTO kindergarden) {
+	/* (non-Javadoc)
+	 * @see com.vaadin.ui.FormFieldFactory#createField(com.vaadin.data.Item, java.lang.Object, com.vaadin.ui.Component)
+	 */
+	@Override
+	public Field createField(Item item, Object propertyId, Component uiContext) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

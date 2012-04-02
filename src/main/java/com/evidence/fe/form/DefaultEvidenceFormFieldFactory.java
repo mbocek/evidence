@@ -16,47 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.form;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.vaadin.data.Item;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Field;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Entity
-@ToString
-@NoArgsConstructor
-@Table(name = "KINDER_GARDEN")
-public class Kindergarden implements Serializable {
+public class DefaultEvidenceFormFieldFactory implements EvidenceFormFieldFactory {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Getter
-	private Long id;
-
-	@Getter	@Setter
-	@Column(name = "NAME", length = 200, nullable = false)
-	private String name;
-	
-	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CONTACT_ID")
-	private Contact contact;	
+	@Override
+	public Field createField(Item item, Object propertyId, Component uiContext) {
+		return null;
+	}
 }

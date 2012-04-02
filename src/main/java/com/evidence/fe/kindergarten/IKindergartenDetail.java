@@ -16,30 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarden;
+package com.evidence.fe.kindergarten;
 
-import org.vaadin.mvp.uibinder.IUiBindable;
-import org.vaadin.mvp.uibinder.annotation.UiField;
-
-import com.evidence.dto.KindergardenDTO;
-import com.evidence.fe.form.EvidenceForm;
 import com.vaadin.ui.Form;
-import com.vaadin.ui.Layout;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class KindergardenDetail extends VerticalLayout implements Layout, IUiBindable, IKindergardenDetail {
-
-	private static final long serialVersionUID = 6155789894644060488L;
-
-	@UiField
-	private EvidenceForm kindergardenForm;
-
-	@Override
-	public EvidenceForm getKindergardenForm() {
-		return this.kindergardenForm;
-	}
+public interface IKindergartenDetail {
+	
+	Form getKindergartenForm();
 }

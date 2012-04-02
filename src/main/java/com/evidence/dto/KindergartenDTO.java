@@ -16,36 +16,43 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarden;
+package com.evidence.dto;
 
-import org.vaadin.mvp.eventbus.EventBus;
-import org.vaadin.mvp.eventbus.annotation.Event;
+import javax.validation.constraints.NotNull;
 
-import com.evidence.fe.main.MainPresenter;
-import com.vaadin.event.ItemClickEvent;
-import com.vaadin.ui.Window;
+import lombok.Delegate;
+import lombok.Getter;
+import lombok.Setter;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.evidence.fe.annotation.AutomaticForm;
+import com.evidence.fe.annotation.Caption;
+import com.evidence.fe.annotation.Order;
+import com.evidence.fe.form.Model;
+import com.evidence.fe.kindergarten.KindergartenDetailFormFieldFactory;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface KindergardenEventBus extends EventBus {
+@AutomaticForm(formFieldFactory=KindergartenDetailFormFieldFactory.class)
+public class KindergartenDTO implements Model {
 
-	@Event(handlers = { KindergardenPresenter.class })
-	public void addKindergarden();
-
-	@Event(handlers = { KindergardenPresenter.class })
-	public void removeKindergarden();
-
-	@Event(handlers = { MainPresenter.class })
-	public void showDialog(Window dialog);
-
-	@Event(handlers = { KindergardenPresenter.class })
-	public void saveUser();
-
-	@Event(handlers = { KindergardenPresenter.class })
-	public void cancelEditUser();
+	@Getter @Setter
+	@NotNull
+	private Long id;
 	
-	@Event(handlers = { KindergardenPresenter.class })
-	public void editUser(ItemClickEvent event);
+	@Getter @Setter
+	@NotEmpty
+	@Caption("kindergarten.detail.name")
+	@Order(1)
+	private String name;
+
+	@Delegate
+	@Order(2)
+	private AddressDTO address = new AddressDTO();
+	
+	@Getter @Setter
+	private String fullAddress; 
 }

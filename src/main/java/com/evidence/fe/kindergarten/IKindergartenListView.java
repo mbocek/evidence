@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarden;
+package com.evidence.fe.kindergarten;
 
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Table;
@@ -25,7 +25,7 @@ import com.vaadin.ui.Table;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface IKindergardenListView extends Layout {
+public interface IKindergartenListView extends Layout {
 
-	Table getKindergardenList();
+	Table getKindergartenList();
 }

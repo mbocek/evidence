@@ -20,14 +20,14 @@ package com.evidence.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.evidence.entity.Kindergarden;
+import com.evidence.entity.Kindergarten;
 
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Repository("kinderGardenDAO")
-public class KindergardenDAO extends JpaDAO<Kindergarden, Long> {
+@Repository("kinderGartenDAO")
+public class KindergartenDAO extends JpaDAO<Kindergarten, Long> {
 	
 }

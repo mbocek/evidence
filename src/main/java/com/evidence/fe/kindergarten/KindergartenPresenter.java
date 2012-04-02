@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarden;
+package com.evidence.fe.kindergarten;
 
 import java.util.List;
 
@@ -24,7 +24,6 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -34,15 +33,14 @@ import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.ViewFactoryException;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
-import com.evidence.dto.KindergardenDTO;
+import com.evidence.dto.KindergartenDTO;
 import com.evidence.fe.annotation.MetaModel;
 import com.evidence.fe.form.EvidenceForm;
 import com.evidence.service.FormMetaModelService;
-import com.evidence.service.KindergardenService;
+import com.evidence.service.KindergartenService;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
-import com.vaadin.ui.Form;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
 
@@ -50,20 +48,20 @@ import com.vaadin.ui.Window;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Component("kindergardenPresenter")
+@Component("kindergartenPresenter")
 @Scope("prototype")
-@Presenter(view = KindergardenListView.class)
-public class KindergardenPresenter extends FactoryPresenter<IKindergardenListView, KindergardenEventBus> {
+@Presenter(view = KindergartenListView.class)
+public class KindergartenPresenter extends FactoryPresenter<IKindergartenListView, KindergartenEventBus> {
 
-	private static final Logger log = LoggerFactory.getLogger(KindergardenPresenter.class);
+	private static final Logger log = LoggerFactory.getLogger(KindergartenPresenter.class);
 
-	private BeanItemContainer<KindergardenDTO> container;
+	private BeanItemContainer<KindergartenDTO> container;
 
 	private Window dialog = null;
 	private EvidenceForm userForm = null;
 	
 	@Inject
-	private KindergardenService kindergardenService;
+	private KindergartenService kindergartenService;
 
     @Inject
     private Validator validator;  	
@@ -73,43 +71,43 @@ public class KindergardenPresenter extends FactoryPresenter<IKindergardenListVie
     
 	@Override
 	public void bind() {
-		Table kindergardenList = this.view.getKindergardenList();
-		container = new BeanItemContainer<KindergardenDTO>(KindergardenDTO.class);
-		kindergardenList.setContainerDataSource(container);
-		kindergardenList.setColumnHeader("name", this.getMessage("kindergarden.list.header.name", this.getView().getLocale()));
-		kindergardenList.setColumnHeader("fullAddress", this.getMessage("kindergarden.list.header.fullAddress", this.getView().getLocale()));
-		kindergardenList.setVisibleColumns(new String[] { "name", "fullAddress" });
-		loadKindergardenList();
+		Table kindergartenList = this.view.getKindergartenList();
+		container = new BeanItemContainer<KindergartenDTO>(KindergartenDTO.class);
+		kindergartenList.setContainerDataSource(container);
+		kindergartenList.setColumnHeader("name", this.getMessage("kindergarten.list.header.name", this.getView().getLocale()));
+		kindergartenList.setColumnHeader("fullAddress", this.getMessage("kindergarten.list.header.fullAddress", this.getView().getLocale()));
+		kindergartenList.setVisibleColumns(new String[] { "name", "fullAddress" });
+		loadKindergartenList();
 	}
 
-	private void loadKindergardenList() {
-		List<KindergardenDTO> kindergardens = kindergardenService.getAll();
-		this.container.addAll(kindergardens);
+	private void loadKindergartenList() {
+		List<KindergartenDTO> kindergartens = kindergartenService.getAll();
+		this.container.addAll(kindergartens);
 	}
 
-	public void onAddKindergarden() throws ViewFactoryException {
+	public void onAddKindergarten() throws ViewFactoryException {
 		// create view
-		KindergardenDetail view = this.createView(KindergardenDetail.class);
+		KindergartenDetail view = this.createView(KindergartenDetail.class);
 
 		// configure the form with bean item
-		this.userForm = view.getKindergardenForm();
-		KindergardenDTO kindergarden = new KindergardenDTO();
-		kindergarden.setName("name");
-		MetaModel metaModel = formService.getMetaModel(kindergarden);
-		this.userForm.setItemDataSource(kindergarden, metaModel);
+		this.userForm = view.getKindergartenForm();
+		KindergartenDTO kindergarten = new KindergartenDTO();
+		kindergarten.setName("name");
+		MetaModel metaModel = formService.getMetaModel(kindergarten);
+		this.userForm.setItemDataSource(kindergarten, metaModel);
 
 		// create a window using caption from view
-		this.dialog = new Window(this.getMessage("kindergarden.detail.caption", this.getView().getLocale()));
+		this.dialog = new Window(this.getMessage("kindergarten.detail.caption", this.getView().getLocale()));
 		this.dialog.setModal(true);
 		this.dialog.addComponent(view);
 		this.dialog.setWidth("300px");
 		this.eventBus.showDialog(this.dialog);
 	}
 
-	public void onRemoveKindergarden() {
+	public void onRemoveKindergarten() {
 		// check if a user is selected in the table
-		Table kindergardenList = this.view.getKindergardenList();
-		Object selected = kindergardenList.getValue();
+		Table kindergartenList = this.view.getKindergartenList();
+		Object selected = kindergartenList.getValue();
 		if (selected != null) {
 			this.container.removeItem(selected);
 		}
@@ -118,13 +116,13 @@ public class KindergardenPresenter extends FactoryPresenter<IKindergardenListVie
 	@SuppressWarnings("unchecked")
 	public void onSaveUser() {
 		// get the user and add it to the container
-		BeanItem<KindergardenDTO> item = (BeanItem<KindergardenDTO>) this.userForm.getItemDataSource();
-		KindergardenDTO kindergarden = item.getBean();
+		BeanItem<KindergartenDTO> item = (BeanItem<KindergartenDTO>) this.userForm.getItemDataSource();
+		KindergartenDTO kindergarten = item.getBean();
 		
-		BindingResult result = new BeanPropertyBindingResult(kindergarden, "kindergarden");
-		validator.validate(kindergarden, result);  
-		this.container.addBean(kindergarden);
-		this.kindergardenService.addKindergarden(kindergarden);
+		BindingResult result = new BeanPropertyBindingResult(kindergarten, "kindergarten");
+		validator.validate(kindergarten, result);  
+		this.container.addBean(kindergarten);
+		this.kindergartenService.addKindergarten(kindergarten);
 		// close dialog
 		this.closeDialog();
 	}

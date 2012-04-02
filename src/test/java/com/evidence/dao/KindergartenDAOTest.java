@@ -29,26 +29,26 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.evidence.entity.Kindergarden;
+import com.evidence.entity.Kindergarten;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
 @Transactional
-public class KinderGardenDAOTest extends DbUnitDaoTest {
+public class KindergartenDAOTest extends DbUnitDaoTest {
 
 	@Inject
-	private KindergardenDAO kinderGardenDAO;
+	private KindergartenDAO kindergartenDAO;
 	
 	@Test
 	public void testCreate() {
-		Kindergarden kinderGarden = kinderGardenDAO.read(1L);
-		Assert.assertNotNull(kinderGarden.getContact());
-		Assert.assertNotNull(kinderGarden.getContact().getAddress());
-		Assert.assertNotNull(kinderGarden.getContact().getEmail());
-		Assert.assertNotNull(kinderGarden.getContact().getLandLine());
-		Assert.assertNotNull(kinderGarden.getContact().getMobilePhone());
+		Kindergarten kindergarten = kindergartenDAO.read(1L);
+		Assert.assertNotNull(kindergarten.getContact());
+		Assert.assertNotNull(kindergarten.getContact().getAddress());
+		Assert.assertNotNull(kindergarten.getContact().getEmail());
+		Assert.assertNotNull(kindergarten.getContact().getLandLine());
+		Assert.assertNotNull(kindergarten.getContact().getMobilePhone());
 	}
 
 	/**
@@ -56,10 +56,10 @@ public class KinderGardenDAOTest extends DbUnitDaoTest {
 	 */
 	@Test
 	public void testDelete() {
-		Kindergarden kinderGarden = kinderGardenDAO.read(1L);
-		kinderGardenDAO.delete(kinderGarden);
+		Kindergarten kindergarten = kindergartenDAO.read(1L);
+		kindergartenDAO.delete(kindergarten);
 		try {
-			kinderGarden = kinderGardenDAO.read(1L);
+			kindergarten = kindergartenDAO.read(1L);
 			fail("Entity shouldn't be exist!"); 
 		} catch (EntityNotFoundException e) {
 		}
@@ -70,8 +70,8 @@ public class KinderGardenDAOTest extends DbUnitDaoTest {
 	 */
 	@Test
 	public void testFindById() {
-		Kindergarden kinderGarden = kinderGardenDAO.findById(1L);
-		Assert.assertNotNull(kinderGarden);
+		Kindergarten kindergarten = kindergartenDAO.findById(1L);
+		Assert.assertNotNull(kindergarten);
 	}
 
 	/**
@@ -80,8 +80,8 @@ public class KinderGardenDAOTest extends DbUnitDaoTest {
 	@Test
 	public void testRead() {
 		try {
-			Kindergarden kinderGarden = kinderGardenDAO.read(1L);
-			Assert.assertNotNull(kinderGarden);
+			Kindergarten kindergarten = kindergartenDAO.read(1L);
+			Assert.assertNotNull(kindergarten);
 		} catch (EntityNotFoundException e) {
 			fail("Entity should be exist!"); 
 		}
@@ -92,7 +92,7 @@ public class KinderGardenDAOTest extends DbUnitDaoTest {
 	 */
 	@Test
 	public void testFindAll() {
-		List<Kindergarden> kinderGardens = kinderGardenDAO.findAll();
-		Assert.assertEquals(1, kinderGardens.size());
+		List<Kindergarten> kindergartens = kindergartenDAO.findAll();
+		Assert.assertEquals(1, kindergartens.size());
 	}
 }

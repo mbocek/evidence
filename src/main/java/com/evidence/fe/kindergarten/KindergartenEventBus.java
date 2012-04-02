@@ -16,15 +16,36 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarden;
+package com.evidence.fe.kindergarten;
 
-import com.vaadin.ui.Form;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.eventbus.annotation.Event;
+
+import com.evidence.fe.main.MainPresenter;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.ui.Window;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface IKindergardenDetail {
+public interface KindergartenEventBus extends EventBus {
+
+	@Event(handlers = { KindergartenPresenter.class })
+	public void addKindergarten();
+
+	@Event(handlers = { KindergartenPresenter.class })
+	public void removeKindergarten();
+
+	@Event(handlers = { MainPresenter.class })
+	public void showDialog(Window dialog);
+
+	@Event(handlers = { KindergartenPresenter.class })
+	public void saveUser();
+
+	@Event(handlers = { KindergartenPresenter.class })
+	public void cancelEditUser();
 	
-	Form getKindergardenForm();
+	@Event(handlers = { KindergartenPresenter.class })
+	public void editUser(ItemClickEvent event);
 }
