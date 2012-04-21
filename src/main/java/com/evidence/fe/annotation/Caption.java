@@ -24,6 +24,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * Annotation for marking field as caption.
+ * Parameter is resource name. 
+ * 
+ * <code>
+ * @Caption("window.name")
+ * </code>
+ * 
  * @author Michal Bocek
  * @since 1.0.0
  */
@@ -32,6 +39,7 @@ import java.lang.annotation.Target;
 public @interface Caption {
 	
 	/**
+	 * Resource name.
 	 * @return value of resource
 	 */
 	String value();	

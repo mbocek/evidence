@@ -60,8 +60,10 @@ public class AnnotationHelperTest {
 	@Test
 	public void testBuildOrderedMap() {
 		Map<String, Double> orderedMap = new HashMap<String, Double>();
-		AnnotationHelper.buildOrderMap(testModel, orderedMap);
-		assertEquals("TestModel doesn't contains two ordered fields!", 4, orderedMap.size());
+		Map<String, String> captionMap = new HashMap<String, String>();
+		AnnotationHelper.buildData(testModel, orderedMap, captionMap);
+		assertEquals("TestModel doesn't contains four ordered fields!", 4, orderedMap.size());
 		assertFalse("TestModel field name order number is 1!", 1 != orderedMap.get("name"));
+		assertEquals("TestModel doesn't contains four caption fields!", 4, captionMap.size());
 	}
 }

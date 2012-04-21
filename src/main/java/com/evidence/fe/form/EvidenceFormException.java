@@ -16,22 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarten;
-
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Layout;
-import com.vaadin.ui.Table;
+package com.evidence.fe.form;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface IKindergartenListView extends Layout {
+public class EvidenceFormException extends RuntimeException {
 
-	Table getKindergartenList();
-	
-	HorizontalLayout getButtonBar();
-	
-	Label getExpander();
+	private static final long serialVersionUID = 1L;
+
+	public EvidenceFormException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public EvidenceFormException(String message) {
+		super(message);
+	}
 }

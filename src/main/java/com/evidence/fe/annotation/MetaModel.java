@@ -19,12 +19,13 @@
 package com.evidence.fe.annotation;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
 import lombok.ToString;
 
-import com.evidence.fe.form.EvidenceFormFieldFactory;
+import com.vaadin.ui.FormFieldFactory;
 
 /**
  * @author Michal Bocek
@@ -33,7 +34,7 @@ import com.evidence.fe.form.EvidenceFormFieldFactory;
 @ToString
 public class MetaModel {
 
-	private Class<? extends EvidenceFormFieldFactory> formFieldFactory;
+	private Class<? extends FormFieldFactory> formFieldFactory;
 	
 	private Map<String, Double> orderMap;
 	
@@ -41,7 +42,7 @@ public class MetaModel {
 	
 	private Map<String, String> captionMap;
 	
-	public MetaModel(Class<? extends EvidenceFormFieldFactory> formFieldFactory, Map<String, Double> orderMap, Map<String, String> captionMap) {
+	public MetaModel(Class<? extends FormFieldFactory> formFieldFactory, Map<String, Double> orderMap, Map<String, String> captionMap) {
 		this.formFieldFactory = formFieldFactory;
 		this.orderMap = orderMap;
 		this.captionMap = captionMap;
@@ -51,7 +52,7 @@ public class MetaModel {
 		orderedFields = sortedMap.keySet();
 	}
 	
-	public Class<? extends EvidenceFormFieldFactory> getFormFieldFactory() {
+	public Class<? extends FormFieldFactory> getFormFieldFactory() {
 		return formFieldFactory;
 	}
 	
@@ -60,6 +61,11 @@ public class MetaModel {
 	}
 	
 	public Collection<String> getOrderedFields() {
-		return orderedFields;
+		return Collections.unmodifiableCollection(orderedFields);
 	}
+	
+	public Collection<String> getCaptionedFields() {
+		return Collections.unmodifiableCollection(captionMap.keySet());
+	}
+	
 }

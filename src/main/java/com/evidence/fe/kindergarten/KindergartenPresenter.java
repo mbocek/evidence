@@ -41,6 +41,7 @@ import com.evidence.service.KindergartenService;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
 
@@ -58,6 +59,7 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 	private BeanItemContainer<KindergartenDTO> container;
 
 	private Window dialog = null;
+	
 	private EvidenceForm userForm = null;
 	
 	@Inject
@@ -71,11 +73,13 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
     
 	@Override
 	public void bind() {
+		HorizontalLayout buttonBar = this.view.getButtonBar();
+		buttonBar.setExpandRatio(this.getView().getExpander(), 1.0f);
 		Table kindergartenList = this.view.getKindergartenList();
 		container = new BeanItemContainer<KindergartenDTO>(KindergartenDTO.class);
 		kindergartenList.setContainerDataSource(container);
-		kindergartenList.setColumnHeader("name", this.getMessage("kindergarten.list.header.name", this.getView().getLocale()));
-		kindergartenList.setColumnHeader("fullAddress", this.getMessage("kindergarten.list.header.fullAddress", this.getView().getLocale()));
+		kindergartenList.setColumnHeader("name", this.getMessage("kindergarten.list.header.name", this.getLocale()));
+		kindergartenList.setColumnHeader("fullAddress", this.getMessage("kindergarten.list.header.fullAddress", this.getLocale()));
 		kindergartenList.setVisibleColumns(new String[] { "name", "fullAddress" });
 		loadKindergartenList();
 	}
@@ -94,13 +98,13 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		KindergartenDTO kindergarten = new KindergartenDTO();
 		kindergarten.setName("name");
 		MetaModel metaModel = formService.getMetaModel(kindergarten);
-		this.userForm.setItemDataSource(kindergarten, metaModel);
+		this.userForm.setItemDataSource(kindergarten, metaModel, this.messageSource, this.getLocale());
 
 		// create a window using caption from view
 		this.dialog = new Window(this.getMessage("kindergarten.detail.caption", this.getView().getLocale()));
 		this.dialog.setModal(true);
 		this.dialog.addComponent(view);
-		this.dialog.setWidth("300px");
+		this.dialog.setWidth("400px");
 		this.eventBus.showDialog(this.dialog);
 	}
 

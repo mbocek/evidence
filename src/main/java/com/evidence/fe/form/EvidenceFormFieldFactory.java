@@ -18,12 +18,26 @@
  */
 package com.evidence.fe.form;
 
-import com.vaadin.ui.FormFieldFactory;
+import java.util.Locale;
+
+import org.vaadin.mvp.uibinder.IUiMessageSource;
+
+import com.vaadin.ui.DefaultFieldFactory;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface EvidenceFormFieldFactory extends FormFieldFactory {
+public class EvidenceFormFieldFactory extends DefaultFieldFactory {
 
+	private static final long serialVersionUID = 1L;
+
+	protected IUiMessageSource messageSource;
+	
+	protected Locale locale;
+
+	public EvidenceFormFieldFactory(IUiMessageSource messageSource, Locale locale) {
+		this.messageSource = messageSource;
+		this.locale = locale;
+	}
 }

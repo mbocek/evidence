@@ -27,8 +27,8 @@ import org.springframework.stereotype.Service;
 
 import com.evidence.fe.annotation.AnnotationHelper;
 import com.evidence.fe.annotation.MetaModel;
-import com.evidence.fe.form.EvidenceFormFieldFactory;
 import com.evidence.fe.form.Model;
+import com.vaadin.ui.FormFieldFactory;
 
 /**
  * @author Michal Bocek
@@ -60,11 +60,10 @@ public class FormMetaModelService {
 		log.debug("Building metamodel for model: {}", modelName);
 		MetaModel meta = null;
 		if (AnnotationHelper.isAutomaticForm(model)) {
-			Class<? extends EvidenceFormFieldFactory> factory = AnnotationHelper.getFormFieldFactory(model);
+			Class<? extends FormFieldFactory> factory = AnnotationHelper.getFormFieldFactory(model);
 			HashMap<String, Double> orderMap = new HashMap<String, Double>();
-			AnnotationHelper.buildOrderMap(model, orderMap);
 			HashMap<String, String> captionMap = new HashMap<String, String>();
-			AnnotationHelper.buildCaptionMap(model, captionMap);
+			AnnotationHelper.buildData(model, orderMap, captionMap);
 			meta = new MetaModel(factory, orderMap, captionMap);
 			log.debug("Adding automatic form to cache with name: {} and meta mode: {}", modelName, meta);
 			modelMap.put(modelName, meta);

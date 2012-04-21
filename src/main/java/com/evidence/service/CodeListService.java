@@ -16,22 +16,33 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.form;
+package com.evidence.service;
 
-import com.vaadin.data.Item;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.Field;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.evidence.dao.StateDAO;
+import com.evidence.dto.StateDTO;
+import com.evidence.entity.State;
+import com.evidence.utility.DTOConverter;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class DefaultEvidenceFormFieldFactory implements EvidenceFormFieldFactory {
+@Service
+@Transactional(readOnly = true)
+public class CodeListService {
 
-	private static final long serialVersionUID = 1L;
+	@Autowired
+	private StateDAO stateDAO;
 
-	@Override
-	public Field createField(Item item, Object propertyId, Component uiContext) {
-		return null;
+	public List<StateDTO> getStates() {
+		List<State> states = stateDAO.findAll();
+		List<StateDTO> stateDTOs = DTOConverter.convertList(states, StateDTO.class);
+		return stateDTOs;
 	}
 }

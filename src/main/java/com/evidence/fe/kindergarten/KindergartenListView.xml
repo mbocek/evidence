@@ -3,14 +3,16 @@
 	xmlns:e="urn:org.vaadin.mvp.uibinder.event" 
 	xmlns:v="urn:import:com.vaadin.ui"
 	xmlns:m="urn:org.vaadin.mvp.uibinder.message"
+	xmlns:i="urn:org.vaadin.mvp.uibinder.method"
 	v:margin="true">
 
 	<v:Label styleName="h2" m:caption="kindergarten.caption.administration" />
 
 	<v:Table ui:field="kindergartenList" width="100%" e:itemClick="editUser" immediate="true" selectable="true" multiSelect="false" />
 
-	<v:HorizontalLayout spacing="true">
-		<v:Button m:caption="kindergarten.list.add" styleName="small" e:click="addKindergarten" />
-		<v:Button m:caption="kindergarten.list.remove" styleName="small" e:click="removeKindergarten" />
+	<v:HorizontalLayout spacing="true" width="100%" ui:field="buttonBar">
+		<v:Label width="100%"  ui:field="expander"/>
+		<v:Button m:caption="kindergarten.list.add" styleName="small" e:click="addKindergarten"/>
+		<v:Button m:caption="kindergarten.list.remove" styleName="small" e:click="removeKindergarten"/>
 	</v:HorizontalLayout>
 </ui:UiBinder>

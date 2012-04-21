@@ -18,9 +18,13 @@
  */
 package com.evidence.fe.kindergarten;
 
+import lombok.Getter;
+
 import org.vaadin.mvp.uibinder.IUiBindable;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 
@@ -33,10 +37,14 @@ public class KindergartenListView extends VerticalLayout implements IKindergarte
 	private static final long serialVersionUID = 3807396569678708848L;
 
 	@UiField
+	@Getter
 	private Table kindergartenList;
 
-	@Override
-	public Table getKindergartenList() {
-		return kindergartenList;
-	}
+	@UiField
+	@Getter
+	private HorizontalLayout buttonBar;
+
+	@UiField
+	@Getter
+	private Label expander;
 }

@@ -18,6 +18,8 @@
  */
 package com.evidence.fe;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.MessageSource;
@@ -35,6 +37,7 @@ import com.evidence.fe.main.MainPresenter;
 @Component("springMvpApp")
 @Scope("prototype")
 @Configurable(preConstruction = true)
+@Slf4j
 public class EvidenceApplication extends SpringMvpApplication {
 	
 	private static final long serialVersionUID = -1814298499647961355L;
@@ -46,7 +49,9 @@ public class EvidenceApplication extends SpringMvpApplication {
 	
 	@Override
 	public void preInit() {
+		log.debug("preInit with locale {}", this.getLocale());
 		this.setLocale(getLocale());
+		this.presenterFactory.setLocale(getLocale());
 		this.setMessageSource(new SpringUiMessageSource(messageSource));
 	}
 

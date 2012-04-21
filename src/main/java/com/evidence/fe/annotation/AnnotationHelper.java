@@ -25,8 +25,8 @@ import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
-import com.evidence.fe.form.EvidenceFormFieldFactory;
 import com.evidence.fe.form.Model;
+import com.vaadin.ui.FormFieldFactory;
 
 /**
  * @author Michal Bocek
@@ -39,17 +39,17 @@ public class AnnotationHelper {
 		return model.getClass().isAnnotationPresent(AutomaticForm.class);
 	}
 
-	public static Class<? extends EvidenceFormFieldFactory> getFormFieldFactory(Model model) {
+	public static Class<? extends FormFieldFactory> getFormFieldFactory(Model model) {
 		AutomaticForm automaticForm = model.getClass().getAnnotation(AutomaticForm.class);
-		Class<? extends EvidenceFormFieldFactory> formFieldFactory = automaticForm.formFieldFactory();
-		if (EvidenceFormFieldFactory.class.isAssignableFrom(formFieldFactory)) {
+		Class<? extends FormFieldFactory> formFieldFactory = automaticForm.formFieldFactory();
+		if (FormFieldFactory.class.isAssignableFrom(formFieldFactory)) {
 			return formFieldFactory;
 		} else {
 			return null;
 		}
 	}
 	
-	public static void buildOrderMap(Model model, Map<String, Double> orderMap) {
+	public static void buildData(Model model, Map<String, Double> orderMap, Map<String, String> captionMap) {
 		List<FieldInfo> fields = null;
 		try {
 			fields = getAllAutomaticFormFields(model.getClass(), null);
@@ -59,6 +59,25 @@ public class AnnotationHelper {
 	
 		for (FieldInfo fieldInfo : fields) {
 			buildOrderMapRecursively(orderMap, fieldInfo, 0L, 0.1);
+			buildCaptionMapRecursively(captionMap, fieldInfo);
+		}
+	}
+
+	private static void buildCaptionMapRecursively(Map<String, String> captionMap, FieldInfo fieldInfo) {
+		if (fieldInfo.getCaption() != null) {
+			if (fieldInfo.getSubFieldInfo() == null) {
+				captionMap.put(fieldInfo.getField().getName(), fieldInfo.getCaption());
+			} else {
+				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
+					buildCaptionMapRecursively(captionMap, subfield);
+				}
+			}
+		} else {
+			if (fieldInfo.getSubFieldInfo() != null) {
+				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
+					buildCaptionMapRecursively(captionMap, subfield);
+				}
+			}			
 		}
 	}
 
@@ -114,21 +133,5 @@ public class AnnotationHelper {
 			}
 		}
 		return allClassFieldInfos;
-	}
-
-	public static void buildCaptionMap(Model model, Map<String, String> captionMap) {
-		Field[] fields = null;
-		try {
-			fields = FieldUtils.getAllFields(model.getClass(), null);
-		} catch (ClassNotFoundException e) {
-			log.warn("Some problems in getting fields!", e);
-		}
-		
-		for (Field field : fields) {
-			Caption caption = field.getAnnotation(Caption.class);
-			if (caption != null) {
-				captionMap.put(field.getName(), caption.value());
-			}
-		}
 	}
 }

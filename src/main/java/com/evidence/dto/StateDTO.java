@@ -16,22 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarten;
+package com.evidence.dto;
 
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Layout;
-import com.vaadin.ui.Table;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface IKindergartenListView extends Layout {
-
-	Table getKindergartenList();
+@ToString
+public class StateDTO {
 	
-	HorizontalLayout getButtonBar();
+	@Getter
+	private String code;
 	
-	Label getExpander();
+	@Getter
+	private String name;
 }

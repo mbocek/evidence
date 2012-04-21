@@ -24,6 +24,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.BasePresenter;
+import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.IPresenter;
 import org.vaadin.mvp.presenter.IPresenterFactory;
 import org.vaadin.mvp.presenter.annotation.Presenter;
@@ -41,7 +42,7 @@ import com.vaadin.ui.Window;
 @Component("mainPresenter")
 @Scope("prototype")
 @Presenter(view = MainView.class)
-public class MainPresenter extends BasePresenter<IMainView, MainEventBus> {
+public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 
 	private static final Logger log = LoggerFactory.getLogger(MainPresenter.class);
 

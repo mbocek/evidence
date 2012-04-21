@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import com.evidence.fe.annotation.AutomaticForm;
+import com.evidence.fe.annotation.Caption;
 import com.evidence.fe.annotation.Order;
 
 /**
@@ -49,5 +50,6 @@ public class AddressDTO {
 
 	@Getter @Setter
 	@Order(5)
+	@Caption("kindergarten.detail.stateCode")
 	private String stateCode;
 }

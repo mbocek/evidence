@@ -16,22 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarten;
+package com.evidence.dao;
 
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Layout;
-import com.vaadin.ui.Table;
+import org.springframework.stereotype.Repository;
+
+import com.evidence.entity.State;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface IKindergartenListView extends Layout {
+@Repository
+public class StateDAO extends JpaImmutableDAO<State, String>{
 
-	Table getKindergartenList();
-	
-	HorizontalLayout getButtonBar();
-	
-	Label getExpander();
 }

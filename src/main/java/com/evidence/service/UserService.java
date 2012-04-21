@@ -27,8 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.evidence.dao.ResponsiblePersonDAO;
 import com.evidence.dto.ChildrenDTO;
-import com.evidence.entity.Person;
-import com.evidence.utility.DTOConverter;
 
 /**
  * @author Michal Bocek

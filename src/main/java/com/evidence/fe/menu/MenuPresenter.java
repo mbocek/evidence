@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.presenter.BasePresenter;
+import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.evidence.fe.children.ChildrenPresenter;
@@ -37,13 +38,13 @@ import com.vaadin.ui.Tree;
 @Component("menuPresenter")
 @Scope("prototype")
 @Presenter(view = MenuView.class)
-public class MenuPresenter extends BasePresenter<IMenuView, MainEventBus> {
+public class MenuPresenter extends FactoryPresenter<IMenuView, MainEventBus> {
 
 	@Override
 	public void bind() {
 		Tree tree = this.view.getTree();
-		addEntry(tree, this.getMessage("menu.kindergarten", this.getView().getLocale()), KindergartenPresenter.class);
-		addEntry(tree, this.getMessage("menu.child", this.getView().getLocale()), ChildrenPresenter.class);
+		addEntry(tree, this.getMessage("menu.kindergarten", this.getLocale()), KindergartenPresenter.class);
+		addEntry(tree, this.getMessage("menu.child", this.getLocale()), ChildrenPresenter.class);
 	}
 	
 	private void addEntry(Tree tree, String caption, Class<? extends BasePresenter<?, ? extends EventBus>> presenterType) {

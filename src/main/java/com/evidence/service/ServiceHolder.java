@@ -16,22 +16,37 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarten;
+package com.evidence.service;
 
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Layout;
-import com.vaadin.ui.Table;
+import javax.inject.Inject;
+
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface IKindergartenListView extends Layout {
+@Slf4j
+public class ServiceHolder {
 
-	Table getKindergartenList();
+	private static ServiceHolder instance;
 	
-	HorizontalLayout getButtonBar();
+	@Getter
+	@Inject 
+	private CodeListService codeListService;
+
+	@Getter
+	@Inject 
+	private FormMetaModelService formMetaMoelService;
 	
-	Label getExpander();
+	public static synchronized ServiceHolder getInstance() {
+		if (instance == null) {
+			log.debug("Cearing ServiceHolder instance");
+			instance = new ServiceHolder();
+		} else {
+			log.trace("ServiceHolder instance laready exists!");
+		}
+		return instance;
+	}
 }
