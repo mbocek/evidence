@@ -19,6 +19,7 @@
 package com.evidence.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -29,8 +30,10 @@ import lombok.ToString;
 public class StateDTO {
 	
 	@Getter
+	@Setter
 	private String code;
 	
 	@Getter
+	@Setter
 	private String name;
 }

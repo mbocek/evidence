@@ -20,6 +20,8 @@ package com.evidence.service;
 
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +35,7 @@ import com.evidence.utility.DTOConverter;
  * @author Michal Bocek
  * @since 1.0.0
  */
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 public class CodeListService {
@@ -42,6 +45,7 @@ public class CodeListService {
 
 	public List<StateDTO> getStates() {
 		List<State> states = stateDAO.findAll();
+		log.debug("Loaded states:", states.toString());
 		List<StateDTO> stateDTOs = DTOConverter.convertList(states, StateDTO.class);
 		return stateDTOs;
 	}
