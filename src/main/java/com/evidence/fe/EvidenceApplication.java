@@ -50,8 +50,8 @@ public class EvidenceApplication extends SpringMvpApplication {
 	@Override
 	public void preInit() {
 		log.debug("preInit with locale {}", this.getLocale());
-		this.setLocale(getLocale());
-		this.presenterFactory.setLocale(getLocale());
+		this.setLocale(this.getLocale());
+		this.presenterFactory.setLocale(this.getLocale());
 		this.setMessageSource(new SpringUiMessageSource(messageSource));
 	}
 

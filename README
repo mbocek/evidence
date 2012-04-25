@@ -4,3 +4,6 @@ Download source code and build it with command:
 
 For building project you can use:
 > mvn clean install jetty:run
+
+For remote debugging:
+> mvnDebug clean install jetty:run

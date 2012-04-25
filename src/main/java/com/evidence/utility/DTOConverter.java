@@ -29,6 +29,7 @@ import org.dozer.Mapper;
  * @since 1.0.0
  */
 public class DTOConverter {
+	
 	public static <T> T convert(Object source, Class<T> destinationCLass) {
 		Mapper instance = DozerBeanMapperSingletonWrapper.getInstance();
 		return instance.map(source, destinationCLass);
