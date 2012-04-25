@@ -96,15 +96,15 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		// configure the form with bean item
 		this.userForm = view.getKindergartenForm();
 		KindergartenDTO kindergarten = new KindergartenDTO();
-		kindergarten.setName("name");
 		MetaModel metaModel = formService.getMetaModel(kindergarten);
 		this.userForm.setItemDataSource(kindergarten, metaModel, this.messageSource, this.getLocale());
 
 		// create a window using caption from view
-		this.dialog = new Window(this.getMessage("kindergarten.detail.caption", this.getView().getLocale()));
+		this.dialog = new Window(this.getMessage("kindergarten.detail.caption", this.getLocale()));
 		this.dialog.setModal(true);
 		this.dialog.addComponent(view);
-		this.dialog.setWidth("400px");
+		this.dialog.getContent().setSizeUndefined();
+		//this.dialog.setWidth("400px");
 		this.eventBus.showDialog(this.dialog);
 	}
 

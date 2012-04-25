@@ -47,7 +47,7 @@ public class KindergartenDTO implements Model {
 	@NotEmpty
 	@Caption("kindergarten.detail.name")
 	@Order(1)
-	private String name;
+	private String name = "";
 
 	@Delegate
 	@Order(2)

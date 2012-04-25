@@ -34,22 +34,26 @@ public class AddressDTO {
 	
 	@Getter @Setter
 	@Order(1)
-	private String street;
+	@Caption("address.detail.street")
+	private String street = "";
 	
 	@Getter @Setter
 	@Order(2)
-	private String city;
+	@Caption("address.detail.city")
+	private String city = "";
 	
 	@Getter @Setter
 	@Order(3)
-	private String houseNumber;
+	@Caption("address.detail.houseNumber")
+	private String houseNumber = "";
 	
 	@Getter @Setter
 	@Order(4)
-	private String zipCode;
+	@Caption("address.detail.zipCode")
+	private String zipCode = "";
 
 	@Getter @Setter
 	@Order(5)
-	@Caption("kindergarten.detail.stateCode")
+	@Caption("address.detail.stateCode")
 	private String stateCode;
 }
