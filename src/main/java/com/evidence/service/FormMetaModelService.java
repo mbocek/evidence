@@ -61,10 +61,11 @@ public class FormMetaModelService {
 		MetaModel meta = null;
 		if (AnnotationHelper.isAutomaticForm(model)) {
 			Class<? extends FormFieldFactory> factory = AnnotationHelper.getFormFieldFactory(model);
-			HashMap<String, Double> orderMap = new HashMap<String, Double>();
-			HashMap<String, String> captionMap = new HashMap<String, String>();
-			AnnotationHelper.buildData(model, orderMap, captionMap);
-			meta = new MetaModel(factory, orderMap, captionMap);
+			Map<String, Double> orderMap = new HashMap<String, Double>();
+			Map<String, String> captionMap = new HashMap<String, String>();
+			Map<String, Boolean> requiredMap = new HashMap<String, Boolean>();
+			AnnotationHelper.buildData(model, orderMap, captionMap, requiredMap);
+			meta = new MetaModel(factory, orderMap, captionMap, requiredMap);
 			log.debug("Adding automatic form to cache with name: {} and meta mode: {}", modelName, meta);
 			modelMap.put(modelName, meta);
 		}

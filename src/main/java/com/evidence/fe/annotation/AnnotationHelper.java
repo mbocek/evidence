@@ -23,6 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import lombok.extern.slf4j.Slf4j;
 
 import com.evidence.fe.form.Model;
@@ -49,7 +53,7 @@ public class AnnotationHelper {
 		}
 	}
 	
-	public static void buildData(Model model, Map<String, Double> orderMap, Map<String, String> captionMap) {
+	public static void buildData(Model model, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap) {
 		List<FieldInfo> fields = null;
 		try {
 			fields = getAllAutomaticFormFields(model.getClass(), null);
@@ -60,6 +64,25 @@ public class AnnotationHelper {
 		for (FieldInfo fieldInfo : fields) {
 			buildOrderMapRecursively(orderMap, fieldInfo, 0L, 0.1);
 			buildCaptionMapRecursively(captionMap, fieldInfo);
+			buildRequiredMapRecursively(requiredMap, fieldInfo);
+		}
+	}
+
+	private static void buildRequiredMapRecursively(Map<String, Boolean> requiredMap, FieldInfo fieldInfo) {
+		if (fieldInfo.getRequired() != null) {
+			if (fieldInfo.getSubFieldInfo() == null) {
+				requiredMap.put(fieldInfo.getField().getName(), fieldInfo.getRequired());
+			} else {
+				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
+					buildRequiredMapRecursively(requiredMap, subfield);
+				}
+			}
+		} else {
+			if (fieldInfo.getSubFieldInfo() != null) {
+				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
+					buildRequiredMapRecursively(requiredMap, subfield);
+				}
+			}			
 		}
 	}
 
@@ -111,6 +134,7 @@ public class AnnotationHelper {
 						Class fieldClass = field.getType();
 						Long orderNumber = null;
 						String captionString = null;
+						Boolean requiredBoolean = Boolean.FALSE;
 						
 						if (order != null) {
 							orderNumber = order.value();
@@ -120,12 +144,16 @@ public class AnnotationHelper {
 							captionString = caption.value();
 						}						
 						
+						if (field.isAnnotationPresent(NotNull.class) || field.isAnnotationPresent(NotEmpty.class)) {
+							requiredBoolean = Boolean.TRUE;
+						}						
+						
 						FieldInfo fieldInfo = null;
 						if (fieldClass.isAnnotationPresent(AutomaticForm.class)) {
 							List<FieldInfo> formFields = getAllAutomaticFormFields(fieldClass, fieldInfo);
-							fieldInfo = new FieldInfo(field, orderNumber, captionString, formFields);
+							fieldInfo = new FieldInfo(field, orderNumber, captionString, requiredBoolean, formFields);
 						} else {
-							fieldInfo = new FieldInfo(field, orderNumber, captionString, null);
+							fieldInfo = new FieldInfo(field, orderNumber, captionString, requiredBoolean, null);
 						}
 						allClassFieldInfos.add(fieldInfo);						
 					}

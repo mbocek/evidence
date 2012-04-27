@@ -18,6 +18,8 @@
  */
 package com.evidence.fe.annotation;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.Delegate;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +38,7 @@ public class TestModel implements Model {
 
 	@Caption("Name")
 	@Order(1)
+	@NotNull
 	@Getter @Setter
 	public String name;
 

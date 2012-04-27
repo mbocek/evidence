@@ -28,6 +28,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.Validator;
 import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.ViewFactoryException;
@@ -41,6 +42,9 @@ import com.evidence.service.KindergartenService;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
+import com.vaadin.terminal.UserError;
+import com.vaadin.ui.AbstractField;
+import com.vaadin.ui.Field;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
@@ -60,7 +64,7 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 
 	private Window dialog = null;
 	
-	private EvidenceForm userForm = null;
+	private EvidenceForm kindergartenForm = null;
 	
 	@Inject
 	private KindergartenService kindergartenService;
@@ -92,19 +96,17 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 	public void onAddKindergarten() throws ViewFactoryException {
 		// create view
 		KindergartenDetail view = this.createView(KindergartenDetail.class);
-
 		// configure the form with bean item
-		this.userForm = view.getKindergartenForm();
+		this.kindergartenForm = view.getKindergartenForm();
 		KindergartenDTO kindergarten = new KindergartenDTO();
 		MetaModel metaModel = formService.getMetaModel(kindergarten);
-		this.userForm.setItemDataSource(kindergarten, metaModel, this.messageSource, this.getLocale());
+		this.kindergartenForm.setItemDataSource(kindergarten, metaModel, this.messageSource, this.getLocale());
 
 		// create a window using caption from view
 		this.dialog = new Window(this.getMessage("kindergarten.detail.caption", this.getLocale()));
 		this.dialog.setModal(true);
 		this.dialog.addComponent(view);
 		this.dialog.getContent().setSizeUndefined();
-		//this.dialog.setWidth("400px");
 		this.eventBus.showDialog(this.dialog);
 	}
 
@@ -120,15 +122,26 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 	@SuppressWarnings("unchecked")
 	public void onSaveUser() {
 		// get the user and add it to the container
-		BeanItem<KindergartenDTO> item = (BeanItem<KindergartenDTO>) this.userForm.getItemDataSource();
+		BeanItem<KindergartenDTO> item = (BeanItem<KindergartenDTO>) this.kindergartenForm.getItemDataSource();
 		KindergartenDTO kindergarten = item.getBean();
 		
 		BindingResult result = new BeanPropertyBindingResult(kindergarten, "kindergarten");
-		validator.validate(kindergarten, result);  
-		this.container.addBean(kindergarten);
-		this.kindergartenService.addKindergarten(kindergarten);
-		// close dialog
-		this.closeDialog();
+		validator.validate(kindergarten, result);
+		if (result.hasErrors()) {
+			for (FieldError error : result.getFieldErrors()) {
+				String field = error.getField();
+				String message = error.getDefaultMessage();
+				Field fieldComponent = this.kindergartenForm.getField(field);
+				if (fieldComponent != null && fieldComponent instanceof AbstractField) {
+					((AbstractField)fieldComponent).setComponentError(new UserError(message));
+				}
+			}
+		} else {
+			//this.container.addBean(kindergarten);
+			this.kindergartenService.addKindergarten(kindergarten);
+			// close dialog
+			this.closeDialog();
+		}
 	}
 
 	public void onCancelEditUser() {
@@ -141,7 +154,7 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		Window applicationWindow = (Window) this.dialog.getParent();
 		applicationWindow.removeWindow(this.dialog);
 		this.dialog = null;
-		this.userForm = null;
+		this.kindergartenForm = null;
 	}
 	
 	public void onEditUser(ItemClickEvent event) {

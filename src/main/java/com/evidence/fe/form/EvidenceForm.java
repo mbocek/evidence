@@ -53,10 +53,18 @@ public class EvidenceForm extends Form {
 		setupFormFieldFactory(metaModel, messageSource, locale);
 		this.setVisibleItemProperties(metaModel.getOrderedFields());
 		for (String fieldName : metaModel.getCaptionedFields()) {
-			log.debug("Processing caption for field {}", fieldName);
+			log.debug("Processing caption for field:{}", fieldName);
 			String fieldCaption = metaModel.getFieldCaption(fieldName);
 			Field field = this.getField(fieldName);
 			field.setCaption(messageSource.getMessage(fieldCaption, locale));
+		}
+		for (String fieldName : metaModel.getRequiredFields()) {
+			log.debug("Processing required for field:{}", fieldName);
+			Boolean fieldRequired = metaModel.getFieldRequired(fieldName);
+			Field field = this.getField(fieldName);
+			log.debug("Field:{} is required:{}", fieldName, fieldRequired);
+			field.setRequired(fieldRequired);
+			field.setRequiredError(messageSource.getMessage("field.required", locale));
 		}
 	}
 

@@ -43,5 +43,8 @@ public class FieldInfo {
 	private String caption;
 	
 	@Getter
+	private Boolean required;
+
+	@Getter
 	private List<FieldInfo> subFieldInfo; 
 }
