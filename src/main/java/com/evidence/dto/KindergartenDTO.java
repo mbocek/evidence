@@ -18,13 +18,13 @@
  */
 package com.evidence.dto;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
 
 import lombok.Delegate;
 import lombok.Getter;
 import lombok.Setter;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.evidence.fe.annotation.AutomaticForm;
 import com.evidence.fe.annotation.Caption;
@@ -40,17 +40,17 @@ import com.evidence.fe.kindergarten.KindergartenDetailFormFieldFactory;
 public class KindergartenDTO implements Model {
 
 	@Getter @Setter
-	@NotNull
 	private Long id;
 	
 	@Getter @Setter
-	@NotEmpty
-	@Caption("kindergarten.detail.name")
-	@Order(1)
+	@NotBlank
+	@Order(1) @Caption("kindergarten.detail.name")
 	private String name = "";
 
 	@Delegate
 	@Order(2)
+	@Valid
+	@Getter
 	private AddressDTO address = new AddressDTO();
 	
 	@Getter @Setter

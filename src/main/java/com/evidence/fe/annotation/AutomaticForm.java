@@ -24,7 +24,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import com.evidence.fe.form.EvidenceFormFieldFactory;
-import com.vaadin.ui.DefaultFieldFactory;
 
 /**
  * @author Michal Bocek

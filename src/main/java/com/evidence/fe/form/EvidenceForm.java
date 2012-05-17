@@ -20,14 +20,21 @@ package com.evidence.fe.form;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Locale;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.Validator;
 import org.vaadin.mvp.uibinder.IUiMessageSource;
 
 import com.evidence.fe.annotation.MetaModel;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.terminal.UserError;
+import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Form;
@@ -47,8 +54,8 @@ public class EvidenceForm extends Form {
 	}
 
 	public void setItemDataSource(Model model, MetaModel metaModel, IUiMessageSource messageSource, Locale locale) {
-		Class<? extends Model> clazz = model.getClass();
-		BeanItem beanItem = new BeanItem(model);
+		//Class<? extends Model> clazz = model.getClass();
+		BeanItem<Model> beanItem = new BeanItem<Model>(model);
 		this.setItemDataSource(beanItem);
 		setupFormFieldFactory(metaModel, messageSource, locale);
 		this.setVisibleItemProperties(metaModel.getOrderedFields());
@@ -68,11 +75,47 @@ public class EvidenceForm extends Form {
 		}
 	}
 
+	public boolean validate(MetaModel metaModel, Validator validator, Model model) {
+		boolean result = false; 
+		BindingResult validationResult = new BeanPropertyBindingResult(model, model.getClass().getName());
+		clearFields(metaModel);
+		validator.validate(model, validationResult);
+		if (validationResult.hasErrors()) {
+			for (FieldError error : validationResult.getFieldErrors()) {
+				String field = error.getField();
+				String message = error.getDefaultMessage();
+				Field fieldComponent = this.getField(field);
+				if (fieldComponent != null && fieldComponent instanceof AbstractField) {
+					((AbstractField)fieldComponent).setComponentError(new UserError(message));
+				}
+			}
+			result = false;
+		} else {
+			result = true;
+		}
+		return result;
+		
+	}
+	
+	private void clearFields(MetaModel metaModel) {
+		Collection<String> validatedFields = metaModel.getValidatedFields();
+		for (String fieldName : validatedFields) {
+			Boolean fieldValidated = metaModel.getFieldvalidated(fieldName);
+			if (fieldValidated) {
+				Field fieldComponent = this.getField(fieldName);
+				if (fieldComponent != null && fieldComponent instanceof AbstractField) {
+					log.debug("Cleanup error for field:{}", fieldName);
+					((AbstractField)fieldComponent).setComponentError(null);
+				}
+			}
+		}
+	}
+
 	private void setupFormFieldFactory(MetaModel metaModel, IUiMessageSource messageSource, Locale locale) {
 		Class<? extends FormFieldFactory> formFieldFactory = metaModel.getFormFieldFactory();
 		if (formFieldFactory != null) {
 			try {
-				Constructor constructor = formFieldFactory.getConstructor(new Class[] { IUiMessageSource.class, Locale.class });
+				Constructor<? extends FormFieldFactory> constructor = formFieldFactory.getConstructor(new Class[] { IUiMessageSource.class, Locale.class });
 				EvidenceFormFieldFactory instance = (EvidenceFormFieldFactory) constructor.newInstance(new Object[] { messageSource, locale });				
 				this.setFormFieldFactory(instance);
 			} catch (InstantiationException e) {

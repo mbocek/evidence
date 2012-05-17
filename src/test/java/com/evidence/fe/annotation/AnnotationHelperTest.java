@@ -62,11 +62,13 @@ public class AnnotationHelperTest {
 		Map<String, Double> orderedMap = new HashMap<String, Double>();
 		Map<String, String> captionMap = new HashMap<String, String>();
 		Map<String, Boolean> requiredMap = new HashMap<String, Boolean>();
-		AnnotationHelper.buildData(testModel, orderedMap, captionMap, requiredMap);
+		Map<String, Boolean> validatedMap = new HashMap<String, Boolean>();
+		AnnotationHelper.buildData(testModel, orderedMap, captionMap, requiredMap, validatedMap);
 		assertEquals("TestModel doesn't contains four ordered fields!", 4, orderedMap.size());
 		assertFalse("TestModel field name order number is 1!", 1 != orderedMap.get("name"));
 		assertEquals("TestModel doesn't contains four caption fields!", 4, captionMap.size());
 		assertEquals("TestModel doesn't contains one required field!", 4, requiredMap.size());
 		assertTrue("TestModel name attribude isn't required field!", requiredMap.get("name"));
+		assertTrue("TestModel name attribude isn't validated field!", requiredMap.get("name"));
 	}
 }

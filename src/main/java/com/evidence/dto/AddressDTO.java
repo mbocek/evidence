@@ -18,8 +18,14 @@
  */
 package com.evidence.dto;
 
+import javax.validation.constraints.Min;
+
 import lombok.Getter;
 import lombok.Setter;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.evidence.fe.annotation.AutomaticForm;
 import com.evidence.fe.annotation.Caption;
@@ -33,27 +39,28 @@ import com.evidence.fe.annotation.Order;
 public class AddressDTO {
 	
 	@Getter @Setter
-	@Order(1)
-	@Caption("address.detail.street")
+	@NotEmpty
+	@Order(1) @Caption("address.detail.street")
 	private String street = "";
 	
 	@Getter @Setter
-	@Order(2)
-	@Caption("address.detail.city")
+	@NotBlank
+	@Length(min=5)
+	@Order(2) @Caption("address.detail.city")
 	private String city = "";
 	
 	@Getter @Setter
-	@Order(3)
-	@Caption("address.detail.houseNumber")
+	@NotEmpty
+	@Order(3) @Caption("address.detail.houseNumber")
 	private String houseNumber = "";
 	
 	@Getter @Setter
-	@Order(4)
-	@Caption("address.detail.zipCode")
+	@NotEmpty
+	@Order(4) @Caption("address.detail.zipCode")
 	private String zipCode = "";
 
 	@Getter @Setter
-	@Order(5)
-	@Caption("address.detail.stateCode")
+	@NotEmpty
+	@Order(5) @Caption("address.detail.stateCode")
 	private String stateCode;
 }

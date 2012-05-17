@@ -18,6 +18,7 @@
  */
 package com.evidence.fe.annotation;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class AnnotationHelper {
 		}
 	}
 	
-	public static void buildData(Model model, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap) {
+	public static void buildData(Model model, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap, Map<String, Boolean> validatedMap) {
 		List<FieldInfo> fields = null;
 		try {
 			fields = getAllAutomaticFormFields(model.getClass(), null);
@@ -65,6 +66,25 @@ public class AnnotationHelper {
 			buildOrderMapRecursively(orderMap, fieldInfo, 0L, 0.1);
 			buildCaptionMapRecursively(captionMap, fieldInfo);
 			buildRequiredMapRecursively(requiredMap, fieldInfo);
+			buildValidatedMapRecursively(validatedMap, fieldInfo);
+		}
+	}
+
+	private static void buildValidatedMapRecursively(Map<String, Boolean> validatedMap, FieldInfo fieldInfo) {
+		if (fieldInfo.getValidated() != null) {
+			if (fieldInfo.getSubFieldInfo() == null) {
+				validatedMap.put(fieldInfo.getField().getName(), fieldInfo.getValidated());
+			} else {
+				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
+					buildRequiredMapRecursively(validatedMap, subfield);
+				}
+			}
+		} else {
+			if (fieldInfo.getSubFieldInfo() != null) {
+				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
+					buildRequiredMapRecursively(validatedMap, subfield);
+				}
+			}			
 		}
 	}
 
@@ -135,6 +155,7 @@ public class AnnotationHelper {
 						Long orderNumber = null;
 						String captionString = null;
 						Boolean requiredBoolean = Boolean.FALSE;
+						Boolean validatedBoolean = Boolean.FALSE;
 						
 						if (order != null) {
 							orderNumber = order.value();
@@ -148,12 +169,18 @@ public class AnnotationHelper {
 							requiredBoolean = Boolean.TRUE;
 						}						
 						
+						for (Annotation annotation : field.getAnnotations()) {
+							if (annotation.getClass().getCanonicalName() != null && annotation.getClass().getCanonicalName().contains("valid")) { 
+								validatedBoolean = Boolean.TRUE;
+							}
+						}						
+						
 						FieldInfo fieldInfo = null;
 						if (fieldClass.isAnnotationPresent(AutomaticForm.class)) {
 							List<FieldInfo> formFields = getAllAutomaticFormFields(fieldClass, fieldInfo);
-							fieldInfo = new FieldInfo(field, orderNumber, captionString, requiredBoolean, formFields);
+							fieldInfo = new FieldInfo(field, orderNumber, captionString, requiredBoolean, validatedBoolean, formFields);
 						} else {
-							fieldInfo = new FieldInfo(field, orderNumber, captionString, requiredBoolean, null);
+							fieldInfo = new FieldInfo(field, orderNumber, captionString, requiredBoolean, validatedBoolean, null);
 						}
 						allClassFieldInfos.add(fieldInfo);						
 					}

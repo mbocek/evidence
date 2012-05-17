@@ -26,9 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.Validator;
 import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.ViewFactoryException;
@@ -42,9 +39,6 @@ import com.evidence.service.KindergartenService;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
-import com.vaadin.terminal.UserError;
-import com.vaadin.ui.AbstractField;
-import com.vaadin.ui.Field;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
@@ -124,19 +118,9 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		// get the user and add it to the container
 		BeanItem<KindergartenDTO> item = (BeanItem<KindergartenDTO>) this.kindergartenForm.getItemDataSource();
 		KindergartenDTO kindergarten = item.getBean();
+		MetaModel metaModel = formService.getMetaModel(kindergarten);
 		
-		BindingResult result = new BeanPropertyBindingResult(kindergarten, "kindergarten");
-		validator.validate(kindergarten, result);
-		if (result.hasErrors()) {
-			for (FieldError error : result.getFieldErrors()) {
-				String field = error.getField();
-				String message = error.getDefaultMessage();
-				Field fieldComponent = this.kindergartenForm.getField(field);
-				if (fieldComponent != null && fieldComponent instanceof AbstractField) {
-					((AbstractField)fieldComponent).setComponentError(new UserError(message));
-				}
-			}
-		} else {
+		if (kindergartenForm.validate(metaModel, validator, kindergarten)) {
 			//this.container.addBean(kindergarten);
 			this.kindergartenService.addKindergarten(kindergarten);
 			// close dialog

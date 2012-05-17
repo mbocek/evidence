@@ -20,12 +20,10 @@ package com.evidence.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.evidence.dao.ResponsiblePersonDAO;
 import com.evidence.dto.ChildrenDTO;
 
 /**
@@ -36,8 +34,8 @@ import com.evidence.dto.ChildrenDTO;
 @Transactional(readOnly = true)
 public class UserService {
 
-	@Autowired
-	private ResponsiblePersonDAO personDao;
+//	@Autowired
+//	private ResponsiblePersonDAO personDao;
 
 	public String getInfo() {
 		return "info data";

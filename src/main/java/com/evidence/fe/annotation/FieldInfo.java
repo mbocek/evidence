@@ -46,5 +46,8 @@ public class FieldInfo {
 	private Boolean required;
 
 	@Getter
+	private Boolean validated;
+
+	@Getter
 	private List<FieldInfo> subFieldInfo; 
 }

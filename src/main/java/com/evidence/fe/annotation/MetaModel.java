@@ -43,12 +43,15 @@ public class MetaModel {
 	private Map<String, String> captionMap;
 
 	private Map<String, Boolean> requiredMap;
+
+	private Map<String, Boolean> validatedMap;
 	
-	public MetaModel(Class<? extends FormFieldFactory> formFieldFactory, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap) {
+	public MetaModel(Class<? extends FormFieldFactory> formFieldFactory, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap, Map<String, Boolean> validatedMap) {
 		this.formFieldFactory = formFieldFactory;
 		this.orderMap = orderMap;
 		this.captionMap = captionMap;
 		this.requiredMap = requiredMap;
+		this.validatedMap = validatedMap;
 		ValueComparator vc = new ValueComparator(this.orderMap);
 		TreeMap<String, Double> sortedMap = new TreeMap<String, Double>(vc);
 		sortedMap.putAll(orderMap);
@@ -66,6 +69,10 @@ public class MetaModel {
 	public Boolean getFieldRequired(String fieldName) {
 		return this.requiredMap.get(fieldName);
 	}
+
+	public Boolean getFieldvalidated(String fieldName) {
+		return this.validatedMap.get(fieldName);
+	}	
 	
 	public Collection<String> getOrderedFields() {
 		return Collections.unmodifiableCollection(orderedFields);
@@ -77,5 +84,9 @@ public class MetaModel {
 	
 	public Collection<String> getRequiredFields() {
 		return Collections.unmodifiableCollection(requiredMap.keySet());
+	}
+	
+	public Collection<String> getValidatedFields() {
+		return Collections.unmodifiableCollection(validatedMap.keySet());
 	}
 }
