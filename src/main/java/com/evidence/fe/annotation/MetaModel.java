@@ -36,6 +36,8 @@ public class MetaModel {
 
 	private Class<? extends FormFieldFactory> formFieldFactory;
 	
+	private Collection<FieldInfo> fieldInfos;
+	
 	private Map<String, Double> orderMap;
 	
 	private Collection<String> orderedFields;
@@ -46,8 +48,9 @@ public class MetaModel {
 
 	private Map<String, Boolean> validatedMap;
 	
-	public MetaModel(Class<? extends FormFieldFactory> formFieldFactory, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap, Map<String, Boolean> validatedMap) {
+	public MetaModel(Class<? extends FormFieldFactory> formFieldFactory, Collection<FieldInfo> fieldInfos, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap, Map<String, Boolean> validatedMap) {
 		this.formFieldFactory = formFieldFactory;
+		this.fieldInfos = fieldInfos;
 		this.orderMap = orderMap;
 		this.captionMap = captionMap;
 		this.requiredMap = requiredMap;
@@ -88,5 +91,9 @@ public class MetaModel {
 	
 	public Collection<String> getValidatedFields() {
 		return Collections.unmodifiableCollection(validatedMap.keySet());
+	}
+	
+	public Collection<FieldInfo> getFieldInfos() {
+		return Collections.unmodifiableCollection(fieldInfos);
 	}
 }

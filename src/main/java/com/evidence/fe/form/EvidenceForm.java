@@ -31,8 +31,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.Validator;
 import org.vaadin.mvp.uibinder.IUiMessageSource;
 
+import com.evidence.fe.annotation.FieldInfo;
 import com.evidence.fe.annotation.MetaModel;
 import com.vaadin.data.util.BeanItem;
+import com.vaadin.data.util.NestedMethodProperty;
 import com.vaadin.terminal.UserError;
 import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.Component;
@@ -56,6 +58,11 @@ public class EvidenceForm extends Form {
 	public void setItemDataSource(Model model, MetaModel metaModel, IUiMessageSource messageSource, Locale locale) {
 		//Class<? extends Model> clazz = model.getClass();
 		BeanItem<Model> beanItem = new BeanItem<Model>(model);
+		for (FieldInfo fieldInfo : metaModel.getFieldInfos()) {
+			if (fieldInfo.isNested()) {
+				beanItem.addItemProperty(fieldInfo.getFieldNestedName(), new NestedMethodProperty(model, fieldInfo.getFieldNestedName()));
+			}
+		}
 		this.setItemDataSource(beanItem);
 		setupFormFieldFactory(metaModel, messageSource, locale);
 		this.setVisibleItemProperties(metaModel.getOrderedFields());

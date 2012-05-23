@@ -54,7 +54,7 @@ public class KindergartenDetailFormFieldFactory extends EvidenceFormFieldFactory
 		log.debug("Item: {}; Property id: {}; Componet: {}", new Object[] {item, propertyId, uiContext});
 		Field field = null;
 		String pid = (String) propertyId;
-		if ("stateCode".equals(pid)) {
+		if ("address.stateCode".equals(pid)) {
 			ComboBox select = new ComboBox(pid);
 			List<StateDTO> states = ServiceHolder.getInstance().getCodeListService().getStates();
 			log.debug(states.toString());

@@ -22,7 +22,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -59,11 +61,13 @@ public class AnnotationHelperTest {
 	 */
 	@Test
 	public void testBuildOrderedMap() {
+		List<FieldInfo> fieldInfos = new ArrayList<FieldInfo>();
 		Map<String, Double> orderedMap = new HashMap<String, Double>();
 		Map<String, String> captionMap = new HashMap<String, String>();
 		Map<String, Boolean> requiredMap = new HashMap<String, Boolean>();
 		Map<String, Boolean> validatedMap = new HashMap<String, Boolean>();
-		AnnotationHelper.buildData(testModel, orderedMap, captionMap, requiredMap, validatedMap);
+		AnnotationHelper.buildData(testModel, fieldInfos, orderedMap, captionMap, requiredMap, validatedMap);
+		assertEquals("TestModel contains 4 fields!", 4, fieldInfos.size());
 		assertEquals("TestModel doesn't contains four ordered fields!", 4, orderedMap.size());
 		assertFalse("TestModel field name order number is 1!", 1 != orderedMap.get("name"));
 		assertEquals("TestModel doesn't contains four caption fields!", 4, captionMap.size());

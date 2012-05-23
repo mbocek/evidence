@@ -40,6 +40,8 @@ import com.vaadin.ui.FormFieldFactory;
 @Slf4j
 public class AnnotationHelper {
 
+	private static final String NESTED_SEPARATOR = ".";
+
 	public static boolean isAutomaticForm(Model model) {
 		return model.getClass().isAnnotationPresent(AutomaticForm.class);
 	}
@@ -54,10 +56,10 @@ public class AnnotationHelper {
 		}
 	}
 	
-	public static void buildData(Model model, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap, Map<String, Boolean> validatedMap) {
+	public static void buildData(Model model, List<FieldInfo> fieldInfos, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap, Map<String, Boolean> validatedMap) {
 		List<FieldInfo> fields = null;
 		try {
-			fields = getAllAutomaticFormFields(model.getClass(), null);
+			fields = getAllAutomaticFormFields(model.getClass());
 		} catch (ClassNotFoundException e) {
 			log.warn("Some problems in getting fields!", e);
 		}
@@ -67,13 +69,30 @@ public class AnnotationHelper {
 			buildCaptionMapRecursively(captionMap, fieldInfo);
 			buildRequiredMapRecursively(requiredMap, fieldInfo);
 			buildValidatedMapRecursively(validatedMap, fieldInfo);
+			buildFieldInfoRecursively(fieldInfos, fieldInfo);
 		}
+	}
+
+	private static void buildFieldInfoRecursively(List<FieldInfo> fieldInfos, FieldInfo fieldInfo) {
+		if (fieldInfo != null) {
+			if (fieldInfo.getSubFieldInfo() != null) {
+				for (FieldInfo subFieldInfo : fieldInfo.getSubFieldInfo()) {
+					buildFieldInfoRecursively(fieldInfos, subFieldInfo);
+				}
+			} else {
+				fieldInfos.add(fieldInfo);
+			}
+		}
+	}
+
+	private static List<FieldInfo> getAllAutomaticFormFields(Class<? extends Model> modelClass) throws ClassNotFoundException {
+		return getAllAutomaticFormFields(modelClass, null, null);
 	}
 
 	private static void buildValidatedMapRecursively(Map<String, Boolean> validatedMap, FieldInfo fieldInfo) {
 		if (fieldInfo.getValidated() != null) {
 			if (fieldInfo.getSubFieldInfo() == null) {
-				validatedMap.put(fieldInfo.getField().getName(), fieldInfo.getValidated());
+				validatedMap.put(fieldInfo.getFieldNestedName(), fieldInfo.getValidated());
 			} else {
 				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
 					buildRequiredMapRecursively(validatedMap, subfield);
@@ -91,7 +110,7 @@ public class AnnotationHelper {
 	private static void buildRequiredMapRecursively(Map<String, Boolean> requiredMap, FieldInfo fieldInfo) {
 		if (fieldInfo.getRequired() != null) {
 			if (fieldInfo.getSubFieldInfo() == null) {
-				requiredMap.put(fieldInfo.getField().getName(), fieldInfo.getRequired());
+				requiredMap.put(fieldInfo.getFieldNestedName(), fieldInfo.getRequired());
 			} else {
 				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
 					buildRequiredMapRecursively(requiredMap, subfield);
@@ -109,7 +128,7 @@ public class AnnotationHelper {
 	private static void buildCaptionMapRecursively(Map<String, String> captionMap, FieldInfo fieldInfo) {
 		if (fieldInfo.getCaption() != null) {
 			if (fieldInfo.getSubFieldInfo() == null) {
-				captionMap.put(fieldInfo.getField().getName(), fieldInfo.getCaption());
+				captionMap.put(fieldInfo.getFieldNestedName(), fieldInfo.getCaption());
 			} else {
 				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
 					buildCaptionMapRecursively(captionMap, subfield);
@@ -128,9 +147,9 @@ public class AnnotationHelper {
 		if (fieldInfo.getOrder() != null) {
 			if (fieldInfo.getSubFieldInfo() == null) {
 				if (base == 0) {
-					orderMap.put(fieldInfo.getField().getName(), Double.valueOf(fieldInfo.getOrder()));
+					orderMap.put(fieldInfo.getFieldNestedName(), Double.valueOf(fieldInfo.getOrder()));
 				} else {
-					orderMap.put(fieldInfo.getField().getName(), base + Double.valueOf(fieldInfo.getOrder()) * multiplier);
+					orderMap.put(fieldInfo.getFieldNestedName(), base + Double.valueOf(fieldInfo.getOrder()) * multiplier);
 				}
 			} else {
 				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
@@ -141,10 +160,10 @@ public class AnnotationHelper {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static List<FieldInfo> getAllAutomaticFormFields(Class objectClass, FieldInfo parent) throws ClassNotFoundException {
+	public static List<FieldInfo> getAllAutomaticFormFields(Class modelClass, FieldInfo parent, String parentFullName) throws ClassNotFoundException {
 		List<FieldInfo> allClassFieldInfos = parent != null ? parent.getSubFieldInfo() : null;
-		if (objectClass.isAnnotationPresent(AutomaticForm.class)) {
-			Field[] allClassFields = FieldUtils.getAllFields(objectClass, null);
+		if (modelClass.isAnnotationPresent(AutomaticForm.class)) {
+			Field[] allClassFields = FieldUtils.getAllFields(modelClass, null);
 			if (allClassFields.length > 0) {
 				allClassFieldInfos = allClassFieldInfos == null ? new ArrayList<FieldInfo>() : allClassFieldInfos;
 				for (Field field : allClassFields) {
@@ -176,11 +195,14 @@ public class AnnotationHelper {
 						}						
 						
 						FieldInfo fieldInfo = null;
+						String fieldName = field.getName();
+						String fieldNestedName = (parentFullName !=null ) ? parentFullName + NESTED_SEPARATOR + fieldName : fieldName;
+						Boolean nestedField = (parentFullName !=null ) ? Boolean.TRUE : Boolean.FALSE;
 						if (fieldClass.isAnnotationPresent(AutomaticForm.class)) {
-							List<FieldInfo> formFields = getAllAutomaticFormFields(fieldClass, fieldInfo);
-							fieldInfo = new FieldInfo(field, orderNumber, captionString, requiredBoolean, validatedBoolean, formFields);
+							List<FieldInfo> formFields = getAllAutomaticFormFields(fieldClass, fieldInfo, fieldNestedName);
+							fieldInfo = new FieldInfo(fieldName, fieldNestedName, orderNumber, captionString, requiredBoolean, validatedBoolean, nestedField, formFields);
 						} else {
-							fieldInfo = new FieldInfo(field, orderNumber, captionString, requiredBoolean, validatedBoolean, null);
+							fieldInfo = new FieldInfo(fieldName, fieldNestedName, orderNumber, captionString, requiredBoolean, validatedBoolean, nestedField, null);
 						}
 						allClassFieldInfos.add(fieldInfo);						
 					}

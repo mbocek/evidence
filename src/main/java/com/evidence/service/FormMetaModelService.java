@@ -18,7 +18,9 @@
  */
 package com.evidence.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import com.evidence.fe.annotation.AnnotationHelper;
+import com.evidence.fe.annotation.FieldInfo;
 import com.evidence.fe.annotation.MetaModel;
 import com.evidence.fe.form.Model;
 import com.vaadin.ui.FormFieldFactory;
@@ -61,12 +64,13 @@ public class FormMetaModelService {
 		MetaModel meta = null;
 		if (AnnotationHelper.isAutomaticForm(model)) {
 			Class<? extends FormFieldFactory> factory = AnnotationHelper.getFormFieldFactory(model);
+			List<FieldInfo> fieldInfos = new ArrayList<FieldInfo>();
 			Map<String, Double> orderMap = new HashMap<String, Double>();
 			Map<String, String> captionMap = new HashMap<String, String>();
 			Map<String, Boolean> requiredMap = new HashMap<String, Boolean>();
 			Map<String, Boolean> validatedMap = new HashMap<String, Boolean>();
-			AnnotationHelper.buildData(model, orderMap, captionMap, requiredMap, validatedMap);
-			meta = new MetaModel(factory, orderMap, captionMap, requiredMap, validatedMap);
+			AnnotationHelper.buildData(model, fieldInfos, orderMap, captionMap, requiredMap, validatedMap);
+			meta = new MetaModel(factory, fieldInfos, orderMap, captionMap, requiredMap, validatedMap);
 			log.debug("Adding automatic form to cache with name: {} and meta mode: {}", modelName, meta);
 			modelMap.put(modelName, meta);
 		}

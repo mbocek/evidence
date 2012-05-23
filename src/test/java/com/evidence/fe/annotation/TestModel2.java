@@ -18,45 +18,39 @@
  */
 package com.evidence.fe.annotation;
 
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
+import lombok.Delegate;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
+
+import com.evidence.fe.form.EvidenceFormFieldFactory;
+import com.evidence.fe.form.Model;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
 @ToString
-@AllArgsConstructor
-public class FieldInfo {
-	
-	@Getter
-	private String fieldName;
-	
-	@Getter
-	private String fieldNestedName;
+@AutomaticForm(formFieldFactory=EvidenceFormFieldFactory.class)
+public class TestModel2 implements Model {
 
-	@Getter
-	private Long order;
-	
-	@Getter
-	private String caption;
-	
-	@Getter
-	private Boolean required;
+	@Caption("Name")
+	@Order(1)
+	@NotNull
+	@Getter @Setter
+	public String name;
 
-	@Getter
-	private Boolean validated;
-
-	@Getter
-	private Boolean nestedField;
-
-	@Getter
-	private List<FieldInfo> subFieldInfo; 
+	@Caption("Absolut Name")
+	@Order(3)
+	@Getter @Setter
+	private String absoluteName;
 	
-	public boolean isNested() {
-		return !fieldName.equals(fieldNestedName);
-	}
+	@Getter @Setter
+	private RawModel rawModel = new RawModel();
+	
+	@Order(2)
+	@Getter @Setter
+	private TestInnerModel innerModel = new TestInnerModel();
 }
