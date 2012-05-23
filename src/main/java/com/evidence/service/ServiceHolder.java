@@ -36,10 +36,6 @@ public class ServiceHolder {
 	@Inject 
 	private CodeListService codeListService;
 
-	@Getter
-	@Inject 
-	private FormMetaModelService formMetaMoelService;
-	
 	public static synchronized ServiceHolder getInstance() {
 		if (instance == null) {
 			log.debug("Cearing ServiceHolder instance");

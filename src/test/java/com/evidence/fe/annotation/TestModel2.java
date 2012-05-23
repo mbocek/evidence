@@ -20,7 +20,6 @@ package com.evidence.fe.annotation;
 
 import javax.validation.constraints.NotNull;
 
-import lombok.Delegate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

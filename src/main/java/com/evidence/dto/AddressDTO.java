@@ -18,8 +18,6 @@
  */
 package com.evidence.dto;
 
-import javax.validation.constraints.Min;
-
 import lombok.Getter;
 import lombok.Setter;
 
