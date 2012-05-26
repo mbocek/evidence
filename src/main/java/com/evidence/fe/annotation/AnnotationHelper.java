@@ -63,13 +63,15 @@ public class AnnotationHelper {
 		} catch (ClassNotFoundException e) {
 			log.warn("Some problems in getting fields!", e);
 		}
-	
-		for (FieldInfo fieldInfo : fields) {
-			buildOrderMapRecursively(orderMap, fieldInfo, 0L, 0.1);
-			buildCaptionMapRecursively(captionMap, fieldInfo);
-			buildRequiredMapRecursively(requiredMap, fieldInfo);
-			buildValidatedMapRecursively(validatedMap, fieldInfo);
-			buildFieldInfoRecursively(fieldInfos, fieldInfo);
+		
+		if (fields != null) {
+			for (FieldInfo fieldInfo : fields) {
+				buildOrderMapRecursively(orderMap, fieldInfo, 0L, 0.1);
+				buildCaptionMapRecursively(captionMap, fieldInfo);
+				buildRequiredMapRecursively(requiredMap, fieldInfo);
+				buildValidatedMapRecursively(validatedMap, fieldInfo);
+				buildFieldInfoRecursively(fieldInfos, fieldInfo);
+			}
 		}
 	}
 

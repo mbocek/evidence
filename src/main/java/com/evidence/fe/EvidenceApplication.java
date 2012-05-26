@@ -18,6 +18,8 @@
  */
 package com.evidence.fe;
 
+import javax.persistence.Transient;
+
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +44,7 @@ public class EvidenceApplication extends SpringMvpApplication {
 	
 	private static final long serialVersionUID = -1814298499647961355L;
 
-	private MainPresenter mainPresenter;
+	private transient MainPresenter mainPresenter;
 	
 	@Autowired 
 	private MessageSource messageSource;
