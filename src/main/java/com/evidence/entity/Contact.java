@@ -60,14 +60,14 @@ public class Contact implements Serializable {
 	@Embedded
 	@AttributeOverrides({ 
 		@AttributeOverride(name = "countryCode", column = @Column(name = "MOBILE_COUNTRY_CODE", length = 5)),
-		@AttributeOverride(name = "phoneNumber", column = @Column(name = "MOBILE_PHONE_NUMBER", length = 50)) })	
+		@AttributeOverride(name = "number", column = @Column(name = "MOBILE_PHONE_NUMBER", length = 50)) })	
 	private PhoneNumber mobilePhone;
 	
 	@Getter @Setter
 	@Embedded
 	@AttributeOverrides({ 
 		@AttributeOverride(name = "countryCode", column = @Column(name = "LNDL_COUNTRY_CODE", length = 5)),
-		@AttributeOverride(name = "phoneNumber", column = @Column(name = "LNDL_PHONE_NUMBER", length = 50)) })	
+		@AttributeOverride(name = "number", column = @Column(name = "LNDL_PHONE_NUMBER", length = 50)) })	
 	private PhoneNumber landLine;
 	
 	@Getter @Setter
