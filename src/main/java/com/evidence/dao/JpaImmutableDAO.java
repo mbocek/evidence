@@ -38,17 +38,17 @@ import org.slf4j.LoggerFactory;
  * @param <Id>
  *            primary key of entity
  */
-public abstract class JpaImmutableDAO<T, Id extends Serializable> {
+public class JpaImmutableDAO<T, Id extends Serializable> {
 
-	private static final Logger log = LoggerFactory.getLogger(JpaImmutableDAO.class);
-	protected Class<T> entityClass;
+	private static final Logger log = LoggerFactory.getLogger(JpaImmutableDAO.class); // NOPMD
+	protected final Class<T> entityClass;
 
 	@PersistenceContext(name = "entityManagerFactory")
 	protected EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	public JpaImmutableDAO() {
-		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
+		final ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
 		this.entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
 	}
 
@@ -57,7 +57,7 @@ public abstract class JpaImmutableDAO<T, Id extends Serializable> {
 	 * @param id entity id
 	 * @return entity or null
 	 */
-	public T findById(Id id) {
+	public T findById(final Id id) { // NOPMD
 		return this.entityManager.find(entityClass, id);
 	}
 
@@ -66,11 +66,11 @@ public abstract class JpaImmutableDAO<T, Id extends Serializable> {
 	 * @param id entity id
 	 * @return entity
 	 */
-	public T read(Id id) {
+	public T read(final Id id) { // NOPMD
 		if (log.isTraceEnabled()) {
 			log.trace("Reading entity for id: " + id);
 		}
-		T entry = this.entityManager.find(this.entityClass, id);
+		final T entry = this.entityManager.find(this.entityClass, id);
 		if (entry == null) {
 			throw new EntityNotFoundException("Entity for class " + this.entityClass + " with id " + id
 					+ " can not be found!");
@@ -83,7 +83,7 @@ public abstract class JpaImmutableDAO<T, Id extends Serializable> {
 		if (log.isTraceEnabled()) {
 			log.trace("Reading all entities");
 		}
-		Query query = this.entityManager.createQuery("from " + this.entityClass.getName());
+		final Query query = this.entityManager.createQuery("from " + this.entityClass.getName());
 		return query.getResultList();
 	}
 }

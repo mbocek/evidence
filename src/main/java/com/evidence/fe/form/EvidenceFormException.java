@@ -26,11 +26,11 @@ public class EvidenceFormException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public EvidenceFormException(String message, Throwable cause) {
+	public EvidenceFormException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
 
-	public EvidenceFormException(String message) {
+	public EvidenceFormException(final String message) {
 		super(message);
 	}
 }

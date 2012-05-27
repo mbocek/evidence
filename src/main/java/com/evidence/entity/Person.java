@@ -30,7 +30,7 @@ import lombok.Setter;
  * @since 1.0.0 
  */
 @MappedSuperclass
-public abstract class Person implements Serializable {
+public abstract class Person implements Serializable { // NOPMD
 
 	private static final long serialVersionUID = -1583374331013986853L;
 

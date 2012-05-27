@@ -19,14 +19,18 @@
 package com.evidence.dao;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.hsqldb.HsqldbDataTypeFactory;
@@ -50,37 +54,36 @@ public class DbUnitDaoTest {
 	private EntityManager entityManager;
 
 	@Before
-	public void init() throws Exception {
+	public void init() throws DatabaseUnitException, SQLException, MalformedURLException {
 		// insert data into database
 		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), getDataSet());
 	}
 
 	@After
-	public void after() throws Exception {
+	public void after() throws DatabaseUnitException, SQLException, MalformedURLException {
 		// delete data from database
-		SessionImpl session = (SessionImpl) entityManager.getDelegate();
-		Connection con = session.connection();
+		final SessionImpl session = (SessionImpl) entityManager.getDelegate();
+		final Connection con = session.connection(); // NOPMD
 		con.createStatement().execute("SET REFERENTIAL_INTEGRITY FALSE;");
 		DatabaseOperation.DELETE_ALL.execute(getConnection(), getDataSet());
 		con.createStatement().execute("SET REFERENTIAL_INTEGRITY TRUE;");
 	}
 
-	private IDatabaseConnection getConnection() throws Exception {
+	private IDatabaseConnection getConnection() throws DatabaseUnitException {
 		// get connection
-		SessionImpl session = (SessionImpl) entityManager.getDelegate();
-		Connection con = session.connection();
+		final SessionImpl session = (SessionImpl) entityManager.getDelegate();
+		final Connection con = session.connection(); // NOPMD
 		//DatabaseMetaData databaseMetaData = con.getMetaData();
-		IDatabaseConnection connection = new DatabaseConnection(con);
-		DatabaseConfig config = connection.getConfig();
+		final IDatabaseConnection connection = new DatabaseConnection(con);
+		final DatabaseConfig config = connection.getConfig();
 		config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new HsqldbDataTypeFactory());
 		return connection;
 	}
 
-	private IDataSet getDataSet() throws Exception {
-		FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
+	private IDataSet getDataSet() throws MalformedURLException, DataSetException {
+		final FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
 		builder.setColumnSensing(true);
-		IDataSet dataSet = builder.build(new File("src/test/resources/dataset.xml"));
-		return dataSet;
+		return builder.build(new File("src/test/resources/dataset.xml"));
 	}
 	
 	protected EntityManager getEntityManager() {

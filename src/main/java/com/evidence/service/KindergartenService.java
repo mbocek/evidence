@@ -41,11 +41,11 @@ public class KindergartenService {
 	private KindergartenDAO kindergartenDao;
 
 	public List<KindergartenDTO> getAll() {
-		List<Kindergarten> kindergartens = kindergartenDao.findAll();
+		final List<Kindergarten> kindergartens = kindergartenDao.findAll();
 		return DTOConverter.convertList(kindergartens, KindergartenDTO.class);
 	}
 
-	public void addKindergarten(KindergartenDTO kindergarten) {
+	public void addKindergarten(final KindergartenDTO kindergarten) {
 		// TODO Auto-generated method stub
 		
 	}

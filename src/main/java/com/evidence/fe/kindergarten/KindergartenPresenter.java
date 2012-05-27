@@ -52,7 +52,7 @@ import com.vaadin.ui.Window;
 @Presenter(view = KindergartenListView.class)
 public class KindergartenPresenter extends FactoryPresenter<IKindergartenListView, KindergartenEventBus> {
 
-	private static final Logger log = LoggerFactory.getLogger(KindergartenPresenter.class);
+	private static final Logger log = LoggerFactory.getLogger(KindergartenPresenter.class); // NOPMD
 
 	private BeanItemContainer<KindergartenDTO> container;
 
@@ -71,9 +71,9 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
     
 	@Override
 	public void bind() {
-		HorizontalLayout buttonBar = this.view.getButtonBar();
+		final HorizontalLayout buttonBar = this.view.getButtonBar();
 		buttonBar.setExpandRatio(this.getView().getExpander(), 1.0f);
-		Table kindergartenList = this.view.getKindergartenList();
+		final Table kindergartenList = this.view.getKindergartenList();
 		container = new BeanItemContainer<KindergartenDTO>(KindergartenDTO.class);
 		kindergartenList.setContainerDataSource(container);
 		kindergartenList.setColumnHeader("name", this.getMessage("kindergarten.list.header.name", this.getLocale()));
@@ -83,17 +83,17 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 	}
 
 	private void loadKindergartenList() {
-		List<KindergartenDTO> kindergartens = kindergartenService.getAll();
+		final List<KindergartenDTO> kindergartens = kindergartenService.getAll();
 		this.container.addAll(kindergartens);
 	}
 
 	public void onAddKindergarten() throws ViewFactoryException {
 		// create view
-		KindergartenDetail view = this.createView(KindergartenDetail.class);
+		final KindergartenDetail view = this.createView(KindergartenDetail.class);
 		// configure the form with bean item
 		this.kindergartenForm = view.getKindergartenForm();
-		KindergartenDTO kindergarten = new KindergartenDTO();
-		MetaModel metaModel = formService.getMetaModel(kindergarten);
+		final KindergartenDTO kindergarten = new KindergartenDTO();
+		final MetaModel metaModel = formService.getMetaModel(kindergarten);
 		this.kindergartenForm.setItemDataSource(kindergarten, metaModel, this.messageSource, this.getLocale());
 
 		// create a window using caption from view
@@ -106,8 +106,8 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 
 	public void onRemoveKindergarten() {
 		// check if a user is selected in the table
-		Table kindergartenList = this.view.getKindergartenList();
-		Object selected = kindergartenList.getValue();
+		final Table kindergartenList = this.view.getKindergartenList();
+		final Object selected = kindergartenList.getValue();
 		if (selected != null) {
 			this.container.removeItem(selected);
 		}
@@ -116,9 +116,9 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 	@SuppressWarnings("unchecked")
 	public void onSaveUser() {
 		// get the user and add it to the container
-		BeanItem<KindergartenDTO> item = (BeanItem<KindergartenDTO>) this.kindergartenForm.getItemDataSource();
-		KindergartenDTO kindergarten = item.getBean();
-		MetaModel metaModel = formService.getMetaModel(kindergarten);
+		final BeanItem<KindergartenDTO> item = (BeanItem<KindergartenDTO>) this.kindergartenForm.getItemDataSource();
+		final KindergartenDTO kindergarten = item.getBean();
+		final MetaModel metaModel = formService.getMetaModel(kindergarten);
 		
 		if (kindergartenForm.validate(metaModel, validator, kindergarten)) {
 			//this.container.addBean(kindergarten);
@@ -135,13 +135,13 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 
 	private void closeDialog() {
 		// dismiss the dialog
-		Window applicationWindow = (Window) this.dialog.getParent();
+		final Window applicationWindow = (Window) this.dialog.getParent();
 		applicationWindow.removeWindow(this.dialog);
-		this.dialog = null;
-		this.kindergartenForm = null;
+		//this.dialog = null;
+		//this.kindergartenForm = null;
 	}
 	
-	public void onEditUser(ItemClickEvent event) {
+	public void onEditUser(final ItemClickEvent event) {
 		log.info("edit");
 		if (event.isDoubleClick()) {
 			log.info("edit double click");

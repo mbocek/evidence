@@ -35,18 +35,18 @@ public class MainView extends Window implements IMainView, IUiBindable {
 	private static final long serialVersionUID = 2836668802193079451L;
 
 	  @UiField
-	  VerticalLayout mainLayout;
+	  private VerticalLayout mainLayout;
 	  
 	  @UiField
-	  HorizontalSplitPanel splitLayout;
+	  private HorizontalSplitPanel splitLayout;
 	  
 	  @Override
-	  public void setMenu(Component menu) {
+	  public void setMenu(final Component menu) {
 	    splitLayout.setFirstComponent(menu);
 	  }
 
 	  @Override
-	  public void setContent(Component content) {
+	  public void setContent(final Component content) {
 	    splitLayout.setSecondComponent(content);
 	  }
 

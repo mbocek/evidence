@@ -33,7 +33,7 @@ public class MenuView extends VerticalLayout implements IMenuView, IUiBindable {
 	private static final long serialVersionUID = -546623659541948343L;
 
 	@UiField
-	Tree menuTree;
+	private Tree menuTree;
 
 	@Override
 	public Tree getTree() {

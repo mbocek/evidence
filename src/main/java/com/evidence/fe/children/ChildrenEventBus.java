@@ -32,20 +32,20 @@ import com.vaadin.ui.Window;
 public interface ChildrenEventBus extends EventBus {
 
 	@Event(handlers = { ChildrenPresenter.class })
-	public void createUser();
+	void createUser();
 
 	@Event(handlers = { ChildrenPresenter.class })
-	public void removeUser();
+	void removeUser();
 
 	@Event(handlers = { MainPresenter.class })
-	public void showDialog(Window dialog);
+	void showDialog(Window dialog);
 
 	@Event(handlers = { ChildrenPresenter.class })
-	public void saveUser();
+	void saveUser();
 
 	@Event(handlers = { ChildrenPresenter.class })
-	public void cancelEditUser();
+	void cancelEditUser();
 	
 	@Event(handlers = { ChildrenPresenter.class })
-	public void editUser(ItemClickEvent event);
+	void editUser(ItemClickEvent event);
 }

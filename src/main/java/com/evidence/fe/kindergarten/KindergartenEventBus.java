@@ -32,20 +32,20 @@ import com.vaadin.ui.Window;
 public interface KindergartenEventBus extends EventBus {
 
 	@Event(handlers = { KindergartenPresenter.class })
-	public void addKindergarten();
+	void addKindergarten();
 
 	@Event(handlers = { KindergartenPresenter.class })
-	public void removeKindergarten();
+	void removeKindergarten();
 
 	@Event(handlers = { MainPresenter.class })
-	public void showDialog(Window dialog);
+	void showDialog(Window dialog);
 
 	@Event(handlers = { KindergartenPresenter.class })
-	public void saveUser();
+	void saveUser();
 
 	@Event(handlers = { KindergartenPresenter.class })
-	public void cancelEditUser();
+	void cancelEditUser();
 	
 	@Event(handlers = { KindergartenPresenter.class })
-	public void editUser(ItemClickEvent event);
+	void editUser(ItemClickEvent event);
 }

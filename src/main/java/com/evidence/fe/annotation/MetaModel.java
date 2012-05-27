@@ -34,29 +34,31 @@ import com.vaadin.ui.FormFieldFactory;
 @ToString
 public class MetaModel {
 
-	private Class<? extends FormFieldFactory> formFieldFactory;
+	private final Class<? extends FormFieldFactory> formFieldFactory; // NOPMD
 	
-	private Collection<FieldInfo> fieldInfos;
+	private final Collection<FieldInfo> fieldInfos; // NOPMD
 	
-	private Map<String, Double> orderMap;
+	private final Map<String, Double> orderMap; // NOPMD
 	
-	private Collection<String> orderedFields;
+	private final Collection<String> orderedFields; // NOPMD
 	
-	private Map<String, String> captionMap;
+	private final Map<String, String> captionMap; // NOPMD
 
-	private Map<String, Boolean> requiredMap;
+	private final Map<String, Boolean> requiredMap; // NOPMD
 
-	private Map<String, Boolean> validatedMap;
+	private final Map<String, Boolean> validatedMap; // NOPMD
 	
-	public MetaModel(Class<? extends FormFieldFactory> formFieldFactory, Collection<FieldInfo> fieldInfos, Map<String, Double> orderMap, Map<String, String> captionMap, Map<String, Boolean> requiredMap, Map<String, Boolean> validatedMap) {
+	public MetaModel(final Class<? extends FormFieldFactory> formFieldFactory, final Collection<FieldInfo> fieldInfos,
+			final Map<String, Double> orderMap, final Map<String, String> captionMap,
+			final Map<String, Boolean> requiredMap, final Map<String, Boolean> validatedMap) {
 		this.formFieldFactory = formFieldFactory;
 		this.fieldInfos = fieldInfos;
 		this.orderMap = orderMap;
 		this.captionMap = captionMap;
 		this.requiredMap = requiredMap;
 		this.validatedMap = validatedMap;
-		ValueComparator vc = new ValueComparator(this.orderMap);
-		TreeMap<String, Double> sortedMap = new TreeMap<String, Double>(vc);
+		final ValueComparator vc = new ValueComparator(this.orderMap);
+		final TreeMap<String, Double> sortedMap = new TreeMap<String, Double>(vc);
 		sortedMap.putAll(orderMap);
 		orderedFields = sortedMap.keySet();
 	}
@@ -65,15 +67,15 @@ public class MetaModel {
 		return this.formFieldFactory;
 	}
 	
-	public String getFieldCaption(String fieldName) {
+	public String getFieldCaption(final String fieldName) {
 		return this.captionMap.get(fieldName);
 	}
 	
-	public Boolean getFieldRequired(String fieldName) {
+	public Boolean getFieldRequired(final String fieldName) {
 		return this.requiredMap.get(fieldName);
 	}
 
-	public Boolean getFieldvalidated(String fieldName) {
+	public Boolean getFieldvalidated(final String fieldName) {
 		return this.validatedMap.get(fieldName);
 	}	
 	

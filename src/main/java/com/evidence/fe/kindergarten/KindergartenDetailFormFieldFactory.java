@@ -42,7 +42,7 @@ public class KindergartenDetailFormFieldFactory extends EvidenceFormFieldFactory
 
 	private static final long serialVersionUID = 1L;
 
-	public KindergartenDetailFormFieldFactory(IUiMessageSource messageSource, Locale locale) {
+	public KindergartenDetailFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
 		super(messageSource, locale);
 	}
 
@@ -50,13 +50,13 @@ public class KindergartenDetailFormFieldFactory extends EvidenceFormFieldFactory
 	 * @see com.vaadin.ui.FormFieldFactory#createField(com.vaadin.data.Item, java.lang.Object, com.vaadin.ui.Component)
 	 */
 	@Override
-	public Field createField(Item item, Object propertyId, Component uiContext) {
+	public Field createField(final Item item, final Object propertyId, final Component uiContext) {
 		log.debug("Item: {}; Property id: {}; Componet: {}", new Object[] {item, propertyId, uiContext});
 		Field field = null;
-		String pid = (String) propertyId;
+		final String pid = (String) propertyId;
 		if ("address.stateCode".equals(pid)) {
-			ComboBox select = new ComboBox(pid);
-			List<StateDTO> states = ServiceHolder.getInstance().getCodeListService().getStates();
+			final ComboBox select = new ComboBox(pid);
+			final List<StateDTO> states = ServiceHolder.getInstance().getCodeListService().getStates();
 			log.debug(states.toString());
 			for (StateDTO stateDTO : states) {
 				select.addItem(stateDTO.getCode());

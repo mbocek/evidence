@@ -28,15 +28,18 @@ import lombok.extern.slf4j.Slf4j;
  * @since 1.0.0
  */
 @Slf4j
-public class ServiceHolder {
+public final class ServiceHolder {
 
 	private static ServiceHolder instance;
 	
 	@Getter
 	@Inject 
 	private CodeListService codeListService;
+	
+	private ServiceHolder() {
+	}
 
-	public static synchronized ServiceHolder getInstance() {
+	public static synchronized ServiceHolder getInstance() { // NOPMD
 		if (instance == null) {
 			log.debug("Cearing ServiceHolder instance");
 			instance = new ServiceHolder();

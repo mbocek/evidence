@@ -24,7 +24,11 @@ import java.lang.reflect.Field;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class FieldUtils {
+public final class FieldUtils {
+	
+	private FieldUtils() {
+	}
+	
 	/**
 	 * Get all fields (private, protected, public) included inherited fields.
 	 * @param objectClass
@@ -33,16 +37,16 @@ public class FieldUtils {
 	 * @throws ClassNotFoundException
 	 */
 	@SuppressWarnings("rawtypes")
-	public static Field[] getAllFields(Class objectClass, Field[] fields) throws ClassNotFoundException {
-		Field[] totalFields = getFields(objectClass, fields);
-
-		Class superClass = objectClass.getSuperclass();
+	public static Field[] getAllFields(final Class objectClass, final Field[] fields) throws ClassNotFoundException {
+		final Field[] totalFields = getFields(objectClass, fields);
+		final Class superClass = objectClass.getSuperclass();
+		
 		Field[] finalFieldsArray;
 		Class clazz = null;
 		
 		clazz = Class.forName("java.lang.Object");
 		
-		if (superClass != null && !superClass.equals(clazz)) {
+		if (superClass != null && !superClass.equals(clazz)) { // NOPMD
 			finalFieldsArray = getAllFields(superClass, totalFields);
 		} else {
 			finalFieldsArray = totalFields;
@@ -58,8 +62,8 @@ public class FieldUtils {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public static Field[] getFields(Class objectClass, Field[] fields) {
-		Field[] newFields = objectClass.getDeclaredFields();
+	public static Field[] getFields(final Class objectClass, final Field[] fields) {
+		final Field[] newFields = objectClass.getDeclaredFields();
 
 		int fieldsSize = 0;
 		int newFieldsSize = 0;
@@ -72,7 +76,7 @@ public class FieldUtils {
 			newFieldsSize = newFields.length;
 		}
 
-		Field[] totalFields = new Field[fieldsSize + newFieldsSize];
+		final Field[] totalFields = new Field[fieldsSize + newFieldsSize];
 
 		if (fieldsSize > 0) {
 			System.arraycopy(fields, 0, totalFields, 0, fieldsSize);
@@ -84,8 +88,8 @@ public class FieldUtils {
 		return totalFields;
 	}
 	
-	public static void setField(Object object, String fieldName, Object value) throws Exception {
-		Field field = object.getClass().getDeclaredField(fieldName);
+	public static void setField(final Object object, final String fieldName, final Object value) throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
+		final Field field = object.getClass().getDeclaredField(fieldName);
 		field.setAccessible(true);
 		field.set(object, value);
 	}

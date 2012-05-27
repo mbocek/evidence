@@ -27,10 +27,10 @@ import org.vaadin.mvp.presenter.BasePresenter;
  */
 public class MenuEntry {
 
-	private String caption;
-	private Class<? extends BasePresenter<?, ? extends EventBus>> presenterType;
+	private final String caption;
+	private final Class<? extends BasePresenter<?, ? extends EventBus>> presenterType;
 
-	public MenuEntry(String caption, Class<? extends BasePresenter<?, ? extends EventBus>> presenterType) {
+	public MenuEntry(final String caption, final Class<? extends BasePresenter<?, ? extends EventBus>> presenterType) {
 		this.caption = caption;
 		this.presenterType = presenterType;
 	}

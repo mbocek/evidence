@@ -36,7 +36,8 @@ public class EvidenceFormFieldFactory extends DefaultFieldFactory {
 	
 	protected Locale locale;
 
-	public EvidenceFormFieldFactory(IUiMessageSource messageSource, Locale locale) {
+	public EvidenceFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
+		super();
 		this.messageSource = messageSource;
 		this.locale = locale;
 	}

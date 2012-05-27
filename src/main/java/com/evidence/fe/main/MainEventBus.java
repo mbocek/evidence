@@ -33,11 +33,11 @@ import com.vaadin.ui.Field.ValueChangeEvent;
 public interface MainEventBus extends EventBus {
 
 	@Event(handlers = { MainPresenter.class })
-	public void start(EvidenceApplication app);
+	void start(EvidenceApplication app);
 
 	@Event(handlers = { MenuPresenter.class })
-	public void selectMenu(ValueChangeEvent event);
+	void selectMenu(ValueChangeEvent event);
 
 	@Event(handlers = { MainPresenter.class })
-	public void openModule(Class<? extends BasePresenter<?, ? extends EventBus>> presenterClass);	
+	void openModule(Class<? extends BasePresenter<?, ? extends EventBus>> presenterClass);	
 }

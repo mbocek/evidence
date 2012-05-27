@@ -52,9 +52,9 @@ public class ResponsiblePersonDAOTest extends DbUnitDaoTest {
     
 	@Test
 	public void testCreate() {
-		ResponsibilityType father = responsibilityTypeDAO.read(ResponsibilityType.Type.FATHER.name());
-		Contact contact = contactDAO.read(1L);
-		ResponsiblePerson person = new ResponsiblePerson();
+		final ResponsibilityType father = responsibilityTypeDAO.read(ResponsibilityType.Type.FATHER.name());
+		final Contact contact = contactDAO.read(1L);
+		final ResponsiblePerson person = new ResponsiblePerson();
 		person.setName("name");
 		person.setSurName("surName");
 		person.setType(father);

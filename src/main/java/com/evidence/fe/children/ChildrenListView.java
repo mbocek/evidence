@@ -33,7 +33,7 @@ public class ChildrenListView extends VerticalLayout implements IChildrenListVie
 	private static final long serialVersionUID = 3807396569678708848L;
 
 	@UiField
-	Table userList;
+	private Table userList;
 
 	@Override
 	public Table getUserList() {

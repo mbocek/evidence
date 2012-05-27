@@ -37,7 +37,7 @@ import com.evidence.fe.form.EvidenceFormFieldFactory;
  */
 public class AnnotationHelperTest {
 
-	private TestModel testModel = new TestModel();
+	private final TestModel testModel = new TestModel();
 
 	/**
 	 * Test method for {@link com.evidence.fe.annotation.AnnotationHelper#isAutomaticForm(com.evidence.fe.form.Model)}.
@@ -61,11 +61,11 @@ public class AnnotationHelperTest {
 	 */
 	@Test
 	public void testBuildOrderedMap() {
-		List<FieldInfo> fieldInfos = new ArrayList<FieldInfo>();
-		Map<String, Double> orderedMap = new HashMap<String, Double>();
-		Map<String, String> captionMap = new HashMap<String, String>();
-		Map<String, Boolean> requiredMap = new HashMap<String, Boolean>();
-		Map<String, Boolean> validatedMap = new HashMap<String, Boolean>();
+		final List<FieldInfo> fieldInfos = new ArrayList<FieldInfo>();
+		final Map<String, Double> orderedMap = new HashMap<String, Double>();
+		final Map<String, String> captionMap = new HashMap<String, String>();
+		final Map<String, Boolean> requiredMap = new HashMap<String, Boolean>();
+		final Map<String, Boolean> validatedMap = new HashMap<String, Boolean>();
 		AnnotationHelper.buildData(testModel, fieldInfos, orderedMap, captionMap, requiredMap, validatedMap);
 		assertEquals("TestModel contains 4 fields!", 4, fieldInfos.size());
 		assertEquals("TestModel doesn't contains four ordered fields!", 4, orderedMap.size());

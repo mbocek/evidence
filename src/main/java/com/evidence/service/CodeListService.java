@@ -44,9 +44,8 @@ public class CodeListService {
 	private StateDAO stateDAO;
 
 	public List<StateDTO> getStates() {
-		List<State> states = stateDAO.findAll();
+		final List<State> states = stateDAO.findAll();
 		log.debug("Loaded states:", states.toString());
-		List<StateDTO> stateDTOs = DTOConverter.convertList(states, StateDTO.class);
-		return stateDTOs;
+		return DTOConverter.convertList(states, StateDTO.class);
 	}
 }

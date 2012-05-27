@@ -44,15 +44,15 @@ import com.vaadin.ui.Window;
 @Presenter(view = MainView.class)
 public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 
-	private static final Logger log = LoggerFactory.getLogger(MainPresenter.class);
+	private static final Logger log = LoggerFactory.getLogger(MainPresenter.class); // NOPMD
 
 	private EvidenceApplication application;
 
-	private MenuPresenter menuPresenter;
+	private MenuPresenter menuPresenter; // NOPMD
 
-	private IPresenter<?, ? extends EventBus> contentPresenter;
+	private IPresenter<?, ? extends EventBus> contentPresenter; // NOPMD
 
-	public void onStart(EvidenceApplication app) {
+	public void onStart(final EvidenceApplication app) {
 		// keep a reference to the application instance
 		this.application = app;
 
@@ -66,24 +66,23 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 		this.view.setMenu(this.menuPresenter.getView());
 	}
 
-	public void onOpenModule(Class<? extends BasePresenter<?, ? extends EventBus>> presenter) {
+	public void onOpenModule(final Class<? extends BasePresenter<?, ? extends EventBus>> presenter) {
 		// opening module invoked from menu 
 		log.debug("Openning module for presenter {}", presenter.getCanonicalName());
-		IPresenterFactory pf = this.application.getPresenterFactory();
+		final IPresenterFactory pf = this.application.getPresenterFactory();
 		this.contentPresenter = pf.createPresenter(presenter.getAnnotation(Component.class).value());
 		this.view.setContent((com.vaadin.ui.Component) this.contentPresenter.getView());
 	}
 
-	public void onShowDialog(Window dialog) {
+	public void onShowDialog(final Window dialog) {
 		this.application.getMainWindow().addWindow(dialog);
 	}
 
 	@Override
 	public void bind() {
-		VerticalLayout mainLayout = this.view.getMainLayout();
-		HorizontalSplitPanel layoutPanel = this.view.getSplitLayout();
+		final VerticalLayout mainLayout = this.view.getMainLayout();
+		final HorizontalSplitPanel layoutPanel = this.view.getSplitLayout();
 		mainLayout.setExpandRatio(layoutPanel, 1.0f);
 		layoutPanel.setSplitPosition(25, HorizontalSplitPanel.UNITS_PERCENTAGE);
 	}
-
 }

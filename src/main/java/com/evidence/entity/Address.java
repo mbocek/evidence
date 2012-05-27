@@ -49,7 +49,7 @@ public class Address implements Serializable {
 	
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter
-	private Long id;
+	private Long id; 
 
 	@Getter @Setter
 	@Column(name = "STREET", length = 200)

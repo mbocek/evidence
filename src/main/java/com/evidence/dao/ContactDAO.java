@@ -22,12 +22,10 @@ import org.springframework.stereotype.Repository;
 
 import com.evidence.entity.Contact;
 
-
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
 @Repository
 public class ContactDAO extends JpaDAO<Contact, Long> {
-	
 }

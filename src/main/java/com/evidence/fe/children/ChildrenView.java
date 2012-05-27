@@ -34,7 +34,7 @@ public class ChildrenView extends VerticalLayout implements Layout, IUiBindable,
 	private static final long serialVersionUID = 6155789894644060488L;
 
 	@UiField
-	Form childrenForm;
+	private Form childrenForm;
 
 	@Override
 	public Form getChildrenForm() {

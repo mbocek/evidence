@@ -42,20 +42,20 @@ public class MenuPresenter extends FactoryPresenter<IMenuView, MainEventBus> {
 
 	@Override
 	public void bind() {
-		Tree tree = this.view.getTree();
+		final Tree tree = this.view.getTree();
 		addEntry(tree, this.getMessage("menu.kindergarten", this.getLocale()), KindergartenPresenter.class);
 		addEntry(tree, this.getMessage("menu.child", this.getLocale()), ChildrenPresenter.class);
 	}
 	
-	private void addEntry(Tree tree, String caption, Class<? extends BasePresenter<?, ? extends EventBus>> presenterType) {
-		MenuEntry entry = new MenuEntry(caption, presenterType);
+	private void addEntry(final Tree tree, final String caption, final Class<? extends BasePresenter<?, ? extends EventBus>> presenterType) {
+		final MenuEntry entry = new MenuEntry(caption, presenterType);
 		tree.addItem(entry);
 		tree.setChildrenAllowed(entry, false);
 	}
 
-	public void onSelectMenu(ValueChangeEvent event) {
+	public void onSelectMenu(final ValueChangeEvent event) {
 		// get the selected menu entry and initiate another event
-		MenuEntry menuEntry = (MenuEntry) this.view.getTree().getValue();
+		final MenuEntry menuEntry = (MenuEntry) this.view.getTree().getValue();
 		this.eventBus.openModule(menuEntry.getPresenterType());
 	}
 }

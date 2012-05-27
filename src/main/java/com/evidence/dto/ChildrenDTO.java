@@ -30,7 +30,7 @@ public class ChildrenDTO {
 		return name;
 	}
 	
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
@@ -38,7 +38,7 @@ public class ChildrenDTO {
 		return surName;
 	}
 	
-	public void setSurName(String surName) {
+	public void setSurName(final String surName) {
 		this.surName = surName;
 	}
 }

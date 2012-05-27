@@ -43,7 +43,7 @@ public class KindergartenDAOTest extends DbUnitDaoTest {
 	
 	@Test
 	public void testCreate() {
-		Kindergarten kindergarten = kindergartenDAO.read(1L);
+		final Kindergarten kindergarten = kindergartenDAO.read(1L);
 		Assert.assertNotNull(kindergarten.getContact());
 		Assert.assertNotNull(kindergarten.getContact().getAddress());
 		Assert.assertNotNull(kindergarten.getContact().getEmail());
@@ -61,7 +61,7 @@ public class KindergartenDAOTest extends DbUnitDaoTest {
 		try {
 			kindergarten = kindergartenDAO.read(1L);
 			fail("Entity shouldn't be exist!"); 
-		} catch (EntityNotFoundException e) {
+		} catch (EntityNotFoundException e) { // NOPMD
 		}
 	}
 
@@ -70,7 +70,7 @@ public class KindergartenDAOTest extends DbUnitDaoTest {
 	 */
 	@Test
 	public void testFindById() {
-		Kindergarten kindergarten = kindergartenDAO.findById(1L);
+		final Kindergarten kindergarten = kindergartenDAO.findById(1L);
 		Assert.assertNotNull(kindergarten);
 	}
 
@@ -80,7 +80,7 @@ public class KindergartenDAOTest extends DbUnitDaoTest {
 	@Test
 	public void testRead() {
 		try {
-			Kindergarten kindergarten = kindergartenDAO.read(1L);
+			final Kindergarten kindergarten = kindergartenDAO.read(1L);
 			Assert.assertNotNull(kindergarten);
 		} catch (EntityNotFoundException e) {
 			fail("Entity should be exist!"); 
@@ -92,7 +92,7 @@ public class KindergartenDAOTest extends DbUnitDaoTest {
 	 */
 	@Test
 	public void testFindAll() {
-		List<Kindergarten> kindergartens = kindergartenDAO.findAll();
+		final List<Kindergarten> kindergartens = kindergartenDAO.findAll();
 		Assert.assertEquals(1, kindergartens.size());
 	}
 }

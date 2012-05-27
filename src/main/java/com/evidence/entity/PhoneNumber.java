@@ -43,5 +43,5 @@ public class PhoneNumber implements Serializable {
 	private String countryCode;
 	
 	@Getter
-	private String phoneNumber;	
+	private String number;	
 }

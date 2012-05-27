@@ -29,30 +29,30 @@ import org.slf4j.LoggerFactory;
  * @param <T> class for persistence support
  * @param <Id> primary key of entity
  */
-public abstract class JpaDAO<T, Id extends Serializable> extends JpaImmutableDAO<T, Id> {
+public class JpaDAO<T, Id extends Serializable> extends JpaImmutableDAO<T, Id> {
 	
-	private static final Logger log = LoggerFactory.getLogger(JpaDAO.class);
+	private static final Logger log = LoggerFactory.getLogger(JpaDAO.class); // NOPMD 
 
-	public void create(T entity) {
+	public void create(final T entity) {
 		if (log.isTraceEnabled()) {
 			log.trace("Creating entity: " + entity.getClass());
-			log.trace("  With contents: " + String.valueOf(entity));
+			log.trace("  With contents: " + String.valueOf(entity)); // NOPMD
 		}
 		this.entityManager.persist(entity);
 	}
 
-	public void delete(T entity) {
+	public void delete(final T entity) {
 		if (log.isTraceEnabled()) {
 			log.trace("Deleting entity: " + entity.getClass());
-			log.trace("  With contents: " + String.valueOf(entity));
+			log.trace("  With contents: " + String.valueOf(entity)); // NOPMD
 		}
 		this.entityManager.remove(entity);
 	}
 
-	public T update(T entity) {
+	public T update(final T entity) {
 		if (log.isTraceEnabled()) {
 			log.trace("Updating entity: " + entity.getClass());
-			log.trace("  With contents: " + String.valueOf(entity));
+			log.trace("  With contents: " + String.valueOf(entity)); // NOPMD
 		}
 		return this.entityManager.merge(entity);
 	}

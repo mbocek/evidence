@@ -28,24 +28,26 @@ import org.dozer.Mapper;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class DTOConverter {
+public final class DTOConverter {
 	
-	public static <T> T convert(Object source, Class<T> destinationCLass) {
-		Mapper instance = DozerBeanMapperSingletonWrapper.getInstance();
+	private DTOConverter() {
+	}
+	
+	public static <T> T convert(final Object source, final Class<T> destinationCLass) {
+		final Mapper instance = DozerBeanMapperSingletonWrapper.getInstance();
 		return instance.map(source, destinationCLass);
 	}
 
-	public static <T, TT> List<T> convertList(List<TT> list, Class<T> destinationClass) {
+	public static <T, TT> List<T> convertList(final List<TT> list, final Class<T> destinationClass) {
+		List<T> result = null;
 		if (list != null) {
-			Mapper instance = DozerBeanMapperSingletonWrapper.getInstance();
-			List<T> result = new ArrayList<T>(list.size());
+			final Mapper instance = DozerBeanMapperSingletonWrapper.getInstance();
+			result = new ArrayList<T>(list.size());
 			for (TT sourceObject : list) {
-				T destination = instance.map(sourceObject, destinationClass);
+				final T destination = instance.map(sourceObject, destinationClass);
 				result.add(destination);
 			}
-			return result;
-		} else {
-			return null;
 		}
+		return result;
 	}
 }

@@ -57,6 +57,6 @@ public class FieldInfo {
 	private List<FieldInfo> subFieldInfo; 
 	
 	public boolean isNested() {
-		return !fieldName.equals(fieldNestedName);
+		return !this.getFieldName().equals(this.getFieldNestedName());
 	}
 }

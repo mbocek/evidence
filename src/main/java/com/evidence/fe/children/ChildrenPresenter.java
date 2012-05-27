@@ -47,10 +47,9 @@ import com.vaadin.ui.Window;
 @Presenter(view = ChildrenListView.class)
 public class ChildrenPresenter extends FactoryPresenter<IChildrenListView, ChildrenEventBus> {
 
-	private static final Logger log = LoggerFactory.getLogger(ChildrenPresenter.class);
+	private static final Logger log = LoggerFactory.getLogger(ChildrenPresenter.class); // NOPMD
 
 	private BeanItemContainer<ChildrenDTO> container;
-
 	private Window dialog = null;
 	private Form userForm = null;
 	
@@ -59,7 +58,7 @@ public class ChildrenPresenter extends FactoryPresenter<IChildrenListView, Child
 
 	@Override
 	public void bind() {
-		Table userList = this.view.getUserList();
+		final Table userList = this.view.getUserList();
 		container = new BeanItemContainer<ChildrenDTO>(ChildrenDTO.class);
 		userList.setContainerDataSource(container);
 		userList.setVisibleColumns(new String[] { "name", "surName" });
@@ -67,7 +66,7 @@ public class ChildrenPresenter extends FactoryPresenter<IChildrenListView, Child
 	}
 
 	private void loadUserList() {
-		List<ChildrenDTO> children = userService.getAll();
+		final List<ChildrenDTO> children = userService.getAll();
 		this.container.addAll(children);
 	}
 
@@ -79,14 +78,14 @@ public class ChildrenPresenter extends FactoryPresenter<IChildrenListView, Child
 	/* second version, using popup */
 	public void onCreateUser() throws ViewFactoryException {
 		// create view
-		ChildrenView view = this.createView(ChildrenView.class);
+		final ChildrenView view = this.createView(ChildrenView.class);
 
 		// configure the form with bean item
 		this.userForm = view.getChildrenForm();
-		ChildrenDTO children = new ChildrenDTO();
+		final ChildrenDTO children = new ChildrenDTO();
 		children.setName("name");
 		children.setSurName("last name");
-		BeanItem<ChildrenDTO> beanItem = new BeanItem<ChildrenDTO>(children);
+		final BeanItem<ChildrenDTO> beanItem = new BeanItem<ChildrenDTO>(children);
 		this.userForm.setItemDataSource(beanItem);
 
 		// create a window using caption from view
@@ -100,8 +99,8 @@ public class ChildrenPresenter extends FactoryPresenter<IChildrenListView, Child
 
 	public void onRemoveUser() {
 		// check if a user is selected in the table
-		Table userList = this.view.getUserList();
-		Object selected = userList.getValue();
+		final Table userList = this.view.getUserList();
+		final Object selected = userList.getValue();
 		if (selected != null) {
 			this.container.removeItem(selected);
 		}
@@ -110,8 +109,8 @@ public class ChildrenPresenter extends FactoryPresenter<IChildrenListView, Child
 	@SuppressWarnings("unchecked")
 	public void onSaveUser() {
 		// get the user and add it to the container
-		BeanItem<ChildrenDTO> item = (BeanItem<ChildrenDTO>) this.userForm.getItemDataSource();
-		ChildrenDTO child = item.getBean();
+		final BeanItem<ChildrenDTO> item = (BeanItem<ChildrenDTO>) this.userForm.getItemDataSource();
+		final ChildrenDTO child = item.getBean();
 		this.container.addBean(child);
 		this.userService.addChild(child);
 		// close dialog
@@ -125,13 +124,13 @@ public class ChildrenPresenter extends FactoryPresenter<IChildrenListView, Child
 
 	private void closeDialog() {
 		// dismiss the dialog
-		Window applicationWindow = (Window) this.dialog.getParent();
+		final Window applicationWindow = (Window) this.dialog.getParent();
 		applicationWindow.removeWindow(this.dialog);
-		this.dialog = null;
-		this.userForm = null;
+		//this.dialog = null;
+		//this.userForm = null;
 	}
 	
-	public void onEditUser(ItemClickEvent event) {
+	public void onEditUser(final ItemClickEvent event) {
 		log.info("edit");
 		if (event.isDoubleClick()) {
 			log.info("edit double click");

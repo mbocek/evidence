@@ -47,9 +47,9 @@ public class TestModel2 implements Model {
 	private String absoluteName;
 	
 	@Getter @Setter
-	private RawModel rawModel = new RawModel();
+	private RawModel rawModel = new RawModel(); // NOPMD
 	
 	@Order(2)
 	@Getter @Setter
-	private TestInnerModel innerModel = new TestInnerModel();
+	private TestInnerModel innerModel = new TestInnerModel(); 
 }

@@ -51,16 +51,16 @@ public class EvidenceForm extends Form {
 
 	private static final long serialVersionUID = 1L;
 	
-	public void addFooter(Component component) {
+	public void addFooter(final Component component) {
 		this.getFooter().addComponent(component);
 	}
 
-	public void setItemDataSource(Model model, MetaModel metaModel, IUiMessageSource messageSource, Locale locale) {
+	public void setItemDataSource(final Model model, final MetaModel metaModel, final IUiMessageSource messageSource, final Locale locale) {
 		//Class<? extends Model> clazz = model.getClass();
-		BeanItem<Model> beanItem = new BeanItem<Model>(model);
+		final BeanItem<Model> beanItem = new BeanItem<Model>(model);
 		for (FieldInfo fieldInfo : metaModel.getFieldInfos()) {
 			if (fieldInfo.isNested()) {
-				beanItem.addItemProperty(fieldInfo.getFieldNestedName(), new NestedMethodProperty(model, fieldInfo.getFieldNestedName()));
+				beanItem.addItemProperty(fieldInfo.getFieldNestedName(), new NestedMethodProperty(model, fieldInfo.getFieldNestedName())); // NOPMD
 			}
 		}
 		this.setItemDataSource(beanItem);
@@ -68,32 +68,32 @@ public class EvidenceForm extends Form {
 		this.setVisibleItemProperties(metaModel.getOrderedFields());
 		for (String fieldName : metaModel.getCaptionedFields()) {
 			log.debug("Processing caption for field:{}", fieldName);
-			String fieldCaption = metaModel.getFieldCaption(fieldName);
-			Field field = this.getField(fieldName);
+			final String fieldCaption = metaModel.getFieldCaption(fieldName);
+			final Field field = this.getField(fieldName);
 			field.setCaption(messageSource.getMessage(fieldCaption, locale));
 		}
 		for (String fieldName : metaModel.getRequiredFields()) {
 			log.debug("Processing required for field:{}", fieldName);
-			Boolean fieldRequired = metaModel.getFieldRequired(fieldName);
-			Field field = this.getField(fieldName);
+			final Boolean fieldRequired = metaModel.getFieldRequired(fieldName);
+			final Field field = this.getField(fieldName);
 			log.debug("Field:{} is required:{}", fieldName, fieldRequired);
 			field.setRequired(fieldRequired);
 			field.setRequiredError(messageSource.getMessage("field.required", locale));
 		}
 	}
 
-	public boolean validate(MetaModel metaModel, Validator validator, Model model) {
+	public boolean validate(final MetaModel metaModel, final Validator validator, final Model model) {
 		boolean result = false; 
-		BindingResult validationResult = new BeanPropertyBindingResult(model, model.getClass().getName());
+		final BindingResult validationResult = new BeanPropertyBindingResult(model, model.getClass().getName());
 		clearFields(metaModel);
 		validator.validate(model, validationResult);
 		if (validationResult.hasErrors()) {
 			for (FieldError error : validationResult.getFieldErrors()) {
-				String field = error.getField();
-				String message = error.getDefaultMessage();
-				Field fieldComponent = this.getField(field);
-				if (fieldComponent != null && fieldComponent instanceof AbstractField) {
-					((AbstractField)fieldComponent).setComponentError(new UserError(message));
+				final String field = error.getField();
+				final String message = error.getDefaultMessage();
+				final Field fieldComponent = this.getField(field);
+				if (fieldComponent instanceof AbstractField) {
+					((AbstractField)fieldComponent).setComponentError(new UserError(message)); // NOPMD
 				}
 			}
 			result = false;
@@ -104,13 +104,13 @@ public class EvidenceForm extends Form {
 		
 	}
 	
-	private void clearFields(MetaModel metaModel) {
-		Collection<String> validatedFields = metaModel.getValidatedFields();
+	private void clearFields(final MetaModel metaModel) {
+		final Collection<String> validatedFields = metaModel.getValidatedFields();
 		for (String fieldName : validatedFields) {
-			Boolean fieldValidated = metaModel.getFieldvalidated(fieldName);
+			final Boolean fieldValidated = metaModel.getFieldvalidated(fieldName);
 			if (fieldValidated) {
-				Field fieldComponent = this.getField(fieldName);
-				if (fieldComponent != null && fieldComponent instanceof AbstractField) {
+				final Field fieldComponent = this.getField(fieldName);
+				if (fieldComponent instanceof AbstractField) {
 					log.debug("Cleanup error for field:{}", fieldName);
 					((AbstractField)fieldComponent).setComponentError(null);
 				}
@@ -118,12 +118,12 @@ public class EvidenceForm extends Form {
 		}
 	}
 
-	private void setupFormFieldFactory(MetaModel metaModel, IUiMessageSource messageSource, Locale locale) {
-		Class<? extends FormFieldFactory> formFieldFactory = metaModel.getFormFieldFactory();
+	private void setupFormFieldFactory(final MetaModel metaModel, final IUiMessageSource messageSource, final Locale locale) {
+		final Class<? extends FormFieldFactory> formFieldFactory = metaModel.getFormFieldFactory();
 		if (formFieldFactory != null) {
 			try {
-				Constructor<? extends FormFieldFactory> constructor = formFieldFactory.getConstructor(new Class[] { IUiMessageSource.class, Locale.class });
-				EvidenceFormFieldFactory instance = (EvidenceFormFieldFactory) constructor.newInstance(new Object[] { messageSource, locale });				
+				final Constructor<? extends FormFieldFactory> constructor = formFieldFactory.getConstructor(new Class[] { IUiMessageSource.class, Locale.class });
+				final EvidenceFormFieldFactory instance = (EvidenceFormFieldFactory) constructor.newInstance(new Object[] { messageSource, locale });				
 				this.setFormFieldFactory(instance);
 			} catch (InstantiationException e) {
 				throw new EvidenceFormException("InstantiationException for " + formFieldFactory.getName(), e);

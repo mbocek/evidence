@@ -42,7 +42,7 @@ public class UserService {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void addChild(ChildrenDTO child) {
+	public void addChild(final ChildrenDTO child) {
 //		Person person = DTOConverter.convert(child, Person.class);
 //		personDao.create(person);
 	}

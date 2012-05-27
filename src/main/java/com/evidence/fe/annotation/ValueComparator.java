@@ -27,20 +27,22 @@ import java.util.Map;
  */
 public class ValueComparator implements Comparator<String> {
 
-	private Map<String, Double> base;
+	private final Map<String, Double> base;
 
-	public ValueComparator(Map<String, Double> base) {
+	public ValueComparator(final Map<String, Double> base) {
 		this.base = base;
 	}
 
 	@Override
-	public int compare(String key1, String key2) {
+	public int compare(final String key1, final String key2) {
+		int result;
 		if (base.get(key1) < base.get(key2)) {
-			return -1;
+			result = -1;
 		} else if (base.get(key1).equals(base.get(key2))) {
-			return 0;
+			result = 0;
 		} else {
-			return 1;
-		}
+			result = 1;
+		}		
+		return result;
 	}
 }
