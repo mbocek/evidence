@@ -279,7 +279,9 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
 							<configuration>
-<!-- 								<configLocation>file:///${basedir}/external/checkstyle/checkstyle.xml</configLocation> -->
+								<enableRulesSummary>false</enableRulesSummary>
+ 								<configLocation>file:///${basedir}/external/checkstyle/rules.xml</configLocation>
+								<headerLocation>file:///${basedir}/external/checkstyle/header.txt</headerLocation>
 							</configuration>							
 						</plugin>
 						<plugin>
