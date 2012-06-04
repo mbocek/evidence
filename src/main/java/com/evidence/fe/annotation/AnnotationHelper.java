@@ -28,6 +28,7 @@ import javax.validation.constraints.NotNull;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.evidence.fe.form.Model;
@@ -176,33 +177,39 @@ public final class AnnotationHelper { // NOPMD
 					final Caption caption = field.getAnnotation(Caption.class);
 					if (order != null || caption != null) {
 						final Class fieldClass = field.getType();
+						FieldInfo fieldInfo = null;
 						Long orderNumber = null;
 						String captionString = null;
 						Boolean requiredBoolean = Boolean.FALSE;
 						Boolean validatedBoolean = Boolean.FALSE;
+						final String fieldName = field.getName();
+						final String fieldNestedName = (parentFullName == null ) ? fieldName : parentFullName + NESTED_SEPARATOR + fieldName ;
+						final Boolean nestedField = (parentFullName == null ) ? Boolean.FALSE : Boolean.TRUE ;
 						
 						if (order != null) {
 							orderNumber = order.value();
 						}						
 						
 						if (caption != null) {
-							captionString = caption.value();
+							if (caption.value() != null && !caption.value().isEmpty()) {
+								captionString = caption.value();
+							} else {
+								captionString = fieldNestedName;
+							}
 						}						
 						
-						if (field.isAnnotationPresent(NotNull.class) || field.isAnnotationPresent(NotEmpty.class)) {
+						if (field.isAnnotationPresent(NotNull.class) || field.isAnnotationPresent(NotEmpty.class)
+								|| field.isAnnotationPresent(NotBlank.class)) {
 							requiredBoolean = Boolean.TRUE;
 						}						
 						
 						for (Annotation annotation : field.getAnnotations()) {
-							if (annotation.getClass().getCanonicalName() != null && annotation.getClass().getCanonicalName().contains("valid")) { 
+							if (annotation.getClass().getCanonicalName() != null
+									&& annotation.getClass().getCanonicalName().contains("valid")) {
 								validatedBoolean = Boolean.TRUE;
 							}
 						}						
 						
-						FieldInfo fieldInfo = null;
-						final String fieldName = field.getName();
-						final String fieldNestedName = (parentFullName == null ) ? fieldName : parentFullName + NESTED_SEPARATOR + fieldName ;
-						final Boolean nestedField = (parentFullName == null ) ? Boolean.FALSE : Boolean.TRUE ;
 						if (fieldClass.isAnnotationPresent(AutomaticForm.class)) {
 							final List<FieldInfo> formFields = getAllAutomaticFormFields(fieldClass, fieldInfo, fieldNestedName);
 							fieldInfo = new FieldInfo(fieldName, fieldNestedName, orderNumber, captionString, requiredBoolean, validatedBoolean, nestedField, formFields); // NOPMD

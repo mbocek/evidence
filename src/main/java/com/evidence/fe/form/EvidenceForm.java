@@ -49,13 +49,18 @@ import com.vaadin.ui.FormFieldFactory;
 @Slf4j
 public class EvidenceForm extends Form {
 
+	private static final String MISSING_MESSAGE = "{{missing message: ";
+
 	private static final long serialVersionUID = 1L;
+
+	private static final String NESTED_SEPARATOR = ".";
 	
 	public void addFooter(final Component component) {
 		this.getFooter().addComponent(component);
 	}
 
-	public void setItemDataSource(final Model model, final MetaModel metaModel, final IUiMessageSource messageSource, final Locale locale) {
+	public void setItemDataSource(final Model model, final MetaModel metaModel, final IUiMessageSource messageSource,
+			final String messagePrefix, final Locale locale) {
 		//Class<? extends Model> clazz = model.getClass();
 		final BeanItem<Model> beanItem = new BeanItem<Model>(model);
 		for (FieldInfo fieldInfo : metaModel.getFieldInfos()) {
@@ -68,7 +73,7 @@ public class EvidenceForm extends Form {
 		this.setVisibleItemProperties(metaModel.getOrderedFields());
 		for (String fieldName : metaModel.getCaptionedFields()) {
 			log.debug("Processing caption for field:{}", fieldName);
-			final String fieldCaption = metaModel.getFieldCaption(fieldName);
+			final String fieldCaption = messagePrefix + NESTED_SEPARATOR + metaModel.getFieldCaption(fieldName);
 			final Field field = this.getField(fieldName);
 			field.setCaption(messageSource.getMessage(fieldCaption, locale));
 		}
@@ -82,7 +87,8 @@ public class EvidenceForm extends Form {
 		}
 	}
 
-	public boolean validate(final MetaModel metaModel, final Validator validator, final Model model) {
+	public boolean validate(final MetaModel metaModel, final Validator validator, final Model model,
+			final IUiMessageSource messageSource, final Locale locale) {
 		boolean result = false; 
 		final BindingResult validationResult = new BeanPropertyBindingResult(model, model.getClass().getName());
 		clearFields(metaModel);
@@ -90,7 +96,7 @@ public class EvidenceForm extends Form {
 		if (validationResult.hasErrors()) {
 			for (FieldError error : validationResult.getFieldErrors()) {
 				final String field = error.getField();
-				final String message = error.getDefaultMessage();
+				final String message = getMessage(error.getCodes(), messageSource, locale);
 				final Field fieldComponent = this.getField(field);
 				if (fieldComponent instanceof AbstractField) {
 					((AbstractField)fieldComponent).setComponentError(new UserError(message)); // NOPMD
@@ -100,10 +106,20 @@ public class EvidenceForm extends Form {
 		} else {
 			result = true;
 		}
-		return result;
-		
+		return result;		
 	}
 	
+	private String getMessage(final String[] codes, final IUiMessageSource messageSource, final Locale locale) {
+		String result = null; 
+		for (String code : codes) {
+			result = messageSource.getMessage(code, locale);
+			if (result != null && !result.startsWith(MISSING_MESSAGE)) {
+				break;
+			}
+		}
+		return result;
+	}
+
 	private void clearFields(final MetaModel metaModel) {
 		final Collection<String> validatedFields = metaModel.getValidatedFields();
 		for (String fieldName : validatedFields) {

@@ -16,31 +16,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.annotation;
+package com.evidence.utility.builder;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import lombok.AllArgsConstructor;
+
+import com.evidence.dto.AddressDTO;
 
 /**
- * Annotation for marking field as caption.
- * Parameter is resource name. 
- * 
- * <code>
- * @Caption("window.name")
- * </code>
- * 
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Target({ElementType.FIELD})
-@Retention(RetentionPolicy.RUNTIME)
-public @interface Caption {
+@AllArgsConstructor
+public class FullAddressBuilder {
+
+	private static final String ADDRESS_SEPARATOR = ", ";
 	
-	/**
-	 * Resource name.
-	 * @return value of resource
-	 */
-	String value() default "";	
+	private AddressDTO address;
+	
+	public String getFullAddress() {
+		return address.getCity() + ADDRESS_SEPARATOR + address.getZipCode();
+	}
 }

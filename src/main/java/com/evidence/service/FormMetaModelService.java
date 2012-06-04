@@ -73,7 +73,8 @@ public class FormMetaModelService {
 			final Map<String, Boolean> validatedMap = new HashMap<String, Boolean>();
 			AnnotationHelper.buildData(model, fieldInfos, orderMap, captionMap, requiredMap, validatedMap);
 			meta = new MetaModel(factory, fieldInfos, orderMap, captionMap, requiredMap, validatedMap);
-			log.debug("Adding automatic form to cache with name: {} and meta mode: {}", modelName, meta);
+			log.debug("Adding automatic form to cache with name: {}", modelName);
+			log.trace("Adding automatic form to cache with name: {} and metamodel: {}", modelName, meta);
 			modelMap.put(modelName, meta);
 		}
 		return meta;

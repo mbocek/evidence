@@ -20,22 +20,23 @@ package com.evidence.dto;
 
 import javax.validation.Valid;
 
-import lombok.Delegate;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.evidence.fe.annotation.AutomaticForm;
-import com.evidence.fe.annotation.Caption;
 import com.evidence.fe.annotation.Order;
 import com.evidence.fe.form.Model;
 import com.evidence.fe.kindergarten.KindergartenDetailFormFieldFactory;
+import com.evidence.utility.builder.FullAddressBuilder;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
+@ToString
 @AutomaticForm(formFieldFactory=KindergartenDetailFormFieldFactory.class)
 public class KindergartenDTO implements Model {
 
@@ -44,15 +45,15 @@ public class KindergartenDTO implements Model {
 	
 	@Getter @Setter
 	@NotBlank
-	@Order(1) @Caption("kindergarten.detail.name")
+	@Order(1)
 	private String name = "";
 
-	@Delegate
 	@Order(2)
 	@Valid
 	@Getter
-	private AddressDTO address = new AddressDTO();
+	private ContactDTO contact = new ContactDTO();
 	
-	@Getter @Setter
-	private String fullAddress; 
+	public String getFullAddress() {
+		return new FullAddressBuilder(contact.getAddress()).getFullAddress();
+	}
 }

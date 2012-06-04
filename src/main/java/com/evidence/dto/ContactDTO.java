@@ -16,48 +16,45 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.dto;
 
-import java.io.Serializable;
+import javax.validation.Valid;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import org.hibernate.validator.constraints.NotBlank;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import com.evidence.fe.annotation.AutomaticForm;
+import com.evidence.fe.annotation.Caption;
+import com.evidence.fe.annotation.Order;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Entity
 @ToString
-@NoArgsConstructor
-@Table(name = "KINDER_GARTEN")
-public class Kindergarten implements Serializable {
+@AutomaticForm
+public class ContactDTO {
 
-	private static final long serialVersionUID = 1L;
-
-	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Getter
-	private Long id;
-
-	@Getter	@Setter
-	@Column(name = "NAME", length = 200, nullable = false)
-	private String name;
-	
+	@NotBlank
+	@Order(1) @Caption
 	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-	@JoinColumn(name = "CONTACT_ID")
-	private Contact contact;	
+	private String email = ""; 
+
+	@NotBlank
+	@Order(2) @Caption
+	@Getter @Setter
+	private String mobileNumber = "";
+	
+	@NotBlank
+	@Order(3) @Caption
+	@Getter @Setter
+	private String landLine = "";
+	
+	@Order(4)
+	@Valid
+	@Getter
+	private AddressDTO address = new AddressDTO();
 }

@@ -45,9 +45,8 @@ public class KindergartenService {
 		return DTOConverter.convertList(kindergartens, KindergartenDTO.class);
 	}
 
-	public void addKindergarten(final KindergartenDTO kindergarten) {
-		// TODO Auto-generated method stub
-		
+	public void addKindergarten(final KindergartenDTO kindergartenDTO) {
+		final Kindergarten kindergarten = DTOConverter.convert(kindergartenDTO, Kindergarten.class);
+		kindergartenDao.create(kindergarten);
 	}
-
 }

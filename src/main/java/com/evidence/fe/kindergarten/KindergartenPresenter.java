@@ -94,7 +94,7 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		this.kindergartenForm = view.getKindergartenForm();
 		final KindergartenDTO kindergarten = new KindergartenDTO();
 		final MetaModel metaModel = formService.getMetaModel(kindergarten);
-		this.kindergartenForm.setItemDataSource(kindergarten, metaModel, this.messageSource, this.getLocale());
+		this.kindergartenForm.setItemDataSource(kindergarten, metaModel, this.messageSource, "kindergarten.detail", this.getLocale());
 
 		// create a window using caption from view
 		this.dialog = new Window(this.getMessage("kindergarten.detail.caption", this.getLocale()));
@@ -120,7 +120,7 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		final KindergartenDTO kindergarten = item.getBean();
 		final MetaModel metaModel = formService.getMetaModel(kindergarten);
 		
-		if (kindergartenForm.validate(metaModel, validator, kindergarten)) {
+		if (kindergartenForm.validate(metaModel, validator, kindergarten, this.messageSource, this.getLocale())) {
 			//this.container.addBean(kindergarten);
 			this.kindergartenService.addKindergarten(kindergarten);
 			// close dialog

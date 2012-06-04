@@ -201,17 +201,22 @@
 				</executions>
 			</plugin>
 
-			<!-- A simple Jetty test server at http://localhost:8080/project-name 
-				can be launched with the Maven goal jetty:run and stopped with jetty:stop -->
+			<!-- ========================================================================= -->
+			<!-- A simple Jetty test server at http://localhost:8080/evidence              -->
+			<!-- can be launched with the Maven goal jetty:run and stopped with jetty:stop -->
+			<!-- ========================================================================= -->
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
 				<configuration>
 					<stopPort>9966</stopPort>
 					<stopKey>evidence</stopKey>
+	                <scanTargets>
+	                    <scanTarget>target/classes/</scanTarget>
+	                </scanTargets>
 					<!-- Redeploy every x seconds if changes are detected, 0 for no automatic 
 						redeployment -->
-					<scanIntervalSeconds>0</scanIntervalSeconds>
+	                <scanIntervalSeconds>1</scanIntervalSeconds>
 					<!-- make sure Jetty also finds the widgetset -->
 					<webAppConfig>
 						<contextPath>/evidence</contextPath>
@@ -279,7 +284,7 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
 							<configuration>
-								<enableRulesSummary>false</enableRulesSummary>
+								<enableRulesSummary>true</enableRulesSummary>
  								<configLocation>file:///${basedir}/external/checkstyle/rules.xml</configLocation>
 								<headerLocation>file:///${basedir}/external/checkstyle/header.txt</headerLocation>
 							</configuration>							

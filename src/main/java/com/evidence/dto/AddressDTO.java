@@ -20,10 +20,9 @@ package com.evidence.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import com.evidence.fe.annotation.AutomaticForm;
 import com.evidence.fe.annotation.Caption;
@@ -33,32 +32,32 @@ import com.evidence.fe.annotation.Order;
  * @author Michal Bocek
  * @since 1.0.0
  */
+@ToString
 @AutomaticForm
 public class AddressDTO {
 	
+	@NotBlank
 	@Getter @Setter
-	@NotEmpty
-	@Order(1) @Caption("address.detail.street")
+	@Order(1) @Caption
 	private String street = "";
 	
-	@Getter @Setter
 	@NotBlank
-	@Length(min=5)
-	@Order(2) @Caption("address.detail.city")
+	@Getter @Setter
+	@Order(2) @Caption
 	private String city = "";
 	
+	@NotBlank
 	@Getter @Setter
-	@NotEmpty
-	@Order(3) @Caption("address.detail.houseNumber")
+	@Order(3) @Caption
 	private String houseNumber = "";
 	
+	@NotBlank
 	@Getter @Setter
-	@NotEmpty
-	@Order(4) @Caption("address.detail.zipCode")
+	@Order(4) @Caption
 	private String zipCode = "";
 
+	@NotBlank
 	@Getter @Setter
-	@NotEmpty
-	@Order(5) @Caption("address.detail.stateCode")
+	@Order(5) @Caption
 	private String stateCode;
 }
