@@ -34,6 +34,8 @@ public class FullAddressBuilder {
 	private AddressDTO address;
 	
 	public String getFullAddress() {
-		return address.getCity() + ADDRESS_SEPARATOR + address.getZipCode();
+		String result = address.getCity() == null ? "" : address.getCity();  
+		result += address.getZipCode() == null ? "" : ADDRESS_SEPARATOR + address.getZipCode();
+		return result;
 	}
 }

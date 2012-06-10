@@ -2,11 +2,11 @@
 <mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
 	<configuration>
-<!-- 		<custom-converters> -->
-<!-- 			<converter type="org.reddwarf.converter.MovieConverter"> -->
-<!-- 				<class-a>org.reddwarf.model.movie.Movie</class-a> -->
-<!-- 				<class-b>org.reddwarf.dto.movie.MovieDTO</class-b> -->
-<!-- 			</converter> -->
-<!-- 		</custom-converters> -->
+		<custom-converters>
+			<converter type="com.evidence.utility.converter.ContactConverter">
+				<class-a>com.evidence.entity.Contact</class-a>
+				<class-b>com.evidence.dto.ContactDTO</class-b>
+			</converter>
+		</custom-converters>
 	</configuration>
 </mappings> 
