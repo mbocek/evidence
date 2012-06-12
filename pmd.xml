@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2012-06-12T20:43:11.642">
+<file name="D:\projects\sources\evidence\src\main\java\com\evidence\dao\JpaDAO.java">
+<violation beginline="32" endline="32" begincolumn="24" endcolumn="46" rule="GenericsNaming" ruleset="Naming Rules" package="com.evidence.dao" class="JpaDAO" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#GenericsNaming" priority="4">
+Generics names should be a one letter long and upper case.
+</violation>
+</file>
+<file name="D:\projects\sources\evidence\src\main\java\com\evidence\dao\JpaImmutableDAO.java">
+<violation beginline="41" endline="41" begincolumn="33" endcolumn="55" rule="GenericsNaming" ruleset="Naming Rules" package="com.evidence.dao" class="JpaImmutableDAO" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#GenericsNaming" priority="4">
+Generics names should be a one letter long and upper case.
+</violation>
+</file>
+<file name="D:\projects\sources\evidence\src\main\java\com\evidence\fe\annotation\AnnotationHelper.java">
+<violation beginline="194" endline="198" begincolumn="57" endcolumn="57" rule="ConfusingTernary" ruleset="Design Rules" package="com.evidence.fe.annotation" class="AnnotationHelper" method="getAllAutomaticFormFields" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+</file>
+<file name="D:\projects\sources\evidence\src\main\java\com\evidence\utility\builder\FullAddressBuilder.java">
+<violation beginline="38" endline="38" begincolumn="24" endcolumn="25" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="com.evidence.utility.builder" class="FullAddressBuilder" method="getFullAddress" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+</file>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\dao\JpaDAO.java" suppressiontype="nopmd" msg="Variables that are final and static should be in all caps." usermsg=" 
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\dao\JpaDAO.java" suppressiontype="nopmd" msg="No need to call String.valueOf to append to a string." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\dao\JpaDAO.java" suppressiontype="nopmd" msg="No need to call String.valueOf to append to a string." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\dao\JpaDAO.java" suppressiontype="nopmd" msg="No need to call String.valueOf to append to a string." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\dao\JpaImmutableDAO.java" suppressiontype="nopmd" msg="Variables that are final and static should be in all caps." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\entity\Person.java" suppressiontype="nopmd" msg="No abstract method which means that the  keyword is most likely used to prevent instantiation. use a private or protected constructor instead." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\entity\Person.java" suppressiontype="nopmd" msg="Abstract classes should be named AbstractXXX" usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\annotation\AnnotationHelper.java" suppressiontype="nopmd" msg="The method getAllAutomaticFormFields() has an NPath complexity of 160085" usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\annotation\AnnotationHelper.java" suppressiontype="nopmd" msg="The method 'getAllAutomaticFormFields' has a Cyclomatic Complexity of 21." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\annotation\AnnotationHelper.java" suppressiontype="nopmd" msg="The class 'AnnotationHelper' has a Cyclomatic Complexity of 5 (Highest = 21)." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\annotation\AnnotationHelper.java" suppressiontype="nopmd" msg="Avoid instantiating new objects inside loops" usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\annotation\AnnotationHelper.java" suppressiontype="nopmd" msg="Avoid instantiating new objects inside loops" usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\annotation\FieldUtils.java" suppressiontype="nopmd" msg="Avoid if (x != y) ..; else ..;" usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\annotation\MetaModel.java" suppressiontype="nopmd" msg="Perhaps 'orderMap' could be replaced by a local variable." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\children\ChildrenPresenter.java" suppressiontype="nopmd" msg="Variables that are final and static should be in all caps." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\EvidenceApplication.java" suppressiontype="nopmd" msg="Perhaps 'mainPresenter' could be replaced by a local variable." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\form\EvidenceForm.java" suppressiontype="nopmd" msg="Avoid instantiating new objects inside loops" usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\form\EvidenceForm.java" suppressiontype="nopmd" msg="Avoid instantiating new objects inside loops" usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\kindergarten\KindergartenPresenter.java" suppressiontype="nopmd" msg="Variables that are final and static should be in all caps." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\main\MainPresenter.java" suppressiontype="nopmd" msg="Perhaps 'menuPresenter' could be replaced by a local variable." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\main\MainPresenter.java" suppressiontype="nopmd" msg="Perhaps 'contentPresenter' could be replaced by a local variable." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\fe\main\MainPresenter.java" suppressiontype="nopmd" msg="Variables that are final and static should be in all caps." usermsg="
+"/>
+<suppressedviolation filename="D:\projects\sources\evidence\src\main\java\com\evidence\service\ServiceHolder.java" suppressiontype="nopmd" msg="Use block level rather than method level synchronization" usermsg="
+"/>
+</pmd>
