@@ -17,12 +17,11 @@
 
 	<licenses>
 		<license>
-			<name>Apache License, Version 2.0</name>
+			<name>The Apache Software License, Version 2.0</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-
 	<scm>
 		<url>https://github.com/mbocek/evidence</url>
 		<connection>scm:git:git://github.com/mbocek/evidence.git</connection>
@@ -41,12 +40,12 @@
 			<extension>
 				<groupId>org.apache.maven.scm</groupId>
 				<artifactId>maven-scm-provider-gitexe</artifactId>
-				<version>1.3</version>
+				<version>1.6</version>
 			</extension>
 			<extension>
 				<groupId>org.apache.maven.scm</groupId>
 				<artifactId>maven-scm-manager-plexus</artifactId>
-				<version>1.3</version>
+				<version>1.6</version>
 			</extension>
 			<extension>
 				<groupId>org.kathrynhuxtable.maven.wagon</groupId>
