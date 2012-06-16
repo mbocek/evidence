@@ -1,0 +1,20 @@
+ -----
+ Title Evidence
+ -----
+ Author Michal Bocek
+ -----
+ Date Here
+ -----
+
+Welcome to Evidence!
+
+	Evidence is simple application for managing kindergarten. This application is based on {{{https://vaadin.com/home}vaadin}} 
+	framework with {{{https://github.com/panter/org.vaadin.mvp}mvp}} pattern implementation which is 
+	{{{https://github.com/mbocek/org.vaadin.mvp}forked}} for some improvements.  
+
+
+* Checkout
+
++-----+
+git clone git://github.com/mbocek/evidence.git
++-----+
