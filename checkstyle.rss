@@ -2,9 +2,9 @@
 
 <rss version="0.91">
   <channel>
-    <title>evidence - Checkstyle report</title>
+    <title>Evidence - Checkstyle report</title>
     <link>http://maven.apache.org</link>
-    <description>evidence - Checkstyle report</description>
+    <description>Evidence - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2012</copyright>
     <item>
