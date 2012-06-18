@@ -21,8 +21,8 @@ package com.evidence.utility.converter;
 import org.dozer.CustomConverter;
 import org.dozer.MappingException;
 
+import com.evidence.dto.AddressDTO;
 import com.evidence.dto.ContactDTO;
-import com.evidence.dto.KindergartenDTO;
 import com.evidence.entity.Address;
 import com.evidence.entity.Contact;
 import com.evidence.entity.EmailAddress;
@@ -40,19 +40,28 @@ public class ContactConverter implements CustomConverter {
 	 * @see org.dozer.CustomConverter#convert(java.lang.Object, java.lang.Object, java.lang.Class, java.lang.Class)
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public Object convert(final Object destination, final Object source, final Class destClass, final Class sourceClass) {
+	public Object convert(final Object destination, final Object source, final Class<?> destClass, final Class<?> sourceClass) {
 		Object result = null;
 		if (source instanceof ContactDTO) {
 			final Contact contact = convert((ContactDTO) source);
 			result = contact;
-		} else if (source instanceof KindergartenDTO) {
-			throw new MappingException("Only Contact entity can be converted to ContactDTO");
-		} else {
+		} else if (source instanceof Contact) {
+			final ContactDTO contact = convert((Contact) source);
+			result = contact;
+		} else if (source != null) {
 			throw new MappingException("Converter ContactConverter used incorrectly. Arguments passed were:"
 					+ destination + " and " + source);
 		}
 		return result;
+	}
+
+	private ContactDTO convert(final Contact contact) {
+		final ContactDTO contactDTO = new ContactDTO();
+		contactDTO.setAddress(DTOConverter.convert(contact.getAddress(), AddressDTO.class));
+		contactDTO.setEmail(contact.getEmail().getEmail());
+		contactDTO.setLandLine(contact.getLandLine().getFullNumber());
+		contactDTO.setMobileNumber(contact.getMobilePhone().getFullNumber());
+		return contactDTO;
 	}
 
 	private Contact convert(final ContactDTO contactDTO) {

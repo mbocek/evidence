@@ -20,11 +20,11 @@ package com.evidence.dto;
 
 import javax.validation.Valid;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.evidence.fe.annotation.AutomaticForm;
 import com.evidence.fe.annotation.Caption;
@@ -55,6 +55,6 @@ public class ContactDTO {
 	
 	@Order(4)
 	@Valid
-	@Getter
+	@Getter @Setter
 	private AddressDTO address = new AddressDTO();
 }

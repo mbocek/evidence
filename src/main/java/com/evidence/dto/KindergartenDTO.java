@@ -50,10 +50,14 @@ public class KindergartenDTO implements Model {
 
 	@Order(2)
 	@Valid
-	@Getter
+	@Getter @Setter
 	private ContactDTO contact = new ContactDTO();
 	
 	public String getFullAddress() {
-		return new FullAddressBuilder(contact.getAddress()).getFullAddress();
+		String result = "";
+		if (contact != null && contact.getAddress() != null) {
+			result = new FullAddressBuilder(contact.getAddress()).getFullAddress();
+		}
+		return result;
 	}
 }

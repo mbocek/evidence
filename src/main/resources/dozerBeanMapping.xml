@@ -9,4 +9,13 @@
 			</converter>
 		</custom-converters>
 	</configuration>
+	
+<!-- 	<mapping> -->
+<!-- 		<class-a>com.evidence.entity.Kindergarten</class-a> -->
+<!-- 		<class-b>com.evidence.dto.KindergartenDTO</class-b> -->
+<!-- 		<field custom-converter="com.evidence.utility.converter.ContactConverter"> -->
+<!-- 			<a>contact</a> -->
+<!-- 			<b>contact</b> -->
+<!-- 		</field> -->
+<!-- 	</mapping>   	 -->
 </mappings> 

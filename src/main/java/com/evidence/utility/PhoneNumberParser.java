@@ -30,7 +30,7 @@ public class PhoneNumberParser {
 	
 	private static final String OLD_COUNTRY_CODE_PREFIX = "00";
 
-	private static final String DAFAULT_COUNTRY_CODE = "+420";
+	public static final String DAFAULT_COUNTRY_CODE = "+420";
 
 	@Getter
 	private String countryCode; 

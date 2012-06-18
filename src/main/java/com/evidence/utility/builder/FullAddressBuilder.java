@@ -34,8 +34,14 @@ public class FullAddressBuilder {
 	private AddressDTO address;
 	
 	public String getFullAddress() {
-		String result = address.getCity() == null ? "" : address.getCity();  
-		result += address.getZipCode() == null ? "" : ADDRESS_SEPARATOR + address.getZipCode();
-		return result;
+		final StringBuffer result = new StringBuffer(address.getStreet() == null ? "" : address.getStreet());
+		result.append(appendString(address.getHouseNumber()));
+		result.append(appendString(address.getCity()));
+		result.append(appendString(address.getZipCode()));
+		return result.toString();
+	}
+	
+	private String appendString(final String data) {
+		return (data == null) ? "" : ADDRESS_SEPARATOR + data;
 	}
 }

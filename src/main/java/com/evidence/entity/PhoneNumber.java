@@ -27,6 +27,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import com.evidence.utility.PhoneNumberParser;
+
 /**
  * @author Michal Bocek
  * @since 1.0.0
@@ -43,5 +45,11 @@ public class PhoneNumber implements Serializable {
 	private String countryCode;
 	
 	@Getter
-	private String number;	
+	private String number;
+	
+	public String getFullNumber() {
+		final StringBuffer result = new StringBuffer(countryCode == null ? PhoneNumberParser.DAFAULT_COUNTRY_CODE : countryCode);
+		result.append(number);
+		return result.toString();
+	}
 }
