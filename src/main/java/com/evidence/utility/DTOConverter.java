@@ -38,6 +38,11 @@ public final class DTOConverter {
 		return instance.map(source, destinationClass);
 	}
 
+	public static void convert(final Object source, final Object destination) {
+		final Mapper instance = DozerBeanMapperSingletonWrapper.getInstance();
+		instance.map(source, destination);
+	}
+	
 	public static <T, TT> List<T> convertList(final List<TT> list, final Class<T> destinationClass) {
 		List<T> result = null;
 		if (list != null) {

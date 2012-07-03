@@ -20,6 +20,8 @@ package com.evidence.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,8 +47,28 @@ public class KindergartenService {
 		return DTOConverter.convertList(kindergartens, KindergartenDTO.class);
 	}
 
-	public void addKindergarten(final KindergartenDTO kindergartenDTO) {
-		final Kindergarten kindergarten = DTOConverter.convert(kindergartenDTO, Kindergarten.class);
-		kindergartenDao.create(kindergarten);
+	@Transactional
+	public void createOrUpdateKindergarten(final KindergartenDTO kindergartenDTO) {
+		Kindergarten kindergarten;
+		if (kindergartenDTO.getId() == null) {
+			kindergarten = DTOConverter.convert(kindergartenDTO, Kindergarten.class); 
+			kindergartenDao.create(kindergarten);
+		} else {
+			kindergarten = kindergartenDao.read(kindergartenDTO.getId());
+			DTOConverter.convert(kindergartenDTO, kindergarten); 
+			kindergartenDao.update(kindergarten);
+		}
+	}
+	
+	/**
+	 * Get kindergarten by id. 
+	 * Id is required and must be valid. When entity doesn't exists in database EntityNotFoundException is thrown.
+	 * @param id
+	 * @return
+	 */
+	@Valid
+	public KindergartenDTO getById(final Long id) {
+		final Kindergarten kindergarten = kindergartenDao.read(id);
+		return DTOConverter.convert(kindergarten, KindergartenDTO.class);
 	}
 }

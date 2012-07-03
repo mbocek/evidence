@@ -43,7 +43,7 @@ public class ContactConverter implements CustomConverter {
 	public Object convert(final Object destination, final Object source, final Class<?> destClass, final Class<?> sourceClass) {
 		Object result = null;
 		if (source instanceof ContactDTO) {
-			final Contact contact = convert((ContactDTO) source);
+			final Contact contact = convert((ContactDTO) source, (Contact) destination);
 			result = contact;
 		} else if (source instanceof Contact) {
 			final ContactDTO contact = convert((Contact) source);
@@ -55,22 +55,28 @@ public class ContactConverter implements CustomConverter {
 		return result;
 	}
 
-	private ContactDTO convert(final Contact contact) {
+	private ContactDTO convert(final Contact source) {
 		final ContactDTO contactDTO = new ContactDTO();
-		contactDTO.setAddress(DTOConverter.convert(contact.getAddress(), AddressDTO.class));
-		contactDTO.setEmail(contact.getEmail().getEmail());
-		contactDTO.setLandLine(contact.getLandLine().getFullNumber());
-		contactDTO.setMobileNumber(contact.getMobilePhone().getFullNumber());
+		contactDTO.setAddress(DTOConverter.convert(source.getAddress(), AddressDTO.class));
+		contactDTO.setEmail(source.getEmail().getEmail());
+		contactDTO.setLandLine(source.getLandLine().getFullNumber());
+		contactDTO.setMobileNumber(source.getMobilePhone().getFullNumber());
 		return contactDTO;
 	}
 
-	private Contact convert(final ContactDTO contactDTO) {
-		final Contact contact = new Contact();
-		contact.setAddress(DTOConverter.convert(contactDTO.getAddress(), Address.class));
-		contact.setEmail(new EmailAddress(contactDTO.getEmail()));
-		final PhoneNumberParser landLine = new PhoneNumberParser(contactDTO.getLandLine()).parse();
+	private Contact convert(final ContactDTO sourceDTO, final Contact destination) {
+		final Contact contact = destination == null ? new Contact() : destination;
+		Address address = contact.getAddress();
+		if (address == null) {
+			address = DTOConverter.convert(sourceDTO.getAddress(), Address.class);
+		} else {
+			DTOConverter.convert(sourceDTO.getAddress(), address);
+		}
+		contact.setAddress(address);
+		contact.setEmail(new EmailAddress(sourceDTO.getEmail()));
+		final PhoneNumberParser landLine = new PhoneNumberParser(sourceDTO.getLandLine()).parse();
 		contact.setLandLine(new PhoneNumber(landLine.getCountryCode(), landLine.getPhoneNumber()));
-		final PhoneNumberParser mobilePhone = new PhoneNumberParser(contactDTO.getLandLine()).parse();
+		final PhoneNumberParser mobilePhone = new PhoneNumberParser(sourceDTO.getLandLine()).parse();
 		contact.setMobilePhone(new PhoneNumber(mobilePhone.getCountryCode(), mobilePhone.getPhoneNumber()));
 		return contact;
 	}

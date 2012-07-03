@@ -9,8 +9,8 @@
 	<f:EvidenceForm ui:field="kindergartenForm">
 		<i:addFooter>
 			<v:HorizontalLayout spacing="true">
-				<v:Button caption="save" styleName="small" e:click="saveUser" />
-				<v:Button caption="cancel" styleName="small" e:click="cancelEditUser" />
+				<v:Button caption="save" styleName="small" e:click="saveKindergarten" />
+				<v:Button caption="cancel" styleName="small" e:click="cancelEditKindergarten" />
 			</v:HorizontalLayout>	
 		</i:addFooter>
 	</f:EvidenceForm>

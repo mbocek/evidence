@@ -62,7 +62,7 @@ public class JpaImmutableDAO<T, Id extends Serializable> {
 	}
 
 	/**
-	 * Read entity by id. WHen entity doesn't exists throw EntityNotFoundException.
+	 * Read entity by id. When entity doesn't exists throw EntityNotFoundException.
 	 * @param id entity id
 	 * @return entity
 	 */

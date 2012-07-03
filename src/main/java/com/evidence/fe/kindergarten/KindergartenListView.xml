@@ -8,7 +8,7 @@
 
 	<v:Label styleName="h2" m:caption="kindergarten.caption.administration" />
 
-	<v:Table ui:field="kindergartenList" width="100%" e:itemClick="editUser" immediate="true" selectable="true" multiSelect="false" />
+	<v:Table ui:field="kindergartenList" width="100%" e:itemClick="editKindergarten" immediate="true" selectable="true" multiSelect="false" />
 
 	<v:HorizontalLayout spacing="true" width="100%" ui:field="buttonBar">
 		<v:Label width="100%"  ui:field="expander"/>

@@ -69,6 +69,6 @@ public class Address implements Serializable {
 	
 	@Getter @Setter
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "STATE_CODE")
+	@JoinColumn(name = "STATE_CODE", nullable = false)
 	private State state;
 }

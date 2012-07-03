@@ -60,4 +60,7 @@ public class AddressDTO {
 	@Getter @Setter
 	@Order(5) @Caption
 	private String stateCode;
+	
+	@Getter @Setter
+	private StateDTO state;
 }

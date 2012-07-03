@@ -21,9 +21,9 @@ package com.evidence.fe.kindergarten;
 import java.util.List;
 import java.util.Locale;
 
-import org.vaadin.mvp.uibinder.IUiMessageSource;
-
 import lombok.extern.slf4j.Slf4j;
+
+import org.vaadin.mvp.uibinder.IUiMessageSource;
 
 import com.evidence.dto.StateDTO;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
@@ -60,7 +60,7 @@ public class KindergartenDetailFormFieldFactory extends EvidenceFormFieldFactory
 			log.debug(states.toString());
 			for (StateDTO stateDTO : states) {
 				select.addItem(stateDTO.getCode());
-				select.setItemCaption(stateDTO.getCode(), stateDTO.getName());				
+				select.setItemCaption(stateDTO.getCode(), stateDTO.getName());
 			}
 			select.setNewItemsAllowed(false);
 			field = select;

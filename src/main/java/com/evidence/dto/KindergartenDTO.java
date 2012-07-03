@@ -55,7 +55,7 @@ public class KindergartenDTO implements Model {
 	
 	public String getFullAddress() {
 		String result = "";
-		if (contact != null && contact.getAddress() != null) {
+		if (contact != null && contact.getAddress() != null && contact.getAddress().getState() != null) {
 			result = new FullAddressBuilder(contact.getAddress()).getFullAddress();
 		}
 		return result;

@@ -24,6 +24,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.evidence.fe.annotation.AutomaticForm;
@@ -39,6 +40,7 @@ import com.evidence.fe.annotation.Order;
 public class ContactDTO {
 
 	@NotBlank
+	@Email
 	@Order(1) @Caption
 	@Getter @Setter
 	private String email = ""; 

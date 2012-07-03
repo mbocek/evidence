@@ -25,6 +25,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -38,7 +39,7 @@ public class State implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Getter
+	@Getter @Setter
 	@Column(unique = true, nullable=false, length=2)
 	private String code;
 

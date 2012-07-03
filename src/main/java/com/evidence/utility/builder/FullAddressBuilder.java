@@ -32,12 +32,13 @@ public class FullAddressBuilder {
 	private static final String ADDRESS_SEPARATOR = ", ";
 	
 	private AddressDTO address;
-	
+
 	public String getFullAddress() {
 		final StringBuffer result = new StringBuffer(address.getStreet() == null ? "" : address.getStreet());
 		result.append(appendString(address.getHouseNumber()));
 		result.append(appendString(address.getCity()));
 		result.append(appendString(address.getZipCode()));
+		result.append(appendString(address.getState().getName()));
 		return result.toString();
 	}
 	

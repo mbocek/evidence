@@ -41,11 +41,11 @@ public interface KindergartenEventBus extends EventBus {
 	void showDialog(Window dialog);
 
 	@Event(handlers = { KindergartenPresenter.class })
-	void saveUser();
+	void saveKindergarten();
 
 	@Event(handlers = { KindergartenPresenter.class })
-	void cancelEditUser();
+	void cancelEditKindergarten();
 	
 	@Event(handlers = { KindergartenPresenter.class })
-	void editUser(ItemClickEvent event);
+	void editKindergarten(ItemClickEvent event);
 }

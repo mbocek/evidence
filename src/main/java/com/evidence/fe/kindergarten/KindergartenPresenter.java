@@ -84,24 +84,12 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 
 	private void loadKindergartenList() {
 		final List<KindergartenDTO> kindergartens = kindergartenService.getAll();
+		this.container.removeAllItems();
 		this.container.addAll(kindergartens);
 	}
 
 	public void onAddKindergarten() throws ViewFactoryException {
-		// create view
-		final KindergartenDetail view = this.createView(KindergartenDetail.class);
-		// configure the form with bean item
-		this.kindergartenForm = view.getKindergartenForm();
-		final KindergartenDTO kindergarten = new KindergartenDTO();
-		final MetaModel metaModel = formService.getMetaModel(kindergarten);
-		this.kindergartenForm.setItemDataSource(kindergarten, metaModel, this.messageSource, "kindergarten.detail", this.getLocale());
-
-		// create a window using caption from view
-		this.dialog = new Window(this.getMessage("kindergarten.detail.caption", this.getLocale()));
-		this.dialog.setModal(true);
-		this.dialog.addComponent(view);
-		this.dialog.getContent().setSizeUndefined();
-		this.eventBus.showDialog(this.dialog);
+		showCreateEditDialog(new KindergartenDTO());
 	}
 
 	public void onRemoveKindergarten() {
@@ -114,7 +102,7 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 	}
 
 	@SuppressWarnings("unchecked")
-	public void onSaveUser() {
+	public void onSaveKindergarten() {
 		// get the user and add it to the container
 		final BeanItem<KindergartenDTO> item = (BeanItem<KindergartenDTO>) this.kindergartenForm.getItemDataSource();
 		final KindergartenDTO kindergarten = item.getBean();
@@ -122,12 +110,21 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		
 		if (kindergartenForm.validate(metaModel, validator, kindergarten, this.messageSource, this.getLocale())) {
 			//this.container.addBean(kindergarten);
-			this.kindergartenService.addKindergarten(kindergarten);
+			this.kindergartenService.createOrUpdateKindergarten(kindergarten);
 			// close dialog
 			this.closeDialog();
+			loadKindergartenList();
 		}
 	}
 
+	public void onEditKindergarten(final ItemClickEvent event) throws ViewFactoryException {
+		if (event.isDoubleClick()) {
+			Long id = ((KindergartenDTO)event.getItemId()).getId();
+			KindergartenDTO kindergartenDTO = this.kindergartenService.getById(id);
+			showCreateEditDialog(kindergartenDTO);
+		}
+	}
+	
 	public void onCancelEditUser() {
 		// close dialog only
 		this.closeDialog();
@@ -140,11 +137,21 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		//this.dialog = null;
 		//this.kindergartenForm = null;
 	}
-	
-	public void onEditUser(final ItemClickEvent event) {
-		log.info("edit");
-		if (event.isDoubleClick()) {
-			log.info("edit double click");
-		}
+
+	private void showCreateEditDialog(KindergartenDTO kindergartenDTO) throws ViewFactoryException {
+		// create view
+		final KindergartenDetail view = this.createView(KindergartenDetail.class);
+		// configure the form with bean item
+		this.kindergartenForm = view.getKindergartenForm();
+		final KindergartenDTO kindergarten = kindergartenDTO;
+		final MetaModel metaModel = formService.getMetaModel(kindergarten);
+		this.kindergartenForm.setItemDataSource(kindergarten, metaModel, this.messageSource, "kindergarten.detail", this.getLocale());
+
+		// create a window using caption from view
+		this.dialog = new Window(this.getMessage("kindergarten.detail.caption", this.getLocale()));
+		this.dialog.setModal(true);
+		this.dialog.addComponent(view);
+		this.dialog.getContent().setSizeUndefined();
+		this.eventBus.showDialog(this.dialog);
 	}
 }

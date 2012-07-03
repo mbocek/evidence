@@ -20,6 +20,7 @@ package com.evidence.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
@@ -42,9 +43,11 @@ public class PhoneNumber implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Getter
+	@Column(nullable = false)
 	private String countryCode;
 	
 	@Getter
+	@Column(nullable = false)
 	private String number;
 	
 	public String getFullNumber() {
