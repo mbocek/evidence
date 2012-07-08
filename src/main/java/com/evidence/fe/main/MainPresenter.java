@@ -85,4 +85,9 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 		mainLayout.setExpandRatio(layoutPanel, 1.0f);
 		layoutPanel.setSplitPosition(25, HorizontalSplitPanel.UNITS_PERCENTAGE);
 	}
+	
+	public void onClose() {
+		log.info("Closing application!");
+		this.application.close();
+	}
 }

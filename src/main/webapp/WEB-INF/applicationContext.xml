@@ -27,4 +27,5 @@
      <import resource="classpath:/spring/applicationConfig.xml"/>
      <import resource="classpath:/spring/persistence.xml"/>
      <import resource="classpath:/spring/transaction.xml"/>
+     <import resource="classpath:/spring/security.xml"/>
 </beans>

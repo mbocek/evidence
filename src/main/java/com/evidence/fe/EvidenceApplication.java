@@ -29,6 +29,8 @@ import org.vaadin.mvp.presenter.spring.SpringMvpApplication;
 import org.vaadin.mvp.uibinder.resource.spring.SpringUiMessageSource;
 
 import com.evidence.fe.main.MainPresenter;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 
 /**
  * @author Michal Bocek
@@ -39,14 +41,14 @@ import com.evidence.fe.main.MainPresenter;
 @Configurable(preConstruction = true)
 @Slf4j
 public class EvidenceApplication extends SpringMvpApplication {
-	
+
 	private static final long serialVersionUID = -1814298499647961355L;
 
 	private transient MainPresenter mainPresenter; // NOPMD
-	
-	@Autowired 
+
+	@Autowired
 	private MessageSource messageSource;
-	
+
 	@Override
 	public void preInit() {
 		log.debug("preInit with locale {}", this.getLocale());
@@ -59,5 +61,6 @@ public class EvidenceApplication extends SpringMvpApplication {
 	public void postInit() {
 		mainPresenter = (MainPresenter) presenterFactory.createPresenter("mainPresenter");
 		mainPresenter.getEventBus().start(this);
+		this.setLogoutURL("j_spring_security_logout");
 	}
 }

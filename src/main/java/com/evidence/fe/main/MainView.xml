@@ -9,6 +9,7 @@
 	<v:VerticalLayout sizeFull="" ui:field="mainLayout">
 		<v:Panel height="60px">
 			<v:Label m:caption="screen.application.title" />
+			<v:Button m:caption="application.close" styleName="small" e:click="close"/>
 		</v:Panel>
 		<v:HorizontalSplitPanel sizeFull="" ui:field="splitLayout">
 		</v:HorizontalSplitPanel>

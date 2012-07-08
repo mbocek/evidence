@@ -40,4 +40,7 @@ public interface MainEventBus extends EventBus {
 
 	@Event(handlers = { MainPresenter.class })
 	void openModule(Class<? extends BasePresenter<?, ? extends EventBus>> presenterClass);	
+
+	@Event(handlers = { MainPresenter.class })
+	void close();	
 }
