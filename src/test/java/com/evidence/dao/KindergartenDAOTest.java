@@ -62,6 +62,7 @@ public class KindergartenDAOTest extends DbUnitDaoTest {
 			kindergarten = kindergartenDAO.read(1L);
 			fail("Entity shouldn't be exist!"); 
 		} catch (EntityNotFoundException e) { // NOPMD
+			Assert.assertTrue(true);
 		}
 	}
 

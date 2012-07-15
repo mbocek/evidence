@@ -57,7 +57,7 @@ public class Kindergarten implements Serializable {
 	private String name;
 	
 	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "CONTACT_ID")
 	private Contact contact;	
 }

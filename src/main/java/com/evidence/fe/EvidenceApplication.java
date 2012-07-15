@@ -29,8 +29,6 @@ import org.vaadin.mvp.presenter.spring.SpringMvpApplication;
 import org.vaadin.mvp.uibinder.resource.spring.SpringUiMessageSource;
 
 import com.evidence.fe.main.MainPresenter;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
 
 /**
  * @author Michal Bocek

@@ -65,7 +65,8 @@ public class EvidenceForm extends Form {
 		final BeanItem<Model> beanItem = new BeanItem<Model>(model);
 		for (FieldInfo fieldInfo : metaModel.getFieldInfos()) {
 			if (fieldInfo.isNested()) {
-				beanItem.addItemProperty(fieldInfo.getFieldNestedName(), new NestedMethodProperty(model, fieldInfo.getFieldNestedName())); // NOPMD
+				beanItem.addItemProperty(fieldInfo.getFieldNestedName(),
+						new NestedMethodProperty(model, fieldInfo.getFieldNestedName())); // NOPMD
 			}
 		}
 		this.setItemDataSource(beanItem);
@@ -138,8 +139,10 @@ public class EvidenceForm extends Form {
 		final Class<? extends FormFieldFactory> formFieldFactory = metaModel.getFormFieldFactory();
 		if (formFieldFactory != null) {
 			try {
-				final Constructor<? extends FormFieldFactory> constructor = formFieldFactory.getConstructor(new Class[] { IUiMessageSource.class, Locale.class });
-				final EvidenceFormFieldFactory instance = (EvidenceFormFieldFactory) constructor.newInstance(new Object[] { messageSource, locale });				
+				final Constructor<? extends FormFieldFactory> constructor = formFieldFactory
+						.getConstructor(new Class[] { IUiMessageSource.class, Locale.class });
+				final EvidenceFormFieldFactory instance = (EvidenceFormFieldFactory) constructor
+						.newInstance(new Object[] { messageSource, locale });
 				this.setFormFieldFactory(instance);
 			} catch (InstantiationException e) {
 				throw new EvidenceFormException("InstantiationException for " + formFieldFactory.getName(), e);

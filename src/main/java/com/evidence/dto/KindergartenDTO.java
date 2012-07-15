@@ -37,7 +37,7 @@ import com.evidence.utility.builder.FullAddressBuilder;
  * @since 1.0.0
  */
 @ToString
-@AutomaticForm(formFieldFactory=KindergartenDetailFormFieldFactory.class)
+@AutomaticForm(formFieldFactory = KindergartenDetailFormFieldFactory.class)
 public class KindergartenDTO implements Model {
 
 	@Getter @Setter

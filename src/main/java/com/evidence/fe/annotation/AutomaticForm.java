@@ -29,7 +29,7 @@ import com.evidence.fe.form.EvidenceFormFieldFactory;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Target({ElementType.TYPE})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AutomaticForm {
 

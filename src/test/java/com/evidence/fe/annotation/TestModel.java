@@ -33,7 +33,7 @@ import com.evidence.fe.form.Model;
  * @since 1.0.0
  */
 @ToString
-@AutomaticForm(formFieldFactory=EvidenceFormFieldFactory.class)
+@AutomaticForm(formFieldFactory = EvidenceFormFieldFactory.class)
 public class TestModel implements Model {
 
 	@Caption("Name")

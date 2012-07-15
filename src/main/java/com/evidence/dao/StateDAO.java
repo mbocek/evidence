@@ -27,6 +27,6 @@ import com.evidence.entity.State;
  * @since 1.0.0
  */
 @Repository
-public class StateDAO extends JpaImmutableDAO<State, String>{
+public class StateDAO extends JpaImmutableDAO<State, String> {
 
 }

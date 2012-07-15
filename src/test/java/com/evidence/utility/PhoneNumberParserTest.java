@@ -18,7 +18,7 @@
  */
 package com.evidence.utility;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -28,30 +28,32 @@ import org.junit.Test;
  */
 public class PhoneNumberParserTest {
 
+	private static final String SHORT_NUMBER = "123456789";
+
 	private PhoneNumberParser regular = new PhoneNumberParser("+420123456789");
 	
 	private PhoneNumberParser oldFasion = new PhoneNumberParser("00420123456789");
 	
-	private PhoneNumberParser shortNumber = new PhoneNumberParser("123456789");
+	private PhoneNumberParser shortNumber = new PhoneNumberParser(SHORT_NUMBER);
 
 	@Test
 	public void testRegularPhoneNumber() {
-		PhoneNumberParser regularNumber = regular.parse();
+		final PhoneNumberParser regularNumber = regular.parse();
 		assertEquals("Country code isn't equal to expected", regularNumber.getCountryCode(), "+420"); 
-		assertEquals("Phone number isn't equal to expected", regularNumber.getPhoneNumber(), "123456789"); 
+		assertEquals("Phone number isn't equal to expected", regularNumber.getPhoneNumber(), SHORT_NUMBER); 
 	}
 
 	@Test
 	public void testOldFasionPhoneNumber() {
-		PhoneNumberParser oldFasionNumber = oldFasion.parse();
+		final PhoneNumberParser oldFasionNumber = oldFasion.parse();
 		assertEquals("Country code isn't equal to expected", oldFasionNumber.getCountryCode(), "+420"); 
-		assertEquals("Phone number isn't equal to expected", oldFasionNumber.getPhoneNumber(), "123456789"); 
+		assertEquals("Phone number isn't equal to expected", oldFasionNumber.getPhoneNumber(), SHORT_NUMBER); 
 	}
 
 	@Test
 	public void testShortPhoneNumber() {
-		PhoneNumberParser shortNumberPhoneNumber = shortNumber.parse();
+		final PhoneNumberParser shortNumberPhoneNumber = shortNumber.parse();
 		assertEquals("Country code isn't equal to expected", shortNumberPhoneNumber.getCountryCode(), "+420"); 
-		assertEquals("Phone number isn't equal to expected", shortNumberPhoneNumber.getPhoneNumber(), "123456789"); 
+		assertEquals("Phone number isn't equal to expected", shortNumberPhoneNumber.getPhoneNumber(), SHORT_NUMBER); 
 	}
 }

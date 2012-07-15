@@ -47,7 +47,8 @@ public class MenuPresenter extends FactoryPresenter<IMenuView, MainEventBus> {
 		addEntry(tree, this.getMessage("menu.child", this.getLocale()), ChildrenPresenter.class);
 	}
 	
-	private void addEntry(final Tree tree, final String caption, final Class<? extends BasePresenter<?, ? extends EventBus>> presenterType) {
+	private void addEntry(final Tree tree, final String caption,
+			final Class<? extends BasePresenter<?, ? extends EventBus>> presenterType) {
 		final MenuEntry entry = new MenuEntry(caption, presenterType);
 		tree.addItem(entry);
 		tree.setChildrenAllowed(entry, false);

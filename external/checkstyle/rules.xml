@@ -32,6 +32,7 @@
     <!-- <module name="RegexpHeader"/>                                -->
     <module name="RegexpHeader">
       <property name="headerFile" value="${checkstyle.header.file}"/>
+      <property name="fileExtensions" value="java"/>
     </module>	
 
 	<!-- allowed tabs in source code -->
@@ -44,6 +45,12 @@
         <property name="format" value="\s+$"/>
         <property name="message" value="Line has trailing spaces."/>
     </module>-->
+
+	<module name="SuppressWithNearbyCommentFilter">
+	    <property name="commentFormat" value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
+	    <property name="checkFormat" value="$1"/>
+	    <property name="influenceFormat" value="$2"/>
+	</module>
 
     <module name="TreeWalker">
 
@@ -58,6 +65,7 @@
 			<property name="scope" value="protected"/>
 		</module>
         <module name="JavadocType">
+			<property name="severity" value="info"/>
 			<property name="scope" value="protected"/>
 			<property name="allowUnknownTags" value="true"/>
 		</module>
@@ -68,9 +76,14 @@
         <module name="JavadocStyle"/>
 
 
+		<module name="GenericWhitespace"/>
+		<module name="AnnotationUseStyle"/>
+
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
-        <module name="ConstantName"/>
+        <module name="ConstantName">
+        	<property name="severity" value="warning"/>
+        </module>
         <module name="LocalFinalVariableName"/>
         <module name="LocalVariableName"/>
         <module name="MemberName"/>
@@ -107,7 +120,7 @@
         <!-- Checks for Size Violations.                    -->
         <!-- See http://checkstyle.sf.net/config_sizes.html -->
         <module name="LineLength">
-			<property name="max" value="120" />
+			<property name="max" value="140" />
 			<property name="ignorePattern" value="@version|@see|@todo|TODO"/>		
 		</module>
         <module name="MethodLength"/>
@@ -123,7 +136,9 @@
         <module name="OperatorWrap"/>
         <module name="ParenPad"/>
         <module name="TypecastParenPad"/>
-        <module name="WhitespaceAfter"/>
+        <module name="WhitespaceAfter">
+        	<property name="tokens" value="COMMA, SEMI"/>
+        </module>
         <module name="WhitespaceAround"/>
 
 
@@ -144,14 +159,19 @@
 
         <!-- Checks for common coding problems               -->
         <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <module name="AvoidInlineConditionals"/>
+        <!-- <module name="AvoidInlineConditionals"/> -->
         <module name="DoubleCheckedLocking"/>    <!-- MY FAVOURITE -->
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField"/>
+        <module name="HiddenField">
+        	<property name="ignoreConstructorParameter" value="true"/>
+        	<property name="ignoreSetter" value="true"/>
+        </module>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
-        <module name="MagicNumber"/>
+        <!-- <module name="MagicNumber">
+        	<property name="ignoreAnnotation" value="true"/>
+        </module> -->
         <module name="MissingSwitchDefault"/>
         <module name="RedundantThrows"/>
         <module name="SimplifyBooleanExpression"/>
@@ -163,7 +183,9 @@
         <module name="FinalClass"/>
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>
-        <module name="VisibilityModifier"/>
+        <module name="VisibilityModifier">
+        	<property name="protectedAllowed" value="true"/>
+        </module>
 
 
         <!-- Miscellaneous other checks.                   -->
@@ -172,7 +194,7 @@
         <module name="FinalParameters"/>
         <module name="TodoComment"/>
         <module name="UpperEll"/>
-
+        
+		<module name="FileContentsHolder"/>        
     </module>
-
 </module>

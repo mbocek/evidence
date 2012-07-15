@@ -53,7 +53,8 @@ public class AnnotationHelperTest {
 	 */
 	@Test
 	public void testGetFormFieldFactory() {
-		assertEquals("TestModel FormFieldFactory not exactly expeted class", EvidenceFormFieldFactory.class, AnnotationHelper.getFormFieldFactory(testModel));
+		assertEquals("TestModel FormFieldFactory not exactly expeted class", EvidenceFormFieldFactory.class,
+				AnnotationHelper.getFormFieldFactory(testModel));
 	}
 
 	/**

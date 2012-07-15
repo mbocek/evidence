@@ -60,7 +60,9 @@ public final class AnnotationHelper { // NOPMD
 		return result;
 	}
 	
-	public static void buildData(final Model model, final List<FieldInfo> fieldInfos, final Map<String, Double> orderMap, final Map<String, String> captionMap, final Map<String, Boolean> requiredMap, final Map<String, Boolean> validatedMap) {
+	public static void buildData(final Model model, final List<FieldInfo> fieldInfos,
+			final Map<String, Double> orderMap, final Map<String, String> captionMap,
+			final Map<String, Boolean> requiredMap, final Map<String, Boolean> validatedMap) {
 		List<FieldInfo> fields = null;
 		try {
 			fields = getAllAutomaticFormFields(model.getClass());
@@ -149,7 +151,8 @@ public final class AnnotationHelper { // NOPMD
 		}
 	}
 
-	private static void buildOrderMapRecursively(final Map<String, Double> orderMap, final FieldInfo fieldInfo, final Long base, final double multiplier) {
+	private static void buildOrderMapRecursively(final Map<String, Double> orderMap, final FieldInfo fieldInfo,
+			final Long base, final double multiplier) {
 		if (fieldInfo.getOrder() != null) {
 			if (fieldInfo.getSubFieldInfo() == null) {
 				if (base == 0) {
@@ -166,7 +169,8 @@ public final class AnnotationHelper { // NOPMD
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static List<FieldInfo> getAllAutomaticFormFields(final Class modelClass, final FieldInfo parent, final String parentFullName) throws ClassNotFoundException { // NOPMD
+	public static List<FieldInfo> getAllAutomaticFormFields(final Class modelClass, final FieldInfo parent, //NOPMD
+			final String parentFullName) throws ClassNotFoundException { 
 		List<FieldInfo> allClassFieldInfos = parent == null ? null : parent.getSubFieldInfo();
 		if (modelClass.isAnnotationPresent(AutomaticForm.class)) {
 			final Field[] allClassFields = FieldUtils.getAllFields(modelClass, null);
@@ -183,25 +187,25 @@ public final class AnnotationHelper { // NOPMD
 						Boolean requiredBoolean = Boolean.FALSE;
 						Boolean validatedBoolean = Boolean.FALSE;
 						final String fieldName = field.getName();
-						final String fieldNestedName = (parentFullName == null ) ? fieldName : parentFullName + NESTED_SEPARATOR + fieldName ;
-						final Boolean nestedField = (parentFullName == null ) ? Boolean.FALSE : Boolean.TRUE ;
+						final String fieldNestedName = (parentFullName == null) ? fieldName : parentFullName + NESTED_SEPARATOR + fieldName;
+						final Boolean nestedField = (parentFullName == null) ? Boolean.FALSE : Boolean.TRUE;
 						
 						if (order != null) {
 							orderNumber = order.value();
 						}						
 						
 						if (caption != null) {
-							if (caption.value() != null && !caption.value().isEmpty()) {
+							if (caption.value() != null && !caption.value().isEmpty()) { //NOPMD
 								captionString = caption.value();
 							} else {
 								captionString = fieldNestedName;
 							}
-						}						
+						}
 						
 						if (field.isAnnotationPresent(NotNull.class) || field.isAnnotationPresent(NotEmpty.class)
 								|| field.isAnnotationPresent(NotBlank.class)) {
 							requiredBoolean = Boolean.TRUE;
-						}						
+						}
 						
 						for (Annotation annotation : field.getAnnotations()) {
 							if (annotation.getClass().getCanonicalName() != null
@@ -212,9 +216,11 @@ public final class AnnotationHelper { // NOPMD
 						
 						if (fieldClass.isAnnotationPresent(AutomaticForm.class)) {
 							final List<FieldInfo> formFields = getAllAutomaticFormFields(fieldClass, fieldInfo, fieldNestedName);
-							fieldInfo = new FieldInfo(fieldName, fieldNestedName, orderNumber, captionString, requiredBoolean, validatedBoolean, nestedField, formFields); // NOPMD
+							fieldInfo = new FieldInfo(fieldName, fieldNestedName, orderNumber, captionString, // NOPMD
+									requiredBoolean, validatedBoolean, nestedField, formFields); 
 						} else {
-							fieldInfo = new FieldInfo(fieldName, fieldNestedName, orderNumber, captionString, requiredBoolean, validatedBoolean, nestedField, null); // NOPMD
+							fieldInfo = new FieldInfo(fieldName, fieldNestedName, orderNumber, captionString, // NOPMD
+									requiredBoolean, validatedBoolean, nestedField, null); 
 						}
 						allClassFieldInfos.add(fieldInfo);						
 					}

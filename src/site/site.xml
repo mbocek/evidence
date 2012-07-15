@@ -16,6 +16,7 @@
 	<body>
 		<menu name="Overview">
 			<item name="Introduction" href="./index.html"/>
+			<item name="Eclipse setup" href="./eclipse.html"/>
 		</menu>			
 		<menu ref="reports"/>
 	</body>

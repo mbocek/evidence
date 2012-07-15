@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
 		<title>Insert title here</title>
 	</head>
 	
@@ -16,14 +16,17 @@
 				<table>
 					<tr>
 						<td>User</td>
-						<td><input type="text" name="j_username" <c:if test="${not empty param.login_error}">value='<%= session.getAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY) %>'</c:if>/></td>
+						<td><input type="text" name="j_username" 
+						<c:if test="${not empty param.login_error}">
+							value='<%= session.getAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY) %>'
+						</c:if>></input></td>
 					</tr>
 					<tr>
 						<td>Password</td>
-						<td><input type="password" name="j_password" /></td>
+						<td><input type="password" name="j_password" ></input></td>
 					</tr>
 					<tr>
-						<td><input type="submit" value="login"><td>
+						<td><input type="submit" value="login"></input></td>
 					</tr>
 				</table>
 			</form>

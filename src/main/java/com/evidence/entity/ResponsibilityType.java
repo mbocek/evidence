@@ -45,10 +45,10 @@ public class ResponsibilityType implements Serializable {
 
 	@Id
 	@Getter
-	@Column(unique = true, nullable=false, length=50)
+	@Column(unique = true, nullable = false, length = 50)
 	private String code;
 
 	@Getter
-	@Column(nullable=false, length=100)
+	@Column(nullable = false, length = 100)
 	private String name;
 }

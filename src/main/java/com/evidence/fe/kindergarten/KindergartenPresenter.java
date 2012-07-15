@@ -119,8 +119,8 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 
 	public void onEditKindergarten(final ItemClickEvent event) throws ViewFactoryException {
 		if (event.isDoubleClick()) {
-			Long id = ((KindergartenDTO)event.getItemId()).getId();
-			KindergartenDTO kindergartenDTO = this.kindergartenService.getById(id);
+			final Long id = ((KindergartenDTO)event.getItemId()).getId();
+			final KindergartenDTO kindergartenDTO = this.kindergartenService.getById(id);
 			showCreateEditDialog(kindergartenDTO);
 		}
 	}
@@ -138,7 +138,7 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		//this.kindergartenForm = null;
 	}
 
-	private void showCreateEditDialog(KindergartenDTO kindergartenDTO) throws ViewFactoryException {
+	private void showCreateEditDialog(final KindergartenDTO kindergartenDTO) throws ViewFactoryException {
 		// create view
 		final KindergartenDetail view = this.createView(KindergartenDetail.class);
 		// configure the form with bean item

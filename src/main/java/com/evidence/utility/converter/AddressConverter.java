@@ -58,7 +58,8 @@ public class AddressConverter implements CustomConverter {
 		addressDTO.setHouseNumber(address.getHouseNumber());
 		final StateDTO stateDTO = DTOConverter.convert(address.getState(), StateDTO.class);
 		addressDTO.setState(stateDTO);
-		addressDTO.setStateCode(stateDTO == null ? null : stateDTO.getCode());
+		final String stateCode = stateDTO == null ? null : stateDTO.getCode();
+		addressDTO.setStateCode(stateCode);
 		addressDTO.setStreet(address.getStreet());
 		addressDTO.setZipCode(address.getZipCode());
 		return addressDTO;

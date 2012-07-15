@@ -88,7 +88,8 @@ public final class FieldUtils {
 		return totalFields;
 	}
 	
-	public static void setField(final Object object, final String fieldName, final Object value) throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
+	public static void setField(final Object object, final String fieldName, final Object value) 
+			throws NoSuchFieldException, IllegalAccessException {
 		final Field field = object.getClass().getDeclaredField(fieldName);
 		field.setAccessible(true);
 		field.set(object, value);

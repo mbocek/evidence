@@ -44,7 +44,7 @@ import lombok.ToString;
  */
 @Entity
 @ToString
-@Table(name="CONTACT")
+@Table(name = "CONTACT")
 public class Contact implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -59,9 +59,9 @@ public class Contact implements Serializable {
 	
 	@Getter @Setter
 	@Embedded
-	@AttributeOverrides({ 
-		@AttributeOverride(name = "countryCode", column = @Column(name = "MOBILE_COUNTRY_CODE", length = 5)),
-		@AttributeOverride(name = "number", column = @Column(name = "MOBILE_PHONE_NUMBER", length = 50)) })	
+	@AttributeOverrides({
+			@AttributeOverride(name = "countryCode", column = @Column(name = "MOBILE_COUNTRY_CODE", length = 5)),
+			@AttributeOverride(name = "number", column = @Column(name = "MOBILE_PHONE_NUMBER", length = 50)) })
 	private PhoneNumber mobilePhone;
 	
 	@Getter @Setter
@@ -72,7 +72,7 @@ public class Contact implements Serializable {
 	private PhoneNumber landLine;
 	
 	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "ADDRESS_ID")
 	private Address address;
 }

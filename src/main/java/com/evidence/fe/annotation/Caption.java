@@ -34,7 +34,7 @@ import java.lang.annotation.Target;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Target({ElementType.FIELD})
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Caption {
 	

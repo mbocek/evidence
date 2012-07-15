@@ -40,10 +40,10 @@ public class State implements Serializable {
 
 	@Id
 	@Getter @Setter
-	@Column(unique = true, nullable=false, length=2)
+	@Column(unique = true, nullable = false, length = 2)
 	private String code;
 
 	@Getter
-	@Column(nullable=false, length=100)
+	@Column(nullable = false, length = 100)
 	private String name;
 }
