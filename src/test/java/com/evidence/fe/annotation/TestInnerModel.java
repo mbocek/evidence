@@ -35,7 +35,7 @@ public class TestInnerModel implements Model {
 	@Caption("Name")
 	@Order(1)
 	@Getter @Setter
-	// CHECKSTYLE IGNORE VisibilityModifier FOR NEXT 1 LINE
+	// CHECKSTYLE IGNORE VisibilityModifier FOR NEXT 1 LINES
 	public String test1;
 
 	@Caption("Absolut Name")

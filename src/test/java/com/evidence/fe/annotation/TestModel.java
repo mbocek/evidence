@@ -40,6 +40,7 @@ public class TestModel implements Model {
 	@Order(1)
 	@NotNull
 	@Getter @Setter
+	// CHECKSTYLE IGNORE VisibilityModifier FOR NEXT 1 LINES
 	public String name;
 
 	@Caption("Absolut Name")
