@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.tapas.evidence</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Evidence</name>
+	<url>http://mbocek.github.com/evidence/</url>
+
+	<modules>
+		<module>development</module>
+	</modules>
+
+	<issueManagement>
+		<url>https://github.com/mbocek/evidence/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/mbocek/evidence</url>
+		<connection>scm:git:git://github.com/mbocek/evidence.git</connection>
+		<developerConnection>scm:git:git@github.com:mbocek/evidence.git</developerConnection>
+	</scm>
+
+	<distributionManagement>
+		<site>
+			<id>github.evidence</id>
+			<url>gitsite:git@github.com/mbocek/evidence.git</url>
+		</site>
+	</distributionManagement>
+
+	<developers>
+		<developer>
+			<id>mbocek</id>
+			<name>Michal Bocek</name>
+			<roles>
+				<role>developer</role>
+				<role>architect</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+</project>
