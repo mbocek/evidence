@@ -19,8 +19,15 @@
 package com.evidence.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -38,5 +45,16 @@ public abstract class Person implements Serializable { // NOPMD
 	private String name;
 	
 	@Getter	@Setter
+	@Column(name = "SUR_NAME")
 	private String surName;
+	
+	@Getter @Setter
+	@Temporal(TemporalType.DATE)
+	@Column(name = "BIRTH_NAME")
+	private Date birthDate;
+	
+	@Getter @Setter
+	@ManyToOne(cascade = { CascadeType.REFRESH }, optional = false)
+	@JoinColumn(name = "KINDERGARTEN_ID")
+	private Kindergarten kindergarten;
 }
