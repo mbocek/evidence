@@ -16,44 +16,41 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.dto;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.evidence.entity.Contact;
+
 /**
  * @author Michal Bocek
- * @since 1.0.0
+ * @since 1.0.0 
  */
-@Entity
-@Table(name = "RESPONSIBLE_PERSON")
 @ToString
-public class ResponsiblePerson extends Person {
+public class TeacherDTO implements Serializable { 
 
 	private static final long serialVersionUID = 1L;
 
-	@Getter
-	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
 	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, optional = false)
-	@JoinColumn(name = "CONTACT_ID")
-	private Contact contact;
+	private Long id;
 	
 	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TYPE_ID", nullable = false)
-	private ResponsibilityType type;
+	private Contact contact;
+
+	@Getter	@Setter
+	private String name;
+	
+	@Getter	@Setter
+	private String surName;
+	
+	@Getter @Setter
+	private Date birthDate;
+	
+	@Getter @Setter
+	private KindergartenDTO kindergarten;
 }

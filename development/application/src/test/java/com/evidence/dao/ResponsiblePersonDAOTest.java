@@ -29,6 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.evidence.entity.Contact;
+import com.evidence.entity.Kindergarten;
 import com.evidence.entity.ResponsibilityType;
 import com.evidence.entity.ResponsiblePerson;
 
@@ -50,13 +51,18 @@ public class ResponsiblePersonDAOTest extends DbUnitDaoTest {
     @Inject
     private ContactDAO contactDAO;
     
+    @Inject
+    private KindergartenDAO kindergartenDAO;
+    
 	@Test
 	public void testCreate() {
 		final ResponsibilityType father = responsibilityTypeDAO.read(ResponsibilityType.Type.FATHER.name());
 		final Contact contact = contactDAO.read(1L);
 		final ResponsiblePerson person = new ResponsiblePerson();
+		final Kindergarten kindergarten = kindergartenDAO.read(1L);
 		person.setName("name");
 		person.setSurName("surName");
+		person.setKindergarten(kindergarten);
 		person.setType(father);
 		person.setContact(contact);
 		personDAO.create(person);

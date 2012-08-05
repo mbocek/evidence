@@ -26,7 +26,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,23 +36,17 @@ import lombok.ToString;
  * @since 1.0.0
  */
 @Entity
-@Table(name = "RESPONSIBLE_PERSON")
 @ToString
-public class ResponsiblePerson extends Person {
+public class Teacher extends Person {
 
 	private static final long serialVersionUID = 1L;
-
-	@Getter
+	
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Getter
 	private Long id;
-
+	
 	@Getter @Setter
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, optional = false)
 	@JoinColumn(name = "CONTACT_ID")
 	private Contact contact;
-	
-	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TYPE_ID", nullable = false)
-	private ResponsibilityType type;
 }
