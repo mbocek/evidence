@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+						http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+	<changeSet id="1" author="mbocek">
+		<comment>Create codelists</comment>
+
+		<createTable tableName="RESPONSIBILITY_TYPE">
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_RESPONSIBILITY_TYPE" />
+			</column>
+			<column name="NAME" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="STATE">
+			<column name="CODE" type="VARCHAR(2)">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_STATE" />
+			</column>
+			<column name="NAME" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+		
+	<changeSet id="2" author="mbocek">
+		<comment>Create address</comment>
+		
+		<createTable tableName="ADDRESS">
+			<column autoIncrement="true" name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_ADDRESS" />
+			</column>
+			<column name="CITY" type="VARCHAR(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="HOUSE_NUMBER" type="VARCHAR(50)" />
+			<column name="STREET" type="VARCHAR(200)" />
+			<column name="ZIP_CODE" type="VARCHAR(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="STATE_CODE" type="VARCHAR(2)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		
+		<addForeignKeyConstraint baseColumnNames="STATE_CODE" baseTableName="ADDRESS"
+			constraintName="FK_ADDRESS_STATE" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="CODE" referencedTableName="STATE"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	
+	<changeSet id="3" author="mbocek" >
+		<createTable tableName="CONTACT">
+			<column autoIncrement="true" name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_CONTACT" />
+			</column>
+			<column name="EMAIL" type="VARCHAR(255)" />
+			<column name="LNDL_COUNTRY_CODE" type="VARCHAR(5)" />
+			<column name="LNDL_PHONE_NUMBER" type="VARCHAR(50)" />
+			<column name="MOBILE_COUNTRY_CODE" type="VARCHAR(5)" />
+			<column name="MOBILE_PHONE_NUMBER" type="VARCHAR(50)" />
+			<column name="ADDRESS_ID" type="BIGINT" />
+		</createTable>
+		
+		<addForeignKeyConstraint baseColumnNames="ADDRESS_ID" baseTableName="CONTACT"
+			constraintName="FK_CONTACT_ADDRESS" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="ADDRESS"
+			referencesUniqueColumn="false" />
+	</changeSet>
+
+	<changeSet id="4" author="mbocek">
+		<createTable tableName="KINDERGARTEN">
+			<column autoIncrement="true" name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_KINDERGARTEN" />
+			</column>
+			<column name="NAME" type="VARCHAR(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="CONTACT_ID" type="BIGINT" />
+		</createTable>
+		
+		<addForeignKeyConstraint baseColumnNames="CONTACT_ID" baseTableName="KINDERGARTEN"
+			constraintName="FK_KINDERGARTEN_CONTACT" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="CONTACT"
+			referencesUniqueColumn="false" />
+	</changeSet>
+
+	<changeSet id="5" author="mbocek">
+		<createTable tableName="RESPONSIBLE_PERSON">
+			<column autoIncrement="true" name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_RESPONSIBLE_PERSON" />
+			</column>
+			<column name="BIRTH_NAME" type="DATE" />
+			<column name="NAME" type="VARCHAR(255)" />
+			<column name="SUR_NAME" type="VARCHAR(255)" />
+			<column name="KINDERGARTEN_ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="CONTACT_ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="TYPE_ID" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addForeignKeyConstraint baseColumnNames="KINDERGARTEN_ID" baseTableName="RESPONSIBLE_PERSON"
+			constraintName="FK_RESPONSIBLE_PERSON_KINDERGARTEN" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="KINDERGARTEN"
+			referencesUniqueColumn="false" />
+
+		<addForeignKeyConstraint baseColumnNames="CONTACT_ID" baseTableName="RESPONSIBLE_PERSON"
+			constraintName="FK_RESPONSIBLE_PERSON_CONTACT" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="CONTACT"
+			referencesUniqueColumn="false" />
+
+		<addForeignKeyConstraint baseColumnNames="TYPE_ID" baseTableName="RESPONSIBLE_PERSON"
+			constraintName="FK_RESPONSIBLE_PERSON_TYPE" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="CODE" referencedTableName="RESPONSIBILITY_TYPE"
+			referencesUniqueColumn="false" />
+	</changeSet>
+
+	<changeSet id="6" author="mbocek">
+		<createTable tableName="CHILD">
+			<column autoIncrement="true" name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_CHILD" />
+			</column>
+			<column name="BIRTH_NAME" type="DATE" />
+			<column name="NAME" type="VARCHAR(255)" />
+			<column name="SUR_NAME" type="VARCHAR(255)" />
+			<column name="KINDERGARTEN_ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="FATHER_ID" type="BIGINT" />
+			<column name="MOTHER_ID" type="BIGINT" />
+			<column name="RESPONSIBLE_PERSON_ID" type="BIGINT" />
+		</createTable>
+
+		<addForeignKeyConstraint baseColumnNames="FATHER_ID" baseTableName="CHILD"
+			constraintName="FK_CHILD_FATHER" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="RESPONSIBLE_PERSON"
+			referencesUniqueColumn="false" />
+
+		<addForeignKeyConstraint baseColumnNames="KINDERGARTEN_ID" baseTableName="CHILD"
+			constraintName="FK_CHILD_KINDERGARTEN" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="KINDERGARTEN"
+			referencesUniqueColumn="false" />
+
+		<addForeignKeyConstraint baseColumnNames="MOTHER_ID" baseTableName="CHILD"
+			constraintName="FK_CHILD_MOTHER" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="RESPONSIBLE_PERSON"
+			referencesUniqueColumn="false" />
+
+		<addForeignKeyConstraint baseColumnNames="RESPONSIBLE_PERSON_ID" baseTableName="CHILD"
+			constraintName="FK_CHILD_RESPONSIBLE_PERSON" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="RESPONSIBLE_PERSON"
+			referencesUniqueColumn="false" />
+	</changeSet>
+
+	<changeSet id="7" author="mbocek">
+		<createTable tableName="TEACHER">
+			<column autoIncrement="true" name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_TEACHER" />
+			</column>
+			<column name="BIRTH_NAME" type="DATE" />
+			<column name="NAME" type="VARCHAR(255)" />
+			<column name="SUR_NAME" type="VARCHAR(255)" />
+			<column name="KINDERGARTEN_ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="CONTACT_ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addForeignKeyConstraint baseColumnNames="CONTACT_ID" baseTableName="TEACHER"
+			constraintName="FK_TEACHER_CONTACT" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="CONTACT"
+			referencesUniqueColumn="false" />
+
+		<addForeignKeyConstraint baseColumnNames="KINDERGARTEN_ID" baseTableName="TEACHER"
+			constraintName="FK_TEACHER_KINDERGARTEN" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="KINDERGARTEN"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	
+	<changeSet id="8" author="mbocek">
+		<comment>Load initial data</comment>
+		<loadData tableName="STATE" file="db/migration/state.csv">
+			<column name="code" type="STRING"/>
+			<column name="name" type="STRING"/>
+		</loadData>
+		<rollback>
+			<delete tableName="STATE"/>
+		</rollback>
+	</changeSet>
+</databaseChangeLog>

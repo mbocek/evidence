@@ -43,7 +43,7 @@ import lombok.ToString;
 @Entity
 @ToString
 @NoArgsConstructor
-@Table(name = "KINDER_GARTEN")
+@Table(name = "KINDERGARTEN")
 public class Kindergarten implements Serializable {
 
 	private static final long serialVersionUID = 1L;
