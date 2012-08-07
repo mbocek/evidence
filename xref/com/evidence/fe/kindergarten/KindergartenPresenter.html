@@ -94,70 +94,77 @@
 <a class="jxr_linenumber" name="84" href="#84">84</a>  
 <a class="jxr_linenumber" name="85" href="#85">85</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> loadKindergartenList() {
 <a class="jxr_linenumber" name="86" href="#86">86</a>  		<strong class="jxr_keyword">final</strong> List&lt;KindergartenDTO&gt; kindergartens = kindergartenService.getAll();
-<a class="jxr_linenumber" name="87" href="#87">87</a>  		<strong class="jxr_keyword">this</strong>.container.addAll(kindergartens);
-<a class="jxr_linenumber" name="88" href="#88">88</a>  	}
-<a class="jxr_linenumber" name="89" href="#89">89</a>  
-<a class="jxr_linenumber" name="90" href="#90">90</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onAddKindergarten() <strong class="jxr_keyword">throws</strong> ViewFactoryException {
-<a class="jxr_linenumber" name="91" href="#91">91</a>  		<em class="jxr_comment">// create view</em>
-<a class="jxr_linenumber" name="92" href="#92">92</a>  		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/fe/kindergarten/KindergartenDetail.html">KindergartenDetail</a> view = <strong class="jxr_keyword">this</strong>.createView(KindergartenDetail.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="93" href="#93">93</a>  		<em class="jxr_comment">// configure the form with bean item</em>
-<a class="jxr_linenumber" name="94" href="#94">94</a>  		<strong class="jxr_keyword">this</strong>.kindergartenForm = view.getKindergartenForm();
-<a class="jxr_linenumber" name="95" href="#95">95</a>  		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/dto/KindergartenDTO.html">KindergartenDTO</a> kindergarten = <strong class="jxr_keyword">new</strong> <a href="../../../../com/evidence/dto/KindergartenDTO.html">KindergartenDTO</a>();
-<a class="jxr_linenumber" name="96" href="#96">96</a>  		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/fe/annotation/MetaModel.html">MetaModel</a> metaModel = formService.getMetaModel(kindergarten);
-<a class="jxr_linenumber" name="97" href="#97">97</a>  		<strong class="jxr_keyword">this</strong>.kindergartenForm.setItemDataSource(kindergarten, metaModel, <strong class="jxr_keyword">this</strong>.messageSource, <span class="jxr_string">"kindergarten.detail"</span>, <strong class="jxr_keyword">this</strong>.getLocale());
-<a class="jxr_linenumber" name="98" href="#98">98</a>  
-<a class="jxr_linenumber" name="99" href="#99">99</a>  		<em class="jxr_comment">// create a window using caption from view</em>
-<a class="jxr_linenumber" name="100" href="#100">100</a> 		<strong class="jxr_keyword">this</strong>.dialog = <strong class="jxr_keyword">new</strong> Window(<strong class="jxr_keyword">this</strong>.getMessage(<span class="jxr_string">"kindergarten.detail.caption"</span>, <strong class="jxr_keyword">this</strong>.getLocale()));
-<a class="jxr_linenumber" name="101" href="#101">101</a> 		<strong class="jxr_keyword">this</strong>.dialog.setModal(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="102" href="#102">102</a> 		<strong class="jxr_keyword">this</strong>.dialog.addComponent(view);
-<a class="jxr_linenumber" name="103" href="#103">103</a> 		<strong class="jxr_keyword">this</strong>.dialog.getContent().setSizeUndefined();
-<a class="jxr_linenumber" name="104" href="#104">104</a> 		<strong class="jxr_keyword">this</strong>.eventBus.showDialog(<strong class="jxr_keyword">this</strong>.dialog);
-<a class="jxr_linenumber" name="105" href="#105">105</a> 	}
-<a class="jxr_linenumber" name="106" href="#106">106</a> 
-<a class="jxr_linenumber" name="107" href="#107">107</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onRemoveKindergarten() {
-<a class="jxr_linenumber" name="108" href="#108">108</a> 		<em class="jxr_comment">// check if a user is selected in the table</em>
-<a class="jxr_linenumber" name="109" href="#109">109</a> 		<strong class="jxr_keyword">final</strong> Table kindergartenList = <strong class="jxr_keyword">this</strong>.view.getKindergartenList();
-<a class="jxr_linenumber" name="110" href="#110">110</a> 		<strong class="jxr_keyword">final</strong> Object selected = kindergartenList.getValue();
-<a class="jxr_linenumber" name="111" href="#111">111</a> 		<strong class="jxr_keyword">if</strong> (selected != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="112" href="#112">112</a> 			<strong class="jxr_keyword">this</strong>.container.removeItem(selected);
-<a class="jxr_linenumber" name="113" href="#113">113</a> 		}
-<a class="jxr_linenumber" name="114" href="#114">114</a> 	}
-<a class="jxr_linenumber" name="115" href="#115">115</a> 
-<a class="jxr_linenumber" name="116" href="#116">116</a> 	@SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="117" href="#117">117</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onSaveUser() {
-<a class="jxr_linenumber" name="118" href="#118">118</a> 		<em class="jxr_comment">// get the user and add it to the container</em>
-<a class="jxr_linenumber" name="119" href="#119">119</a> 		<strong class="jxr_keyword">final</strong> BeanItem&lt;KindergartenDTO&gt; item = (BeanItem&lt;KindergartenDTO&gt;) <strong class="jxr_keyword">this</strong>.kindergartenForm.getItemDataSource();
-<a class="jxr_linenumber" name="120" href="#120">120</a> 		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/dto/KindergartenDTO.html">KindergartenDTO</a> kindergarten = item.getBean();
-<a class="jxr_linenumber" name="121" href="#121">121</a> 		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/fe/annotation/MetaModel.html">MetaModel</a> metaModel = formService.getMetaModel(kindergarten);
-<a class="jxr_linenumber" name="122" href="#122">122</a> 		
-<a class="jxr_linenumber" name="123" href="#123">123</a> 		<strong class="jxr_keyword">if</strong> (kindergartenForm.validate(metaModel, validator, kindergarten, <strong class="jxr_keyword">this</strong>.messageSource, <strong class="jxr_keyword">this</strong>.getLocale())) {
-<a class="jxr_linenumber" name="124" href="#124">124</a> 			<em class="jxr_comment">//this.container.addBean(kindergarten);</em>
-<a class="jxr_linenumber" name="125" href="#125">125</a> 			<strong class="jxr_keyword">this</strong>.kindergartenService.addKindergarten(kindergarten);
-<a class="jxr_linenumber" name="126" href="#126">126</a> 			<em class="jxr_comment">// close dialog</em>
-<a class="jxr_linenumber" name="127" href="#127">127</a> 			<strong class="jxr_keyword">this</strong>.closeDialog();
-<a class="jxr_linenumber" name="128" href="#128">128</a> 		}
-<a class="jxr_linenumber" name="129" href="#129">129</a> 	}
-<a class="jxr_linenumber" name="130" href="#130">130</a> 
-<a class="jxr_linenumber" name="131" href="#131">131</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onCancelEditUser() {
-<a class="jxr_linenumber" name="132" href="#132">132</a> 		<em class="jxr_comment">// close dialog only</em>
-<a class="jxr_linenumber" name="133" href="#133">133</a> 		<strong class="jxr_keyword">this</strong>.closeDialog();
-<a class="jxr_linenumber" name="134" href="#134">134</a> 	}
-<a class="jxr_linenumber" name="135" href="#135">135</a> 
-<a class="jxr_linenumber" name="136" href="#136">136</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> closeDialog() {
-<a class="jxr_linenumber" name="137" href="#137">137</a> 		<em class="jxr_comment">// dismiss the dialog</em>
-<a class="jxr_linenumber" name="138" href="#138">138</a> 		<strong class="jxr_keyword">final</strong> Window applicationWindow = (Window) <strong class="jxr_keyword">this</strong>.dialog.getParent();
-<a class="jxr_linenumber" name="139" href="#139">139</a> 		applicationWindow.removeWindow(<strong class="jxr_keyword">this</strong>.dialog);
-<a class="jxr_linenumber" name="140" href="#140">140</a> 		<em class="jxr_comment">//this.dialog = null;</em>
-<a class="jxr_linenumber" name="141" href="#141">141</a> 		<em class="jxr_comment">//this.kindergartenForm = null;</em>
-<a class="jxr_linenumber" name="142" href="#142">142</a> 	}
-<a class="jxr_linenumber" name="143" href="#143">143</a> 	
-<a class="jxr_linenumber" name="144" href="#144">144</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onEditUser(<strong class="jxr_keyword">final</strong> ItemClickEvent event) {
-<a class="jxr_linenumber" name="145" href="#145">145</a> 		log.info(<span class="jxr_string">"edit"</span>);
-<a class="jxr_linenumber" name="146" href="#146">146</a> 		<strong class="jxr_keyword">if</strong> (event.isDoubleClick()) {
-<a class="jxr_linenumber" name="147" href="#147">147</a> 			log.info(<span class="jxr_string">"edit double click"</span>);
-<a class="jxr_linenumber" name="148" href="#148">148</a> 		}
-<a class="jxr_linenumber" name="149" href="#149">149</a> 	}
-<a class="jxr_linenumber" name="150" href="#150">150</a> }
+<a class="jxr_linenumber" name="87" href="#87">87</a>  		<strong class="jxr_keyword">this</strong>.container.removeAllItems();
+<a class="jxr_linenumber" name="88" href="#88">88</a>  		<strong class="jxr_keyword">this</strong>.container.addAll(kindergartens);
+<a class="jxr_linenumber" name="89" href="#89">89</a>  	}
+<a class="jxr_linenumber" name="90" href="#90">90</a>  
+<a class="jxr_linenumber" name="91" href="#91">91</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onAddKindergarten() <strong class="jxr_keyword">throws</strong> ViewFactoryException {
+<a class="jxr_linenumber" name="92" href="#92">92</a>  		showCreateEditDialog(<strong class="jxr_keyword">new</strong> <a href="../../../../com/evidence/dto/KindergartenDTO.html">KindergartenDTO</a>());
+<a class="jxr_linenumber" name="93" href="#93">93</a>  	}
+<a class="jxr_linenumber" name="94" href="#94">94</a>  
+<a class="jxr_linenumber" name="95" href="#95">95</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onRemoveKindergarten() {
+<a class="jxr_linenumber" name="96" href="#96">96</a>  		<em class="jxr_comment">// check if a user is selected in the table</em>
+<a class="jxr_linenumber" name="97" href="#97">97</a>  		<strong class="jxr_keyword">final</strong> Table kindergartenList = <strong class="jxr_keyword">this</strong>.view.getKindergartenList();
+<a class="jxr_linenumber" name="98" href="#98">98</a>  		<strong class="jxr_keyword">final</strong> Object selected = kindergartenList.getValue();
+<a class="jxr_linenumber" name="99" href="#99">99</a>  		<strong class="jxr_keyword">if</strong> (selected != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="100" href="#100">100</a> 			<strong class="jxr_keyword">this</strong>.container.removeItem(selected);
+<a class="jxr_linenumber" name="101" href="#101">101</a> 		}
+<a class="jxr_linenumber" name="102" href="#102">102</a> 	}
+<a class="jxr_linenumber" name="103" href="#103">103</a> 
+<a class="jxr_linenumber" name="104" href="#104">104</a> 	@SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="105" href="#105">105</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onSaveKindergarten() {
+<a class="jxr_linenumber" name="106" href="#106">106</a> 		<em class="jxr_comment">// get the user and add it to the container</em>
+<a class="jxr_linenumber" name="107" href="#107">107</a> 		<strong class="jxr_keyword">final</strong> BeanItem&lt;KindergartenDTO&gt; item = (BeanItem&lt;KindergartenDTO&gt;) <strong class="jxr_keyword">this</strong>.kindergartenForm.getItemDataSource();
+<a class="jxr_linenumber" name="108" href="#108">108</a> 		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/dto/KindergartenDTO.html">KindergartenDTO</a> kindergarten = item.getBean();
+<a class="jxr_linenumber" name="109" href="#109">109</a> 		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/fe/annotation/MetaModel.html">MetaModel</a> metaModel = formService.getMetaModel(kindergarten);
+<a class="jxr_linenumber" name="110" href="#110">110</a> 		
+<a class="jxr_linenumber" name="111" href="#111">111</a> 		<strong class="jxr_keyword">if</strong> (kindergartenForm.validate(metaModel, validator, kindergarten, <strong class="jxr_keyword">this</strong>.messageSource, <strong class="jxr_keyword">this</strong>.getLocale())) {
+<a class="jxr_linenumber" name="112" href="#112">112</a> 			<em class="jxr_comment">//this.container.addBean(kindergarten);</em>
+<a class="jxr_linenumber" name="113" href="#113">113</a> 			<strong class="jxr_keyword">this</strong>.kindergartenService.createOrUpdateKindergarten(kindergarten);
+<a class="jxr_linenumber" name="114" href="#114">114</a> 			<em class="jxr_comment">// close dialog</em>
+<a class="jxr_linenumber" name="115" href="#115">115</a> 			<strong class="jxr_keyword">this</strong>.closeDialog();
+<a class="jxr_linenumber" name="116" href="#116">116</a> 			loadKindergartenList();
+<a class="jxr_linenumber" name="117" href="#117">117</a> 		}
+<a class="jxr_linenumber" name="118" href="#118">118</a> 	}
+<a class="jxr_linenumber" name="119" href="#119">119</a> 
+<a class="jxr_linenumber" name="120" href="#120">120</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onEditKindergarten(<strong class="jxr_keyword">final</strong> ItemClickEvent event) <strong class="jxr_keyword">throws</strong> ViewFactoryException {
+<a class="jxr_linenumber" name="121" href="#121">121</a> 		<strong class="jxr_keyword">if</strong> (event.isDoubleClick()) {
+<a class="jxr_linenumber" name="122" href="#122">122</a> 			<strong class="jxr_keyword">final</strong> Long id = ((KindergartenDTO)event.getItemId()).getId();
+<a class="jxr_linenumber" name="123" href="#123">123</a> 			<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/dto/KindergartenDTO.html">KindergartenDTO</a> kindergartenDTO = <strong class="jxr_keyword">this</strong>.kindergartenService.getById(id);
+<a class="jxr_linenumber" name="124" href="#124">124</a> 			showCreateEditDialog(kindergartenDTO);
+<a class="jxr_linenumber" name="125" href="#125">125</a> 		}
+<a class="jxr_linenumber" name="126" href="#126">126</a> 	}
+<a class="jxr_linenumber" name="127" href="#127">127</a> 	
+<a class="jxr_linenumber" name="128" href="#128">128</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onCancelEditUser() {
+<a class="jxr_linenumber" name="129" href="#129">129</a> 		<em class="jxr_comment">// close dialog only</em>
+<a class="jxr_linenumber" name="130" href="#130">130</a> 		<strong class="jxr_keyword">this</strong>.closeDialog();
+<a class="jxr_linenumber" name="131" href="#131">131</a> 	}
+<a class="jxr_linenumber" name="132" href="#132">132</a> 
+<a class="jxr_linenumber" name="133" href="#133">133</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> closeDialog() {
+<a class="jxr_linenumber" name="134" href="#134">134</a> 		<em class="jxr_comment">// dismiss the dialog</em>
+<a class="jxr_linenumber" name="135" href="#135">135</a> 		<strong class="jxr_keyword">final</strong> Window applicationWindow = (Window) <strong class="jxr_keyword">this</strong>.dialog.getParent();
+<a class="jxr_linenumber" name="136" href="#136">136</a> 		applicationWindow.removeWindow(<strong class="jxr_keyword">this</strong>.dialog);
+<a class="jxr_linenumber" name="137" href="#137">137</a> 		<em class="jxr_comment">//this.dialog = null;</em>
+<a class="jxr_linenumber" name="138" href="#138">138</a> 		<em class="jxr_comment">//this.kindergartenForm = null;</em>
+<a class="jxr_linenumber" name="139" href="#139">139</a> 	}
+<a class="jxr_linenumber" name="140" href="#140">140</a> 
+<a class="jxr_linenumber" name="141" href="#141">141</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> showCreateEditDialog(<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/dto/KindergartenDTO.html">KindergartenDTO</a> kindergartenDTO) <strong class="jxr_keyword">throws</strong> ViewFactoryException {
+<a class="jxr_linenumber" name="142" href="#142">142</a> 		<em class="jxr_comment">// create view</em>
+<a class="jxr_linenumber" name="143" href="#143">143</a> 		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/fe/kindergarten/KindergartenDetail.html">KindergartenDetail</a> view = <strong class="jxr_keyword">this</strong>.createView(KindergartenDetail.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="144" href="#144">144</a> 		<em class="jxr_comment">// configure the form with bean item</em>
+<a class="jxr_linenumber" name="145" href="#145">145</a> 		<strong class="jxr_keyword">this</strong>.kindergartenForm = view.getKindergartenForm();
+<a class="jxr_linenumber" name="146" href="#146">146</a> 		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/dto/KindergartenDTO.html">KindergartenDTO</a> kindergarten = kindergartenDTO;
+<a class="jxr_linenumber" name="147" href="#147">147</a> 		<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/fe/annotation/MetaModel.html">MetaModel</a> metaModel = formService.getMetaModel(kindergarten);
+<a class="jxr_linenumber" name="148" href="#148">148</a> 		<strong class="jxr_keyword">this</strong>.kindergartenForm.setItemDataSource(kindergarten, metaModel, <strong class="jxr_keyword">this</strong>.messageSource, <span class="jxr_string">"kindergarten.detail"</span>, <strong class="jxr_keyword">this</strong>.getLocale());
+<a class="jxr_linenumber" name="149" href="#149">149</a> 
+<a class="jxr_linenumber" name="150" href="#150">150</a> 		<em class="jxr_comment">// create a window using caption from view</em>
+<a class="jxr_linenumber" name="151" href="#151">151</a> 		<strong class="jxr_keyword">this</strong>.dialog = <strong class="jxr_keyword">new</strong> Window(<strong class="jxr_keyword">this</strong>.getMessage(<span class="jxr_string">"kindergarten.detail.caption"</span>, <strong class="jxr_keyword">this</strong>.getLocale()));
+<a class="jxr_linenumber" name="152" href="#152">152</a> 		<strong class="jxr_keyword">this</strong>.dialog.setModal(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="153" href="#153">153</a> 		<strong class="jxr_keyword">this</strong>.dialog.addComponent(view);
+<a class="jxr_linenumber" name="154" href="#154">154</a> 		<strong class="jxr_keyword">this</strong>.dialog.getContent().setSizeUndefined();
+<a class="jxr_linenumber" name="155" href="#155">155</a> 		<strong class="jxr_keyword">this</strong>.eventBus.showDialog(<strong class="jxr_keyword">this</strong>.dialog);
+<a class="jxr_linenumber" name="156" href="#156">156</a> 	}
+<a class="jxr_linenumber" name="157" href="#157">157</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

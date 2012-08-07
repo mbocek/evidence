@@ -54,7 +54,7 @@
 <a class="jxr_linenumber" name="44" href="#44">44</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="45" href="#45">45</a>  @Entity
 <a class="jxr_linenumber" name="46" href="#46">46</a>  @ToString
-<a class="jxr_linenumber" name="47" href="#47">47</a>  @Table(name=<span class="jxr_string">"CONTACT"</span>)
+<a class="jxr_linenumber" name="47" href="#47">47</a>  @Table(name = <span class="jxr_string">"CONTACT"</span>)
 <a class="jxr_linenumber" name="48" href="#48">48</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/evidence/entity/Contact.html">Contact</a> <strong class="jxr_keyword">implements</strong> Serializable {
 <a class="jxr_linenumber" name="49" href="#49">49</a>  
 <a class="jxr_linenumber" name="50" href="#50">50</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = 1L;
@@ -69,9 +69,9 @@
 <a class="jxr_linenumber" name="59" href="#59">59</a>  	
 <a class="jxr_linenumber" name="60" href="#60">60</a>  	@Getter @Setter
 <a class="jxr_linenumber" name="61" href="#61">61</a>  	@Embedded
-<a class="jxr_linenumber" name="62" href="#62">62</a>  	@AttributeOverrides({ 
-<a class="jxr_linenumber" name="63" href="#63">63</a>  		@AttributeOverride(name = <span class="jxr_string">"countryCode"</span>, column = @Column(name = <span class="jxr_string">"MOBILE_COUNTRY_CODE"</span>, length = 5)),
-<a class="jxr_linenumber" name="64" href="#64">64</a>  		@AttributeOverride(name = <span class="jxr_string">"number"</span>, column = @Column(name = <span class="jxr_string">"MOBILE_PHONE_NUMBER"</span>, length = 50)) })	
+<a class="jxr_linenumber" name="62" href="#62">62</a>  	@AttributeOverrides({
+<a class="jxr_linenumber" name="63" href="#63">63</a>  			@AttributeOverride(name = <span class="jxr_string">"countryCode"</span>, column = @Column(name = <span class="jxr_string">"MOBILE_COUNTRY_CODE"</span>, length = 5)),
+<a class="jxr_linenumber" name="64" href="#64">64</a>  			@AttributeOverride(name = <span class="jxr_string">"number"</span>, column = @Column(name = <span class="jxr_string">"MOBILE_PHONE_NUMBER"</span>, length = 50)) })
 <a class="jxr_linenumber" name="65" href="#65">65</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../com/evidence/entity/PhoneNumber.html">PhoneNumber</a> mobilePhone;
 <a class="jxr_linenumber" name="66" href="#66">66</a>  	
 <a class="jxr_linenumber" name="67" href="#67">67</a>  	@Getter @Setter
@@ -82,7 +82,7 @@
 <a class="jxr_linenumber" name="72" href="#72">72</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../com/evidence/entity/PhoneNumber.html">PhoneNumber</a> landLine;
 <a class="jxr_linenumber" name="73" href="#73">73</a>  	
 <a class="jxr_linenumber" name="74" href="#74">74</a>  	@Getter @Setter
-<a class="jxr_linenumber" name="75" href="#75">75</a>  	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+<a class="jxr_linenumber" name="75" href="#75">75</a>  	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 <a class="jxr_linenumber" name="76" href="#76">76</a>  	@JoinColumn(name = <span class="jxr_string">"ADDRESS_ID"</span>)
 <a class="jxr_linenumber" name="77" href="#77">77</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../com/evidence/entity/Address.html">Address</a> address;
 <a class="jxr_linenumber" name="78" href="#78">78</a>  }
