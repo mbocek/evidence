@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 						http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-	<changeSet id="1" author="mbocek">
+	<changeSet id="create-codelists" author="mbocek">
 		<comment>Create codelists</comment>
 
 		<createTable tableName="RESPONSIBILITY_TYPE">
@@ -26,7 +26,7 @@
 		</createTable>
 	</changeSet>
 		
-	<changeSet id="2" author="mbocek">
+	<changeSet id="create-address" author="mbocek">
 		<comment>Create address</comment>
 		
 		<createTable tableName="ADDRESS">
@@ -53,7 +53,7 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 	
-	<changeSet id="3" author="mbocek" >
+	<changeSet id="create-contact" author="mbocek" >
 		<createTable tableName="CONTACT">
 			<column autoIncrement="true" name="ID" type="BIGINT">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_CONTACT" />
@@ -73,7 +73,7 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 
-	<changeSet id="4" author="mbocek">
+	<changeSet id="create-kindergarten" author="mbocek">
 		<createTable tableName="KINDERGARTEN">
 			<column autoIncrement="true" name="ID" type="BIGINT">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_KINDERGARTEN" />
@@ -91,7 +91,7 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 
-	<changeSet id="5" author="mbocek">
+	<changeSet id="create-responsible-person" author="mbocek">
 		<createTable tableName="RESPONSIBLE_PERSON">
 			<column autoIncrement="true" name="ID" type="BIGINT">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_RESPONSIBLE_PERSON" />
@@ -128,7 +128,7 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 
-	<changeSet id="6" author="mbocek">
+	<changeSet id="create-child" author="mbocek">
 		<createTable tableName="CHILD">
 			<column autoIncrement="true" name="ID" type="BIGINT">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_CHILD" />
@@ -169,7 +169,7 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 
-	<changeSet id="7" author="mbocek">
+	<changeSet id="create-teacher" author="mbocek">
 		<createTable tableName="TEACHER">
 			<column autoIncrement="true" name="ID" type="BIGINT">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_TEACHER" />
@@ -198,7 +198,7 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 	
-	<changeSet id="8" author="mbocek">
+	<changeSet id="load-states" author="mbocek">
 		<comment>Load initial data</comment>
 		<loadData tableName="STATE" file="db/migration/state.csv">
 			<column name="code" type="STRING"/>
