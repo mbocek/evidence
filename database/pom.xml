@@ -4,12 +4,12 @@
 
 	<parent>
 		<groupId>com.tapas.evidence</groupId>
-		<artifactId>deployment</artifactId>
+		<artifactId>parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>database</artifactId>
 	<packaging>pom</packaging>
-	<name>Evidence - database</name>
+	<name>Evidence: database</name>
 
 	<build>
 		<resources>

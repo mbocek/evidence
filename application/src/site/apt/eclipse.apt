@@ -33,7 +33,9 @@ Set properties:
 	checkstyle.header.file=${basedir}/external/checkstyle/header.txt
 +-----+
 
+
 	Don't forget to remove ApectJ support on pproject configuration.
+
 +-----+
 Right click on project > AspectJ Tools > Remove ApectJ Capabilities
 +-----+

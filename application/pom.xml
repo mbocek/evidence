@@ -4,12 +4,12 @@
 
 	<parent>
 		<groupId>com.tapas.evidence</groupId>
-		<artifactId>development</artifactId>
+		<artifactId>parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>application</artifactId>
 	<packaging>war</packaging>
-	<name>Evidence - application</name>
+	<name>Evidence: application</name>
 
 	<build>
 		<resources>
@@ -57,43 +57,14 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<configuration>
-					<instrumentation>
-						<excludes>
-							<exclude>**/*Test.class</exclude>
-						</excludes>
-					</instrumentation>
-					<formats>
-						<format>html</format>
-						<format>xml</format>
-					</formats>
-				</configuration>
-				<executions>
-					<execution>
-						<id>clean</id>
-						<phase>pre-site</phase>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>instrument</id>
-						<phase>site</phase>
-						<goals>
-							<goal>instrument</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<excludes>
 						<exclude>**/DbUnitDaoTest.java</exclude>
 					</excludes>
+					<forkMode>once</forkMode>
+					<reportFormat>xml</reportFormat>
 				</configuration>
 			</plugin>			
 			<!-- Compiles your custom GWT components with the GWT compiler -->
@@ -206,9 +177,9 @@
 								<maxmemory>1024m</maxmemory>
 							</configuration>				
 						</plugin> 
-						<plugin>
+						<plugin>      
 							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>cobertura-maven-plugin</artifactId>
+							<artifactId>emma-maven-plugin</artifactId>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
