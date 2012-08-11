@@ -4,44 +4,48 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 						http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-	<changeSet id="create-codelists" author="mbocek">
-		<comment>Create codelists</comment>
-
-		<createTable tableName="RESPONSIBILITY_TYPE">
-			<column name="CODE" type="VARCHAR(50)">
+	<changeSet id="create: responsibility_type" author="mbocek">
+		<createTable tableName="RESPONSIBILITY_TYPE" remarks="Codelist for responsibility types">
+			<column name="CODE" type="VARCHAR(50)" remarks="Code of responsibility">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_RESPONSIBILITY_TYPE" />
 			</column>
-			<column name="NAME" type="VARCHAR(100)">
+			<column name="NAME" type="VARCHAR(100)" remarks="Responsibility type">
 				<constraints nullable="false" />
 			</column>
 		</createTable>
+		<modifySql dbms="mysql">
+			<append value=" engine innodb"/>
+		</modifySql>
+	</changeSet>
 
-		<createTable tableName="STATE">
-			<column name="CODE" type="VARCHAR(2)">
+	<changeSet id="create: state" author="mbocek">
+		<createTable tableName="STATE" remarks="Codelist for states">
+			<column name="CODE" type="VARCHAR(2)" remarks="Two char ISO code of state">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_STATE" />
 			</column>
-			<column name="NAME" type="VARCHAR(100)">
+			<column name="NAME" type="VARCHAR(100)" remarks="State name">
 				<constraints nullable="false" />
 			</column>
 		</createTable>
+		<modifySql dbms="mysql">
+			<append value=" engine innodb"/>
+		</modifySql>
 	</changeSet>
 		
-	<changeSet id="create-address" author="mbocek">
-		<comment>Create address</comment>
-		
-		<createTable tableName="ADDRESS">
-			<column autoIncrement="true" name="ID" type="BIGINT">
+	<changeSet id="create: address" author="mbocek">
+		<createTable tableName="ADDRESS" remarks="Table for storing address information">
+			<column autoIncrement="true" name="ID" type="BIGINT" remarks="Primary key">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_ADDRESS" />
 			</column>
-			<column name="CITY" type="VARCHAR(200)">
+			<column name="CITY" type="VARCHAR(200)" remarks="Nemo of city">
 				<constraints nullable="false" />
 			</column>
-			<column name="HOUSE_NUMBER" type="VARCHAR(50)" />
-			<column name="STREET" type="VARCHAR(200)" />
-			<column name="ZIP_CODE" type="VARCHAR(10)">
+			<column name="HOUSE_NUMBER" type="VARCHAR(50)" remarks="House number"/>
+			<column name="STREET" type="VARCHAR(200)" remarks="Street name"/>
+			<column name="ZIP_CODE" type="VARCHAR(10)" remarks="Postal code">
 				<constraints nullable="false" />
 			</column>
-			<column name="STATE_CODE" type="VARCHAR(2)">
+			<column name="STATE_CODE" type="VARCHAR(2)" remarks="State code">
 				<constraints nullable="false" />
 			</column>
 		</createTable>
@@ -53,17 +57,17 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 	
-	<changeSet id="create-contact" author="mbocek" >
-		<createTable tableName="CONTACT">
-			<column autoIncrement="true" name="ID" type="BIGINT">
+	<changeSet id="create: contact" author="mbocek" >
+		<createTable tableName="CONTACT" remarks="tble for storing contacts">
+			<column autoIncrement="true" name="ID" type="BIGINT" remarks="Primary key">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_CONTACT" />
 			</column>
-			<column name="EMAIL" type="VARCHAR(255)" />
-			<column name="LNDL_COUNTRY_CODE" type="VARCHAR(5)" />
-			<column name="LNDL_PHONE_NUMBER" type="VARCHAR(50)" />
-			<column name="MOBILE_COUNTRY_CODE" type="VARCHAR(5)" />
-			<column name="MOBILE_PHONE_NUMBER" type="VARCHAR(50)" />
-			<column name="ADDRESS_ID" type="BIGINT" />
+			<column name="EMAIL" type="VARCHAR(255)" remarks="Email"/>
+			<column name="LNDL_COUNTRY_CODE" type="VARCHAR(5)" remarks="Landline contry code"/>
+			<column name="LNDL_PHONE_NUMBER" type="VARCHAR(50)" remarks="Landline phone number"/>
+			<column name="MOBILE_COUNTRY_CODE" type="VARCHAR(5)" remarks="Mobile country code"/>
+			<column name="MOBILE_PHONE_NUMBER" type="VARCHAR(50)" remarks="Mobile phone number"/>
+			<column name="ADDRESS_ID" type="BIGINT" remarks="Reference to address table"/>
 		</createTable>
 		
 		<addForeignKeyConstraint baseColumnNames="ADDRESS_ID" baseTableName="CONTACT"
@@ -71,17 +75,18 @@
 			onDelete="NO ACTION" onUpdate="NO ACTION" 
 			referencedColumnNames="ID" referencedTableName="ADDRESS"
 			referencesUniqueColumn="false" />
+
 	</changeSet>
 
-	<changeSet id="create-kindergarten" author="mbocek">
-		<createTable tableName="KINDERGARTEN">
-			<column autoIncrement="true" name="ID" type="BIGINT">
+	<changeSet id="create: kindergarten" author="mbocek">
+		<createTable tableName="KINDERGARTEN" remarks="Table for storing kindergarten data">
+			<column autoIncrement="true" name="ID" type="BIGINT"  remarks="Primary key">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_KINDERGARTEN" />
 			</column>
-			<column name="NAME" type="VARCHAR(200)">
+			<column name="NAME" type="VARCHAR(200)" remarks="Kindergarten name">
 				<constraints nullable="false" />
 			</column>
-			<column name="CONTACT_ID" type="BIGINT" />
+			<column name="CONTACT_ID" type="BIGINT" remarks="Reference to contact"/>
 		</createTable>
 		
 		<addForeignKeyConstraint baseColumnNames="CONTACT_ID" baseTableName="KINDERGARTEN"
@@ -91,21 +96,21 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 
-	<changeSet id="create-responsible-person" author="mbocek">
-		<createTable tableName="RESPONSIBLE_PERSON">
-			<column autoIncrement="true" name="ID" type="BIGINT">
+	<changeSet id="create: responsible person" author="mbocek">
+		<createTable tableName="RESPONSIBLE_PERSON" remarks="Table for responsible persons">
+			<column autoIncrement="true" name="ID" type="BIGINT" remarks="Primary key">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_RESPONSIBLE_PERSON" />
 			</column>
-			<column name="BIRTH_NAME" type="DATE" />
-			<column name="NAME" type="VARCHAR(255)" />
-			<column name="SUR_NAME" type="VARCHAR(255)" />
-			<column name="KINDERGARTEN_ID" type="BIGINT">
+			<column name="BIRTH_DATE" type="DATE" remarks="Birth date"/>
+			<column name="NAME" type="VARCHAR(255)"  remarks="Name"/>
+			<column name="SUR_NAME" type="VARCHAR(255)"  remarks="Surname"/>
+			<column name="KINDERGARTEN_ID" type="BIGINT"  remarks="Reference to kindergarten">
 				<constraints nullable="false" />
 			</column>
-			<column name="CONTACT_ID" type="BIGINT">
+			<column name="CONTACT_ID" type="BIGINT" remarks="Reference to contact">
 				<constraints nullable="false" />
 			</column>
-			<column name="TYPE_ID" type="VARCHAR(50)">
+			<column name="TYPE_ID" type="VARCHAR(50)" remarks="Reference to responsiblity type">
 				<constraints nullable="false" />
 			</column>
 		</createTable>
@@ -128,20 +133,20 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 
-	<changeSet id="create-child" author="mbocek">
-		<createTable tableName="CHILD">
-			<column autoIncrement="true" name="ID" type="BIGINT">
+	<changeSet id="create: child" author="mbocek">
+		<createTable tableName="CHILD" remarks="Table for storing information about children">
+			<column autoIncrement="true" name="ID" type="BIGINT" remarks="Primary key">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_CHILD" />
 			</column>
-			<column name="BIRTH_NAME" type="DATE" />
-			<column name="NAME" type="VARCHAR(255)" />
-			<column name="SUR_NAME" type="VARCHAR(255)" />
-			<column name="KINDERGARTEN_ID" type="BIGINT">
+			<column name="BIRTH_DATE" type="DATE" remarks="Birth date" />
+			<column name="NAME" type="VARCHAR(255)" remarks="name" />
+			<column name="SUR_NAME" type="VARCHAR(255)" remarks="Surname" />
+			<column name="KINDERGARTEN_ID" type="BIGINT" remarks="Reference to kindergarten">
 				<constraints nullable="false" />
 			</column>
-			<column name="FATHER_ID" type="BIGINT" />
-			<column name="MOTHER_ID" type="BIGINT" />
-			<column name="RESPONSIBLE_PERSON_ID" type="BIGINT" />
+			<column name="FATHER_ID" type="BIGINT" remarks="Reverence to responsibility person - father" />
+			<column name="MOTHER_ID" type="BIGINT" remarks="Reference to responsibility person - mother" />
+			<column name="RESPONSIBLE_PERSON_ID" type="BIGINT" remarks="Reference to responsibility person" />
 		</createTable>
 
 		<addForeignKeyConstraint baseColumnNames="FATHER_ID" baseTableName="CHILD"
@@ -169,18 +174,18 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 
-	<changeSet id="create-teacher" author="mbocek">
-		<createTable tableName="TEACHER">
-			<column autoIncrement="true" name="ID" type="BIGINT">
+	<changeSet id="create: teacher" author="mbocek">
+		<createTable tableName="TEACHER" remarks="Table for storing teacher">
+			<column autoIncrement="true" name="ID" type="BIGINT" remarks="Primary key">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_TEACHER" />
 			</column>
-			<column name="BIRTH_NAME" type="DATE" />
-			<column name="NAME" type="VARCHAR(255)" />
-			<column name="SUR_NAME" type="VARCHAR(255)" />
-			<column name="KINDERGARTEN_ID" type="BIGINT">
+			<column name="BIRTH_DATE" type="DATE" remarks="Birth date" />
+			<column name="NAME" type="VARCHAR(255)" remarks="Name" />
+			<column name="SUR_NAME" type="VARCHAR(255)" remarks="Surname" />
+			<column name="KINDERGARTEN_ID" type="BIGINT" remarks="Reference to kindergarten">
 				<constraints nullable="false" />
 			</column>
-			<column name="CONTACT_ID" type="BIGINT">
+			<column name="CONTACT_ID" type="BIGINT" remarks="Reference to contact">
 				<constraints nullable="false" />
 			</column>
 		</createTable>
@@ -197,8 +202,8 @@
 			referencedColumnNames="ID" referencedTableName="KINDERGARTEN"
 			referencesUniqueColumn="false" />
 	</changeSet>
-	
-	<changeSet id="load-states" author="mbocek">
+
+	<changeSet id="load: states" author="mbocek">
 		<comment>Load initial data</comment>
 		<loadData tableName="STATE" file="db/migration/state.csv">
 			<column name="code" type="STRING"/>
