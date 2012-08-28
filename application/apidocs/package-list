@@ -8,6 +8,7 @@ com.evidence.fe.form
 com.evidence.fe.kindergarten
 com.evidence.fe.main
 com.evidence.fe.menu
+com.evidence.fe.teacher
 com.evidence.service
 com.evidence.utility
 com.evidence.utility.builder
