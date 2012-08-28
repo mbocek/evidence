@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Evidence - Continuous Integration</title>
+    <title>Evidence - Site deployment</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -16,6 +16,8 @@
     <script type="text/javascript" src="./js/apache-maven-fluido.min.js"></script>
 
     
+      <meta name="author" content="Michal Bocek" />
+    <meta name="Date-Creation-yyyymmdd" content="20120828" />
     <meta name="Date-Revision-yyyymmdd" content="20120828" />
     <meta http-equiv="Content-Language" content="en" />
             </head>
@@ -46,7 +48,7 @@
                     <a href="index.html" title="Evidence">Evidence</a>
         </li>
       <li class="divider ">/</li>
-        <li class="">Continuous Integration</li>
+        <li class="">Site deployment</li>
         
                 
                     
@@ -64,8 +66,8 @@
                                     <h3>Overview</h3>
                   <ul>
                   <li class="none">
-                          <a href="deployment.html" title="Deployment">Deployment</a>
-            </li>
+            <strong>Deployment</strong>
+          </li>
           </ul>
                         <h3>Modules</h3>
                   <ul>
@@ -78,56 +80,9 @@
           </ul>
                         <h3>Project Documentation</h3>
                   <ul>
-                                                                                                                                                                                                                                                                                                                                          <li class="expanded">
+                                                                                                                                                                                                                                                                                                                                <li class="collapsed">
                           <a href="project-info.html" title="Project Information">Project Information</a>
-                    <ul>
-                      <li class="none">
-                          <a href="distribution-management.html" title="Distribution Management">Distribution Management</a>
-            </li>
-                      <li class="none">
-                          <a href="index.html" title="About">About</a>
-            </li>
-                      <li class="none">
-                          <a href="dependencies.html" title="Dependencies">Dependencies</a>
-            </li>
-                      <li class="none">
-                          <a href="issue-tracking.html" title="Issue Tracking">Issue Tracking</a>
-            </li>
-                      <li class="none">
-                          <a href="plugins.html" title="Project Plugins">Project Plugins</a>
-            </li>
-                      <li class="none">
-            <strong>Continuous Integration</strong>
-          </li>
-                      <li class="none">
-                          <a href="license.html" title="Project License">Project License</a>
-            </li>
-                      <li class="none">
-                          <a href="dependency-management.html" title="Dependency Management">Dependency Management</a>
-            </li>
-                      <li class="none">
-                          <a href="mail-lists.html" title="Mailing Lists">Mailing Lists</a>
-            </li>
-                      <li class="none">
-                          <a href="team-list.html" title="Project Team">Project Team</a>
-            </li>
-                      <li class="none">
-                          <a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence</a>
-            </li>
-                      <li class="none">
-                          <a href="source-repository.html" title="Source Repository">Source Repository</a>
-            </li>
-                      <li class="none">
-                          <a href="plugin-management.html" title="Plugin Management">Plugin Management</a>
-            </li>
-                      <li class="none">
-                          <a href="modules.html" title="Project Modules">Project Modules</a>
-            </li>
-                      <li class="none">
-                          <a href="project-summary.html" title="Project Summary">Project Summary</a>
-            </li>
-              </ul>
-        </li>
+                  </li>
           </ul>
                       
                     
@@ -147,7 +102,9 @@
         
         <div id="bodyColumn"  class="span10" >
                                   
-            <div class="section"><h2>Continuous Integration<a name="Continuous_Integration"></a></h2><a name="Continuous_Integration"></a><p>No continuous integration management system is defined. Please check back at a later date.</p></div>
+            <div class="section"><h2>Site deployment<a name="Site_deployment"></a></h2><p>For site deployment project has configured site plugin with git pages support. </p><div class="section"><h3>Site deployment<a name="Site_deployment"></a></h3></div></div><div class="section"><h2>You should be in root directory.<a name="You_should_be_in_root_directory."></a></h2><div class="source"><pre class="prettyprint">mvn clean site site:stage 
+mvn site:stage-deploy
+</pre></div></div>
                   </div>
             </div>
       
