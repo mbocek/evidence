@@ -8,6 +8,9 @@
 	</bannerLeft>
 
 	<body>
+		<menu name="Overview">
+			<item name="Deployment" href="./deployment.html"/>
+		</menu>	
 		<menu ref="reports"/>
 	</body>
 </project>
