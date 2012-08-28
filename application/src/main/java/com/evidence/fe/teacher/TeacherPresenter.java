@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.kindergarten;
+package com.evidence.fe.teacher;
 
 import java.util.List;
 
@@ -32,10 +32,11 @@ import org.vaadin.mvp.presenter.ViewFactoryException;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.evidence.dto.KindergartenDTO;
+import com.evidence.dto.TeacherDTO;
 import com.evidence.fe.annotation.MetaModel;
 import com.evidence.fe.form.EvidenceForm;
 import com.evidence.service.FormMetaModelService;
-import com.evidence.service.KindergartenService;
+import com.evidence.service.TeacherService;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
@@ -47,21 +48,21 @@ import com.vaadin.ui.Window;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Component("kindergartenPresenter")
+@Component("teacherPresenter")
 @Scope("prototype")
-@Presenter(view = KindergartenListView.class)
-public class KindergartenPresenter extends FactoryPresenter<IKindergartenListView, KindergartenEventBus> {
+@Presenter(view = TeacherListView.class)
+public class TeacherPresenter extends FactoryPresenter<ITeacherListView, TeacherEventBus> {
 
-	private static final Logger log = LoggerFactory.getLogger(KindergartenPresenter.class); // NOPMD
+	private static final Logger log = LoggerFactory.getLogger(TeacherPresenter.class); // NOPMD
 
-	private BeanItemContainer<KindergartenDTO> container;
+	private BeanItemContainer<TeacherDTO> container;
 
 	private Window dialog = null;
 	
-	private EvidenceForm kindergartenForm = null;
+	private EvidenceForm teacherForm = null;
 	
 	@Inject
-	private KindergartenService kindergartenService;
+	private TeacherService teacherService;
 
     @Inject
     private Validator validator;  	
@@ -73,59 +74,59 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 	public void bind() {
 		final HorizontalLayout buttonBar = this.view.getButtonBar();
 		buttonBar.setExpandRatio(this.getView().getExpander(), 1.0f);
-		final Table kindergartenList = this.view.getKindergartenList();
-		container = new BeanItemContainer<KindergartenDTO>(KindergartenDTO.class);
-		kindergartenList.setContainerDataSource(container);
-		kindergartenList.setColumnHeader("name", this.getMessage("kindergarten.list.header.name", this.getLocale()));
-		kindergartenList.setColumnHeader("fullAddress", this.getMessage("kindergarten.list.header.fullAddress", this.getLocale()));
-		kindergartenList.setVisibleColumns(new String[] { "name", "fullAddress" });
-		loadKindergartenList();
+		final Table teacherList = this.view.getTeacherList();
+		container = new BeanItemContainer<TeacherDTO>(TeacherDTO.class);
+		teacherList.setContainerDataSource(container);
+		teacherList.setColumnHeader("name", this.getMessage("teacher.list.header.name", this.getLocale()));
+		teacherList.setColumnHeader("fullAddress", this.getMessage("teacher.list.header.fullAddress", this.getLocale()));
+		teacherList.setVisibleColumns(new String[] { "name", "fullAddress" });
+		loadTeacherList();
 	}
 
-	private void loadKindergartenList() {
-		final List<KindergartenDTO> kindergartens = kindergartenService.getAll();
+	private void loadTeacherList() {
+		final List<TeacherDTO> teachers = teacherService.getAll();
 		this.container.removeAllItems();
-		this.container.addAll(kindergartens);
+		this.container.addAll(teachers);
 	}
 
-	public void onAddKindergarten() throws ViewFactoryException {
-		showCreateEditDialog(new KindergartenDTO());
+	public void onAddTeacher() throws ViewFactoryException {
+		showCreateEditDialog(new TeacherDTO());
 	}
 
-	public void onRemoveKindergarten() {
+	public void onRemoveTeacher() {
 		// check if a user is selected in the table
-		final Table kindergartenList = this.view.getKindergartenList();
-		final Object selected = kindergartenList.getValue();
+		final Table teacherList = this.view.getTeacherList();
+		final Object selected = teacherList.getValue();
 		if (selected != null) {
 			this.container.removeItem(selected);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public void onSaveKindergarten() {
+	public void onSaveTeacher() {
 		// get the user and add it to the container
-		final BeanItem<KindergartenDTO> item = (BeanItem<KindergartenDTO>) this.kindergartenForm.getItemDataSource();
-		final KindergartenDTO kindergarten = item.getBean();
-		final MetaModel metaModel = formService.getMetaModel(kindergarten);
+		final BeanItem<TeacherDTO> item = (BeanItem<TeacherDTO>)this.teacherForm.getItemDataSource();
+		final TeacherDTO teacher = item.getBean();
+		final MetaModel metaModel = formService.getMetaModel(teacher);
 		
-		if (kindergartenForm.validate(metaModel, validator, kindergarten, this.messageSource, this.getLocale())) {
+		if (teacherForm.validate(metaModel, validator, teacher, this.messageSource, this.getLocale())) {
 			//this.container.addBean(kindergarten);
-			this.kindergartenService.createOrUpdateKindergarten(kindergarten);
+			this.teacherService.createOrUpdateTeacher(teacher);
 			// close dialog
 			this.closeDialog();
-			loadKindergartenList();
+			loadTeacherList();
 		}
 	}
 
-	public void onEditKindergarten(final ItemClickEvent event) throws ViewFactoryException {
+	public void onEditTeacher(final ItemClickEvent event) throws ViewFactoryException {
 		if (event.isDoubleClick()) {
-			final Long id = ((KindergartenDTO)event.getItemId()).getId();
-			final KindergartenDTO kindergartenDTO = this.kindergartenService.getById(id);
-			showCreateEditDialog(kindergartenDTO);
+			final Long id = ((TeacherDTO)event.getItemId()).getId();
+			final TeacherDTO teacherDTO = this.teacherService.getById(id);
+			showCreateEditDialog(teacherDTO);
 		}
 	}
 	
-	public void onCancelEditKindergarten() {
+	public void onCancelEditTeacher() {
 		// close dialog only
 		this.closeDialog();
 	}
@@ -138,12 +139,12 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		//this.kindergartenForm = null;
 	}
 
-	private void showCreateEditDialog(final KindergartenDTO kindergartenDTO) throws ViewFactoryException {
+	private void showCreateEditDialog(final TeacherDTO teacherDTO) throws ViewFactoryException {
 		// create view
-		final KindergartenDetail view = this.createView(KindergartenDetail.class);
+		/*final KindergartenDetail view = this.createView(TeacherDetail.class);
 		// configure the form with bean item
 		this.kindergartenForm = view.getKindergartenForm();
-		final KindergartenDTO kindergarten = kindergartenDTO;
+		final KindergartenDTO kindergarten = teacherDTO;
 		final MetaModel metaModel = formService.getMetaModel(kindergarten);
 		this.kindergartenForm.setItemDataSource(kindergarten, metaModel, this.messageSource, "kindergarten.detail", this.getLocale());
 
@@ -152,6 +153,6 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		this.dialog.setModal(true);
 		this.dialog.addComponent(view);
 		this.dialog.getContent().setSizeUndefined();
-		this.eventBus.showDialog(this.dialog);
+		this.eventBus.showDialog(this.dialog);*/
 	}
 }

@@ -25,9 +25,9 @@ import org.vaadin.mvp.presenter.BasePresenter;
 import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
-import com.evidence.fe.children.ChildrenPresenter;
 import com.evidence.fe.kindergarten.KindergartenPresenter;
 import com.evidence.fe.main.MainEventBus;
+import com.evidence.fe.teacher.TeacherPresenter;
 import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.Tree;
 
@@ -44,7 +44,7 @@ public class MenuPresenter extends FactoryPresenter<IMenuView, MainEventBus> {
 	public void bind() {
 		final Tree tree = this.view.getTree();
 		addEntry(tree, this.getMessage("menu.kindergarten", this.getLocale()), KindergartenPresenter.class);
-		addEntry(tree, this.getMessage("menu.child", this.getLocale()), ChildrenPresenter.class);
+		addEntry(tree, this.getMessage("menu.teacher", this.getLocale()), TeacherPresenter.class);
 	}
 	
 	private void addEntry(final Tree tree, final String caption,

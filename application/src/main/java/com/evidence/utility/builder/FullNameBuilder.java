@@ -16,52 +16,30 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.dto;
+package com.evidence.utility.builder;
 
-import java.util.Date;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-import com.evidence.fe.form.Model;
-import com.evidence.utility.builder.FullAddressBuilder;
-import com.evidence.utility.builder.FullNameBuilder;
+import lombok.AllArgsConstructor;
 
 /**
  * @author Michal Bocek
- * @since 1.0.0 
+ * @since 1.0.0
  */
-@ToString
-public class TeacherDTO implements Model { 
+@AllArgsConstructor
+public class FullNameBuilder {
 
-	@Getter @Setter
-	private Long id;
+	private static final String NAME_SEPARATOR = ", ";
 	
-	@Getter @Setter
-	private ContactDTO contact;
-
-	@Getter	@Setter
 	private String name;
-	
-	@Getter	@Setter
-	private String surName;
-	
-	@Getter @Setter
-	private Date birthDate;
-	
-	@Getter @Setter
-	private KindergartenDTO kindergarten;
-	
-	public String getFullName() {
-		return new FullNameBuilder(name, surName).getFullName();
-	}
 
-	public String getFullAddress() {
-		String result = "";
-		if (contact != null && contact.getAddress() != null && contact.getAddress().getState() != null) {
-			result = new FullAddressBuilder(contact.getAddress()).getFullAddress();
-		}
-		return result;
+	private String surName;
+
+	public String getFullName() {
+		final StringBuffer result = new StringBuffer(surName == null ? "" : surName);
+		result.append(appendString(name));
+		return result.toString();
+	}
+	
+	private String appendString(final String data) {
+		return (data == null) ? "" : NAME_SEPARATOR + data;
 	}
 }

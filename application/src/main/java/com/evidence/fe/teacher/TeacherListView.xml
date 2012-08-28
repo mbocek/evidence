@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:UiBinder xmlns:ui="urn:org.vaadin.mvp.uibinder" 
+	xmlns:e="urn:org.vaadin.mvp.uibinder.event" 
+	xmlns:v="urn:import:com.vaadin.ui"
+	xmlns:m="urn:org.vaadin.mvp.uibinder.message"
+	xmlns:i="urn:org.vaadin.mvp.uibinder.method"
+	v:margin="true">
+
+	<v:Label styleName="h2" m:caption="teacher.caption.administration" />
+
+	<v:Table ui:field="teacherList" width="100%" e:itemClick="editTeacher" immediate="true" selectable="true" multiSelect="false" />
+
+	<v:HorizontalLayout spacing="true" width="100%" ui:field="buttonBar">
+		<v:Label width="100%"  ui:field="expander"/>
+		<v:Button m:caption="teacher.list.add" styleName="small" e:click="addTeacher"/>
+		<v:Button m:caption="teacher.list.remove" styleName="small" e:click="removeTeacher"/>
+	</v:HorizontalLayout>
+</ui:UiBinder>
