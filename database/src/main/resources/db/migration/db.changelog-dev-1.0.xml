@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+						http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+	<changeSet id="load: address" author="mbocek" context="development">
+		<comment>Load initial addresses data</comment>
+		<loadData tableName="ADDRESS" file="db/migration/dev/address.csv" encoding="cp1250">
+			<column name="id" type="NUMERIC"/>
+			<column name="city" type="STRING"/>
+			<column name="house_number" type="STRING"/>
+			<column name="street" type="STRING"/>
+			<column name="zip_code" type="STRING"/>
+			<column name="state_code" type="STRING"/>
+		</loadData>
+		<rollback>
+			<delete tableName="ADDRESS"/>
+		</rollback>
+	</changeSet>
+	
+	<changeSet id="load: contact" author="mbocek" context="development">
+		<comment>Load initial contacts data</comment>
+		<loadData tableName="CONTACT" file="db/migration/dev/contact.csv" encoding="cp1250">
+			<column name="id" type="NUMERIC"/>
+			<column name="email" type="STRING"/>
+			<column name="lndl_country_code" type="STRING"/>
+			<column name="lndl_phone_number" type="STRING"/>
+			<column name="mobile_country_code" type="STRING"/>
+			<column name="mobile_phone_number" type="STRING"/>
+			<column name="address_id" type="NUMERIC"/>
+		</loadData>
+		<rollback>
+			<delete tableName="CONTACT"/>
+		</rollback>
+	</changeSet>
+	
+	<changeSet id="load: kindergarten" author="mbocek" context="development">
+		<comment>Load initial kindergartens data</comment>
+		<loadData tableName="KINDERGARTEN" file="db/migration/dev/kindergarten.csv" encoding="cp1250">
+			<column name="id" type="NUMERIC"/>
+			<column name="name" type="STRING"/>
+			<column name="contact_id" type="NUMERIC"/>
+		</loadData>
+		<rollback>
+			<delete tableName="KINDERGARTEN"/>
+		</rollback>
+	</changeSet>
+	
+</databaseChangeLog>

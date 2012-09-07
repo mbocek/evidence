@@ -70,7 +70,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<liquibase.context></liquibase.context>
+				<liquibase.context>development</liquibase.context>
 				<liquibase.database.jdbc.driver>org.hsqldb.jdbcDriver</liquibase.database.jdbc.driver>
 				<liquibase.database.jdbc.url>jdbc:hsqldb:file:/tmp/db/ekolandiaDB;shutdown=true</liquibase.database.jdbc.url>
 				<liquibase.database.jdbc.user>sa</liquibase.database.jdbc.user>
