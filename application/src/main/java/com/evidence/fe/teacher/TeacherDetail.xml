@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:UiBinder xmlns:ui="urn:org.vaadin.mvp.uibinder" 
+	xmlns:e="urn:org.vaadin.mvp.uibinder.event" 
+	xmlns:v="urn:import:com.vaadin.ui"
+	xmlns:f="urn:import:com.evidence.fe.form"
+	xmlns:i="urn:org.vaadin.mvp.uibinder.method"
+	v:sizeFull="" v:spacing="true" v:margin="true">
+
+	<f:EvidenceForm ui:field="teacherForm">
+		<i:addFooter>
+			<v:HorizontalLayout spacing="true">
+				<v:Button caption="save" styleName="small" e:click="saveTeacher" />
+				<v:Button caption="cancel" styleName="small" e:click="cancelEditTeacher" />
+			</v:HorizontalLayout>	
+		</i:addFooter>
+	</f:EvidenceForm>
+</ui:UiBinder>

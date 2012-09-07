@@ -16,40 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
-
-import javax.inject.Inject;
+package com.evidence.fe.teacher;
 
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+
+import org.vaadin.mvp.uibinder.IUiBindable;
+import org.vaadin.mvp.uibinder.annotation.UiField;
+
+import com.evidence.fe.form.EvidenceForm;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Slf4j
-public final class ServiceHolder {
+public class TeacherDetail extends VerticalLayout implements Layout, IUiBindable, ITeacherDetail {
 
-	private static ServiceHolder instance;
-	
-	@Getter
-	@Inject 
-	private CodeListService codeListService;
+	private static final long serialVersionUID = 6155789894644060488L;
 
 	@Getter
-	@Inject 
-	private KindergartenService kindergartenService;
-	
-	private ServiceHolder() {
-	}
-
-	public static synchronized ServiceHolder getInstance() { // NOPMD
-		if (instance == null) {
-			log.debug("Cearing ServiceHolder instance");
-			instance = new ServiceHolder();
-		} else {
-			log.trace("ServiceHolder instance laready exists!");
-		}
-		return instance;
-	}
+	@UiField
+	private EvidenceForm teacherForm;
 }

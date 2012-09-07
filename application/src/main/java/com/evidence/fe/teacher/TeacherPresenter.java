@@ -141,18 +141,18 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 
 	private void showCreateEditDialog(final TeacherDTO teacherDTO) throws ViewFactoryException {
 		// create view
-		/*final KindergartenDetail view = this.createView(TeacherDetail.class);
+		final TeacherDetail view = this.createView(TeacherDetail.class);
 		// configure the form with bean item
-		this.kindergartenForm = view.getKindergartenForm();
-		final KindergartenDTO kindergarten = teacherDTO;
-		final MetaModel metaModel = formService.getMetaModel(kindergarten);
-		this.kindergartenForm.setItemDataSource(kindergarten, metaModel, this.messageSource, "kindergarten.detail", this.getLocale());
+		this.teacherForm = view.getTeacherForm();
+		final TeacherDTO teacher = teacherDTO;
+		final MetaModel metaModel = formService.getMetaModel(teacher);
+		this.teacherForm.setItemDataSource(teacher, metaModel, this.messageSource, "teacher.detail", this.getLocale());
 
 		// create a window using caption from view
-		this.dialog = new Window(this.getMessage("kindergarten.detail.caption", this.getLocale()));
+		this.dialog = new Window(this.getMessage("teacher.detail.caption", this.getLocale()));
 		this.dialog.setModal(true);
 		this.dialog.addComponent(view);
 		this.dialog.getContent().setSizeUndefined();
-		this.eventBus.showDialog(this.dialog);*/
+		this.eventBus.showDialog(this.dialog);
 	}
 }

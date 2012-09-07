@@ -22,8 +22,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Validator;
@@ -51,8 +49,6 @@ import com.vaadin.ui.Window;
 @Scope("prototype")
 @Presenter(view = KindergartenListView.class)
 public class KindergartenPresenter extends FactoryPresenter<IKindergartenListView, KindergartenEventBus> {
-
-	private static final Logger log = LoggerFactory.getLogger(KindergartenPresenter.class); // NOPMD
 
 	private BeanItemContainer<KindergartenDTO> container;
 

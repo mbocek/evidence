@@ -16,40 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
+package com.evidence.fe.teacher;
 
-import javax.inject.Inject;
-
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import com.vaadin.ui.Form;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Slf4j
-public final class ServiceHolder {
-
-	private static ServiceHolder instance;
+public interface ITeacherDetail {
 	
-	@Getter
-	@Inject 
-	private CodeListService codeListService;
-
-	@Getter
-	@Inject 
-	private KindergartenService kindergartenService;
-	
-	private ServiceHolder() {
-	}
-
-	public static synchronized ServiceHolder getInstance() { // NOPMD
-		if (instance == null) {
-			log.debug("Cearing ServiceHolder instance");
-			instance = new ServiceHolder();
-		} else {
-			log.trace("ServiceHolder instance laready exists!");
-		}
-		return instance;
-	}
+	Form getTeacherForm();
 }

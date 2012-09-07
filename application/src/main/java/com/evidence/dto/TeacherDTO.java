@@ -20,11 +20,20 @@ package com.evidence.dto;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.evidence.fe.annotation.AutomaticForm;
+import com.evidence.fe.annotation.Caption;
+import com.evidence.fe.annotation.Order;
 import com.evidence.fe.form.Model;
+import com.evidence.fe.teacher.TeacherDetailFormFieldFactory;
 import com.evidence.utility.builder.FullAddressBuilder;
 import com.evidence.utility.builder.FullNameBuilder;
 
@@ -33,26 +42,39 @@ import com.evidence.utility.builder.FullNameBuilder;
  * @since 1.0.0 
  */
 @ToString
+@AutomaticForm(formFieldFactory = TeacherDetailFormFieldFactory.class)
 public class TeacherDTO implements Model { 
 
 	@Getter @Setter
 	private Long id;
 	
 	@Getter @Setter
-	private ContactDTO contact;
-
-	@Getter	@Setter
-	private String name;
+	@Order(1) @Caption
+	private Long kindergartenId;
 	
+	@NotBlank
+	@Order(2)
+	@Caption
 	@Getter	@Setter
-	private String surName;
+	private String name = "";
 	
+	@NotBlank
+	@Order(3)
+	@Caption
+	@Getter	@Setter
+	private String surName = "";
+	
+	@Order(4)
+	@Caption
+	@NotNull
 	@Getter @Setter
 	private Date birthDate;
 	
+	@Order(5)
+	@Valid
 	@Getter @Setter
-	private KindergartenDTO kindergarten;
-	
+	private ContactDTO contact = new ContactDTO();
+
 	public String getFullName() {
 		return new FullNameBuilder(name, surName).getFullName();
 	}

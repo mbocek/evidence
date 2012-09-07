@@ -12,6 +12,11 @@
 				<class-a>com.evidence.entity.Address</class-a>
 				<class-b>com.evidence.dto.AddressDTO</class-b>
 			</converter>
+
+			<converter type="com.evidence.utility.converter.TeacherConverter">
+				<class-a>com.evidence.entity.Teacher</class-a>
+				<class-b>com.evidence.dto.TeacherDTO</class-b>
+			</converter>
 		</custom-converters>
 	</configuration>
 	
