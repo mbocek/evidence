@@ -52,7 +52,11 @@ public abstract class Person implements Serializable { // NOPMD
 	@Temporal(TemporalType.DATE)
 	@Column(name = "BIRTH_DATE")
 	private Date birthDate;
-	
+
+	@Getter	@Setter
+	@Column(name = "DELETED", nullable = false)
+	private Boolean deleted = false;
+
 	@Getter @Setter
 	@ManyToOne(cascade = { CascadeType.REFRESH }, optional = false)
 	@JoinColumn(name = "KINDERGARTEN_ID")

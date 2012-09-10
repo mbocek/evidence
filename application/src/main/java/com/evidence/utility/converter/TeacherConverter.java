@@ -60,6 +60,7 @@ public class TeacherConverter implements CustomConverter {
 		teacherDTO.setKindergartenId(source.getKindergarten().getId());
 		teacherDTO.setName(source.getName());
 		teacherDTO.setSurName(source.getSurName());
+		teacherDTO.setId(source.getId());
 		return teacherDTO;
 	}
 

@@ -60,6 +60,10 @@ public class Kindergarten implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "CONTACT_ID")
 	private Contact contact;
+	
+	@Getter	@Setter
+	@Column(name = "DELETED", nullable = false)
+	private Boolean deleted = false;
 
 	public Kindergarten(final Long id) {
 		this.id = id;

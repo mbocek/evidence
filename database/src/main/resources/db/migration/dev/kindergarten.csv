@@ -1,2 +1,2 @@
-ID,NAME,CONTACT_ID
-1,Kindergarten,1
+ID,NAME,DELETED,CONTACT_ID
+1,Kindergarten,0,1

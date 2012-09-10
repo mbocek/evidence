@@ -86,6 +86,9 @@
 			<column name="NAME" type="VARCHAR(200)" remarks="Kindergarten name">
 				<constraints nullable="false" />
 			</column>
+			<column name="DELETED" type="BOOLEAN" remarks="Deleted flag">
+				<constraints nullable="false" />
+			</column>
 			<column name="CONTACT_ID" type="BIGINT" remarks="Reference to contact"/>
 		</createTable>
 		
@@ -182,6 +185,9 @@
 			<column name="BIRTH_DATE" type="DATE" remarks="Birth date" />
 			<column name="NAME" type="VARCHAR(255)" remarks="Name" />
 			<column name="SUR_NAME" type="VARCHAR(255)" remarks="Surname" />
+			<column name="DELETED" type="BOOLEAN" remarks="Deleted flag">
+				<constraints nullable="false" />
+			</column>
 			<column name="KINDERGARTEN_ID" type="BIGINT" remarks="Reference to kindergarten">
 				<constraints nullable="false" />
 			</column>

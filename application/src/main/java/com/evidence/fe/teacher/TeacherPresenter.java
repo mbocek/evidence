@@ -31,7 +31,6 @@ import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.ViewFactoryException;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
-import com.evidence.dto.KindergartenDTO;
 import com.evidence.dto.TeacherDTO;
 import com.evidence.fe.annotation.MetaModel;
 import com.evidence.fe.form.EvidenceForm;
@@ -77,9 +76,9 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 		final Table teacherList = this.view.getTeacherList();
 		container = new BeanItemContainer<TeacherDTO>(TeacherDTO.class);
 		teacherList.setContainerDataSource(container);
-		teacherList.setColumnHeader("name", this.getMessage("teacher.list.header.name", this.getLocale()));
+		teacherList.setColumnHeader("fullName", this.getMessage("teacher.list.header.fullName", this.getLocale()));
 		teacherList.setColumnHeader("fullAddress", this.getMessage("teacher.list.header.fullAddress", this.getLocale()));
-		teacherList.setVisibleColumns(new String[] { "name", "fullAddress" });
+		teacherList.setVisibleColumns(new String[] { "fullName", "fullAddress" });
 		loadTeacherList();
 	}
 
@@ -99,6 +98,7 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 		final Object selected = teacherList.getValue();
 		if (selected != null) {
 			this.container.removeItem(selected);
+			this.teacherService.delete(((TeacherDTO)selected).getId());
 		}
 	}
 

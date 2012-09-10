@@ -47,4 +47,18 @@
 		</rollback>
 	</changeSet>
 	
+	<changeSet id="load: teacher" author="mbocek" context="development">
+		<comment>Load initial teacher data</comment>
+		<loadData tableName="TEACHER" file="db/migration/dev/teacher.csv" encoding="cp1250">
+			<column name="id" type="NUMERIC"/>
+			<column name="name" type="STRING"/>
+			<column name="sur_name" type="STRING"/>
+			<column name="birth_date" type="DATE"/>
+			<column name="kidergarten_id" type="NUMERIC"/>
+			<column name="contact_id" type="NUMERIC"/>
+		</loadData>
+		<rollback>
+			<delete tableName="TEACHER"/>
+		</rollback>
+	</changeSet>
 </databaseChangeLog>
