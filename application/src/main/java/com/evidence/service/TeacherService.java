@@ -22,8 +22,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +35,6 @@ import com.evidence.utility.DTOConverter;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Slf4j
 @Service
 @Transactional(readOnly = true)
 public class TeacherService {
@@ -46,7 +43,7 @@ public class TeacherService {
 	private TeacherDAO teacherDao;
 
 	public List<TeacherDTO> getAll() {
-		final List<Teacher> teachers = teacherDao.findAll();
+		final List<Teacher> teachers = teacherDao.findAll(false);
 		return DTOConverter.convertList(teachers, TeacherDTO.class);
 	}
 
@@ -77,11 +74,12 @@ public class TeacherService {
 
 	/**
 	 * Delete teacher object from database.
-	 * @param teacherDTO
+	 * @param id
 	 */
 	@Transactional
 	public void delete(final Long id) {
 		Teacher teacher = teacherDao.findById(id);
-		teacherDao.delete(teacher);
+		teacher.setDeleted(Boolean.TRUE);
+		teacherDao.update(teacher);
 	}
 }

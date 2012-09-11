@@ -43,7 +43,7 @@ public class KindergartenService {
 	private KindergartenDAO kindergartenDao;
 
 	public List<KindergartenDTO> getAll() {
-		final List<Kindergarten> kindergartens = kindergartenDao.findAll();
+		final List<Kindergarten> kindergartens = kindergartenDao.findAll(false);
 		return DTOConverter.convertList(kindergartens, KindergartenDTO.class);
 	}
 
@@ -70,5 +70,16 @@ public class KindergartenService {
 	public KindergartenDTO getById(final Long id) {
 		final Kindergarten kindergarten = kindergartenDao.read(id);
 		return DTOConverter.convert(kindergarten, KindergartenDTO.class);
+	}
+	
+	/**
+	 * Delete kindergarten object from database.
+	 * @param id
+	 */
+	@Transactional
+	public void delete(final Long id) {
+		Kindergarten kindergarten = kindergartenDao.findById(id);
+		kindergarten.setDeleted(Boolean.TRUE);
+		kindergartenDao.update(kindergarten);
 	}
 }

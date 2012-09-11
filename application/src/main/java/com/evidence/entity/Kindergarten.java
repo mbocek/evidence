@@ -28,6 +28,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -44,9 +46,15 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @Table(name = "KINDERGARTEN")
+@NamedQueries(value = { 
+		@NamedQuery(name = Kindergarten.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG, query = Kindergarten.QUERY_FIND_ALL_BY_DELETED_FLAG) 
+	})
 public class Kindergarten implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String QUERY_NAME_FIND_ALL_BY_DELETED_FLAG = "Kindergarten.finaAllByDeletedFlag";   
+	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT k FROM Kindergarten k WHERE k.deleted = :deleted";   
 
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter

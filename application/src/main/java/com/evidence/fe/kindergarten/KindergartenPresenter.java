@@ -30,6 +30,7 @@ import org.vaadin.mvp.presenter.ViewFactoryException;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.evidence.dto.KindergartenDTO;
+import com.evidence.dto.TeacherDTO;
 import com.evidence.fe.annotation.MetaModel;
 import com.evidence.fe.form.EvidenceForm;
 import com.evidence.service.FormMetaModelService;
@@ -94,6 +95,7 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 		final Object selected = kindergartenList.getValue();
 		if (selected != null) {
 			this.container.removeItem(selected);
+			this.kindergartenService.delete(((KindergartenDTO)selected).getId());
 		}
 	}
 

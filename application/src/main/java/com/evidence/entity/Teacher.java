@@ -19,14 +19,16 @@
 package com.evidence.entity;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -38,9 +40,16 @@ import lombok.ToString;
  */
 @Entity
 @ToString
+@Table(name = "TEACHER")
+@NamedQueries(value = { 
+	@NamedQuery(name = Teacher.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG, query = Teacher.QUERY_FIND_ALL_BY_DELETED_FLAG) 
+})
 public class Teacher extends Person {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String QUERY_NAME_FIND_ALL_BY_DELETED_FLAG = "Teacher.finaAllByDeletedFlag";   
+	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT t FROM Teacher t WHERE t.deleted = :deleted";   
 	
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter

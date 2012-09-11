@@ -18,6 +18,12 @@
  */
 package com.evidence.dao;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Repository;
 
 import com.evidence.entity.Teacher;
@@ -27,7 +33,23 @@ import com.evidence.entity.Teacher;
  * @author Michal Bocek
  * @since 1.0.0
  */
+@Slf4j
 @Repository("teacherDAO")
 public class TeacherDAO extends JpaDAO<Teacher, Long> {
-	
+		
+	/**
+	 * Find all teacher. Query is based on delete flag.
+	 * @param deleted when true return also deleted data.
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Teacher> findAll(final boolean deleted) {
+		if (log.isTraceEnabled()) {
+			log.trace("Reading all teachers with deleted flag:{}", deleted);
+		}
+		
+		final Query query = this.entityManager.createNamedQuery(Teacher.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG).
+				setParameter("deleted", deleted);
+		return query.getResultList();
+	}
 }

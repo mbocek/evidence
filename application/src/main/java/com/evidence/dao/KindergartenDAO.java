@@ -18,6 +18,12 @@
  */
 package com.evidence.dao;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Repository;
 
 import com.evidence.entity.Kindergarten;
@@ -27,7 +33,23 @@ import com.evidence.entity.Kindergarten;
  * @author Michal Bocek
  * @since 1.0.0
  */
+@Slf4j
 @Repository("kinderGartenDAO")
 public class KindergartenDAO extends JpaDAO<Kindergarten, Long> {
 	
+	/**
+	 * Find all kindergartens. Query is based on delete flag.
+	 * @param deleted when true return also deleted data.
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Kindergarten> findAll(final boolean deleted) {
+		if (log.isTraceEnabled()) {
+			log.trace("Reading all kindergartens with deleted flag:{}", deleted);
+		}
+		
+		final Query query = this.entityManager.createNamedQuery(Kindergarten.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG).
+				setParameter("deleted", deleted);
+		return query.getResultList();
+	}
 }
