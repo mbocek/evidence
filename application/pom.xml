@@ -12,6 +12,7 @@
 	<name>Evidence: application</name>
 
 	<build>
+		<finalName>evidence-${project.version}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>

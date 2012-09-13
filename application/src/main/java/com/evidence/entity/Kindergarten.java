@@ -71,7 +71,7 @@ public class Kindergarten implements Serializable {
 	
 	@Getter	@Setter
 	@Column(name = "DELETED", nullable = false)
-	private Boolean deleted = false;
+	private Boolean deleted = Boolean.FALSE;
 
 	public Kindergarten(final Long id) {
 		this.id = id;

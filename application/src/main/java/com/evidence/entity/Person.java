@@ -55,7 +55,7 @@ public abstract class Person implements Serializable { // NOPMD
 
 	@Getter	@Setter
 	@Column(name = "DELETED", nullable = false)
-	private Boolean deleted = false;
+	private Boolean deleted = Boolean.FALSE;
 
 	@Getter @Setter
 	@ManyToOne(cascade = { CascadeType.REFRESH }, optional = false)
