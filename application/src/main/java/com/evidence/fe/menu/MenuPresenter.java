@@ -18,6 +18,10 @@
  */
 package com.evidence.fe.menu;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.vaadin.mvp.eventbus.EventBus;
@@ -25,9 +29,12 @@ import org.vaadin.mvp.presenter.BasePresenter;
 import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
+import com.evidence.dto.KindergartenDTO;
 import com.evidence.fe.kindergarten.KindergartenPresenter;
 import com.evidence.fe.main.MainEventBus;
 import com.evidence.fe.teacher.TeacherPresenter;
+import com.evidence.service.KindergartenService;
+import com.vaadin.data.Item;
 import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.Tree;
 
@@ -40,23 +47,34 @@ import com.vaadin.ui.Tree;
 @Presenter(view = MenuView.class)
 public class MenuPresenter extends FactoryPresenter<IMenuView, MainEventBus> {
 
+	@Inject
+	private KindergartenService kindergartenService;
+	
 	@Override
 	public void bind() {
 		final Tree tree = this.view.getTree();
-		addEntry(tree, this.getMessage("menu.kindergarten", this.getLocale()), KindergartenPresenter.class);
-		addEntry(tree, this.getMessage("menu.teacher", this.getLocale()), TeacherPresenter.class);
+		MenuEntry kindergartenMenu = addEntry(tree, null, Boolean.TRUE, this.getMessage("menu.kindergarten", this.getLocale()), KindergartenPresenter.class);
+		List<KindergartenDTO> kindergartens = kindergartenService.getAll();
+		for (KindergartenDTO kindergartenDTO : kindergartens) {
+			MenuEntry kindergarten = addEntry(tree, kindergartenMenu, Boolean.TRUE, kindergartenDTO.getName(), null);
+			addEntry(tree, kindergarten, Boolean.FALSE, this.getMessage("menu.teacher", this.getLocale()), TeacherPresenter.class);
+		}
 	}
 	
-	private void addEntry(final Tree tree, final String caption,
+	private MenuEntry addEntry(final Tree tree, final MenuEntry parent, final Boolean hasChildren, final String caption,
 			final Class<? extends BasePresenter<?, ? extends EventBus>> presenterType) {
 		final MenuEntry entry = new MenuEntry(caption, presenterType);
 		tree.addItem(entry);
-		tree.setChildrenAllowed(entry, false);
+		tree.setParent(entry, parent);
+		tree.setChildrenAllowed(entry, hasChildren);
+		return entry;
 	}
 
 	public void onSelectMenu(final ValueChangeEvent event) {
 		// get the selected menu entry and initiate another event
 		final MenuEntry menuEntry = (MenuEntry) this.view.getTree().getValue();
-		this.eventBus.openModule(menuEntry.getPresenterType());
+		if (menuEntry != null) {
+			this.eventBus.openModule(menuEntry.getPresenterType());
+		}
 	}
 }
