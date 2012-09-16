@@ -18,6 +18,8 @@
  */
 package com.evidence.fe.main;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -29,9 +31,15 @@ import org.vaadin.mvp.presenter.IPresenter;
 import org.vaadin.mvp.presenter.IPresenterFactory;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
+import com.evidence.dto.KindergartenDTO;
 import com.evidence.fe.EvidenceApplication;
 import com.evidence.fe.menu.MenuPresenter;
+import com.evidence.service.KindergartenService;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.Field.ValueChangeEvent;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Select;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
@@ -51,7 +59,22 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 	private MenuPresenter menuPresenter; // NOPMD
 
 	private IPresenter<?, ? extends EventBus> contentPresenter; // NOPMD
+	
+	@Inject
+	private KindergartenService kindergartenService;
 
+	@Override
+	public void bind() {
+		final VerticalLayout mainLayout = this.view.getMainLayout();
+		final HorizontalSplitPanel layoutPanel = this.view.getSplitLayout();
+		mainLayout.setExpandRatio(layoutPanel, 1.0f);
+		layoutPanel.setSplitPosition(25, HorizontalSplitPanel.UNITS_PERCENTAGE);
+
+		componentLocation();
+		populateKindergartenSelect();
+	}
+	
+	
 	public void onStart(final EvidenceApplication app) {
 		// keep a reference to the application instance
 		this.application = app;
@@ -66,6 +89,21 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 		this.view.setMenu(this.menuPresenter.getView());
 	}
 
+	private void componentLocation() {
+		final HorizontalLayout buttonBar = this.view.getButtonBar();
+		buttonBar.setExpandRatio(this.getView().getExpander(), 0.5f);
+		buttonBar.setExpandRatio(this.getView().getTitle(), 0.5f);
+		buttonBar.setMargin(true);
+	}
+
+	private void populateKindergartenSelect() {
+		for (KindergartenDTO kindergarten : kindergartenService.getAll()) {
+			Select kindergartenSelect = this.getView().getKindergarten();
+			kindergartenSelect.addItem(kindergarten.getId());
+			kindergartenSelect.setItemCaption(kindergarten.getId(), kindergarten.getName());
+		}
+	}
+
 	public void onOpenModule(final Class<? extends BasePresenter<?, ? extends EventBus>> presenter) {
 		// opening module invoked from menu 
 		log.debug("Openning module for presenter {}", presenter.getCanonicalName());
@@ -78,16 +116,13 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 		this.application.getMainWindow().addWindow(dialog);
 	}
 
-	@Override
-	public void bind() {
-		final VerticalLayout mainLayout = this.view.getMainLayout();
-		final HorizontalSplitPanel layoutPanel = this.view.getSplitLayout();
-		mainLayout.setExpandRatio(layoutPanel, 1.0f);
-		layoutPanel.setSplitPosition(25, HorizontalSplitPanel.UNITS_PERCENTAGE);
-	}
-	
 	public void onClose() {
 		log.info("Closing application!");
 		this.application.close();
+	}
+	
+	public void onSelectKindergarten(ValueChangeEvent event) {
+		log.info("Selecting kindergarten");
+		log.info("Selected: {}", event.getProperty());
 	}
 }

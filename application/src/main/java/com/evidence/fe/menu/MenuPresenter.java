@@ -18,8 +18,6 @@
  */
 package com.evidence.fe.menu;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.context.annotation.Scope;
@@ -29,12 +27,10 @@ import org.vaadin.mvp.presenter.BasePresenter;
 import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
-import com.evidence.dto.KindergartenDTO;
 import com.evidence.fe.kindergarten.KindergartenPresenter;
 import com.evidence.fe.main.MainEventBus;
 import com.evidence.fe.teacher.TeacherPresenter;
 import com.evidence.service.KindergartenService;
-import com.vaadin.data.Item;
 import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.Tree;
 
@@ -53,12 +49,12 @@ public class MenuPresenter extends FactoryPresenter<IMenuView, MainEventBus> {
 	@Override
 	public void bind() {
 		final Tree tree = this.view.getTree();
-		MenuEntry kindergartenMenu = addEntry(tree, null, Boolean.TRUE, this.getMessage("menu.kindergarten", this.getLocale()), KindergartenPresenter.class);
-		List<KindergartenDTO> kindergartens = kindergartenService.getAll();
-		for (KindergartenDTO kindergartenDTO : kindergartens) {
-			MenuEntry kindergarten = addEntry(tree, kindergartenMenu, Boolean.TRUE, kindergartenDTO.getName(), null);
-			addEntry(tree, kindergarten, Boolean.FALSE, this.getMessage("menu.teacher", this.getLocale()), TeacherPresenter.class);
-		}
+		addEntry(tree, null, Boolean.FALSE, this.getMessage("menu.kindergarten", this.getLocale()), KindergartenPresenter.class);
+		//List<KindergartenDTO> kindergartens = kindergartenService.getAll();
+		//for (KindergartenDTO kindergartenDTO : kindergartens) {
+		//	MenuEntry kindergarten = addEntry(tree, kindergartenMenu, Boolean.TRUE, kindergartenDTO.getName(), null);
+		addEntry(tree, null, Boolean.FALSE, this.getMessage("menu.teacher", this.getLocale()), TeacherPresenter.class);
+		//}
 	}
 	
 	private MenuEntry addEntry(final Tree tree, final MenuEntry parent, final Boolean hasChildren, final String caption,

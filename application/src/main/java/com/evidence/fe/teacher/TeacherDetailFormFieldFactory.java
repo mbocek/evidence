@@ -33,6 +33,7 @@ import com.vaadin.data.Item;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Field;
+import com.vaadin.ui.Select;
 
 /**
  * @author Michal Bocek
@@ -56,7 +57,7 @@ public class TeacherDetailFormFieldFactory extends EvidenceFormFieldFactory {
 		Field field = null;
 		final String pid = (String) propertyId;
 		if ("contact.address.stateCode".equals(pid)) {
-			final ComboBox select = new ComboBox(pid);
+			final Select select = new Select(pid);
 			final List<StateDTO> states = ServiceHolder.getInstance().getCodeListService().getStates();
 			log.debug(states.toString());
 			for (StateDTO stateDTO : states) {
@@ -64,9 +65,10 @@ public class TeacherDetailFormFieldFactory extends EvidenceFormFieldFactory {
 				select.setItemCaption(stateDTO.getCode(), stateDTO.getName());
 			}
 			select.setNewItemsAllowed(false);
+			select.setNullSelectionAllowed(false);
 			field = select;
 		} else if ("kindergartenId".equals(pid)) {
-			final ComboBox select = new ComboBox(pid);
+			final Select select = new Select(pid);
 			final List<KindergartenDTO> kindergartens = ServiceHolder.getInstance().getKindergartenService().getAll();
 			log.debug(kindergartens.toString());
 			for (KindergartenDTO kindergartenDTO : kindergartens) {
@@ -74,6 +76,7 @@ public class TeacherDetailFormFieldFactory extends EvidenceFormFieldFactory {
 				select.setItemCaption(kindergartenDTO.getId(), kindergartenDTO.getName());
 			}
 			select.setNewItemsAllowed(false);
+			select.setNullSelectionAllowed(false);
 			field = select;
 		} else {
 			field = super.createField(item, propertyId, uiContext);

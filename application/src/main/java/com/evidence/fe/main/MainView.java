@@ -18,11 +18,16 @@
  */
 package com.evidence.fe.main;
 
+import lombok.Getter;
+
 import org.vaadin.mvp.uibinder.IUiBindable;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
 import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Select;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
@@ -34,29 +39,37 @@ public class MainView extends Window implements IMainView, IUiBindable {
 	
 	private static final long serialVersionUID = 2836668802193079451L;
 
-	  @UiField
-	  private VerticalLayout mainLayout;
-	  
-	  @UiField
-	  private HorizontalSplitPanel splitLayout;
-	  
-	  @Override
-	  public void setMenu(final Component menu) {
-	    splitLayout.setFirstComponent(menu);
-	  }
+	@UiField
+	@Getter
+	private VerticalLayout mainLayout;
 
-	  @Override
-	  public void setContent(final Component content) {
-	    splitLayout.setSecondComponent(content);
-	  }
+	@UiField
+	@Getter
+	private HorizontalSplitPanel splitLayout;
 
-	  @Override
-	  public HorizontalSplitPanel getSplitLayout() {
-	    return splitLayout;
-	  }
-	  
-	  @Override
-	  public VerticalLayout getMainLayout() {
-	    return mainLayout;
-	  }
+	@UiField
+	@Getter
+	private HorizontalLayout buttonBar;
+
+	@UiField
+	@Getter
+	private Label title;
+
+	@UiField
+	@Getter
+	private Label expander;
+
+	@UiField
+	@Getter
+	private Select kindergarten;
+
+	@Override
+	public void setMenu(final Component menu) {
+		splitLayout.setFirstComponent(menu);
+	}
+
+	@Override
+	public void setContent(final Component content) {
+		splitLayout.setSecondComponent(content);
+	}
 }

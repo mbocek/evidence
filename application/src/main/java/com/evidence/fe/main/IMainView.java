@@ -19,7 +19,10 @@
 package com.evidence.fe.main;
 
 import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Select;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -34,4 +37,12 @@ public interface IMainView {
 	HorizontalSplitPanel getSplitLayout();
 
 	VerticalLayout getMainLayout();
+
+	HorizontalLayout getButtonBar();
+	
+	Label getTitle();
+
+	Label getExpander();
+
+	Select getKindergarten();
 }

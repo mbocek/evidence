@@ -7,9 +7,14 @@
 	xmlns:v="urn:import:com.vaadin.ui">
 
 	<v:VerticalLayout sizeFull="" ui:field="mainLayout">
-		<v:Panel height="60px">
-			<v:Label m:caption="screen.application.title" />
-			<v:Button m:caption="screen.application.close" styleName="small" e:click="close"/>
+		<v:Panel height="65px">
+			<v:HorizontalLayout spacing="true" width="100%" ui:field="buttonBar">
+				<v:Label m:caption="screen.application.title" ui:field="title"/>
+				<v:Label width="100%" ui:field="expander"/>
+				<v:Select ui:field="kindergarten" e:valueChange="selectKindergarten"
+					nullSelectionAllowed="false" newItemsAllowed="false" immediate="true" />
+				<v:Button m:caption="screen.application.close" styleName="small" e:click="close"/>
+			</v:HorizontalLayout>
 		</v:Panel>
 		<v:HorizontalSplitPanel sizeFull="" ui:field="splitLayout">
 		</v:HorizontalSplitPanel>

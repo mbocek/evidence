@@ -49,7 +49,7 @@ public class TeacherDTO implements Model {
 	private Long id;
 	
 	@Getter @Setter
-	@Order(1) @Caption
+	@Order(1) @Caption("kindergarten")
 	private Long kindergartenId;
 	
 	@NotBlank

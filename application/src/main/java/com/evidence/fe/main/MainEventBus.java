@@ -42,5 +42,8 @@ public interface MainEventBus extends EventBus {
 	void openModule(Class<? extends BasePresenter<?, ? extends EventBus>> presenterClass);	
 
 	@Event(handlers = { MainPresenter.class })
-	void close();	
+	void close();
+	
+	@Event(handlers = { MainPresenter.class })
+	void selectKindergarten(ValueChangeEvent event);	
 }
