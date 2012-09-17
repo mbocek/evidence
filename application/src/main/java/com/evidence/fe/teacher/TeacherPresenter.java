@@ -30,6 +30,8 @@ import org.vaadin.mvp.presenter.ViewFactoryException;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.evidence.dto.TeacherDTO;
+import com.evidence.fe.ApplicationConstants;
+import com.evidence.fe.EvidenceApplication;
 import com.evidence.fe.annotation.MetaModel;
 import com.evidence.fe.form.EvidenceForm;
 import com.evidence.service.FormMetaModelService;
@@ -40,6 +42,7 @@ import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
+import com.vaadin.ui.Field.ValueChangeEvent;
 
 /**
  * @author Michal Bocek
@@ -79,9 +82,18 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 	}
 
 	private void loadTeacherList() {
-		final List<TeacherDTO> teachers = teacherService.getAll();
+		List<TeacherDTO> teachers; 
+		if (getKindergartenId() == ApplicationConstants.SELECT_ALL) {
+			teachers = teacherService.getAll();
+		} else {
+			teachers = teacherService.findByKindergartenId(getKindergartenId());
+		}
 		this.container.removeAllItems();
 		this.container.addAll(teachers);
+	}
+	
+	private Long getKindergartenId() {
+		return ((EvidenceApplication)this.getApplication()).getKindergartenId();
 	}
 
 	public void onAddTeacher() throws ViewFactoryException {
@@ -150,5 +162,9 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 		this.dialog.addComponent(view);
 		this.dialog.getContent().setSizeUndefined();
 		this.eventBus.showDialog(this.dialog);
+	}
+	
+	public void onSelectKindergarten(ValueChangeEvent event) {
+		loadTeacherList();
 	}
 }

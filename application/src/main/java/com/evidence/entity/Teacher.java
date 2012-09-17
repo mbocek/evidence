@@ -42,14 +42,18 @@ import lombok.ToString;
 @ToString
 @Table(name = "TEACHER")
 @NamedQueries(value = { 
-	@NamedQuery(name = Teacher.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG, query = Teacher.QUERY_FIND_ALL_BY_DELETED_FLAG) 
+	@NamedQuery(name = Teacher.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG, query = Teacher.QUERY_FIND_ALL_BY_DELETED_FLAG), 
+	@NamedQuery(name = Teacher.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG, query = Teacher.QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG) 
 })
 public class Teacher extends Person {
 
 	private static final long serialVersionUID = 1L;
 
 	public static final String QUERY_NAME_FIND_ALL_BY_DELETED_FLAG = "Teacher.finaAllByDeletedFlag";   
-	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT t FROM Teacher t WHERE t.deleted = :deleted";   
+	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT t FROM Teacher t WHERE t.deleted = :deleted";
+
+	public static final String QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "Teacher.finaAllByKindergartenIdAndDeletedFlag";
+	public static final String QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "SELECT t FROM Teacher t WHERE t.kindergarten.id = :kindergartenId AND t.deleted = :deleted";
 	
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter

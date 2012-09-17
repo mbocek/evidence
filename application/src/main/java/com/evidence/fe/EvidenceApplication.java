@@ -18,6 +18,8 @@
  */
 package com.evidence.fe;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +33,23 @@ import org.vaadin.mvp.uibinder.resource.spring.SpringUiMessageSource;
 import com.evidence.fe.main.MainPresenter;
 
 /**
+ * Entry point to application.
+ * Implement handling initialization of application.
  * @author Michal Bocek
  * @since 1.0.0
  */
+@Slf4j
 @Component("springMvpApp")
 @Scope("prototype")
 @Configurable(preConstruction = true)
-@Slf4j
 public class EvidenceApplication extends SpringMvpApplication {
 
 	private static final long serialVersionUID = -1814298499647961355L;
 
 	private transient MainPresenter mainPresenter; // NOPMD
+	
+	@Getter @Setter
+	private Long kindergartenId; 
 
 	@Autowired
 	private MessageSource messageSource;

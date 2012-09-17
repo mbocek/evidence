@@ -44,12 +44,24 @@ public class TeacherDAO extends JpaDAO<Teacher, Long> {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Teacher> findAll(final boolean deleted) {
-		if (log.isTraceEnabled()) {
-			log.trace("Reading all teachers with deleted flag:{}", deleted);
-		}
-		
+		log.trace("Reading all teachers with deleted flag:{}", deleted);
 		final Query query = this.entityManager.createNamedQuery(Teacher.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG).
 				setParameter("deleted", deleted);
+		return query.getResultList();
+	}
+
+	/**
+	 * Find all teachers for kindergarten id.
+	 * @param id
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Teacher> findByKindergartenId(Long id) {
+		log.trace("Reading all teachers by kindergarten id:{}", id);		
+		final Query query = this.entityManager.
+				createNamedQuery(Teacher.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG).
+				setParameter("kindergartenId", id).
+				setParameter("deleted", false);
 		return query.getResultList();
 	}
 }

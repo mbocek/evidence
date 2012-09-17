@@ -47,6 +47,11 @@ public class TeacherService {
 		return DTOConverter.convertList(teachers, TeacherDTO.class);
 	}
 
+	public List<TeacherDTO> findByKindergartenId(Long id) {
+		final List<Teacher> teachers = teacherDao.findByKindergartenId(id);
+		return DTOConverter.convertList(teachers, TeacherDTO.class);
+	}
+
 	@Transactional
 	public void createOrUpdateTeacher(final TeacherDTO teacherDTO) {
 		Teacher teacher;

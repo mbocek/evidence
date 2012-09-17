@@ -32,6 +32,7 @@ import org.vaadin.mvp.presenter.IPresenterFactory;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.evidence.dto.KindergartenDTO;
+import com.evidence.fe.ApplicationConstants;
 import com.evidence.fe.EvidenceApplication;
 import com.evidence.fe.menu.MenuPresenter;
 import com.evidence.service.KindergartenService;
@@ -71,7 +72,6 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 		layoutPanel.setSplitPosition(25, HorizontalSplitPanel.UNITS_PERCENTAGE);
 
 		componentLocation();
-		populateKindergartenSelect();
 	}
 	
 	
@@ -82,6 +82,7 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 		// set the applications main windows (the view)
 		this.application.setMainWindow((Window) this.view);
 
+		populateKindergartenSelect();
 		//this.application.setTheme("my-chameleon");
 		
 		// load the menu presenter
@@ -97,8 +98,13 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 	}
 
 	private void populateKindergartenSelect() {
+		Select kindergartenSelect = this.getView().getKindergarten();
+		kindergartenSelect.addItem(ApplicationConstants.SELECT_ALL);
+		kindergartenSelect.setItemCaption(ApplicationConstants.SELECT_ALL,
+				this.getMessage("kindergarten.select.all", this.getLocale()));
+		kindergartenSelect.select(ApplicationConstants.SELECT_ALL);
+
 		for (KindergartenDTO kindergarten : kindergartenService.getAll()) {
-			Select kindergartenSelect = this.getView().getKindergarten();
 			kindergartenSelect.addItem(kindergarten.getId());
 			kindergartenSelect.setItemCaption(kindergarten.getId(), kindergarten.getName());
 		}
@@ -122,7 +128,6 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 	}
 	
 	public void onSelectKindergarten(ValueChangeEvent event) {
-		log.info("Selecting kindergarten");
-		log.info("Selected: {}", event.getProperty());
+		this.application.setKindergartenId(Long.valueOf(event.getProperty().getValue().toString()));
 	}
 }

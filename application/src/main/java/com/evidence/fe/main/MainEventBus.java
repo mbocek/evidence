@@ -24,6 +24,7 @@ import org.vaadin.mvp.presenter.BasePresenter;
 
 import com.evidence.fe.EvidenceApplication;
 import com.evidence.fe.menu.MenuPresenter;
+import com.evidence.fe.teacher.TeacherPresenter;
 import com.vaadin.ui.Field.ValueChangeEvent;
 
 /**
@@ -44,6 +45,6 @@ public interface MainEventBus extends EventBus {
 	@Event(handlers = { MainPresenter.class })
 	void close();
 	
-	@Event(handlers = { MainPresenter.class })
+	@Event(handlers = { MainPresenter.class, TeacherPresenter.class })
 	void selectKindergarten(ValueChangeEvent event);	
 }
