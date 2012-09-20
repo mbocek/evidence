@@ -20,6 +20,8 @@ package com.evidence.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -53,7 +55,6 @@ public class ResponsiblePerson extends Person {
 	private Contact contact;
 	
 	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TYPE_ID", nullable = false)
+	@Enumerated(value = EnumType.STRING)
 	private ResponsibilityType type;
 }

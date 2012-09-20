@@ -46,9 +46,6 @@ public class ResponsiblePersonDAOTest extends DbUnitDaoTest {
     private ResponsiblePersonDAO personDAO;
     
     @Inject
-    private ResponsibilityTypeDAO responsibilityTypeDAO;
-    
-    @Inject
     private ContactDAO contactDAO;
     
     @Inject
@@ -56,17 +53,17 @@ public class ResponsiblePersonDAOTest extends DbUnitDaoTest {
     
 	@Test
 	public void testCreate() {
-		final ResponsibilityType father = responsibilityTypeDAO.read(ResponsibilityType.Type.FATHER.name());
 		final Contact contact = contactDAO.read(1L);
 		final ResponsiblePerson person = new ResponsiblePerson();
 		final Kindergarten kindergarten = kindergartenDAO.read(1L);
 		person.setName("name");
 		person.setSurName("surName");
 		person.setKindergarten(kindergarten);
-		person.setType(father);
+		person.setType(ResponsibilityType.MOTHER);
 		person.setContact(contact);
 		personDAO.create(person);
 		assertEquals(personDAO.findAll().get(0).getName(), "name");
+		assertEquals(personDAO.findAll().get(0).getType(), ResponsibilityType.MOTHER);
 	}
 
 	@Test

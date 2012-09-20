@@ -83,7 +83,20 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
-				<liquibase.context></liquibase.context>
+				<liquibase.context>test</liquibase.context>
+				<liquibase.database.jdbc.driver>org.hsqldb.jdbcDriver</liquibase.database.jdbc.driver>
+				<liquibase.database.jdbc.url>jdbc:hsqldb:file:/tmp/testdb/ekolandiaDB;shutdown=true</liquibase.database.jdbc.url>
+				<liquibase.database.jdbc.user>sa</liquibase.database.jdbc.user>
+				<liquibase.database.jdbc.password></liquibase.database.jdbc.password>
+			</properties>
+  		</profile>
+		<profile>
+			<id>test-deploy</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<liquibase.context>production</liquibase.context>
 				<liquibase.database.jdbc.driver>com.mysql.jdbc.Driver</liquibase.database.jdbc.driver>
 				<liquibase.database.jdbc.url>jdbc:mysql://localhost:3306/test</liquibase.database.jdbc.url>
 				<liquibase.database.jdbc.user>root</liquibase.database.jdbc.user>

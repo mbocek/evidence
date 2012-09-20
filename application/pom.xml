@@ -73,7 +73,7 @@
 						<exclude>**/DbUnitDaoTest.java</exclude>
 					</excludes>
 					<forkMode>once</forkMode>
-					<reportFormat>xml</reportFormat>
+					<!-- reportFormat>xml</reportFormat-->
 				</configuration>
 			</plugin>			
 			<!-- Compiles your custom GWT components with the GWT compiler -->

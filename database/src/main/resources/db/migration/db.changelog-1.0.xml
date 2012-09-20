@@ -4,20 +4,6 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 						http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-	<changeSet id="create: responsibility_type" author="mbocek">
-		<createTable tableName="RESPONSIBILITY_TYPE" remarks="Codelist for responsibility types">
-			<column name="CODE" type="VARCHAR(50)" remarks="Code of responsibility">
-				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_RESPONSIBILITY_TYPE" />
-			</column>
-			<column name="NAME" type="VARCHAR(100)" remarks="Responsibility type">
-				<constraints nullable="false" />
-			</column>
-		</createTable>
-		<modifySql dbms="mysql">
-			<append value=" engine innodb"/>
-		</modifySql>
-	</changeSet>
-
 	<changeSet id="create: state" author="mbocek">
 		<createTable tableName="STATE" remarks="Codelist for states">
 			<column name="CODE" type="VARCHAR(2)" remarks="Two char ISO code of state">
@@ -27,9 +13,6 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
-		<modifySql dbms="mysql">
-			<append value=" engine innodb"/>
-		</modifySql>
 	</changeSet>
 		
 	<changeSet id="create: address" author="mbocek">
@@ -113,7 +96,7 @@
 			<column name="CONTACT_ID" type="BIGINT" remarks="Reference to contact">
 				<constraints nullable="false" />
 			</column>
-			<column name="TYPE_ID" type="VARCHAR(50)" remarks="Reference to responsiblity type">
+			<column name="TYPE" type="VARCHAR(50)" remarks="responsiblity type">
 				<constraints nullable="false" />
 			</column>
 		</createTable>
@@ -127,12 +110,6 @@
 			constraintName="FK_RESPONSIBLE_PERSON_CONTACT" deferrable="false" initiallyDeferred="false"
 			onDelete="NO ACTION" onUpdate="NO ACTION" 
 			referencedColumnNames="ID" referencedTableName="CONTACT"
-			referencesUniqueColumn="false" />
-
-		<addForeignKeyConstraint baseColumnNames="TYPE_ID" baseTableName="RESPONSIBLE_PERSON"
-			constraintName="FK_RESPONSIBLE_PERSON_TYPE" deferrable="false" initiallyDeferred="false"
-			onDelete="NO ACTION" onUpdate="NO ACTION" 
-			referencedColumnNames="CODE" referencedTableName="RESPONSIBILITY_TYPE"
 			referencesUniqueColumn="false" />
 	</changeSet>
 

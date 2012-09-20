@@ -16,10 +16,16 @@ Database deployment
 mvn clean process-resources liquibase:update
 +-----+
 
+* For generate schema for running tests
+
++-----+
+mvn clean process-resources liquibase:update -Ptest
++-----+
+
 * For generate sql scripts for test environment
 
 +-----+
-mvn clean process-resources liquibase:updateSQL -Ptest
+mvn clean process-resources liquibase:updateSQL -Ptest-deploy
 +-----+
 
 	You can find generated sql file in:

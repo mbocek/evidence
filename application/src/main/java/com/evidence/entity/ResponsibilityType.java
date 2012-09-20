@@ -32,23 +32,7 @@ import lombok.ToString;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Entity
-@Table(name = "RESPONSIBILITY_TYPE")
-@ToString
-public class ResponsibilityType implements Serializable {
+public enum ResponsibilityType {
 
-	private static final long serialVersionUID = 1L;
-	
-	public enum Type {
-		MOTHER, FATHER, RESPONSIBLE_PERSON;
-	}
-
-	@Id
-	@Getter
-	@Column(unique = true, nullable = false, length = 50)
-	private String code;
-
-	@Getter
-	@Column(nullable = false, length = 100)
-	private String name;
+	MOTHER, FATHER, RESPONSIBLE_PERSON;
 }
