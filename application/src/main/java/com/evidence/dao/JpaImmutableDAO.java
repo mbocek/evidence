@@ -41,15 +41,23 @@ import org.slf4j.LoggerFactory;
 public class JpaImmutableDAO<T, Id extends Serializable> {
 
 	private static final Logger log = LoggerFactory.getLogger(JpaImmutableDAO.class); // NOPMD
-	protected final Class<T> entityClass;
+	private final Class<T> entityClass;
 
 	@PersistenceContext(name = "entityManagerFactory")
-	protected EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	public JpaImmutableDAO() {
 		final ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
 		this.entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
+	}
+	
+	/**
+	 * Return entity manager.
+	 * @return
+	 */
+	protected EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 	/**

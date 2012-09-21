@@ -38,7 +38,7 @@ public class JpaDAO<T, Id extends Serializable> extends JpaImmutableDAO<T, Id> {
 			log.trace("Creating entity: " + entity.getClass());
 			log.trace("  With contents: " + String.valueOf(entity)); // NOPMD
 		}
-		this.entityManager.persist(entity);
+		this.getEntityManager().persist(entity);
 	}
 
 	public void delete(final T entity) {
@@ -46,7 +46,7 @@ public class JpaDAO<T, Id extends Serializable> extends JpaImmutableDAO<T, Id> {
 			log.trace("Deleting entity: " + entity.getClass());
 			log.trace("  With contents: " + String.valueOf(entity)); // NOPMD
 		}
-		this.entityManager.remove(entity);
+		this.getEntityManager().remove(entity);
 	}
 
 	public T update(final T entity) {
@@ -54,6 +54,6 @@ public class JpaDAO<T, Id extends Serializable> extends JpaImmutableDAO<T, Id> {
 			log.trace("Updating entity: " + entity.getClass());
 			log.trace("  With contents: " + String.valueOf(entity)); // NOPMD
 		}
-		return this.entityManager.merge(entity);
+		return this.getEntityManager().merge(entity);
 	}
 }

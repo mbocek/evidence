@@ -32,13 +32,21 @@ public class EvidenceFormFieldFactory extends DefaultFieldFactory {
 
 	private static final long serialVersionUID = 1L;
 
-	protected IUiMessageSource messageSource;
+	private IUiMessageSource messageSource;
 	
-	protected Locale locale;
+	private Locale locale;
 
 	public EvidenceFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
 		super();
 		this.messageSource = messageSource;
 		this.locale = locale;
+	}
+	
+	protected Locale getLocale() {
+		return locale;
+	}
+	
+	protected IUiMessageSource getMessageSource() {
+		return messageSource;
 	}
 }

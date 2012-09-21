@@ -48,7 +48,7 @@ public class KindergartenDAO extends JpaDAO<Kindergarten, Long> {
 			log.trace("Reading all kindergartens with deleted flag:{}", deleted);
 		}
 		
-		final Query query = this.entityManager.createNamedQuery(Kindergarten.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG).
+		final Query query = this.getEntityManager().createNamedQuery(Kindergarten.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG).
 				setParameter("deleted", deleted);
 		return query.getResultList();
 	}
