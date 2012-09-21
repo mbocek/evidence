@@ -30,8 +30,8 @@ import org.vaadin.mvp.presenter.ViewFactoryException;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.evidence.dto.KindergartenDTO;
-import com.evidence.fe.annotation.MetaModel;
 import com.evidence.fe.form.EvidenceForm;
+import com.evidence.fe.form.MetaModel;
 import com.evidence.service.FormMetaModelService;
 import com.evidence.service.KindergartenService;
 import com.vaadin.data.util.BeanItem;

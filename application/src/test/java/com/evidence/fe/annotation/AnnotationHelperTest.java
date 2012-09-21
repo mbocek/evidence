@@ -29,7 +29,9 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import com.evidence.fe.form.AnnotationHelper;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
+import com.evidence.fe.form.FieldInfo;
 
 /**
  * @author Michal Bocek
@@ -40,7 +42,7 @@ public class AnnotationHelperTest {
 	private final TestModel testModel = new TestModel();
 
 	/**
-	 * Test method for {@link com.evidence.fe.annotation.AnnotationHelper#isAutomaticForm(com.evidence.fe.form.Model)}.
+	 * Test method for {@link com.evidence.fe.form.AnnotationHelper#isAutomaticForm(com.evidence.fe.form.Model)}.
 	 */
 	@Test
 	public void testIsAutomaticForm() {
@@ -49,7 +51,7 @@ public class AnnotationHelperTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.fe.annotation.AnnotationHelper#getFormFieldFactory(com.evidence.fe.form.Model)}.
+	 * Test method for {@link com.evidence.fe.form.AnnotationHelper#getFormFieldFactory(com.evidence.fe.form.Model)}.
 	 */
 	@Test
 	public void testGetFormFieldFactory() {
@@ -58,7 +60,7 @@ public class AnnotationHelperTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.fe.annotation.AnnotationHelper#buildOrderedMap(com.evidence.fe.form.Model, java.util.Map)}.
+	 * Test method for {@link com.evidence.fe.form.AnnotationHelper#buildOrderedMap(com.evidence.fe.form.Model, java.util.Map)}.
 	 */
 	@Test
 	public void testBuildOrderedMap() {

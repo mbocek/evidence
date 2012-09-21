@@ -27,9 +27,9 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.evidence.fe.annotation.AutomaticForm;
-import com.evidence.fe.annotation.Caption;
-import com.evidence.fe.annotation.Order;
+import com.evidence.fe.form.AutomaticForm;
+import com.evidence.fe.form.Caption;
+import com.evidence.fe.form.Order;
 
 /**
  * @author Michal Bocek

@@ -31,8 +31,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.Validator;
 import org.vaadin.mvp.uibinder.IUiMessageSource;
 
-import com.evidence.fe.annotation.FieldInfo;
-import com.evidence.fe.annotation.MetaModel;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.NestedMethodProperty;
 import com.vaadin.terminal.UserError;

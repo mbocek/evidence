@@ -16,33 +16,47 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.annotation;
+package com.evidence.fe.form;
 
-import java.util.Comparator;
-import java.util.Map;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class ValueComparator implements Comparator<String> {
+@ToString
+@AllArgsConstructor
+public class FieldInfo {
+	
+	@Getter
+	private String fieldName;
+	
+	@Getter
+	private String fieldNestedName;
 
-	private final Map<String, Double> base;
+	@Getter
+	private Long order;
+	
+	@Getter
+	private String caption;
+	
+	@Getter
+	private Boolean required;
 
-	public ValueComparator(final Map<String, Double> base) {
-		this.base = base;
-	}
+	@Getter
+	private Boolean validated;
 
-	@Override
-	public int compare(final String key1, final String key2) {
-		int result;
-		if (base.get(key1) < base.get(key2)) {
-			result = -1;
-		} else if (base.get(key1).equals(base.get(key2))) {
-			result = 0;
-		} else {
-			result = 1;
-		}		
-		return result;
+	@Getter
+	private Boolean nestedField;
+
+	@Getter
+	private List<FieldInfo> subFieldInfo; 
+	
+	public boolean isNested() {
+		return !this.getFieldName().equals(this.getFieldNestedName());
 	}
 }

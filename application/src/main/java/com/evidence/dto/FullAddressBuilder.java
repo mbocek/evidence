@@ -16,47 +16,32 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.annotation;
-
-import java.util.List;
+package com.evidence.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@ToString
 @AllArgsConstructor
-public class FieldInfo {
-	
-	@Getter
-	private String fieldName;
-	
-	@Getter
-	private String fieldNestedName;
+public class FullAddressBuilder {
 
-	@Getter
-	private Long order;
+	private static final String ADDRESS_SEPARATOR = ", ";
 	
-	@Getter
-	private String caption;
+	private AddressDTO address;
+
+	public String getFullAddress() {
+		final StringBuffer result = new StringBuffer(address.getStreet() == null ? "" : address.getStreet());
+		result.append(appendString(address.getHouseNumber()));
+		result.append(appendString(address.getCity()));
+		result.append(appendString(address.getZipCode()));
+		result.append(appendString(address.getState().getName()));
+		return result.toString();
+	}
 	
-	@Getter
-	private Boolean required;
-
-	@Getter
-	private Boolean validated;
-
-	@Getter
-	private Boolean nestedField;
-
-	@Getter
-	private List<FieldInfo> subFieldInfo; 
-	
-	public boolean isNested() {
-		return !this.getFieldName().equals(this.getFieldNestedName());
+	private String appendString(final String data) {
+		return (data == null) ? "" : ADDRESS_SEPARATOR + data;
 	}
 }

@@ -16,23 +16,33 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.annotation;
+package com.evidence.fe.form;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.util.Comparator;
+import java.util.Map;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Target(ElementType.FIELD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface Order {
+public class ValueComparator implements Comparator<String> {
 
-	/**
-	 * @return value the element must be higher or equal to
-	 */
-	long value();
+	private final Map<String, Double> base;
+
+	public ValueComparator(final Map<String, Double> base) {
+		this.base = base;
+	}
+
+	@Override
+	public int compare(final String key1, final String key2) {
+		int result;
+		if (base.get(key1) < base.get(key2)) {
+			result = -1;
+		} else if (base.get(key1).equals(base.get(key2))) {
+			result = 0;
+		} else {
+			result = 1;
+		}		
+		return result;
+	}
 }

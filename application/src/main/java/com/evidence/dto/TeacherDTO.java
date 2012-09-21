@@ -29,13 +29,11 @@ import lombok.ToString;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.evidence.fe.annotation.AutomaticForm;
-import com.evidence.fe.annotation.Caption;
-import com.evidence.fe.annotation.Order;
+import com.evidence.fe.form.AutomaticForm;
+import com.evidence.fe.form.Caption;
 import com.evidence.fe.form.Model;
+import com.evidence.fe.form.Order;
 import com.evidence.fe.teacher.TeacherDetailFormFieldFactory;
-import com.evidence.utility.builder.FullAddressBuilder;
-import com.evidence.utility.builder.FullNameBuilder;
 
 /**
  * @author Michal Bocek

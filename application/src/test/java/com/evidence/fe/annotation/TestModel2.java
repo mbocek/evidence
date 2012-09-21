@@ -24,8 +24,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.evidence.fe.form.AutomaticForm;
+import com.evidence.fe.form.Caption;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
 import com.evidence.fe.form.Model;
+import com.evidence.fe.form.Order;
 
 /**
  * @author Michal Bocek

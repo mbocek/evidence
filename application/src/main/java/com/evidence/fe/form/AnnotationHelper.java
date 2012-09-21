@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.annotation;
+package com.evidence.fe.form;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.evidence.fe.form.Model;
+import com.evidence.utility.FieldUtils;
 import com.vaadin.ui.FormFieldFactory;
 
 /**

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.annotation;
+package com.evidence.utility;
 
 import java.lang.reflect.Field;
 

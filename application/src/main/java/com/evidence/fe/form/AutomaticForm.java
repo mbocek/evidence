@@ -16,31 +16,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.annotation;
+package com.evidence.fe.form;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+
 /**
- * Annotation for marking field as caption.
- * Parameter is resource name. 
- * 
- * <code>
- * @Caption("window.name")
- * </code>
- * 
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Caption {
-	
+public @interface AutomaticForm {
+
 	/**
-	 * Resource name.
-	 * @return value of resource
+	 * @return descendant of FormFieldFactory
 	 */
-	String value() default "";	
+	Class<? extends EvidenceFormFieldFactory> formFieldFactory() default EvidenceFormFieldFactory.class;	
 }

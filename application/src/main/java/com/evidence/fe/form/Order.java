@@ -16,25 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.annotation;
+package com.evidence.fe.form;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.evidence.fe.form.EvidenceFormFieldFactory;
-
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AutomaticForm {
+public @interface Order {
 
 	/**
-	 * @return descendant of FormFieldFactory
+	 * @return value the element must be higher or equal to
 	 */
-	Class<? extends EvidenceFormFieldFactory> formFieldFactory() default EvidenceFormFieldFactory.class;	
+	long value();
 }

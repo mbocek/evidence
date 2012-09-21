@@ -27,9 +27,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Service;
 
-import com.evidence.fe.annotation.AnnotationHelper;
-import com.evidence.fe.annotation.FieldInfo;
-import com.evidence.fe.annotation.MetaModel;
+import com.evidence.fe.form.AnnotationHelper;
+import com.evidence.fe.form.FieldInfo;
+import com.evidence.fe.form.MetaModel;
 import com.evidence.fe.form.Model;
 import com.vaadin.ui.FormFieldFactory;
 
