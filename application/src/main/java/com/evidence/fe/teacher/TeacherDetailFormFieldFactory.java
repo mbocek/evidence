@@ -30,7 +30,6 @@ import com.evidence.dto.StateDTO;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
 import com.evidence.service.ServiceHolder;
 import com.vaadin.data.Item;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Select;

@@ -22,14 +22,13 @@ import org.vaadin.mvp.uibinder.IUiBindable;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
 import com.evidence.fe.form.EvidenceForm;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class KindergartenDetail extends VerticalLayout implements Layout, IUiBindable, IKindergartenDetail {
+public class KindergartenDetail extends VerticalLayout implements IUiBindable, IKindergartenDetail {
 
 	private static final long serialVersionUID = 6155789894644060488L;
 

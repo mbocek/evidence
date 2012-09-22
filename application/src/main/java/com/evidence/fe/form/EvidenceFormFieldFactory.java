@@ -32,7 +32,7 @@ public class EvidenceFormFieldFactory extends DefaultFieldFactory {
 
 	private static final long serialVersionUID = 1L;
 
-	private IUiMessageSource messageSource;
+	private transient IUiMessageSource messageSource;
 	
 	private Locale locale;
 

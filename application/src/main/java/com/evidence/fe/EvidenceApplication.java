@@ -52,7 +52,7 @@ public class EvidenceApplication extends SpringMvpApplication {
 	private Long kindergartenId; 
 
 	@Autowired
-	private MessageSource messageSource;
+	private transient MessageSource messageSource;
 
 	@Override
 	public void preInit() {

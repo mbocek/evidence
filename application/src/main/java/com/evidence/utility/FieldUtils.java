@@ -91,7 +91,7 @@ public final class FieldUtils {
 	public static void setField(final Object object, final String fieldName, final Object value) 
 			throws NoSuchFieldException, IllegalAccessException {
 		final Field field = object.getClass().getDeclaredField(fieldName);
-		field.setAccessible(true);
+		field.setAccessible(true); // NOPMD
 		field.set(object, value);
 	}
 }

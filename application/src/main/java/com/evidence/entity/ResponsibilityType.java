@@ -18,16 +18,6 @@
  */
 package com.evidence.entity;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import lombok.Getter;
-import lombok.ToString;
-
 /**
  * @author Michal Bocek
  * @since 1.0.0

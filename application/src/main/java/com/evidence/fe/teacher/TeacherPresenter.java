@@ -83,7 +83,7 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 
 	private void loadTeacherList() {
 		List<TeacherDTO> teachers; 
-		if (getKindergartenId() == ApplicationConstants.SELECT_ALL) {
+		if (getKindergartenId().longValue() == ApplicationConstants.SELECT_ALL.longValue()) {
 			teachers = teacherService.getAll();
 		} else {
 			teachers = teacherService.findByKindergartenId(getKindergartenId());

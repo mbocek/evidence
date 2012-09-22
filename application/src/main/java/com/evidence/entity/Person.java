@@ -51,7 +51,7 @@ public abstract class Person implements Serializable { // NOPMD
 	@Getter @Setter
 	@Temporal(TemporalType.DATE)
 	@Column(name = "BIRTH_DATE")
-	private Date birthDate;
+	private Date birthDate; // NOPMD
 
 	@Getter	@Setter
 	@Column(name = "DELETED", nullable = false)

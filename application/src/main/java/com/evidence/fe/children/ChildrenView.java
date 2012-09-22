@@ -22,14 +22,13 @@ import org.vaadin.mvp.uibinder.IUiBindable;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
 import com.vaadin.ui.Form;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class ChildrenView extends VerticalLayout implements Layout, IUiBindable, IChildrenView {
+public class ChildrenView extends VerticalLayout implements IUiBindable, IChildrenView {
 
 	private static final long serialVersionUID = 6155789894644060488L;
 

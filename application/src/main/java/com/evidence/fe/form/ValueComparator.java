@@ -18,6 +18,7 @@
  */
 package com.evidence.fe.form;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Map;
 
@@ -25,7 +26,9 @@ import java.util.Map;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class ValueComparator implements Comparator<String> {
+public class ValueComparator implements Comparator<String>, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private final Map<String, Double> base;
 
