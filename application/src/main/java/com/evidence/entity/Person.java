@@ -48,10 +48,9 @@ public abstract class Person implements Serializable { // NOPMD
 	@Column(name = "SUR_NAME")
 	private String surName;
 	
-	@Getter @Setter
 	@Temporal(TemporalType.DATE)
 	@Column(name = "BIRTH_DATE")
-	private Date birthDate; // NOPMD
+	private Date birthDate;
 
 	@Getter	@Setter
 	@Column(name = "DELETED", nullable = false)
@@ -61,4 +60,12 @@ public abstract class Person implements Serializable { // NOPMD
 	@ManyToOne(cascade = { CascadeType.REFRESH }, optional = false)
 	@JoinColumn(name = "KINDERGARTEN_ID")
 	private Kindergarten kindergarten;
+	
+	public Date getBirthDate() {
+		return new Date(birthDate.getTime());
+	}
+	
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = new Date(birthDate.getTime());
+	}
 }

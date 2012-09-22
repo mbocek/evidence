@@ -42,6 +42,7 @@ import lombok.ToString;
  * @author Michal Bocek
  * @since 1.0.0
  */
+// CheckStyle:HideUtilityClassConstructorCheck OFF
 @Entity
 @ToString
 @NoArgsConstructor

@@ -36,7 +36,6 @@ import com.evidence.fe.ApplicationConstants;
 import com.evidence.fe.EvidenceApplication;
 import com.evidence.fe.menu.MenuPresenter;
 import com.evidence.service.KindergartenService;
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;

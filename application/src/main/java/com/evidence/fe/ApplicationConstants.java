@@ -23,5 +23,5 @@ package com.evidence.fe;
  * @since 1.0.0
  */
 public interface ApplicationConstants {
-	public static final Long SELECT_ALL = -1L;
+	static final Long SELECT_ALL = -1L;
 }

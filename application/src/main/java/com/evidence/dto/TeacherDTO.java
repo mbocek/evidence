@@ -65,13 +65,20 @@ public class TeacherDTO implements Model {
 	@Order(4)
 	@Caption
 	@NotNull
-	@Getter @Setter
 	private Date birthDate;
 	
 	@Order(5)
 	@Valid
 	@Getter @Setter
 	private ContactDTO contact = new ContactDTO();
+	
+	public Date getBirthDate() {
+		return new Date(birthDate.getTime());
+	}
+	
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = new Date(birthDate.getTime());
+	}
 
 	public String getFullName() {
 		return new FullNameBuilder(name, surName).getFullName();

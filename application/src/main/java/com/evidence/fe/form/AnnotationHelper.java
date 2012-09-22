@@ -42,6 +42,8 @@ import com.vaadin.ui.FormFieldFactory;
 public final class AnnotationHelper { // NOPMD
 
 	private static final String NESTED_SEPARATOR = ".";
+	private static final double TENTH = 0.1;
+	private static final double TEN = 10;
 
 	private AnnotationHelper() {
 	}
@@ -72,7 +74,7 @@ public final class AnnotationHelper { // NOPMD
 		
 		if (fields != null) {
 			for (FieldInfo fieldInfo : fields) {
-				buildOrderMapRecursively(orderMap, fieldInfo, 0L, 0.1);
+				buildOrderMapRecursively(orderMap, fieldInfo, 0L, TENTH);
 				buildCaptionMapRecursively(captionMap, fieldInfo);
 				buildRequiredMapRecursively(requiredMap, fieldInfo);
 				buildValidatedMapRecursively(validatedMap, fieldInfo);
@@ -162,7 +164,7 @@ public final class AnnotationHelper { // NOPMD
 				}
 			} else {
 				for (FieldInfo subfield : fieldInfo.getSubFieldInfo()) {
-					buildOrderMapRecursively(orderMap, subfield, fieldInfo.getOrder(), multiplier / 10);
+					buildOrderMapRecursively(orderMap, subfield, fieldInfo.getOrder(), multiplier / TEN);
 				}
 			}
 		}
