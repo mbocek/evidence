@@ -52,6 +52,7 @@ import com.vaadin.ui.Window;
 @Presenter(view = MainView.class)
 public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 
+	// CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 1 LINES
 	private static final Logger log = LoggerFactory.getLogger(MainPresenter.class); // NOPMD
 
 	private EvidenceApplication application;

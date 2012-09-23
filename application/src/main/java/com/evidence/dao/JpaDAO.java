@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
  */
 public class JpaDAO<T, Id extends Serializable> extends JpaImmutableDAO<T, Id> {
 	
+	// CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 1 LINES
 	private static final Logger log = LoggerFactory.getLogger(JpaDAO.class); // NOPMD 
 
 	public void create(final T entity) {

@@ -40,7 +40,9 @@ import org.slf4j.LoggerFactory;
  */
 public class JpaImmutableDAO<T, Id extends Serializable> {
 
+	// CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 1 LINES
 	private static final Logger log = LoggerFactory.getLogger(JpaImmutableDAO.class); // NOPMD
+	
 	private final Class<T> entityClass;
 
 	@PersistenceContext(name = "entityManagerFactory")

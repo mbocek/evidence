@@ -47,6 +47,7 @@ import com.vaadin.ui.Window;
 @Presenter(view = ChildrenListView.class)
 public class ChildrenPresenter extends FactoryPresenter<IChildrenListView, ChildrenEventBus> {
 
+	// CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 1 LINES
 	private static final Logger log = LoggerFactory.getLogger(ChildrenPresenter.class); // NOPMD
 
 	private BeanItemContainer<ChildrenDTO> container;
