@@ -27,6 +27,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -41,10 +43,20 @@ import lombok.ToString;
 @Entity
 @Table(name = "RESPONSIBLE_PERSON")
 @ToString
+@NamedQueries(value = { 
+	@NamedQuery(name = ResponsiblePerson.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG, query = ResponsiblePerson.QUERY_FIND_ALL_BY_DELETED_FLAG), 
+	@NamedQuery(name = ResponsiblePerson.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG, query = ResponsiblePerson.QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG) 
+})
 public class ResponsiblePerson extends Person {
 
 	private static final long serialVersionUID = 1L;
 
+	public static final String QUERY_NAME_FIND_ALL_BY_DELETED_FLAG = "ResponsiblePerson.finaAllByDeletedFlag";   
+	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT r FROM ResponsiblePerson r WHERE r.deleted = :deleted";
+
+	public static final String QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "ResponsiblePerson.finaAllByKindergartenIdAndDeletedFlag";
+	public static final String QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "SELECT r FROM ResponsiblePerson r WHERE r.kindergarten.id = :kindergartenId AND r.deleted = :deleted";
+	
 	@Getter
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

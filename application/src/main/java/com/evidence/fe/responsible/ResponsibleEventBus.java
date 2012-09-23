@@ -16,12 +16,36 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe;
+package com.evidence.fe.responsible;
+
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.eventbus.annotation.Event;
+
+import com.evidence.fe.main.MainPresenter;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.ui.Window;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface ApplicationConstants {
-	Long SELECT_ALL = -1L;
+public interface ResponsibleEventBus extends EventBus {
+
+	@Event(handlers = { ResponsiblePresenter.class })
+	void addResponsibile();
+
+	@Event(handlers = { ResponsiblePresenter.class })
+	void removeResponsibile();
+
+	@Event(handlers = { MainPresenter.class })
+	void showDialog(Window dialog);
+
+	@Event(handlers = { ResponsiblePresenter.class })
+	void saveResponsibile();
+
+	@Event(handlers = { ResponsiblePresenter.class })
+	void cancelEditResponsibile();
+	
+	@Event(handlers = { ResponsiblePresenter.class })
+	void editResponsibile(ItemClickEvent event);
 }

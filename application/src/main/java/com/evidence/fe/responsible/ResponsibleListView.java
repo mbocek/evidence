@@ -16,12 +16,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe;
+package com.evidence.fe.responsible;
+
+import lombok.Getter;
+
+import org.vaadin.mvp.uibinder.IUiBindable;
+import org.vaadin.mvp.uibinder.annotation.UiField;
+
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Table;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface ApplicationConstants {
-	Long SELECT_ALL = -1L;
+public class ResponsibleListView extends VerticalLayout implements IResponsibleListView, IUiBindable {
+
+	private static final long serialVersionUID = 3807396569678708848L;
+
+	@UiField
+	@Getter
+	private Table responsibleList;
+
+	@UiField
+	@Getter
+	private HorizontalLayout buttonBar;
+
+	@UiField
+	@Getter
+	private Label expander;
 }

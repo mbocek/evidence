@@ -29,6 +29,7 @@ import org.vaadin.mvp.presenter.annotation.Presenter;
 
 import com.evidence.fe.kindergarten.KindergartenPresenter;
 import com.evidence.fe.main.MainEventBus;
+import com.evidence.fe.responsible.ResponsiblePresenter;
 import com.evidence.fe.teacher.TeacherPresenter;
 import com.evidence.service.KindergartenService;
 import com.vaadin.ui.Field.ValueChangeEvent;
@@ -54,6 +55,7 @@ public class MenuPresenter extends FactoryPresenter<IMenuView, MainEventBus> {
 		//for (KindergartenDTO kindergartenDTO : kindergartens) {
 		//	MenuEntry kindergarten = addEntry(tree, kindergartenMenu, Boolean.TRUE, kindergartenDTO.getName(), null);
 		addEntry(tree, null, Boolean.FALSE, this.getMessage("menu.teacher", this.getLocale()), TeacherPresenter.class);
+		addEntry(tree, null, Boolean.FALSE, this.getMessage("menu.responsible", this.getLocale()), ResponsiblePresenter.class);
 		//}
 	}
 	

@@ -16,12 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe;
+package com.evidence.fe.responsible;
+
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.Table;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface ApplicationConstants {
-	Long SELECT_ALL = -1L;
+public interface IResponsibleListView extends Layout {
+
+	Table getResponsibleList();
+	
+	HorizontalLayout getButtonBar();
+	
+	Label getExpander();
 }

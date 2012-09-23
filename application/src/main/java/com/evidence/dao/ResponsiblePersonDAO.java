@@ -18,16 +18,51 @@
  */
 package com.evidence.dao;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Repository;
 
 import com.evidence.entity.ResponsiblePerson;
-
+import com.evidence.entity.Teacher;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
+@Slf4j
 @Repository("responsiblePersonDAO")
 public class ResponsiblePersonDAO extends JpaDAO<ResponsiblePerson, Long> {
-	
+
+	/**
+	 * Find all responsible person. Query is based on delete flag.
+	 * @param deleted when true return also deleted data.
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ResponsiblePerson> findAll(final boolean deleted) {
+		log.trace("Reading all responsible persons with deleted flag:{}", deleted);
+		final Query query = this.getEntityManager().createNamedQuery(ResponsiblePerson.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG).
+				setParameter("deleted", deleted);
+		return query.getResultList();
+	}
+
+	/**
+	 * Find all responsible persons for kindergarten id.
+	 * @param id
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ResponsiblePerson> findByKindergartenId(Long id) {
+		log.trace("Reading all responsible persons by kindergarten id:{}", id);		
+		final Query query = this.getEntityManager().
+				createNamedQuery(ResponsiblePerson.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG).
+				setParameter("kindergartenId", id).
+				setParameter("deleted", false);
+		return query.getResultList();
+	}
+
 }
