@@ -71,8 +71,8 @@ public class ResponsiblePresenter extends FactoryPresenter<IResponsibleListView,
 		final Table responsiblePersonList = this.view.getResponsibleList();
 		container = new BeanItemContainer<ResponsiblePersonDTO>(ResponsiblePersonDTO.class);
 		responsiblePersonList.setContainerDataSource(container);
-		responsiblePersonList.setColumnHeader("fullName", this.getMessage("repsonsibility.list.header.fullName", this.getLocale()));
-		responsiblePersonList.setColumnHeader("fullAddress", this.getMessage("repsonsibility.list.header.fullAddress", this.getLocale()));
+		responsiblePersonList.setColumnHeader("fullName", this.getMessage("responsible.list.header.fullName", this.getLocale()));
+		responsiblePersonList.setColumnHeader("fullAddress", this.getMessage("responsible.list.header.fullAddress", this.getLocale()));
 		responsiblePersonList.setVisibleColumns(new String[] { "fullName", "fullAddress" });
 		loadTeacherList();
 	}
@@ -163,5 +163,4 @@ public class ResponsiblePresenter extends FactoryPresenter<IResponsibleListView,
 	public void onSelectKindergarten(ValueChangeEvent event) {
 		loadTeacherList();
 	}
-	
 }

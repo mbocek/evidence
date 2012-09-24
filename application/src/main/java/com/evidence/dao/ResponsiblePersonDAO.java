@@ -27,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import com.evidence.entity.ResponsiblePerson;
-import com.evidence.entity.Teacher;
 
 /**
  * @author Michal Bocek

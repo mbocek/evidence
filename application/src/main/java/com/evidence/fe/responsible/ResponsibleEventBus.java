@@ -32,20 +32,20 @@ import com.vaadin.ui.Window;
 public interface ResponsibleEventBus extends EventBus {
 
 	@Event(handlers = { ResponsiblePresenter.class })
-	void addResponsibile();
+	void addResponsible();
 
 	@Event(handlers = { ResponsiblePresenter.class })
-	void removeResponsibile();
+	void removeResponsible();
 
 	@Event(handlers = { MainPresenter.class })
 	void showDialog(Window dialog);
 
 	@Event(handlers = { ResponsiblePresenter.class })
-	void saveResponsibile();
+	void saveResponsible();
 
 	@Event(handlers = { ResponsiblePresenter.class })
-	void cancelEditResponsibile();
+	void cancelEditResponsible();
 	
 	@Event(handlers = { ResponsiblePresenter.class })
-	void editResponsibile(ItemClickEvent event);
+	void editResponsible(ItemClickEvent event);
 }
