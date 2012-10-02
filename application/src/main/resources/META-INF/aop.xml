@@ -1,0 +1,8 @@
+<!DOCTYPE aspectj PUBLIC    
+  "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">    
+
+<aspectj>    
+	<weaver options="-Xlint:ignore"> <!--  options="-showWeaveInfo" -->
+		<exclude within="*..*CGLIB*" />
+	</weaver> 
+</aspectj>
