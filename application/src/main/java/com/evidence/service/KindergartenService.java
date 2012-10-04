@@ -20,11 +20,12 @@ package com.evidence.service;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.evidence.dao.KindergartenDAO;
 import com.evidence.dto.KindergartenDTO;
@@ -32,23 +33,33 @@ import com.evidence.entity.Kindergarten;
 import com.evidence.utility.DTOConverter;
 
 /**
+ * Service for access to kindergarten data.
  * @author Michal Bocek
  * @since 1.0.0
  */
 @Service
+@Validated
 @Transactional(readOnly = true)
 public class KindergartenService {
 
 	@Autowired
 	private KindergartenDAO kindergartenDao;
 
+	/**
+	 * Get all non deleted kindergartens.
+	 * @return kindergartens
+	 */
 	public List<KindergartenDTO> getAll() {
 		final List<Kindergarten> kindergartens = kindergartenDao.findAll(false);
 		return DTOConverter.convertList(kindergartens, KindergartenDTO.class);
 	}
 
+	/**
+	 * Create or update kindergarten.  
+	 * @param kindergartenDTO
+	 */
 	@Transactional
-	public void createOrUpdateKindergarten(final KindergartenDTO kindergartenDTO) {
+	public void createOrUpdateKindergarten(@NotNull final KindergartenDTO kindergartenDTO) {
 		Kindergarten kindergarten;
 		if (kindergartenDTO.getId() == null) {
 			kindergarten = DTOConverter.convert(kindergartenDTO, Kindergarten.class); 
@@ -66,8 +77,7 @@ public class KindergartenService {
 	 * @param id
 	 * @return
 	 */
-	@Valid
-	public KindergartenDTO getById(final Long id) {
+	public KindergartenDTO getById(@NotNull final Long id) {
 		final Kindergarten kindergarten = kindergartenDao.read(id);
 		return DTOConverter.convert(kindergarten, KindergartenDTO.class);
 	}
@@ -77,7 +87,7 @@ public class KindergartenService {
 	 * @param id
 	 */
 	@Transactional
-	public void delete(final Long id) {
+	public void delete(@NotNull final Long id) {
 		Kindergarten kindergarten = kindergartenDao.findById(id);
 		kindergarten.setDeleted(Boolean.TRUE);
 		kindergartenDao.update(kindergarten);

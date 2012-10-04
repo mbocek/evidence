@@ -21,10 +21,12 @@ package com.evidence.service;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.evidence.dao.TeacherDAO;
 import com.evidence.dto.TeacherDTO;
@@ -32,10 +34,12 @@ import com.evidence.entity.Teacher;
 import com.evidence.utility.DTOConverter;
 
 /**
+ * Service for access to teacher data.
  * @author Michal Bocek
  * @since 1.0.0
  */
 @Service
+@Validated
 @Transactional(readOnly = true)
 public class TeacherService {
 
@@ -47,13 +51,13 @@ public class TeacherService {
 		return DTOConverter.convertList(teachers, TeacherDTO.class);
 	}
 
-	public List<TeacherDTO> findByKindergartenId(Long id) {
+	public List<TeacherDTO> findByKindergartenId(@NotNull final Long id) {
 		final List<Teacher> teachers = teacherDao.findByKindergartenId(id);
 		return DTOConverter.convertList(teachers, TeacherDTO.class);
 	}
 
 	@Transactional
-	public void createOrUpdateTeacher(final TeacherDTO teacherDTO) {
+	public void createOrUpdateTeacher(@NotNull final TeacherDTO teacherDTO) {
 		Teacher teacher;
 		if (teacherDTO.getId() == null) {
 			teacher = DTOConverter.convert(teacherDTO, Teacher.class); 
@@ -72,7 +76,7 @@ public class TeacherService {
 	 * @return
 	 */
 	@Valid
-	public TeacherDTO getById(final Long id) {
+	public TeacherDTO getById(@NotNull final Long id) {
 		final Teacher teacher = teacherDao.read(id);
 		return DTOConverter.convert(teacher, TeacherDTO.class);
 	}
@@ -82,7 +86,7 @@ public class TeacherService {
 	 * @param id
 	 */
 	@Transactional
-	public void delete(final Long id) {
+	public void delete(@NotNull final Long id) {
 		Teacher teacher = teacherDao.findById(id);
 		teacher.setDeleted(Boolean.TRUE);
 		teacherDao.update(teacher);

@@ -23,6 +23,7 @@
 	<context:property-placeholder location="classpath:/config.properties"/>
 	
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
 	
 	<bean id="serviceHolder" class="com.evidence.service.ServiceHolder" factory-method="getInstance" />
 </beans>

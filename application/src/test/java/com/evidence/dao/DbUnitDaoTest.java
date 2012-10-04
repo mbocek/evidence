@@ -41,13 +41,15 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/transaction.xml")
+@ContextConfiguration({"classpath:spring/transaction.xml", "classpath:spring/applicationConfig.xml"})
+@Transactional
 public class DbUnitDaoTest {
 
 	@PersistenceContext(name = "entityManagerFactory")

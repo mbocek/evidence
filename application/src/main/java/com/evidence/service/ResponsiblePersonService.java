@@ -21,10 +21,12 @@ package com.evidence.service;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.evidence.dao.ResponsiblePersonDAO;
 import com.evidence.dto.ResponsiblePersonDTO;
@@ -36,6 +38,7 @@ import com.evidence.utility.DTOConverter;
  * @since 1.0.0
  */
 @Service
+@Validated
 @Transactional(readOnly = true)
 public class ResponsiblePersonService {
 
@@ -47,13 +50,13 @@ public class ResponsiblePersonService {
 		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
 	}
 
-	public List<ResponsiblePersonDTO> findByKindergartenId(Long id) {
+	public List<ResponsiblePersonDTO> findByKindergartenId(@NotNull final Long id) {
 		final List<ResponsiblePerson> responsiblePersons = responsiblePersonDao.findByKindergartenId(id);
 		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
 	}
 
 	@Transactional
-	public void createOrUpdateTeacher(final ResponsiblePersonDTO responsiblePersonDTO) {
+	public void createOrUpdateTeacher(@NotNull final ResponsiblePersonDTO responsiblePersonDTO) {
 		ResponsiblePerson responsiblePerson;
 		if (responsiblePersonDTO.getId() == null) {
 			responsiblePerson = DTOConverter.convert(responsiblePersonDTO, ResponsiblePerson.class); 
@@ -72,7 +75,7 @@ public class ResponsiblePersonService {
 	 * @return
 	 */
 	@Valid
-	public ResponsiblePersonDTO getById(final Long id) {
+	public ResponsiblePersonDTO getById(@NotNull final Long id) {
 		final ResponsiblePerson responsiblePerson = responsiblePersonDao.read(id);
 		return DTOConverter.convert(responsiblePerson, ResponsiblePersonDTO.class);
 	}
@@ -82,7 +85,7 @@ public class ResponsiblePersonService {
 	 * @param id
 	 */
 	@Transactional
-	public void delete(final Long id) {
+	public void delete(@NotNull final Long id) {
 		ResponsiblePerson responsiblePerson = responsiblePersonDao.findById(id);
 		responsiblePerson.setDeleted(Boolean.TRUE);
 		responsiblePersonDao.update(responsiblePerson);

@@ -27,7 +27,6 @@ import javax.persistence.EntityNotFoundException;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.evidence.entity.Kindergarten;
 
@@ -35,7 +34,6 @@ import com.evidence.entity.Kindergarten;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Transactional
 public class KindergartenDAOTest extends DbUnitDaoTest {
 
 	@Inject

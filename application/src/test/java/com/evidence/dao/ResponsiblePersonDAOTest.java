@@ -23,10 +23,6 @@ import static org.junit.Assert.assertEquals;
 import javax.inject.Inject;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.evidence.entity.Contact;
 import com.evidence.entity.Kindergarten;
@@ -37,9 +33,6 @@ import com.evidence.entity.ResponsiblePerson;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Transactional
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/transaction.xml")
 public class ResponsiblePersonDAOTest extends DbUnitDaoTest {
 
     @Inject
