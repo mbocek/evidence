@@ -28,7 +28,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.junit.Test;
 
-import com.evidence.dao.DbUnitDaoTest;
+import com.evidence.dao.DbUnitTest;
 import com.evidence.dto.AddressDTO;
 import com.evidence.dto.ContactDTO;
 import com.evidence.dto.KindergartenDTO;
@@ -37,7 +37,7 @@ import com.evidence.dto.KindergartenDTO;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class KindergartenServiceTest extends DbUnitDaoTest {
+public class KindergartenServiceTest extends DbUnitTest {
 
 	@Inject
 	private KindergartenService kindergartenService;

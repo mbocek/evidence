@@ -17,6 +17,11 @@
 				<class-a>com.evidence.entity.Teacher</class-a>
 				<class-b>com.evidence.dto.TeacherDTO</class-b>
 			</converter>
+
+			<converter type="com.evidence.utility.converter.ResponsiblePersonConverter">
+				<class-a>com.evidence.entity.ResponsiblePerson</class-a>
+				<class-b>com.evidence.dto.ResponsiblePersonDTO</class-b>
+			</converter>
 		</custom-converters>
 	</configuration>
 	

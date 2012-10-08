@@ -18,8 +18,8 @@
  */
 package com.evidence.service;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.Date;
 import java.util.List;
@@ -28,7 +28,7 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 
-import com.evidence.dao.DbUnitDaoTest;
+import com.evidence.dao.DbUnitTest;
 import com.evidence.dto.AddressDTO;
 import com.evidence.dto.ContactDTO;
 import com.evidence.dto.TeacherDTO;
@@ -37,7 +37,7 @@ import com.evidence.dto.TeacherDTO;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class TeacherServiceTest extends DbUnitDaoTest {
+public class TeacherServiceTest extends DbUnitTest {
 
 	@Inject
 	private TeacherService teacherService;
@@ -54,9 +54,10 @@ public class TeacherServiceTest extends DbUnitDaoTest {
 	/**
 	 * Test method for {@link com.evidence.service.TeacherService#findByKindergartenId(java.lang.Long)}.
 	 */
-	//@Test
+	@Test
 	public void testFindByKindergartenId() {
-		fail("Not yet implemented");
+		List<TeacherDTO> teachers = teacherService.findByKindergartenId(1L);
+		assertTrue("List of teachers should contains some data!", teachers.size() > 0);
 	}
 
 	/**
@@ -88,17 +89,21 @@ public class TeacherServiceTest extends DbUnitDaoTest {
 	/**
 	 * Test method for {@link com.evidence.service.TeacherService#getById(java.lang.Long)}.
 	 */
-	//@Test
+	@Test
 	public void testGetById() {
-		fail("Not yet implemented");
+		TeacherDTO teacher = teacherService.getById(1L);
+		assertNotNull("Teacher object shouldn't be null!", teacher);
 	}
 
 	/**
 	 * Test method for {@link com.evidence.service.TeacherService#delete(java.lang.Long)}.
 	 */
-	//@Test
+	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
+		List<TeacherDTO> allBefore = teacherService.getAll();
+		teacherService.delete(1L);
+		List<TeacherDTO> allAfter = teacherService.getAll();
+		assertTrue("Teacher wasn't deleted", allAfter.size() == allBefore.size() - 1);
 	}
 
 }

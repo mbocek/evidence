@@ -19,13 +19,17 @@
 package com.evidence.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import javax.inject.Inject;
 
 import org.junit.Test;
 
+import com.evidence.entity.Address;
 import com.evidence.entity.Contact;
+import com.evidence.entity.EmailAddress;
 import com.evidence.entity.Kindergarten;
+import com.evidence.entity.PhoneNumber;
 import com.evidence.entity.ResponsibilityType;
 import com.evidence.entity.ResponsiblePerson;
 
@@ -33,7 +37,7 @@ import com.evidence.entity.ResponsiblePerson;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class ResponsiblePersonDAOTest extends DbUnitDaoTest {
+public class ResponsiblePersonDAOTest extends DbUnitTest {
 
     @Inject
     private ResponsiblePersonDAO personDAO;
@@ -44,23 +48,40 @@ public class ResponsiblePersonDAOTest extends DbUnitDaoTest {
     @Inject
     private KindergartenDAO kindergartenDAO;
     
+    @Inject
+    private StateDAO stateDAO;
+    
 	@Test
 	public void testCreate() {
-		final Contact contact = contactDAO.read(1L);
 		final ResponsiblePerson person = new ResponsiblePerson();
 		final Kindergarten kindergarten = kindergartenDAO.read(1L);
 		person.setName("name");
 		person.setSurName("surName");
 		person.setKindergarten(kindergarten);
 		person.setType(ResponsibilityType.MOTHER);
-		person.setContact(contact);
+		person.setContact(new Contact());
+		person.getContact().setEmail(new EmailAddress("test@test.com"));
+		person.getContact().setLandLine(new PhoneNumber("+43", "123456789"));
+		person.getContact().setMobilePhone(new PhoneNumber("+43", "123456789"));
+		person.getContact().setAddress(new Address());
+		person.getContact().getAddress().setCity("London");
+		person.getContact().getAddress().setHouseNumber("123");
+		person.getContact().getAddress().setState(stateDAO.findById("CZ"));
+		person.getContact().getAddress().setStreet("Baker street");
+		person.getContact().getAddress().setZipCode("12345");
 		personDAO.create(person);
-		assertEquals(personDAO.findAll().get(0).getName(), "name");
-		assertEquals(personDAO.findAll().get(0).getType(), ResponsibilityType.MOTHER);
+		ResponsiblePerson testPerson = null;
+		for (ResponsiblePerson responsiblePerson : personDAO.findAll()) {
+			if (responsiblePerson.getSurName().equals("surName")) {
+				testPerson = responsiblePerson;
+			}
+		}
+		assertEquals(testPerson.getName(), "name");
+		assertEquals(testPerson.getType(), ResponsibilityType.MOTHER);
 	}
 
 	@Test
 	public void testFindAll() {
-		assertEquals(0, personDAO.findAll().size());
+		assertTrue(personDAO.findAll().size() > 0);
 	}
 }

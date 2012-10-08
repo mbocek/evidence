@@ -74,7 +74,7 @@ public class ResponsiblePersonDTO implements Model {
 	private ContactDTO contact = new ContactDTO();
 	
 	@Getter @Setter
-	private ResponsibilityType type;
+	private String type;
 	
 	public Date getBirthDate() {
 		return new Date(birthDate.getTime());

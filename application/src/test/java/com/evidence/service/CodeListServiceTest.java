@@ -26,14 +26,14 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 
-import com.evidence.dao.DbUnitDaoTest;
+import com.evidence.dao.DbUnitTest;
 import com.evidence.dto.StateDTO;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class CodeListServiceTest extends DbUnitDaoTest {
+public class CodeListServiceTest extends DbUnitTest {
 
 	@Inject
 	private CodeListService codeListService;

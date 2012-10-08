@@ -46,16 +46,29 @@ public class TeacherService {
 	@Autowired
 	private TeacherDAO teacherDao;
 
+	/**
+	 * Get all non deleted teachers.
+	 * @return
+	 */
 	public List<TeacherDTO> getAll() {
 		final List<Teacher> teachers = teacherDao.findAll(false);
 		return DTOConverter.convertList(teachers, TeacherDTO.class);
 	}
 
+	/**
+	 * Find teachers by kindergarten. 
+	 * @param id
+	 * @return
+	 */
 	public List<TeacherDTO> findByKindergartenId(@NotNull final Long id) {
 		final List<Teacher> teachers = teacherDao.findByKindergartenId(id);
 		return DTOConverter.convertList(teachers, TeacherDTO.class);
 	}
 
+	/**
+	 * Create or update teacher.
+	 * @param teacherDTO
+	 */
 	@Transactional
 	public void createOrUpdateTeacher(@NotNull final TeacherDTO teacherDTO) {
 		Teacher teacher;

@@ -45,18 +45,31 @@ public class ResponsiblePersonService {
 	@Autowired
 	private ResponsiblePersonDAO responsiblePersonDao;
 
+	/**
+	 * Get all non deleted responsible persons.
+	 * @return
+	 */
 	public List<ResponsiblePersonDTO> getAll() {
 		final List<ResponsiblePerson> responsiblePersons = responsiblePersonDao.findAll(false);
 		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
 	}
 
+	/**
+	 * Find responsible persons by kindergarten. 
+	 * @param id
+	 * @return
+	 */
 	public List<ResponsiblePersonDTO> findByKindergartenId(@NotNull final Long id) {
 		final List<ResponsiblePerson> responsiblePersons = responsiblePersonDao.findByKindergartenId(id);
 		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
 	}
 
+	/**
+	 * Create or update responsible person.
+	 * @param responsiblePersonDTO
+	 */
 	@Transactional
-	public void createOrUpdateTeacher(@NotNull final ResponsiblePersonDTO responsiblePersonDTO) {
+	public void createOrUpdateResponsiblePerson(@NotNull final ResponsiblePersonDTO responsiblePersonDTO) {
 		ResponsiblePerson responsiblePerson;
 		if (responsiblePersonDTO.getId() == null) {
 			responsiblePerson = DTOConverter.convert(responsiblePersonDTO, ResponsiblePerson.class); 

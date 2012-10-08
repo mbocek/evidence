@@ -34,7 +34,7 @@ import com.evidence.entity.Kindergarten;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class KindergartenDAOTest extends DbUnitDaoTest {
+public class KindergartenDAOTest extends DbUnitTest {
 
 	@Inject
 	private KindergartenDAO kindergartenDAO;
