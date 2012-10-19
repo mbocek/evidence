@@ -37,9 +37,9 @@
 <a class="jxr_linenumber" name="27" href="#27">27</a>  
 <a class="jxr_linenumber" name="28" href="#28">28</a>  <strong class="jxr_keyword">import</strong> org.springframework.stereotype.Service;
 <a class="jxr_linenumber" name="29" href="#29">29</a>  
-<a class="jxr_linenumber" name="30" href="#30">30</a>  <strong class="jxr_keyword">import</strong> com.evidence.fe.annotation.AnnotationHelper;
-<a class="jxr_linenumber" name="31" href="#31">31</a>  <strong class="jxr_keyword">import</strong> com.evidence.fe.annotation.FieldInfo;
-<a class="jxr_linenumber" name="32" href="#32">32</a>  <strong class="jxr_keyword">import</strong> com.evidence.fe.annotation.MetaModel;
+<a class="jxr_linenumber" name="30" href="#30">30</a>  <strong class="jxr_keyword">import</strong> com.evidence.fe.form.AnnotationHelper;
+<a class="jxr_linenumber" name="31" href="#31">31</a>  <strong class="jxr_keyword">import</strong> com.evidence.fe.form.FieldInfo;
+<a class="jxr_linenumber" name="32" href="#32">32</a>  <strong class="jxr_keyword">import</strong> com.evidence.fe.form.MetaModel;
 <a class="jxr_linenumber" name="33" href="#33">33</a>  <strong class="jxr_keyword">import</strong> com.evidence.fe.form.Model;
 <a class="jxr_linenumber" name="34" href="#34">34</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.FormFieldFactory;
 <a class="jxr_linenumber" name="35" href="#35">35</a>  
@@ -53,7 +53,7 @@
 <a class="jxr_linenumber" name="43" href="#43">43</a>  	
 <a class="jxr_linenumber" name="44" href="#44">44</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Map&lt;String, MetaModel&gt; modelMap = <strong class="jxr_keyword">new</strong> HashMap&lt;String, MetaModel&gt;();
 <a class="jxr_linenumber" name="45" href="#45">45</a>  	
-<a class="jxr_linenumber" name="46" href="#46">46</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../com/evidence/fe/annotation/MetaModel.html">MetaModel</a> getMetaModel(<strong class="jxr_keyword">final</strong> <a href="../../../com/evidence/fe/form/Model.html">Model</a> model) {
+<a class="jxr_linenumber" name="46" href="#46">46</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../com/evidence/fe/form/MetaModel.html">MetaModel</a> getMetaModel(<strong class="jxr_keyword">final</strong> <a href="../../../com/evidence/fe/form/Model.html">Model</a> model) {
 <a class="jxr_linenumber" name="47" href="#47">47</a>  		log.debug(<span class="jxr_string">"Getting metamodel for model: {}"</span>, model.getClass().getName());
 <a class="jxr_linenumber" name="48" href="#48">48</a>  		MetaModel result;
 <a class="jxr_linenumber" name="49" href="#49">49</a>  		<strong class="jxr_keyword">final</strong> String modelName = model.getClass().getName();
@@ -62,7 +62,7 @@
 <a class="jxr_linenumber" name="52" href="#52">52</a>  			result = modelMap.get(modelName);
 <a class="jxr_linenumber" name="53" href="#53">53</a>  		} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="54" href="#54">54</a>  			<strong class="jxr_keyword">synchronized</strong> (modelName) {
-<a class="jxr_linenumber" name="55" href="#55">55</a>  				<strong class="jxr_keyword">final</strong> <a href="../../../com/evidence/fe/annotation/MetaModel.html">MetaModel</a> metaModel = buildModel(model);
+<a class="jxr_linenumber" name="55" href="#55">55</a>  				<strong class="jxr_keyword">final</strong> <a href="../../../com/evidence/fe/form/MetaModel.html">MetaModel</a> metaModel = buildModel(model);
 <a class="jxr_linenumber" name="56" href="#56">56</a>  				modelMap.put(modelName, metaModel);
 <a class="jxr_linenumber" name="57" href="#57">57</a>  				result = metaModel;
 <a class="jxr_linenumber" name="58" href="#58">58</a>  			}
@@ -70,7 +70,7 @@
 <a class="jxr_linenumber" name="60" href="#60">60</a>  		<strong class="jxr_keyword">return</strong> result;
 <a class="jxr_linenumber" name="61" href="#61">61</a>  	}
 <a class="jxr_linenumber" name="62" href="#62">62</a>  
-<a class="jxr_linenumber" name="63" href="#63">63</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../com/evidence/fe/annotation/MetaModel.html">MetaModel</a> buildModel(<strong class="jxr_keyword">final</strong> <a href="../../../com/evidence/fe/form/Model.html">Model</a> model) {
+<a class="jxr_linenumber" name="63" href="#63">63</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../com/evidence/fe/form/MetaModel.html">MetaModel</a> buildModel(<strong class="jxr_keyword">final</strong> <a href="../../../com/evidence/fe/form/Model.html">Model</a> model) {
 <a class="jxr_linenumber" name="64" href="#64">64</a>  		<strong class="jxr_keyword">final</strong> String modelName = model.getClass().getName(); 
 <a class="jxr_linenumber" name="65" href="#65">65</a>  		log.debug(<span class="jxr_string">"Building metamodel for model: {}"</span>, modelName);
 <a class="jxr_linenumber" name="66" href="#66">66</a>  		MetaModel meta = <strong class="jxr_keyword">null</strong>;
@@ -82,7 +82,7 @@
 <a class="jxr_linenumber" name="72" href="#72">72</a>  			<strong class="jxr_keyword">final</strong> Map&lt;String, Boolean&gt; requiredMap = <strong class="jxr_keyword">new</strong> HashMap&lt;String, Boolean&gt;();
 <a class="jxr_linenumber" name="73" href="#73">73</a>  			<strong class="jxr_keyword">final</strong> Map&lt;String, Boolean&gt; validatedMap = <strong class="jxr_keyword">new</strong> HashMap&lt;String, Boolean&gt;();
 <a class="jxr_linenumber" name="74" href="#74">74</a>  			AnnotationHelper.buildData(model, fieldInfos, orderMap, captionMap, requiredMap, validatedMap);
-<a class="jxr_linenumber" name="75" href="#75">75</a>  			meta = <strong class="jxr_keyword">new</strong> <a href="../../../com/evidence/fe/annotation/MetaModel.html">MetaModel</a>(factory, fieldInfos, orderMap, captionMap, requiredMap, validatedMap);
+<a class="jxr_linenumber" name="75" href="#75">75</a>  			meta = <strong class="jxr_keyword">new</strong> <a href="../../../com/evidence/fe/form/MetaModel.html">MetaModel</a>(factory, fieldInfos, orderMap, captionMap, requiredMap, validatedMap);
 <a class="jxr_linenumber" name="76" href="#76">76</a>  			log.debug(<span class="jxr_string">"Adding automatic form to cache with name: {}"</span>, modelName);
 <a class="jxr_linenumber" name="77" href="#77">77</a>  			log.trace(<span class="jxr_string">"Adding automatic form to cache with name: {} and metamodel: {}"</span>, modelName, meta);
 <a class="jxr_linenumber" name="78" href="#78">78</a>  			modelMap.put(modelName, meta);
