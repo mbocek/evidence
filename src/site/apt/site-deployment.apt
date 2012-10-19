@@ -1,0 +1,37 @@
+ -----
+ Site deployment
+ -----
+ Michal Bocek
+ -----
+ 2012-08-28
+ -----
+
+Site deployment
+
+	For site deployment project has configured site plugin with git pages support. 
+
+* Local configuration of site deployment
+	
+	At first is necessary to have confingured maven. In ~/.m2/settings.xml you should have section>
+
++-----+
+  ...
+  <servers>
+    ...
+    <server>
+      <id>github.evidence</id>
+      <username>git</username>
+    </server>
+    ...
+  </servers>
+  ...
++-----+
+
+* Deploy to github
+
+	You should be in root directory.
+
++-----+
+mvn clean site site:stage 
+mvn site:stage-deploy
++-----+

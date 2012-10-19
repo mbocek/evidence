@@ -1,0 +1,46 @@
+ -----
+ Run project from source
+ -----
+ Michal Bocek
+ -----
+ 2012-10-19
+ -----
+
+Run project from source
+
+* Chekout project 
+  
++-----+
+  git clone git://github.com/mbocek/evidence.git
++-----+
+
+* Prepare local database
+
+  Before first run you should build database. For runnig evidence from source code is recommened local file based HSQL database. Per default database is built in /tmp directory. As usually after some changed in project configuration you could change this default directory.
+
+  Database for local running project you could prepare with command:
+
++-----+
+  evidence/database> mvn clean process-resources liquibase:update -Ptest
++-----+
+
+* Run application locally
+
+  Application can be run from sourcode. There is some prerequisites.
+
+  * Localy installed maven
+
+  * Compiled org.vaadin.mvp
+
++-----+
+  git clone git://github.com/mbocek/org.vaadin.mvp.git
+  org.vaadin.mvp> mvn clean install
++-----+
+  
+  * Run evidence application
+
++-----+
+  git clone git://github.com/mbocek/org.vaadin.mvp.git
+  evidence/application> mvn clean install jetty:run -Ptest
++-----+
+  []

@@ -18,6 +18,8 @@ Eclipse
 	* {{{https://github.com/chookapp/Bracketeer#readme}Bracketeer}} Brackets extension {{{http://chookapp.github.com/ChookappUpdateSite/}update site}}.
 
 	* {{{http://www.eclipse.org/egit/}EGit}} Git DCVS {{{http://download.eclipse.org/egit/updates}update site}}.
+
+	Optional plugins
 	
 	* {{{http://andrei.gmxhome.de/findbugs/index.html}FindBugs}} find bugs plugin {{{http://findbugs.cs.umd.edu/eclipse}update site}}.
 	
@@ -34,7 +36,7 @@ Set properties:
 +-----+
 
 
-	Don't forget to remove ApectJ support on pproject configuration.
+	When aspectj support is enabled in ide don't forget to remove it from pproject configuration.
 
 +-----+
 Right click on project > AspectJ Tools > Remove ApectJ Capabilities
