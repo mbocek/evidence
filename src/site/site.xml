@@ -18,6 +18,9 @@
 	</skin>
 
 	<body>
+		<head>
+			<meta http-equiv="cache-control" content="no-cache" />
+		</head>
 		<breadcrumbs>
 			<item name="Evidence on github" href="http://github.com/mbocek/evidence"/>
 			<item name="Evidence" href="http://mbocek.github.com/evidence/index.html"/>
