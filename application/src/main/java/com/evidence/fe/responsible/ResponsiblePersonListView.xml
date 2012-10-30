@@ -6,13 +6,13 @@
 	xmlns:i="urn:org.vaadin.mvp.uibinder.method"
 	v:margin="true">
 
-	<v:Label styleName="h2" m:caption="responsible.caption.administration" />
+	<v:Label styleName="h2" m:caption="responsiblePerson.caption.administration" />
 
-	<v:Table ui:field="responsibleList" width="100%" e:itemClick="editResponsible" immediate="true" selectable="true" multiSelect="false" />
+	<v:Table ui:field="responsiblePersonList" width="100%" e:itemClick="editResponsiblePerson" immediate="true" selectable="true" multiSelect="false" />
 
 	<v:HorizontalLayout spacing="true" width="100%" ui:field="buttonBar">
 		<v:Label width="100%"  ui:field="expander"/>
-		<v:Button m:caption="responsible.list.add" styleName="small" e:click="addResponsible"/>
-		<v:Button m:caption="responsible.list.remove" styleName="small" e:click="removeResponsible"/>
+		<v:Button m:caption="responsiblePerson.list.add" styleName="small" e:click="addResponsiblePerson"/>
+		<v:Button m:caption="responsiblePerson.list.remove" styleName="small" e:click="removeResponsiblePerson"/>
 	</v:HorizontalLayout>
 </ui:UiBinder>

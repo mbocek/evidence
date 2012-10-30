@@ -29,23 +29,23 @@ import com.vaadin.ui.Window;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface ResponsibleEventBus extends EventBus {
+public interface ResponsiblePersonEventBus extends EventBus {
 
-	@Event(handlers = { ResponsiblePresenter.class })
-	void addResponsible();
+	@Event(handlers = { ResponsiblePersonPresenter.class })
+	void addResponsiblePerson();
 
-	@Event(handlers = { ResponsiblePresenter.class })
-	void removeResponsible();
+	@Event(handlers = { ResponsiblePersonPresenter.class })
+	void removeResponsiblePerson();
 
 	@Event(handlers = { MainPresenter.class })
 	void showDialog(Window dialog);
 
-	@Event(handlers = { ResponsiblePresenter.class })
-	void saveResponsible();
+	@Event(handlers = { ResponsiblePersonPresenter.class })
+	void saveResponsiblePerson();
 
-	@Event(handlers = { ResponsiblePresenter.class })
-	void cancelEditResponsible();
+	@Event(handlers = { ResponsiblePersonPresenter.class })
+	void cancelEditResponsiblePerson();
 	
-	@Event(handlers = { ResponsiblePresenter.class })
-	void editResponsible(ItemClickEvent event);
+	@Event(handlers = { ResponsiblePersonPresenter.class })
+	void editResponsiblePerson(ItemClickEvent event);
 }

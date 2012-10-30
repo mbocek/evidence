@@ -16,15 +16,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.utility;
+
+import lombok.AllArgsConstructor;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public enum ResponsibilityType {
+@AllArgsConstructor
+public class KeyBuilder {
 
-	MOTHER, FATHER, RESPONSIBLE_PERSON;
+	private static final String KEY_SEPARATOR = ".";
 	
-	public static String key = "responsibilityType";
+	private String prefix;
+
+	private String key;
+
+	public String getKey() {
+		final StringBuffer result = new StringBuffer(prefix == null ? "" : prefix + KEY_SEPARATOR);
+		return result.append(key).toString();
+	}
 }

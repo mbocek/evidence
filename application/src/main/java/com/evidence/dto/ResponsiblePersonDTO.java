@@ -29,24 +29,24 @@ import lombok.ToString;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.evidence.entity.ResponsibilityType;
 import com.evidence.fe.form.AutomaticForm;
 import com.evidence.fe.form.Caption;
 import com.evidence.fe.form.Model;
 import com.evidence.fe.form.Order;
-import com.evidence.fe.teacher.TeacherDetailFormFieldFactory;
+import com.evidence.fe.responsible.ResponsiblePersonDetailFormFieldFactory;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0 
  */
 @ToString
-@AutomaticForm(formFieldFactory = TeacherDetailFormFieldFactory.class)
+@AutomaticForm(formFieldFactory = ResponsiblePersonDetailFormFieldFactory.class)
 public class ResponsiblePersonDTO implements Model { 
 
 	@Getter @Setter
 	private Long id;
 	
+	@NotNull
 	@Getter @Setter
 	@Order(1) @Caption("kindergarten")
 	private Long kindergartenId;
@@ -66,13 +66,16 @@ public class ResponsiblePersonDTO implements Model {
 	@Order(4)
 	@Caption
 	@NotNull
-	private Date birthDate;
+	private Date birthDate = new Date();
 	
 	@Order(5)
 	@Valid
 	@Getter @Setter
 	private ContactDTO contact = new ContactDTO();
 	
+	@NotNull
+	@Order(6)
+	@Caption
 	@Getter @Setter
 	private String type;
 	

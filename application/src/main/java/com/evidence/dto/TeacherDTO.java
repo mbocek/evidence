@@ -46,6 +46,7 @@ public class TeacherDTO implements Model {
 	@Getter @Setter
 	private Long id;
 	
+	@NotNull
 	@Getter @Setter
 	@Order(1) @Caption("kindergarten")
 	private Long kindergartenId;
@@ -65,7 +66,7 @@ public class TeacherDTO implements Model {
 	@Order(4)
 	@Caption
 	@NotNull
-	private Date birthDate;
+	private Date birthDate = new Date();
 	
 	@Order(5)
 	@Valid

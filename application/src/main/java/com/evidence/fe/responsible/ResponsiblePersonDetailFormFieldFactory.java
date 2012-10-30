@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.teacher;
+package com.evidence.fe.responsible;
 
 import java.util.List;
 import java.util.Locale;
@@ -27,8 +27,10 @@ import org.vaadin.mvp.uibinder.IUiMessageSource;
 
 import com.evidence.dto.KindergartenDTO;
 import com.evidence.dto.StateDTO;
+import com.evidence.entity.ResponsibilityType;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
 import com.evidence.service.ServiceHolder;
+import com.evidence.utility.KeyBuilder;
 import com.vaadin.data.Item;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DateField;
@@ -40,11 +42,11 @@ import com.vaadin.ui.Select;
  * @since 1.0.0
  */
 @Slf4j
-public class TeacherDetailFormFieldFactory extends EvidenceFormFieldFactory {
+public class ResponsiblePersonDetailFormFieldFactory extends EvidenceFormFieldFactory {
 
 	private static final long serialVersionUID = 1L;
 
-	public TeacherDetailFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
+	public ResponsiblePersonDetailFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
 		super(messageSource, locale);
 	}
 
@@ -74,6 +76,15 @@ public class TeacherDetailFormFieldFactory extends EvidenceFormFieldFactory {
 			for (KindergartenDTO kindergartenDTO : kindergartens) {
 				select.addItem(kindergartenDTO.getId());
 				select.setItemCaption(kindergartenDTO.getId(), kindergartenDTO.getName());
+			}
+			select.setNewItemsAllowed(false);
+			select.setNullSelectionAllowed(false);
+			field = select;
+		} else if ("type".equals(pid)) {
+			final Select select = new Select(pid);
+			for (ResponsibilityType type : ResponsibilityType.values()) {
+				select.addItem(type.name());
+				select.setItemCaption(type.name(), getMessage(new KeyBuilder(ResponsibilityType.key, type.name()).getKey()));
 			}
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);

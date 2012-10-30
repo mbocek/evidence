@@ -49,4 +49,8 @@ public class EvidenceFormFieldFactory extends DefaultFieldFactory {
 	protected IUiMessageSource getMessageSource() {
 		return messageSource;
 	}
+
+	protected String getMessage(final String key) {
+		return this.messageSource.getMessage(key, this.getLocale());
+	}
 }

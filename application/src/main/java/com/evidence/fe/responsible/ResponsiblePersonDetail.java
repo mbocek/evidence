@@ -23,28 +23,18 @@ import lombok.Getter;
 import org.vaadin.mvp.uibinder.IUiBindable;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
+import com.evidence.fe.form.EvidenceForm;
 import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class ResponsibleListView extends VerticalLayout implements IResponsibleListView, IUiBindable {
+public class ResponsiblePersonDetail extends VerticalLayout implements IUiBindable, IResponsiblePersonDetail {  
 
-	private static final long serialVersionUID = 3807396569678708848L;
+	private static final long serialVersionUID = 6155789894644060488L;
 
-	@UiField
 	@Getter
-	private Table responsibleList;
-
 	@UiField
-	@Getter
-	private HorizontalLayout buttonBar;
-
-	@UiField
-	@Getter
-	private Label expander;
+	private EvidenceForm responsiblePersonForm;
 }

@@ -16,15 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.responsible;
+
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.Table;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public enum ResponsibilityType {
+public interface IResponsiblePersonListView extends Layout {
 
-	MOTHER, FATHER, RESPONSIBLE_PERSON;
+	Table getResponsiblePersonList();
 	
-	public static String key = "responsibilityType";
+	HorizontalLayout getButtonBar();
+	
+	Label getExpander();
 }

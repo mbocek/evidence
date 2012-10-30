@@ -16,15 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
+package com.evidence.fe.responsible;
+
+import com.vaadin.ui.Form;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public enum ResponsibilityType {
-
-	MOTHER, FATHER, RESPONSIBLE_PERSON;
+public interface IResponsiblePersonDetail {
 	
-	public static String key = "responsibilityType";
+	Form getResponsiblePersonForm();
 }
