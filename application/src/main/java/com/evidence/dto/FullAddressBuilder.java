@@ -29,19 +29,26 @@ import lombok.AllArgsConstructor;
 public class FullAddressBuilder {
 
 	private static final String ADDRESS_SEPARATOR = ", ";
+	private static final String SPACE_SEPARATOR = " ";
 	
 	private AddressDTO address;
 
 	public String getFullAddress() {
 		final StringBuffer result = new StringBuffer(address.getStreet() == null ? "" : address.getStreet());
-		result.append(appendString(address.getHouseNumber()));
-		result.append(appendString(address.getCity()));
-		result.append(appendString(address.getZipCode()));
-		result.append(appendString(address.getState().getName()));
+		result.append(appendString(address.getHouseNumber(), false));
+		result.append(appendString(address.getCity(), true));
+		result.append(appendString(address.getZipCode(), true));
+		result.append(appendString(address.getState().getName(), true));
 		return result.toString();
 	}
 	
-	private String appendString(final String data) {
-		return (data == null) ? "" : ADDRESS_SEPARATOR + data;
+	private String appendString(final String data, final boolean addDelimiter) {
+		String result;
+		if (addDelimiter) {
+			result = (data == null) ? "" : ADDRESS_SEPARATOR + data;
+		} else {
+			result = (data == null) ? "" : SPACE_SEPARATOR + data;
+		}
+		return result;
 	}
 }
