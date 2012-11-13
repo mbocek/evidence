@@ -41,6 +41,7 @@
 			<column name="id" type="NUMERIC"/>
 			<column name="name" type="STRING"/>
 			<column name="contact_id" type="NUMERIC"/>
+			<column name="deleted" type="BOOLEAN"/>
 		</loadData>
 		<rollback>
 			<delete tableName="KINDERGARTEN"/>
@@ -56,6 +57,7 @@
 			<column name="birth_date" type="DATE"/>
 			<column name="kidergarten_id" type="NUMERIC"/>
 			<column name="contact_id" type="NUMERIC"/>
+			<column name="deleted" type="BOOLEAN"/>
 		</loadData>
 		<rollback>
 			<delete tableName="TEACHER"/>

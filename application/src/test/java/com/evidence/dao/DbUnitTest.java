@@ -35,7 +35,7 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.hsqldb.HsqldbDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
-import org.hibernate.impl.SessionImpl;
+import org.hibernate.internal.SessionImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -66,9 +66,9 @@ public class DbUnitTest {
 		// delete data from database
 		final SessionImpl session = (SessionImpl) entityManager.getDelegate();
 		final Connection con = session.connection(); // NOPMD
-		con.createStatement().execute("SET REFERENTIAL_INTEGRITY FALSE;");
+		con.createStatement().execute("SET DATABASE REFERENTIAL INTEGRITY FALSE;");
 		DatabaseOperation.DELETE_ALL.execute(getConnection(), getDataSet());
-		con.createStatement().execute("SET REFERENTIAL_INTEGRITY TRUE;");
+		con.createStatement().execute("SET DATABASE REFERENTIAL INTEGRITY TRUE;");
 	}
 
 	private IDatabaseConnection getConnection() throws DatabaseUnitException {

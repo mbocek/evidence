@@ -210,42 +210,42 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-orm</artifactId>
-				<version>${org.springframework.version}</version>
+				<version>${springframework.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-web</artifactId>
-				<version>${org.springframework.version}</version>
+				<version>${springframework.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
-				<version>${org.springframework.version}</version>
+				<version>${springframework.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aspects</artifactId>
-				<version>${org.springframework.version}</version>
+				<version>${springframework.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-web</artifactId>
-				<version>${org.springframework.version}</version>
+				<version>${springframework.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-config</artifactId>
-				<version>${org.springframework.version}</version>
+				<version>${springframework.version}</version>
 			</dependency>		
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
-				<version>${org.springframework.version}</version>
+				<version>${springframework.version}</version>
 			</dependency>		
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
-				<version>${org.hibernate.version}</version>
+				<version>${hibernate.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
@@ -264,14 +264,19 @@
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>${cglib.version}</version>
+			</dependency>			
+			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.6.1</version>
+				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
-				<version>1.6.1</version>
+				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.vaadin</groupId>
@@ -343,7 +348,7 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
-				<version>${org.springframework.version}</version>
+				<version>${springframework.version}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -361,12 +366,15 @@
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<gwt.plugin.version>2.4.0</gwt.plugin.version>
 		<aspectj-maven-plugin.version>1.4</aspectj-maven-plugin.version>
-		<hsqldb.version>1.8.0.10</hsqldb.version>
-		<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
-		<org.hibernate.version>3.5.1-Final</org.hibernate.version>
-		<vaadin.version>6.7.8</vaadin.version>
+		<hsqldb.version>2.2.8</hsqldb.version>
+		<springframework.version>3.1.2.RELEASE</springframework.version>
+		<hibernate.version>4.1.7.Final</hibernate.version>
+		<hibernate-validator>4.2.0.Final</hibernate-validator>
+		<vaadin.version>6.8.4</vaadin.version>
 		<gwt.version>2.4.0</gwt.version>
 		<aspectjrt.version>1.6.11</aspectjrt.version>
+		<cglib.version>2.2.2</cglib.version>
+		<slf4j.version>1.7.0</slf4j.version>
 		<sonar.host.url>https://soso-gateway.dyndns.org/sonar</sonar.host.url>
 	</properties>
 </project>
