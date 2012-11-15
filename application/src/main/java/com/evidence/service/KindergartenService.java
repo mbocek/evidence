@@ -20,16 +20,16 @@ package com.evidence.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import com.evidence.dao.KindergartenDAO;
 import com.evidence.dto.KindergartenDTO;
 import com.evidence.entity.Kindergarten;
+import com.evidence.repository.KindergartenRepository;
 import com.evidence.utility.DTOConverter;
 
 /**
@@ -42,15 +42,15 @@ import com.evidence.utility.DTOConverter;
 @Transactional(readOnly = true)
 public class KindergartenService {
 
-	@Autowired
-	private KindergartenDAO kindergartenDao;
+	@Inject
+	private KindergartenRepository repository;
 
 	/**
 	 * Get all non deleted kindergartens.
 	 * @return kindergartens
 	 */
 	public List<KindergartenDTO> getAll() {
-		final List<Kindergarten> kindergartens = kindergartenDao.findAll(false);
+		final List<Kindergarten> kindergartens = repository.findAll(false);
 		return DTOConverter.convertList(kindergartens, KindergartenDTO.class);
 	}
 
@@ -63,11 +63,11 @@ public class KindergartenService {
 		Kindergarten kindergarten;
 		if (kindergartenDTO.getId() == null) {
 			kindergarten = DTOConverter.convert(kindergartenDTO, Kindergarten.class); 
-			kindergartenDao.create(kindergarten);
+			repository.create(kindergarten);
 		} else {
-			kindergarten = kindergartenDao.read(kindergartenDTO.getId());
+			kindergarten = repository.read(kindergartenDTO.getId());
 			DTOConverter.convert(kindergartenDTO, kindergarten); 
-			kindergartenDao.update(kindergarten);
+			repository.update(kindergarten);
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class KindergartenService {
 	 * @return
 	 */
 	public KindergartenDTO getById(@NotNull final Long id) {
-		final Kindergarten kindergarten = kindergartenDao.read(id);
+		final Kindergarten kindergarten = repository.read(id);
 		return DTOConverter.convert(kindergarten, KindergartenDTO.class);
 	}
 	
@@ -88,8 +88,8 @@ public class KindergartenService {
 	 */
 	@Transactional
 	public void delete(@NotNull final Long id) {
-		Kindergarten kindergarten = kindergartenDao.findById(id);
+		Kindergarten kindergarten = repository.findById(id);
 		kindergarten.setDeleted(Boolean.TRUE);
-		kindergartenDao.update(kindergarten);
+		repository.update(kindergarten);
 	}
 }

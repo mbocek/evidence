@@ -20,17 +20,17 @@ package com.evidence.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import com.evidence.dao.ResponsiblePersonDAO;
 import com.evidence.dto.ResponsiblePersonDTO;
 import com.evidence.entity.ResponsiblePerson;
+import com.evidence.repository.ResponsiblePersonRepository;
 import com.evidence.utility.DTOConverter;
 
 /**
@@ -42,15 +42,15 @@ import com.evidence.utility.DTOConverter;
 @Transactional(readOnly = true)
 public class ResponsiblePersonService {
 
-	@Autowired
-	private ResponsiblePersonDAO responsiblePersonDao;
+	@Inject
+	private ResponsiblePersonRepository repository;
 
 	/**
 	 * Get all non deleted responsible persons.
 	 * @return
 	 */
 	public List<ResponsiblePersonDTO> getAll() {
-		final List<ResponsiblePerson> responsiblePersons = responsiblePersonDao.findAll(false);
+		final List<ResponsiblePerson> responsiblePersons = repository.findAll(false);
 		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
 	}
 
@@ -60,7 +60,7 @@ public class ResponsiblePersonService {
 	 * @return
 	 */
 	public List<ResponsiblePersonDTO> findByKindergartenId(@NotNull final Long id) {
-		final List<ResponsiblePerson> responsiblePersons = responsiblePersonDao.findByKindergartenId(id);
+		final List<ResponsiblePerson> responsiblePersons = repository.findByKindergartenId(id);
 		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
 	}
 
@@ -73,11 +73,11 @@ public class ResponsiblePersonService {
 		ResponsiblePerson responsiblePerson;
 		if (responsiblePersonDTO.getId() == null) {
 			responsiblePerson = DTOConverter.convert(responsiblePersonDTO, ResponsiblePerson.class); 
-			responsiblePersonDao.create(responsiblePerson);
+			repository.create(responsiblePerson);
 		} else {
-			responsiblePerson = responsiblePersonDao.read(responsiblePersonDTO.getId());
+			responsiblePerson = repository.read(responsiblePersonDTO.getId());
 			DTOConverter.convert(responsiblePersonDTO, responsiblePerson); 
-			responsiblePersonDao.update(responsiblePerson);
+			repository.update(responsiblePerson);
 		}
 	}
 	
@@ -89,7 +89,7 @@ public class ResponsiblePersonService {
 	 */
 	@Valid
 	public ResponsiblePersonDTO getById(@NotNull final Long id) {
-		final ResponsiblePerson responsiblePerson = responsiblePersonDao.read(id);
+		final ResponsiblePerson responsiblePerson = repository.read(id);
 		return DTOConverter.convert(responsiblePerson, ResponsiblePersonDTO.class);
 	}
 
@@ -99,8 +99,8 @@ public class ResponsiblePersonService {
 	 */
 	@Transactional
 	public void delete(@NotNull final Long id) {
-		ResponsiblePerson responsiblePerson = responsiblePersonDao.findById(id);
+		ResponsiblePerson responsiblePerson = repository.findById(id);
 		responsiblePerson.setDeleted(Boolean.TRUE);
-		responsiblePersonDao.update(responsiblePerson);
+		repository.update(responsiblePerson);
 	}
 }

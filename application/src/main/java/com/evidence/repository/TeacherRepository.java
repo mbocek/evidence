@@ -16,16 +16,34 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.dao;
+package com.evidence.repository;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-import com.evidence.entity.Contact;
+import org.springframework.data.jpa.repository.Query;
+
+import com.evidence.entity.Teacher;
+import com.evidence.repository.data.CrudRepository;
 
 /**
+ * Repository for access on teacher.
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Repository
-public class ContactDAO extends JpaDAO<Contact, Long> {
+public interface TeacherRepository extends CrudRepository<Teacher, Long> {
+	
+	/**
+	 * Find all teachers based on deleted flag.
+	 * @param deleted
+	 * @return
+	 */
+	@Query("select t from Teacher t where t.deleted = ?1")
+	List<Teacher> findAll(final boolean deleted);
+	
+	/**
+	 * Find teachers for specified kindergarten.
+	 * @param id
+	 * @return
+	 */
+	List<Teacher> findByKindergartenId(final Long id);
 }

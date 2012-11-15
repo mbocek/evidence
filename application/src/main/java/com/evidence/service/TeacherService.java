@@ -20,17 +20,17 @@ package com.evidence.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import com.evidence.dao.TeacherDAO;
 import com.evidence.dto.TeacherDTO;
 import com.evidence.entity.Teacher;
+import com.evidence.repository.TeacherRepository;
 import com.evidence.utility.DTOConverter;
 
 /**
@@ -43,15 +43,15 @@ import com.evidence.utility.DTOConverter;
 @Transactional(readOnly = true)
 public class TeacherService {
 
-	@Autowired
-	private TeacherDAO teacherDao;
+	@Inject
+	private TeacherRepository repository;
 
 	/**
 	 * Get all non deleted teachers.
 	 * @return
 	 */
 	public List<TeacherDTO> getAll() {
-		final List<Teacher> teachers = teacherDao.findAll(false);
+		final List<Teacher> teachers = repository.findAll(false);
 		return DTOConverter.convertList(teachers, TeacherDTO.class);
 	}
 
@@ -61,7 +61,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public List<TeacherDTO> findByKindergartenId(@NotNull final Long id) {
-		final List<Teacher> teachers = teacherDao.findByKindergartenId(id);
+		final List<Teacher> teachers = repository.findByKindergartenId(id);
 		return DTOConverter.convertList(teachers, TeacherDTO.class);
 	}
 
@@ -74,11 +74,11 @@ public class TeacherService {
 		Teacher teacher;
 		if (teacherDTO.getId() == null) {
 			teacher = DTOConverter.convert(teacherDTO, Teacher.class); 
-			teacherDao.create(teacher);
+			repository.create(teacher);
 		} else {
-			teacher = teacherDao.read(teacherDTO.getId());
+			teacher = repository.read(teacherDTO.getId());
 			DTOConverter.convert(teacherDTO, teacher); 
-			teacherDao.update(teacher);
+			repository.update(teacher);
 		}
 	}
 	
@@ -90,7 +90,7 @@ public class TeacherService {
 	 */
 	@Valid
 	public TeacherDTO getById(@NotNull final Long id) {
-		final Teacher teacher = teacherDao.read(id);
+		final Teacher teacher = repository.read(id);
 		return DTOConverter.convert(teacher, TeacherDTO.class);
 	}
 
@@ -100,8 +100,8 @@ public class TeacherService {
 	 */
 	@Transactional
 	public void delete(@NotNull final Long id) {
-		Teacher teacher = teacherDao.findById(id);
+		Teacher teacher = repository.findById(id);
 		teacher.setDeleted(Boolean.TRUE);
-		teacherDao.update(teacher);
+		repository.update(teacher);
 	}
 }

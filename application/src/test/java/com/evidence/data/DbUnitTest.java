@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.dao;
+package com.evidence.data;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -47,9 +47,9 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Michal Bocek
  * @since 1.0.0
  */
+@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/transaction.xml", "classpath:spring/applicationConfig.xml"})
-@Transactional
 public class DbUnitTest {
 
 	@PersistenceContext(name = "entityManagerFactory")

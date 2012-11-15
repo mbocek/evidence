@@ -28,7 +28,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.junit.Test;
 
-import com.evidence.dao.DbUnitTest;
+import com.evidence.data.DbUnitTest;
 import com.evidence.dto.AddressDTO;
 import com.evidence.dto.ContactDTO;
 import com.evidence.dto.KindergartenDTO;

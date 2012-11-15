@@ -16,17 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.dao;
+package com.evidence.repository;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-import com.evidence.entity.State;
+import org.springframework.data.jpa.repository.Query;
+
+import com.evidence.entity.Kindergarten;
+import com.evidence.repository.data.CrudRepository;
 
 /**
+ * Repository for access on kindergarten.
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Repository
-public class StateDAO extends JpaImmutableDAO<State, String> {
-
+public interface KindergartenRepository extends CrudRepository<Kindergarten, Long> {
+	
+	/**
+	 * Find all kindergartens based on deleted flag.
+	 * @param deleted
+	 * @return
+	 */
+	@Query("select k from Kindergarten k where k.deleted = ?1")
+	List<Kindergarten> findAll(final boolean deleted);
 }

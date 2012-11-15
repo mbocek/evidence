@@ -16,67 +16,39 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.dao;
+package com.evidence.repository.data;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
- * @param <T>
- *            class for persistence support
- * @param <Id>
- *            primary key of entity
  */
-public class JpaImmutableDAO<T, Id extends Serializable> {
+@Repository
+public class ReadOnlyRepositoryImpl<T, ID extends Serializable> implements ReadOnlyRepository<T, ID> {
 
-	// CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 1 LINES
-	private static final Logger log = LoggerFactory.getLogger(JpaImmutableDAO.class); // NOPMD
+	private static final Logger log = LoggerFactory.getLogger(ReadOnlyRepositoryImpl.class);
 	
-	private final Class<T> entityClass;
-
-	@PersistenceContext(name = "entityManagerFactory")
 	private EntityManager entityManager;
 
-	@SuppressWarnings("unchecked")
-	public JpaImmutableDAO() {
-		final ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
-		this.entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
+	private final Class<T> entityClass;
+	
+	public ReadOnlyRepositoryImpl(Class<T> entityClass, EntityManager entityManager) {
+		this.entityClass = entityClass;
+		this.entityManager = entityManager;
 	}
 	
-	/**
-	 * Return entity manager.
-	 * @return
-	 */
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	/**
-	 * Find entity by id. When entity doesn't exist return null.
-	 * @param id entity id
-	 * @return entity or null
-	 */
-	public T findById(final Id id) { // NOPMD
-		return this.entityManager.find(entityClass, id);
-	}
-
-	/**
-	 * Read entity by id. When entity doesn't exists throw EntityNotFoundException.
-	 * @param id entity id
-	 * @return entity
-	 */
-	public T read(final Id id) { // NOPMD
+	@Override
+	public T read(ID id) {
 		if (log.isTraceEnabled()) {
 			log.trace("Reading entity for id: " + id);
 		}
@@ -88,6 +60,12 @@ public class JpaImmutableDAO<T, Id extends Serializable> {
 		return entry;
 	}
 
+	@Override
+	public T findById(ID id) {
+		return this.entityManager.find(entityClass, id);
+	}
+
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
 		if (log.isTraceEnabled()) {
@@ -96,4 +74,5 @@ public class JpaImmutableDAO<T, Id extends Serializable> {
 		final Query query = this.entityManager.createQuery("from " + this.entityClass.getName());
 		return query.getResultList();
 	}
+
 }

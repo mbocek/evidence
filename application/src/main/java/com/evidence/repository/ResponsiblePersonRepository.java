@@ -16,18 +16,34 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.dao;
+package com.evidence.repository;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-import com.evidence.entity.ResponsibilityType;
+import org.springframework.data.jpa.repository.Query;
 
+import com.evidence.entity.ResponsiblePerson;
+import com.evidence.repository.data.CrudRepository;
 
 /**
+ * Repository for access on responsible person.
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Repository("responsibilityTypeDAO")
-public class ResponsibilityTypeDAO extends JpaImmutableDAO<ResponsibilityType, String> {
+public interface ResponsiblePersonRepository extends CrudRepository<ResponsiblePerson, Long> {
 	
+	/**
+	 * Find all responsible persons based on deleted flag.
+	 * @param deleted
+	 * @return
+	 */
+	@Query("select rp from ResponsiblePerson rp where rp.deleted = ?1")
+	List<ResponsiblePerson> findAll(final boolean deleted);
+	
+	/**
+	 * Find all responsible persons for kindergarten id.
+	 * @param id
+	 * @return
+	 */
+	List<ResponsiblePerson> findByKindergartenId(Long id);
 }

@@ -20,15 +20,16 @@ package com.evidence.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.evidence.dao.StateDAO;
 import com.evidence.dto.StateDTO;
 import com.evidence.entity.State;
+import com.evidence.repository.StateRepository;
 import com.evidence.utility.DTOConverter;
 
 /**
@@ -40,11 +41,11 @@ import com.evidence.utility.DTOConverter;
 @Transactional(readOnly = true)
 public class CodeListService {
 
-	@Autowired
-	private StateDAO stateDAO;
+	@Inject
+	private StateRepository repository;
 
 	public List<StateDTO> getStates() {
-		final List<State> states = stateDAO.findAll();
+		final List<State> states = repository.findAll();
 		log.debug("Loaded states:", states.toString());
 		return DTOConverter.convertList(states, StateDTO.class);
 	}

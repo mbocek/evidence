@@ -16,34 +16,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
+package com.evidence.repository.data;
 
-import static org.junit.Assert.assertTrue;
-
+import java.io.Serializable;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import org.junit.Test;
-
-import com.evidence.data.DbUnitTest;
-import com.evidence.dto.StateDTO;
+import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class CodeListServiceTest extends DbUnitTest {
+@NoRepositoryBean
+public interface ReadOnlyRepository<T, ID extends Serializable> extends Repository<T, ID> {
 
-	@Inject
-	private CodeListService codeListService;
+	/**
+	 * Read entity by id. When entity doesn't exists throw EntityNotFoundException.
+	 * @param id entity id
+	 * @return entity
+	 */
+	T read(final ID id);
+
+	/**
+	 * Find entity by id. When entity doesn't exist return null.
+	 * @param id entity id
+	 * @return entity or null
+	 */
+	T findById(final ID id);
 	
 	/**
-	 * Test method for {@link com.evidence.service.CodeListService#getStates()}.
+	 * Find all entities.
+	 * @return
 	 */
-	@Test
-	public void testGetStates() {
-		List<StateDTO> states = codeListService.getStates();
-		assertTrue("List of state should contains some data!", states.size() > 0);
-	}
+	List<T> findAll();
 }
