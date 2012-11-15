@@ -1,4 +1,3 @@
-com.evidence.dao
 com.evidence.dto
 com.evidence.entity
 com.evidence.fe
@@ -9,6 +8,8 @@ com.evidence.fe.main
 com.evidence.fe.menu
 com.evidence.fe.responsible
 com.evidence.fe.teacher
+com.evidence.repository
+com.evidence.repository.data
 com.evidence.service
 com.evidence.utility
 com.evidence.utility.converter
