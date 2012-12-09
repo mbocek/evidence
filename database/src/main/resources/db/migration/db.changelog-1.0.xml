@@ -99,6 +99,9 @@
 			<column name="TYPE" type="VARCHAR(50)" remarks="responsiblity type">
 				<constraints nullable="false" />
 			</column>
+			<column name="DELETED" type="BOOLEAN" remarks="Deleted flag">
+				<constraints nullable="false" />
+			</column>
 		</createTable>
 		<addForeignKeyConstraint baseColumnNames="KINDERGARTEN_ID" baseTableName="RESPONSIBLE_PERSON"
 			constraintName="FK_RESPONSIBLE_PERSON_KINDERGARTEN" deferrable="false" initiallyDeferred="false"
@@ -121,6 +124,9 @@
 			<column name="BIRTH_DATE" type="DATE" remarks="Birth date" />
 			<column name="NAME" type="VARCHAR(255)" remarks="name" />
 			<column name="SUR_NAME" type="VARCHAR(255)" remarks="Surname" />
+			<column name="DELETED" type="BOOLEAN" remarks="Deleted flag">
+				<constraints nullable="false" />
+			</column>
 			<column name="KINDERGARTEN_ID" type="BIGINT" remarks="Reference to kindergarten">
 				<constraints nullable="false" />
 			</column>
