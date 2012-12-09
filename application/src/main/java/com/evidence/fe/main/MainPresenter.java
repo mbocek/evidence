@@ -47,8 +47,8 @@ import com.vaadin.ui.Window;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Component("mainPresenter")
 @Scope("prototype")
+@Component("mainPresenter")
 @Presenter(view = MainView.class)
 public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 
@@ -83,7 +83,6 @@ public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 		this.application.setMainWindow((Window) this.view);
 
 		populateKindergartenSelect();
-		//this.application.setTheme("my-chameleon");
 		
 		// load the menu presenter
 		this.menuPresenter = (MenuPresenter) this.application.getPresenterFactory().createPresenter("menuPresenter");

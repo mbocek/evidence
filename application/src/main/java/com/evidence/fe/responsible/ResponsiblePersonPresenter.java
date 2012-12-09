@@ -152,9 +152,8 @@ public class ResponsiblePersonPresenter extends FactoryPresenter<IResponsiblePer
 		final ResponsiblePersonDetail view = this.createView(ResponsiblePersonDetail.class);
 		// configure the form with bean item
 		this.responsiblePersonForm = view.getResponsiblePersonForm();
-		final ResponsiblePersonDTO responsiblePerson = responsiblePersonDTO;
-		final MetaModel metaModel = formService.getMetaModel(responsiblePerson);
-		this.responsiblePersonForm.setItemDataSource(responsiblePerson, metaModel, this.messageSource, "responsiblePerson.detail", this.getLocale());
+		final MetaModel metaModel = formService.getMetaModel(responsiblePersonDTO);
+		this.responsiblePersonForm.setItemDataSource(responsiblePersonDTO, metaModel, this.messageSource, "responsiblePerson.detail", this.getLocale());
 
 		// create a window using caption from view
 		this.dialog = new Window(this.getMessage("responsiblePerson.detail.caption", this.getLocale()));

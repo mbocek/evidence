@@ -22,6 +22,11 @@
 				<class-a>com.evidence.entity.ResponsiblePerson</class-a>
 				<class-b>com.evidence.dto.ResponsiblePersonDTO</class-b>
 			</converter>
+
+			<converter type="com.evidence.utility.converter.ChildConverter">
+				<class-a>com.evidence.entity.Child</class-a>
+				<class-b>com.evidence.dto.ChildDTO</class-b>
+			</converter>
 		</custom-converters>
 	</configuration>
 	

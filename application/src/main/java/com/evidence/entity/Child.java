@@ -18,6 +18,7 @@
  */
 package com.evidence.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -47,17 +48,17 @@ public class Child extends Person {
 	private Long id;
 
 	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "MOTHER_ID")
 	private ResponsiblePerson mother;
 	
 	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "FATHER_ID")
 	private ResponsiblePerson father;
 	
 	@Getter @Setter
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "RESPONSIBLE_PERSON_ID")
 	private ResponsiblePerson responsiblePerson;	
 }

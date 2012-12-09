@@ -16,36 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.children;
+package com.evidence.fe.child;
 
-import org.vaadin.mvp.eventbus.EventBus;
-import org.vaadin.mvp.eventbus.annotation.Event;
-
-import com.evidence.fe.main.MainPresenter;
-import com.vaadin.event.ItemClickEvent;
-import com.vaadin.ui.Window;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.Table;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface ChildrenEventBus extends EventBus {
+public interface IChildListView extends Layout {
 
-	@Event(handlers = { ChildrenPresenter.class })
-	void createUser();
-
-	@Event(handlers = { ChildrenPresenter.class })
-	void removeUser();
-
-	@Event(handlers = { MainPresenter.class })
-	void showDialog(Window dialog);
-
-	@Event(handlers = { ChildrenPresenter.class })
-	void saveUser();
-
-	@Event(handlers = { ChildrenPresenter.class })
-	void cancelEditUser();
+	Table getChildList();
 	
-	@Event(handlers = { ChildrenPresenter.class })
-	void editUser(ItemClickEvent event);
+	HorizontalLayout getButtonBar();
+	
+	Label getExpander();
 }

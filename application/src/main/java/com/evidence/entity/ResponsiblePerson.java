@@ -33,6 +33,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -43,6 +44,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "RESPONSIBLE_PERSON")
 @ToString
+@NoArgsConstructor
 @NamedQueries(value = { 
 	@NamedQuery(name = ResponsiblePerson.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG, query = ResponsiblePerson.QUERY_FIND_ALL_BY_DELETED_FLAG), 
 	@NamedQuery(name = ResponsiblePerson.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG, query = ResponsiblePerson.QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG) 
@@ -57,7 +59,7 @@ public class ResponsiblePerson extends Person {
 	public static final String QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "ResponsiblePerson.finaAllByKindergartenIdAndDeletedFlag";
 	public static final String QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "SELECT r FROM ResponsiblePerson r WHERE r.kindergarten.id = :kindergartenId AND r.deleted = :deleted";
 	
-	@Getter
+	@Getter @Setter
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
@@ -69,4 +71,8 @@ public class ResponsiblePerson extends Person {
 	@Getter @Setter
 	@Enumerated(value = EnumType.STRING)
 	private ResponsibilityType type;
+	
+	public ResponsiblePerson(final Long id) {
+		this.id = id;
+	}
 }

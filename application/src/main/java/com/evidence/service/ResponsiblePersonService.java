@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import com.evidence.dto.ResponsiblePersonDTO;
+import com.evidence.entity.ResponsibilityType;
 import com.evidence.entity.ResponsiblePerson;
 import com.evidence.repository.ResponsiblePersonRepository;
 import com.evidence.utility.DTOConverter;
@@ -64,6 +65,36 @@ public class ResponsiblePersonService {
 		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
 	}
 
+	/**
+	 * Find mothers by kindergarten. 
+	 * @param id
+	 * @return
+	 */
+	public List<ResponsiblePersonDTO> findMothersByKindergartenId(@NotNull final Long id) {
+		final List<ResponsiblePerson> responsiblePersons = repository.findByKindergartenIdAndType(id, ResponsibilityType.MOTHER);
+		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
+	}
+	
+	/**
+	 * Find fathers by kindergarten. 
+	 * @param id
+	 * @return
+	 */
+	public List<ResponsiblePersonDTO> findFathersByKindergartenId(@NotNull final Long id) {
+		final List<ResponsiblePerson> responsiblePersons = repository.findByKindergartenIdAndType(id, ResponsibilityType.FATHER);
+		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
+	}
+	
+	/**
+	 * Find responsible persons by kindergarten. 
+	 * @param id
+	 * @return
+	 */
+	public List<ResponsiblePersonDTO> findResponsiblePersonsByKindergartenId(@NotNull final Long id) {
+		final List<ResponsiblePerson> responsiblePersons = repository.findByKindergartenIdAndType(id, ResponsibilityType.RESPONSIBLE_PERSON);
+		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
+	}
+	
 	/**
 	 * Create or update responsible person.
 	 * @param responsiblePersonDTO

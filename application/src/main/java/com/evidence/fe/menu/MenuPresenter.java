@@ -27,6 +27,7 @@ import org.vaadin.mvp.presenter.BasePresenter;
 import org.vaadin.mvp.presenter.FactoryPresenter;
 import org.vaadin.mvp.presenter.annotation.Presenter;
 
+import com.evidence.fe.child.ChildPresenter;
 import com.evidence.fe.kindergarten.KindergartenPresenter;
 import com.evidence.fe.main.MainEventBus;
 import com.evidence.fe.responsible.ResponsiblePersonPresenter;
@@ -36,6 +37,7 @@ import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.Tree;
 
 /**
+ * Presenter for left menu.
  * @author Michal Bocek
  * @since 1.0.0
  */
@@ -51,12 +53,9 @@ public class MenuPresenter extends FactoryPresenter<IMenuView, MainEventBus> {
 	public void bind() {
 		final Tree tree = this.view.getTree();
 		addEntry(tree, null, Boolean.FALSE, this.getMessage("menu.kindergarten", this.getLocale()), KindergartenPresenter.class);
-		//List<KindergartenDTO> kindergartens = kindergartenService.getAll();
-		//for (KindergartenDTO kindergartenDTO : kindergartens) {
-		//	MenuEntry kindergarten = addEntry(tree, kindergartenMenu, Boolean.TRUE, kindergartenDTO.getName(), null);
 		addEntry(tree, null, Boolean.FALSE, this.getMessage("menu.teacher", this.getLocale()), TeacherPresenter.class);
 		addEntry(tree, null, Boolean.FALSE, this.getMessage("menu.responsible", this.getLocale()), ResponsiblePersonPresenter.class);
-		//}
+		addEntry(tree, null, Boolean.FALSE, this.getMessage("menu.child", this.getLocale()), ChildPresenter.class);
 	}
 	
 	private MenuEntry addEntry(final Tree tree, final MenuEntry parent, final Boolean hasChildren, final String caption,
@@ -68,10 +67,17 @@ public class MenuPresenter extends FactoryPresenter<IMenuView, MainEventBus> {
 		return entry;
 	}
 
+	/**
+	 * Event handler method which react on menu sellection. 
+	 * @param event
+	 */
 	public void onSelectMenu(final ValueChangeEvent event) {
 		// get the selected menu entry and initiate another event
 		final MenuEntry menuEntry = (MenuEntry) this.view.getTree().getValue();
 		if (menuEntry != null) {
+			if (menuEntry.getPresenterType().equals(ChildPresenter.class)) {
+				this.eventBus.openModule(ResponsiblePersonPresenter.class);
+			}
 			this.eventBus.openModule(menuEntry.getPresenterType());
 		}
 	}

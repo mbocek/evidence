@@ -16,44 +16,40 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
+package com.evidence.fe.child;
 
-import javax.inject.Inject;
+import org.vaadin.mvp.eventbus.EventBus;
+import org.vaadin.mvp.eventbus.annotation.Event;
 
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import com.evidence.fe.main.MainPresenter;
+import com.evidence.fe.responsible.ResponsiblePersonPresenter;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.ui.Window;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Slf4j
-public final class ServiceHolder {
+public interface ChildEventBus extends EventBus {
 
-	private static ServiceHolder instance;
-	
-	@Getter
-	@Inject 
-	private CodeListService codeListService;
+	@Event(handlers = { ChildPresenter.class })
+	void addChild();
 
-	@Getter
-	@Inject 
-	private KindergartenService kindergartenService;
-	
-	@Getter
-	@Inject 
-	private ResponsiblePersonService responsibleService;
-	
-	private ServiceHolder() {
-	}
+	@Event(handlers = { ChildPresenter.class })
+	void removeChil();
 
-	public static synchronized ServiceHolder getInstance() { // NOPMD
-		if (instance == null) {
-			log.debug("Cearing ServiceHolder instance");
-			instance = new ServiceHolder();
-		} else {
-			log.trace("ServiceHolder instance laready exists!");
-		}
-		return instance;
-	}
+	@Event(handlers = { MainPresenter.class })
+	void showDialog(Window dialog);
+
+	@Event(handlers = { ChildPresenter.class })
+	void saveChild();
+
+	@Event(handlers = { ChildPresenter.class })
+	void cancelEditChild();
+	
+	@Event(handlers = { ChildPresenter.class })
+	void editChild(ItemClickEvent event);
+	
+	@Event(handlers = { ResponsiblePersonPresenter.class })
+	void addResponsiblePerson();
 }

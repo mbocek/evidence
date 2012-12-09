@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.children;
+package com.evidence.fe.child;
 
 import com.vaadin.ui.Form;
 
@@ -24,7 +24,7 @@ import com.vaadin.ui.Form;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface IChildrenView {
+public interface IChildDetail {
 	
-	Form getChildrenForm();
+	Form getChildForm();
 }

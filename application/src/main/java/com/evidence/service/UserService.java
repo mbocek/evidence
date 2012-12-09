@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.evidence.dto.ChildrenDTO;
+import com.evidence.dto.ChildDTO;
 
 /**
  * @author Michal Bocek
@@ -42,12 +42,12 @@ public class UserService {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void addChild(final ChildrenDTO child) {
+	public void addChild(final ChildDTO child) {
 //		Person person = DTOConverter.convert(child, Person.class);
 //		personDao.create(person);
 	}
 	
-	public List<ChildrenDTO> getAll() {
+	public List<ChildDTO> getAll() {
 //		List<Person> persons = personDao.findAll();
 //		return DTOConverter.convertList(persons, ChildrenDTO.class);
 		return null;

@@ -16,57 +16,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.repository.data;
+package com.evidence.repository;
 
-import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.data.repository.Repository;
-import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.data.jpa.repository.Query;
+
+import com.evidence.entity.Child;
+import com.evidence.entity.Teacher;
+import com.evidence.repository.data.CrudRepository;
 
 /**
+ * Repository for access on children.
  * @author Michal Bocek
  * @since 1.0.0
  */
-@NoRepositoryBean
-public interface CrudRepository<T, ID extends Serializable> extends Repository<T, ID> {
-
-	/**
-	 * Create entity.
-	 * @param entity
-	 */
-	void create(final T entity);
+public interface ChildRepository extends CrudRepository<Child, Long> {
 	
 	/**
-	 * Read entity by id. When entity doesn't exists throw EntityNotFoundException.
-	 * @param id entity id
-	 * @return entity
-	 */
-	T read(final ID id);
-	 
-	/**
-	 * Update specified entity.
-	 * @param entity
+	 * Find all children based on deleted flag.
+	 * @param deleted
 	 * @return
 	 */
-	T update(final T entity);
-
-	/**
-	 * Delete specified entity.
-	 * @param entity
-	 */
-	void delete(final T entity);
-
-	/**
-	 * Find entity by id. When entity doesn't exist return null.
-	 * @param id entity id
-	 * @return entity or null
-	 */
-	T findById(final ID id);
+	@Query("select c from Child c where c.deleted = ?1")
+	List<Child> findAll(final boolean deleted);
 	
 	/**
-	 * Find all entities.
+	 * Find teachers for specified children.
+	 * @param id
 	 * @return
 	 */
-	List<T> findAll();
+	List<Teacher> findByKindergartenId(final Long id);
 }

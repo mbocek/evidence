@@ -51,7 +51,7 @@ public class CrudRepositoryImpl<T, ID extends Serializable> implements CrudRepos
 	public void create(T entity) {
 		if (log.isTraceEnabled()) {
 			log.trace("Creating entity: " + entity.getClass());
-			log.trace("  With contents: " + String.valueOf(entity)); 
+			log.trace("  With contents: " + entity); 
 		}
 		entityManager.persist(entity);
 	}
@@ -73,7 +73,7 @@ public class CrudRepositoryImpl<T, ID extends Serializable> implements CrudRepos
 	public T update(T entity) {
 		if (log.isTraceEnabled()) {
 			log.trace("Updating entity: " + entity.getClass());
-			log.trace("  With contents: " + String.valueOf(entity)); 
+			log.trace("  With contents: " + entity); 
 		}
 		return entityManager.merge(entity);
 	}
@@ -82,7 +82,7 @@ public class CrudRepositoryImpl<T, ID extends Serializable> implements CrudRepos
 	public void delete(T entity) {
 		if (log.isTraceEnabled()) {
 			log.trace("Deleting entity: " + entity.getClass());
-			log.trace("  With contents: " + String.valueOf(entity)); 
+			log.trace("  With contents: " + entity); 
 		}
 		entityManager.remove(entity);
 	}

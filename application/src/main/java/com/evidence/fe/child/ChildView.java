@@ -16,27 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.children;
+package com.evidence.fe.child;
 
 import org.vaadin.mvp.uibinder.IUiBindable;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
-import com.vaadin.ui.Table;
+import com.vaadin.ui.Form;
 import com.vaadin.ui.VerticalLayout;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class ChildrenListView extends VerticalLayout implements IChildrenListView, IUiBindable {
+public class ChildView extends VerticalLayout implements IUiBindable, IChildView {
 
-	private static final long serialVersionUID = 3807396569678708848L;
+	private static final long serialVersionUID = 6155789894644060488L;
 
 	@UiField
-	private Table userList;
+	private Form childrenForm;
 
 	@Override
-	public Table getUserList() {
-		return userList;
+	public Form getChildrenForm() {
+		return this.childrenForm;
 	}
 }

@@ -22,6 +22,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 
+import com.evidence.entity.ResponsibilityType;
 import com.evidence.entity.ResponsiblePerson;
 import com.evidence.repository.data.CrudRepository;
 
@@ -46,4 +47,11 @@ public interface ResponsiblePersonRepository extends CrudRepository<ResponsibleP
 	 * @return
 	 */
 	List<ResponsiblePerson> findByKindergartenId(Long id);
+
+	/**
+	 * Find all responsible persons for kindergarten id and specified type.
+	 * @param id
+	 * @return
+	 */
+	List<ResponsiblePerson> findByKindergartenIdAndType(Long id, ResponsibilityType type);
 }
