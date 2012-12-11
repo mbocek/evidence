@@ -21,6 +21,8 @@ package com.evidence.fe.child;
 import java.util.List;
 import java.util.Locale;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.vaadin.mvp.uibinder.IUiMessageSource;
 
 import com.evidence.dto.ChildDTO;
@@ -29,7 +31,6 @@ import com.evidence.fe.form.EvidenceForm;
 import com.evidence.fe.form.MetaModel;
 import com.evidence.fe.form.Model;
 import com.evidence.service.ServiceHolder;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Select;
@@ -38,11 +39,12 @@ import com.vaadin.ui.Select;
  * @author Michal Bocek
  * @since 1.0.0
  */
+@Slf4j
 public class ChildDetailForm extends EvidenceForm {
 
 	private static final long serialVersionUID = 1L;
 	
-	private GridLayout layout;
+	private final GridLayout layout;
 	
 	public ChildDetailForm() {
 		layout = new GridLayout(2, 5);
@@ -76,13 +78,15 @@ public class ChildDetailForm extends EvidenceForm {
 		super.setItemDataSource(model, metaModel, messageSource, messagePrefix, locale);
 		
 		Long kindergartenId = ((ChildDTO)model).getKindergartenId();
-		fillMothers(kindergartenId);
-		fillFathers(kindergartenId);
-		fillResponsiblePersons(kindergartenId);
+		reloadMothers(kindergartenId);
+		reloadFathers(kindergartenId);
+		reloadResponsiblePersons(kindergartenId);
 	}
 
-	private void fillMothers(Long kindergartenId) {
+	protected void reloadMothers(Long kindergartenId) {
+		log.debug("reloading mothers for kindergatend {}", kindergartenId);
 		Select mother = (Select)this.getField("motherId");
+		mother.removeAllItems();
 		final List<ResponsiblePersonDTO> responsiblePersons = ServiceHolder.getInstance().getResponsibleService().findMothersByKindergartenId(kindergartenId);
 		for (ResponsiblePersonDTO responsiblePerson : responsiblePersons) {
 			mother.addItem(responsiblePerson.getId());
@@ -90,8 +94,9 @@ public class ChildDetailForm extends EvidenceForm {
 		}
 	}
 	
-	private void fillFathers(Long kindergartenId) {
+	protected void reloadFathers(Long kindergartenId) {
 		Select father = (Select)this.getField("fatherId");
+		father.removeAllItems();
 		final List<ResponsiblePersonDTO> responsiblePersons = ServiceHolder.getInstance().getResponsibleService().findFathersByKindergartenId(kindergartenId);
 		for (ResponsiblePersonDTO responsiblePerson : responsiblePersons) {
 			father.addItem(responsiblePerson.getId());
@@ -99,8 +104,9 @@ public class ChildDetailForm extends EvidenceForm {
 		}
 	}
 
-	private void fillResponsiblePersons(Long kindergartenId) {
+	protected void reloadResponsiblePersons(Long kindergartenId) {
 		Select responsiblePersonSelect = (Select)this.getField("responsiblePersonId");
+		responsiblePersonSelect.removeAllItems();
 		final List<ResponsiblePersonDTO> responsiblePersons = ServiceHolder.getInstance().getResponsibleService().findResponsiblePersonsByKindergartenId(kindergartenId);
 		for (ResponsiblePersonDTO responsiblePerson : responsiblePersons) {
 			responsiblePersonSelect.addItem(responsiblePerson.getId());

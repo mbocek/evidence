@@ -39,10 +39,10 @@ import com.evidence.service.TeacherService;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
+import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.Field.ValueChangeEvent;
 
 /**
  * @author Michal Bocek
@@ -141,10 +141,10 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 
 	private void closeDialog() {
 		// dismiss the dialog
-		final Window applicationWindow = (Window) this.dialog.getParent();
+		final Window applicationWindow = this.dialog.getParent();
 		applicationWindow.removeWindow(this.dialog);
-		//this.dialog = null;
-		//this.kindergartenForm = null;
+		this.dialog = null;
+		this.teacherForm = null;
 	}
 
 	private void showCreateEditDialog(final TeacherDTO teacherDTO) throws ViewFactoryException {
@@ -152,9 +152,8 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 		final TeacherDetail view = this.createView(TeacherDetail.class);
 		// configure the form with bean item
 		this.teacherForm = view.getTeacherForm();
-		final TeacherDTO teacher = teacherDTO;
-		final MetaModel metaModel = formService.getMetaModel(teacher);
-		this.teacherForm.setItemDataSource(teacher, metaModel, this.messageSource, "teacher.detail", this.getLocale());
+		final MetaModel metaModel = formService.getMetaModel(teacherDTO);
+		this.teacherForm.setItemDataSource(teacherDTO, metaModel, this.messageSource, "teacher.detail", this.getLocale());
 
 		// create a window using caption from view
 		this.dialog = new Window(this.getMessage("teacher.detail.caption", this.getLocale()));

@@ -52,14 +52,13 @@ import com.vaadin.ui.Window;
 @Presenter(view = MainView.class)
 public class MainPresenter extends FactoryPresenter<IMainView, MainEventBus> {
 
-	// CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 1 LINES
-	private static final Logger log = LoggerFactory.getLogger(MainPresenter.class); // NOPMD
+	private static final Logger log = LoggerFactory.getLogger(MainPresenter.class);
 
 	private EvidenceApplication application;
 
-	private MenuPresenter menuPresenter; // NOPMD
+	private MenuPresenter menuPresenter;
 
-	private IPresenter<?, ? extends EventBus> contentPresenter; // NOPMD
+	private IPresenter<?, ? extends EventBus> contentPresenter;
 	
 	@Inject
 	private KindergartenService kindergartenService;

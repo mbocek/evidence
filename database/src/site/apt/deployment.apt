@@ -8,7 +8,7 @@
 
 Database deployment
 
-	For database maintenece I decided to use {{{http://liquibase.org/}liquibase}}. 
+	For database maintenece I have decided to use {{{http://liquibase.org/}liquibase}}. 
 
 * Deploy development database
 

@@ -18,7 +18,6 @@
  */
 package com.evidence.fe.child;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,14 +32,12 @@ import org.vaadin.mvp.presenter.annotation.Presenter;
 import com.evidence.dto.ChildDTO;
 import com.evidence.fe.ApplicationConstants;
 import com.evidence.fe.EvidenceApplication;
-import com.evidence.fe.form.EvidenceForm;
 import com.evidence.fe.form.MetaModel;
 import com.evidence.service.ChildService;
 import com.evidence.service.FormMetaModelService;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
@@ -51,7 +48,7 @@ import com.vaadin.ui.Window.Notification;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Component("childrenPresenter")
+@Component("childPresenter")
 @Scope("prototype")
 @Presenter(view = ChildListView.class)
 public class ChildPresenter extends FactoryPresenter<IChildListView, ChildEventBus> {
@@ -60,7 +57,7 @@ public class ChildPresenter extends FactoryPresenter<IChildListView, ChildEventB
 
 	private Window dialog = null;
 	
-	private EvidenceForm childForm = null;
+	private ChildDetailForm childForm = null;
 	
 	@Inject
 	private ChildService childService;
@@ -101,7 +98,7 @@ public class ChildPresenter extends FactoryPresenter<IChildListView, ChildEventB
 
 	public void onAddChild() throws ViewFactoryException {
 		if (getKindergartenId().longValue() == ApplicationConstants.SELECT_ALL.longValue()) {
-			this.view.getChildList().getWindow().showNotification(
+			this.showNotification(
 							this.getMessage("child.detail.kindergartenNotSelected.caption", this.getLocale()),
 							this.getMessage("child.detail.kindergartenNotSelected.description", this.getLocale()),
 							Notification.TYPE_ERROR_MESSAGE);
@@ -151,25 +148,20 @@ public class ChildPresenter extends FactoryPresenter<IChildListView, ChildEventB
 
 	private void closeDialog() {
 		// dismiss the dialog
-		final Window applicationWindow = (Window) this.dialog.getParent();
+		final Window applicationWindow = this.dialog.getParent();
 		applicationWindow.removeWindow(this.dialog);
-		//this.dialog = null;
-		//this.kindergartenForm = null;
+		this.dialog = null;
+		this.childForm = null;
 	}
 
 	private void showCreateEditDialog(final ChildDTO childDTO) throws ViewFactoryException {
 		// create view
 		final ChildDetail view = this.createView(ChildDetail.class);
 		// configure the form with bean item
-		this.childForm = view.getChildForm();
-		HorizontalLayout hl = (HorizontalLayout)this.childForm.getFooter().getComponentIterator().next();
-		hl.setWidth("100%");
-		Iterator<com.vaadin.ui.Component> it = hl.getComponentIterator();
-		hl.setComponentAlignment(it.next(), Alignment.MIDDLE_RIGHT);
-		hl.setComponentAlignment(it.next(), Alignment.MIDDLE_RIGHT);
-		final ChildDTO child = childDTO;
-		final MetaModel metaModel = formService.getMetaModel(child);
-		this.childForm.setItemDataSource(child, metaModel, this.messageSource, "child.detail", this.getLocale());
+		this.childForm = (ChildDetailForm)view.getChildForm();
+		this.childForm.getFooter().setMargin(true, false, false, false);
+		final MetaModel metaModel = formService.getMetaModel(childDTO);
+		this.childForm.setItemDataSource(childDTO, metaModel, this.messageSource, "child.detail", this.getLocale());
 
 		// create a window using caption from view
 		this.dialog = new Window(this.getMessage("child.detail.caption", this.getLocale()));
@@ -181,5 +173,13 @@ public class ChildPresenter extends FactoryPresenter<IChildListView, ChildEventB
 	
 	public void onSelectKindergarten(ValueChangeEvent event) {
 		loadChildList();
+	}
+	
+	public void onSaveResponsiblePerson() {
+		if (this.childForm != null) {
+			this.childForm.reloadMothers(getKindergartenId());
+			this.childForm.reloadFathers(getKindergartenId());
+			this.childForm.reloadResponsiblePersons(getKindergartenId());
+		}
 	}
 }

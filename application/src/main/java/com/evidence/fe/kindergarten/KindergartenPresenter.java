@@ -129,10 +129,10 @@ public class KindergartenPresenter extends FactoryPresenter<IKindergartenListVie
 
 	private void closeDialog() {
 		// dismiss the dialog
-		final Window applicationWindow = (Window) this.dialog.getParent();
+		final Window applicationWindow = this.dialog.getParent();
 		applicationWindow.removeWindow(this.dialog);
-		//this.dialog = null;
-		//this.kindergartenForm = null;
+		this.dialog = null;
+		this.kindergartenForm = null;
 	}
 
 	private void showCreateEditDialog(final KindergartenDTO kindergartenDTO) throws ViewFactoryException {

@@ -54,21 +54,25 @@ public class ChildDetailFormFieldFactory extends EvidenceFormFieldFactory {
 		final String pid = (String) propertyId;
 		if ("birthDate".equals(pid)) {
 			field = super.createField(item, propertyId, uiContext);
+			field.setWidth("100%");
 			((DateField)field).setDateFormat(this.getMessage("date.format"));
 		} else if ("motherId".equals(pid)) {
 			final Select select = new Select(pid);
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);
+			select.setWidth("100%");
 			field = select;
 		} else if ("fatherId".equals(pid)) {
 			final Select select = new Select(pid);
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);
+			select.setWidth("100%");
 			field = select;
 		} else if ("responsiblePersonId".equals(pid)) {
 			final Select select = new Select(pid);
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);
+			select.setWidth("100%");
 			field = select;
 		} else {
 			field = super.createField(item, propertyId, uiContext);

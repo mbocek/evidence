@@ -21,6 +21,7 @@ package com.evidence.fe.responsible;
 import org.vaadin.mvp.eventbus.EventBus;
 import org.vaadin.mvp.eventbus.annotation.Event;
 
+import com.evidence.fe.child.ChildPresenter;
 import com.evidence.fe.main.MainPresenter;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Window;
@@ -40,7 +41,7 @@ public interface ResponsiblePersonEventBus extends EventBus {
 	@Event(handlers = { MainPresenter.class })
 	void showDialog(Window dialog);
 
-	@Event(handlers = { ResponsiblePersonPresenter.class })
+	@Event(handlers = { ResponsiblePersonPresenter.class, ChildPresenter.class })
 	void saveResponsiblePerson();
 
 	@Event(handlers = { ResponsiblePersonPresenter.class })
