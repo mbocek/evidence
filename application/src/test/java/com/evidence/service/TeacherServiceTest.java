@@ -66,10 +66,9 @@ public class TeacherServiceTest extends DbUnitTest {
 	@Test
 	public void testCreateOrUpdateTeacher() {
 		List<TeacherDTO> allBefore = teacherService.getAll();
-		TeacherDTO teacherDTO = new TeacherDTO();
+		TeacherDTO teacherDTO = new TeacherDTO(1L);
 		teacherDTO.setName("John");
 		teacherDTO.setSurName("Doe");
-		teacherDTO.setKindergartenId(1L);
 		teacherDTO.setBirthDate(new Date());
 		teacherDTO.setContact(new ContactDTO());
 		teacherDTO.getContact().setEmail("test@test.com");

@@ -49,7 +49,6 @@ public class ChildDTO implements Model {
 
 	@NotNull
 	@Getter @Setter
-	@Order(1) @Caption("kindergarten")
 	private Long kindergartenId;
 	
 	@NotBlank

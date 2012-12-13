@@ -67,11 +67,10 @@ public class ResponsiblePersonServiceTest extends DbUnitTest {
 	@Test
 	public void testCreateOrUpdateResponsiblePersons() {
 		List<ResponsiblePersonDTO> allBefore = responsiblePersonService.getAll();
-		ResponsiblePersonDTO responsiblePersonDTO = new ResponsiblePersonDTO();
+		ResponsiblePersonDTO responsiblePersonDTO = new ResponsiblePersonDTO(1L);
 		responsiblePersonDTO.setType("MOTHER");
 		responsiblePersonDTO.setName("John");
 		responsiblePersonDTO.setSurName("Doe");
-		responsiblePersonDTO.setKindergartenId(1L);
 		responsiblePersonDTO.setBirthDate(new Date());
 		responsiblePersonDTO.setContact(new ContactDTO());
 		responsiblePersonDTO.getContact().setEmail("test@test.com");

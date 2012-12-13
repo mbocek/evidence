@@ -48,7 +48,6 @@ public class ResponsiblePersonDTO implements Model {
 	
 	@NotNull
 	@Getter @Setter
-	@Order(1) @Caption("kindergarten")
 	private Long kindergartenId;
 	
 	@NotBlank
@@ -78,6 +77,10 @@ public class ResponsiblePersonDTO implements Model {
 	@Caption
 	@Getter @Setter
 	private String type;
+	
+	public ResponsiblePersonDTO(final Long kindergartenId) {
+		this.kindergartenId = kindergartenId;
+	}
 	
 	public Date getBirthDate() {
 		return new Date(birthDate.getTime());

@@ -59,7 +59,6 @@ public class EvidenceForm extends Form {
 
 	public void setItemDataSource(final Model model, final MetaModel metaModel, final IUiMessageSource messageSource,
 			final String messagePrefix, final Locale locale) {
-		//Class<? extends Model> clazz = model.getClass();
 		final BeanItem<Model> beanItem = new BeanItem<Model>(model);
 		for (FieldInfo fieldInfo : metaModel.getFieldInfos()) {
 			if (fieldInfo.isNested()) {
@@ -68,7 +67,7 @@ public class EvidenceForm extends Form {
 			}
 		}
 		this.setItemDataSource(beanItem);
-		setupFormFieldFactory(metaModel, messageSource, locale);
+		setupFormFieldFactory(model, metaModel, messageSource, locale);
 		this.setVisibleItemProperties(metaModel.getOrderedFields());
 		for (String fieldName : metaModel.getCaptionedFields()) {
 			log.debug("Processing caption for field:{}", fieldName);
@@ -133,14 +132,14 @@ public class EvidenceForm extends Form {
 		}
 	}
 
-	private void setupFormFieldFactory(final MetaModel metaModel, final IUiMessageSource messageSource, final Locale locale) {
+	private void setupFormFieldFactory(final Model model, final MetaModel metaModel, final IUiMessageSource messageSource, final Locale locale) {
 		final Class<? extends FormFieldFactory> formFieldFactory = metaModel.getFormFieldFactory();
 		if (formFieldFactory != null) {
 			try {
 				final Constructor<? extends FormFieldFactory> constructor = formFieldFactory
-						.getConstructor(new Class[] { IUiMessageSource.class, Locale.class });
+						.getConstructor(new Class[] { Model.class, IUiMessageSource.class, Locale.class });
 				final EvidenceFormFieldFactory instance = (EvidenceFormFieldFactory) constructor
-						.newInstance(new Object[] { messageSource, locale });
+						.newInstance(new Object[] { model, messageSource, locale });
 				this.setFormFieldFactory(instance);
 			} catch (InstantiationException e) {
 				throw new EvidenceFormException("InstantiationException for " + formFieldFactory.getName(), e);

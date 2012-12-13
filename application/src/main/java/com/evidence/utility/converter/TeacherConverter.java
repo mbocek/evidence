@@ -54,10 +54,9 @@ public class TeacherConverter implements CustomConverter {
 	}
 
 	private TeacherDTO convert(final Teacher source) {
-		final TeacherDTO teacherDTO = new TeacherDTO();
+		final TeacherDTO teacherDTO = new TeacherDTO(source.getKindergarten().getId());
 		teacherDTO.setContact(DTOConverter.convert(source.getContact(), ContactDTO.class));
 		teacherDTO.setBirthDate(source.getBirthDate());
-		teacherDTO.setKindergartenId(source.getKindergarten().getId());
 		teacherDTO.setName(source.getName());
 		teacherDTO.setSurName(source.getSurName());
 		teacherDTO.setId(source.getId());

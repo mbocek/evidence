@@ -43,6 +43,7 @@ import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
+import com.vaadin.ui.Window.Notification;
 
 /**
  * @author Michal Bocek
@@ -97,8 +98,14 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 	}
 
 	public void onAddTeacher() throws ViewFactoryException {
-		showCreateEditDialog(new TeacherDTO());
-	}
+		if (getKindergartenId().longValue() == ApplicationConstants.SELECT_ALL.longValue()) {
+			this.showNotification(
+							this.getMessage("child.detail.kindergartenNotSelected.caption", this.getLocale()),
+							this.getMessage("child.detail.kindergartenNotSelected.description", this.getLocale()),
+							Notification.TYPE_ERROR_MESSAGE);
+		} else {
+			showCreateEditDialog(new TeacherDTO(getKindergartenId()));
+		}	}
 
 	public void onRemoveTeacher() {
 		// check if a user is selected in the table

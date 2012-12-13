@@ -40,6 +40,7 @@ import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Select;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.Notification;
@@ -177,9 +178,13 @@ public class ChildPresenter extends FactoryPresenter<IChildListView, ChildEventB
 	
 	public void onSaveResponsiblePerson() {
 		if (this.childForm != null) {
-			this.childForm.reloadMothers(getKindergartenId());
-			this.childForm.reloadFathers(getKindergartenId());
-			this.childForm.reloadResponsiblePersons(getKindergartenId());
+			Long kindergartenId = (Long)this.childForm.getItemProperty("kindergartenId").getValue();
+			Select select = (Select) this.childForm.getField("motherId");
+			((ChildDetailFormFieldFactory)this.childForm.getFormFieldFactory()).reloadMothers(kindergartenId, select);
+			select = (Select) this.childForm.getField("fatherId");
+			((ChildDetailFormFieldFactory)this.childForm.getFormFieldFactory()).reloadFathers(kindergartenId, select);
+			select = (Select) this.childForm.getField("responsiblePersonId");
+			((ChildDetailFormFieldFactory)this.childForm.getFormFieldFactory()).reloadResponsiblePersons(kindergartenId, select);
 		}
 	}
 }

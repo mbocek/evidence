@@ -27,6 +27,7 @@ import org.vaadin.mvp.uibinder.IUiMessageSource;
 
 import com.evidence.dto.StateDTO;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
+import com.evidence.fe.form.Model;
 import com.evidence.service.ServiceHolder;
 import com.vaadin.data.Item;
 import com.vaadin.ui.Component;
@@ -42,8 +43,8 @@ public class KindergartenDetailFormFieldFactory extends EvidenceFormFieldFactory
 
 	private static final long serialVersionUID = 1L;
 
-	public KindergartenDetailFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
-		super(messageSource, locale);
+	public KindergartenDetailFormFieldFactory(final Model model, final IUiMessageSource messageSource, final Locale locale) {
+		super(model, messageSource, locale);
 	}
 
 	/* (non-Javadoc)
@@ -57,7 +58,6 @@ public class KindergartenDetailFormFieldFactory extends EvidenceFormFieldFactory
 		if ("contact.address.stateCode".equals(pid)) {
 			final Select select = new Select(pid);
 			final List<StateDTO> states = ServiceHolder.getInstance().getCodeListService().getStates();
-			log.debug(states.toString());
 			for (StateDTO stateDTO : states) {
 				select.addItem(stateDTO.getCode());
 				select.setItemCaption(stateDTO.getCode(), stateDTO.getName());

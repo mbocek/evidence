@@ -48,7 +48,6 @@ public class TeacherDTO implements Model {
 	
 	@NotNull
 	@Getter @Setter
-	@Order(1) @Caption("kindergarten")
 	private Long kindergartenId;
 	
 	@NotBlank
@@ -72,6 +71,10 @@ public class TeacherDTO implements Model {
 	@Valid
 	@Getter @Setter
 	private ContactDTO contact = new ContactDTO();
+	
+	public TeacherDTO(final Long kindergartenId) {
+		this.kindergartenId = kindergartenId;
+	}
 	
 	public Date getBirthDate() {
 		return new Date(birthDate.getTime());

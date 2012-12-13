@@ -18,28 +18,14 @@
  */
 package com.evidence.fe.child;
 
-import java.util.List;
-import java.util.Locale;
-
-import lombok.extern.slf4j.Slf4j;
-
-import org.vaadin.mvp.uibinder.IUiMessageSource;
-
-import com.evidence.dto.ChildDTO;
-import com.evidence.dto.ResponsiblePersonDTO;
 import com.evidence.fe.form.EvidenceForm;
-import com.evidence.fe.form.MetaModel;
-import com.evidence.fe.form.Model;
-import com.evidence.service.ServiceHolder;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.Select;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Slf4j
 public class ChildDetailForm extends EvidenceForm {
 
 	private static final long serialVersionUID = 1L;
@@ -69,48 +55,6 @@ public class ChildDetailForm extends EvidenceForm {
 			 layout.addComponent(field, 0, 3, 1, 3);
 		} else if (propertyId.equals("responsiblePersonId")) {
 			 layout.addComponent(field, 0, 4, 1, 4);
-		}
-	}
-	
-	@Override
-	public void setItemDataSource(Model model, MetaModel metaModel, IUiMessageSource messageSource,
-			String messagePrefix, Locale locale) {
-		super.setItemDataSource(model, metaModel, messageSource, messagePrefix, locale);
-		
-		Long kindergartenId = ((ChildDTO)model).getKindergartenId();
-		reloadMothers(kindergartenId);
-		reloadFathers(kindergartenId);
-		reloadResponsiblePersons(kindergartenId);
-	}
-
-	protected void reloadMothers(Long kindergartenId) {
-		log.debug("reloading mothers for kindergatend {}", kindergartenId);
-		Select mother = (Select)this.getField("motherId");
-		mother.removeAllItems();
-		final List<ResponsiblePersonDTO> responsiblePersons = ServiceHolder.getInstance().getResponsibleService().findMothersByKindergartenId(kindergartenId);
-		for (ResponsiblePersonDTO responsiblePerson : responsiblePersons) {
-			mother.addItem(responsiblePerson.getId());
-			mother.setItemCaption(responsiblePerson.getId(), responsiblePerson.getFullName());
-		}
-	}
-	
-	protected void reloadFathers(Long kindergartenId) {
-		Select father = (Select)this.getField("fatherId");
-		father.removeAllItems();
-		final List<ResponsiblePersonDTO> responsiblePersons = ServiceHolder.getInstance().getResponsibleService().findFathersByKindergartenId(kindergartenId);
-		for (ResponsiblePersonDTO responsiblePerson : responsiblePersons) {
-			father.addItem(responsiblePerson.getId());
-			father.setItemCaption(responsiblePerson.getId(), responsiblePerson.getFullName());
-		}
-	}
-
-	protected void reloadResponsiblePersons(Long kindergartenId) {
-		Select responsiblePersonSelect = (Select)this.getField("responsiblePersonId");
-		responsiblePersonSelect.removeAllItems();
-		final List<ResponsiblePersonDTO> responsiblePersons = ServiceHolder.getInstance().getResponsibleService().findResponsiblePersonsByKindergartenId(kindergartenId);
-		for (ResponsiblePersonDTO responsiblePerson : responsiblePersons) {
-			responsiblePersonSelect.addItem(responsiblePerson.getId());
-			responsiblePersonSelect.setItemCaption(responsiblePerson.getId(), responsiblePerson.getFullName());
 		}
 	}
 }

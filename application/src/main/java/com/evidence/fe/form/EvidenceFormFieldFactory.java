@@ -34,20 +34,27 @@ public class EvidenceFormFieldFactory extends DefaultFieldFactory {
 
 	private transient IUiMessageSource messageSource;
 	
-	private Locale locale;
+	private final Locale locale;
 
-	public EvidenceFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
+	private final Model model;
+
+	public EvidenceFormFieldFactory(final Model model, final IUiMessageSource messageSource, final Locale locale) {
 		super();
 		this.messageSource = messageSource;
 		this.locale = locale;
+		this.model = model;
 	}
 	
 	protected Locale getLocale() {
-		return locale;
+		return this.locale;
 	}
 	
 	protected IUiMessageSource getMessageSource() {
-		return messageSource;
+		return this.messageSource;
+	}
+
+	protected Model getModel() {
+		return this.model;
 	}
 
 	protected String getMessage(final String key) {

@@ -55,10 +55,9 @@ public class ResponsiblePersonConverter implements CustomConverter {
 	}
 
 	private ResponsiblePersonDTO convert(final ResponsiblePerson source) {
-		final ResponsiblePersonDTO responsiblePersonDTO = new ResponsiblePersonDTO();
+		final ResponsiblePersonDTO responsiblePersonDTO = new ResponsiblePersonDTO(source.getKindergarten().getId());
 		responsiblePersonDTO.setContact(DTOConverter.convert(source.getContact(), ContactDTO.class));
 		responsiblePersonDTO.setBirthDate(source.getBirthDate());
-		responsiblePersonDTO.setKindergartenId(source.getKindergarten().getId());
 		responsiblePersonDTO.setName(source.getName());
 		responsiblePersonDTO.setSurName(source.getSurName());
 		responsiblePersonDTO.setType(source.getType().name());

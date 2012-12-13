@@ -43,6 +43,7 @@ import com.vaadin.ui.Field.ValueChangeEvent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
+import com.vaadin.ui.Window.Notification;
 
 /**
  * @author Michal Bocek
@@ -97,7 +98,14 @@ public class ResponsiblePersonPresenter extends FactoryPresenter<IResponsiblePer
 	}
 	
 	public void onAddResponsiblePerson() throws ViewFactoryException {
-		showCreateEditDialog(new ResponsiblePersonDTO());
+		if (getKindergartenId().longValue() == ApplicationConstants.SELECT_ALL.longValue()) {
+			this.showNotification(
+							this.getMessage("child.detail.kindergartenNotSelected.caption", this.getLocale()),
+							this.getMessage("child.detail.kindergartenNotSelected.description", this.getLocale()),
+							Notification.TYPE_ERROR_MESSAGE);
+		} else {
+			showCreateEditDialog(new ResponsiblePersonDTO(getKindergartenId()));
+		}
 	}
 
 	public void onRemoveResponsiblePerson() {
@@ -141,7 +149,7 @@ public class ResponsiblePersonPresenter extends FactoryPresenter<IResponsiblePer
 
 	private void closeDialog() {
 		// dismiss the dialog
-		final Window applicationWindow = (Window) this.dialog.getParent();
+		final Window applicationWindow = this.dialog.getParent();
 		applicationWindow.removeWindow(this.dialog);
 		//this.dialog = null;
 		//this.kindergartenForm = null;
