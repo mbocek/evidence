@@ -75,7 +75,7 @@ public class MetaModel {
 		return this.requiredMap.get(fieldName);
 	}
 
-	public Boolean getFieldvalidated(final String fieldName) {
+	public Boolean getFieldValidated(final String fieldName) {
 		return this.validatedMap.get(fieldName);
 	}	
 	

@@ -210,8 +210,8 @@ public final class AnnotationHelper { // NOPMD
 						}
 						
 						for (Annotation annotation : field.getAnnotations()) {
-							if (annotation.getClass().getCanonicalName() != null
-									&& annotation.getClass().getCanonicalName().contains("valid")) {
+							if (annotation != null
+									&& annotation.toString().contains("valid")) {
 								validatedBoolean = Boolean.TRUE;
 							}
 						}						

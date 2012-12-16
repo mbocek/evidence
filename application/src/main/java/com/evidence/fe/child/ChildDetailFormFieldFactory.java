@@ -25,10 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.vaadin.mvp.uibinder.IUiMessageSource;
 
-import com.evidence.dto.ChildDTO;
 import com.evidence.dto.ResponsiblePersonDTO;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
-import com.evidence.fe.form.Model;
 import com.evidence.service.ServiceHolder;
 import com.vaadin.data.Item;
 import com.vaadin.ui.Component;
@@ -45,8 +43,8 @@ public class ChildDetailFormFieldFactory extends EvidenceFormFieldFactory {
 
 	private static final long serialVersionUID = 1L;
 
-	public ChildDetailFormFieldFactory(final Model model, final IUiMessageSource messageSource, final Locale locale) {
-		super(model, messageSource, locale);
+	public ChildDetailFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
+		super(messageSource, locale);
 	}
 
 	/* (non-Javadoc)
@@ -63,7 +61,7 @@ public class ChildDetailFormFieldFactory extends EvidenceFormFieldFactory {
 			((DateField)field).setDateFormat(this.getMessage("date.format"));
 		} else if ("motherId".equals(pid)) {
 			final Select select = new Select(pid);
-			Long kindergartenId = ((ChildDTO)this.getModel()).getKindergartenId();
+			Long kindergartenId = (Long)item.getItemProperty("kindergartenId").getValue();
 			reloadMothers(kindergartenId, select);
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);
@@ -71,7 +69,7 @@ public class ChildDetailFormFieldFactory extends EvidenceFormFieldFactory {
 			field = select;
 		} else if ("fatherId".equals(pid)) {
 			final Select select = new Select(pid);
-			Long kindergartenId = ((ChildDTO)this.getModel()).getKindergartenId();
+			Long kindergartenId = (Long)item.getItemProperty("kindergartenId").getValue();
 			reloadFathers(kindergartenId, select);
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);
@@ -79,7 +77,7 @@ public class ChildDetailFormFieldFactory extends EvidenceFormFieldFactory {
 			field = select;
 		} else if ("responsiblePersonId".equals(pid)) {
 			final Select select = new Select(pid);
-			Long kindergartenId = ((ChildDTO)this.getModel()).getKindergartenId();
+			Long kindergartenId = (Long)item.getItemProperty("kindergartenId").getValue();
 			reloadResponsiblePersons(kindergartenId, select);
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);

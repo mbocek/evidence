@@ -76,6 +76,6 @@ public class AnnotationHelperTest {
 		assertEquals("TestModel doesn't contains four caption fields!", 4, captionMap.size());
 		assertEquals("TestModel doesn't contains one required field!", 4, requiredMap.size());
 		assertTrue("TestModel name attribude isn't required field!", requiredMap.get("name"));
-		assertTrue("TestModel name attribude isn't validated field!", requiredMap.get("name"));
+		assertTrue("TestModel name attribude isn't validated field!", validatedMap.get("name"));
 	}
 }

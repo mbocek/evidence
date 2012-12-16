@@ -27,7 +27,6 @@ import org.vaadin.mvp.uibinder.IUiMessageSource;
 
 import com.evidence.dto.StateDTO;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
-import com.evidence.fe.form.Model;
 import com.evidence.service.ServiceHolder;
 import com.vaadin.data.Item;
 import com.vaadin.ui.Component;
@@ -44,8 +43,8 @@ public class TeacherDetailFormFieldFactory extends EvidenceFormFieldFactory {
 
 	private static final long serialVersionUID = 1L;
 
-	public TeacherDetailFormFieldFactory(final Model model, final IUiMessageSource messageSource, final Locale locale) {
-		super(model, messageSource, locale);
+	public TeacherDetailFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
+		super(messageSource, locale);
 	}
 
 	/* (non-Javadoc)

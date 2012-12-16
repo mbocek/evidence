@@ -36,13 +36,10 @@ public class EvidenceFormFieldFactory extends DefaultFieldFactory {
 	
 	private final Locale locale;
 
-	private final Model model;
-
-	public EvidenceFormFieldFactory(final Model model, final IUiMessageSource messageSource, final Locale locale) {
+	public EvidenceFormFieldFactory(final IUiMessageSource messageSource, final Locale locale) {
 		super();
 		this.messageSource = messageSource;
 		this.locale = locale;
-		this.model = model;
 	}
 	
 	protected Locale getLocale() {
@@ -51,10 +48,6 @@ public class EvidenceFormFieldFactory extends DefaultFieldFactory {
 	
 	protected IUiMessageSource getMessageSource() {
 		return this.messageSource;
-	}
-
-	protected Model getModel() {
-		return this.model;
 	}
 
 	protected String getMessage(final String key) {

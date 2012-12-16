@@ -19,6 +19,7 @@
 package com.evidence.dto;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -46,11 +47,13 @@ public class ContactDTO {
 	private String email = ""; 
 
 	@NotBlank
+	@Pattern(regexp = "(^[+]?[0-9]{9,}$)")
 	@Order(2) @Caption
 	@Getter @Setter
 	private String mobileNumber = "";
 	
 	@NotBlank
+	@Pattern(regexp = "(^[+]?[0-9]{9,}$)")
 	@Order(3) @Caption
 	@Getter @Setter
 	private String landLine = "";

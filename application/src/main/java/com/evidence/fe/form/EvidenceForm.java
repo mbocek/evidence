@@ -97,7 +97,7 @@ public class EvidenceForm extends Form {
 				final String message = getMessage(error.getCodes(), messageSource, locale);
 				final Field fieldComponent = this.getField(field);
 				if (fieldComponent instanceof AbstractField) {
-					((AbstractField)fieldComponent).setComponentError(new UserError(message)); // NOPMD
+					((AbstractField)fieldComponent).setComponentError(new UserError(message));
 				}
 			}
 			result = false;
@@ -121,8 +121,9 @@ public class EvidenceForm extends Form {
 	private void clearFields(final MetaModel metaModel) {
 		final Collection<String> validatedFields = metaModel.getValidatedFields();
 		for (String fieldName : validatedFields) {
-			final Boolean fieldValidated = metaModel.getFieldvalidated(fieldName);
-			if (fieldValidated) {
+			final boolean isFieldValidated = metaModel.getFieldValidated(fieldName);
+			log.debug("Field: {} will be validated: {}", fieldName, isFieldValidated);
+			if (isFieldValidated) {
 				final Field fieldComponent = this.getField(fieldName);
 				if (fieldComponent instanceof AbstractField) {
 					log.debug("Cleanup error for field:{}", fieldName);
@@ -137,9 +138,9 @@ public class EvidenceForm extends Form {
 		if (formFieldFactory != null) {
 			try {
 				final Constructor<? extends FormFieldFactory> constructor = formFieldFactory
-						.getConstructor(new Class[] { Model.class, IUiMessageSource.class, Locale.class });
+						.getConstructor(new Class[] { IUiMessageSource.class, Locale.class });
 				final EvidenceFormFieldFactory instance = (EvidenceFormFieldFactory) constructor
-						.newInstance(new Object[] { model, messageSource, locale });
+						.newInstance(new Object[] { messageSource, locale });
 				this.setFormFieldFactory(instance);
 			} catch (InstantiationException e) {
 				throw new EvidenceFormException("InstantiationException for " + formFieldFactory.getName(), e);
