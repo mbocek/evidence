@@ -1,5 +1,6 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<h2>Evidence application!</h2>
+<jsp:forward page="/app" />
 </body>
 </html>
