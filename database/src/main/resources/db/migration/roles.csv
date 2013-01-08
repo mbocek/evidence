@@ -1,0 +1,3 @@
+USER_NAME,ROLE
+admin@evidence.com,ROLE_USER
+admin@evidence.com,ROLE_ADMINISTRATOR

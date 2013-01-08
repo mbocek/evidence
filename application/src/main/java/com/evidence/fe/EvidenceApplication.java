@@ -18,11 +18,12 @@
  */
 package com.evidence.fe;
 
+import javax.inject.Inject;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
@@ -51,9 +52,9 @@ public class EvidenceApplication extends SpringMvpApplication {
 	@Getter @Setter
 	private Long kindergartenId; 
 
-	@Autowired
+	@Inject
 	private transient MessageSource messageSource;
-
+	
 	@Override
 	public void preInit() {
 		log.debug("preInit with locale {}", this.getLocale());

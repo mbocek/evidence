@@ -16,36 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.entity;
-
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+package com.evidence.entity.user;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Entity
-@Table(name = "STATE")
-@ToString
-public class State implements Serializable {
+public enum Role {
 
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Getter @Setter
-	@Column(name = "CODE", unique = true, nullable = false, length = 2)
-	private String code;
-
-	@Getter
-	@Column(name = "NAME", nullable = false, length = 100)
-	private String name;
+	ROLE_USER, ROLE_ADMINISTRATOR;
+	
+	public static String key = "role";
 }

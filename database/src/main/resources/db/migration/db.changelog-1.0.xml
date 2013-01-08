@@ -192,6 +192,46 @@
 			referencesUniqueColumn="false" />
 	</changeSet>
 
+	<changeSet id="create: roles" author="mbocek">
+		<createTable tableName="ROLES" remarks="Users and roles associateted entity">
+			<column name="USER_NAME" type="VARCHAR(255)" remarks="User identifierd">
+				<constraints nullable="false"/>
+			</column>
+			<column name="ROLE" type="VARCHAR(255)" remarks="Role identifiert">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+		
+	<changeSet id="create: user" author="mbocek">
+		<createTable tableName="USER_ENTITY" remarks="Table for storing user information">
+			<column name="USER_NAME" type="VARCHAR(255)" remarks="User identifiert">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_USER_ENTITY" />
+			</column>
+			<column name="EMAIL" type="VARCHAR(255)" remarks="Email">
+				<constraints nullable="false" />
+			</column>
+			<column name="ENABLED" type="BOOLEAN" remarks="Enabled flag" >
+				<constraints nullable="false" />
+			</column>
+			<column name="NAME" type="VARCHAR(255)" remarks="User name">
+				<constraints nullable="false" />
+			</column>
+			<column name="SUR_NAME" type="VARCHAR(255)" remarks="Surname">
+				<constraints nullable="false" />
+			</column>
+			<column name="PASSWORD" type="VARCHAR(128)" remarks="Encoded password">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		
+		<addForeignKeyConstraint baseColumnNames="USER_NAME" baseTableName="ROLES"
+			constraintName="FK_USER_ENTITY" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="USER_NAME" referencedTableName="USER_ENTITY"
+			referencesUniqueColumn="false" />
+	</changeSet>
+
 	<changeSet id="load: states" author="mbocek">
 		<comment>Load initial data</comment>
 		<loadData tableName="STATE" file="db/migration/state.csv">
@@ -202,4 +242,26 @@
 			<delete tableName="STATE"/>
 		</rollback>
 	</changeSet>
+
+	<changeSet id="load: users" author="mbocek">
+		<comment>Load initial data</comment>
+		<loadData tableName="USER_ENTITY" file="db/migration/users.csv">
+			<column name="USER_NAME" type="STRING"/>
+			<column name="EMAIL" type="STRING"/>
+			<column name="ENABLED" type="BOOLEAN"/>
+			<column name="NAME" type="STRING"/>
+			<column name="SUR_NAME" type="STRING"/>
+			<column name="PASSWORD" type="STRING"/>
+		</loadData>
+		<loadData tableName="ROLES" file="db/migration/roles.csv">
+			<column name="USER_ID" type="STRING"/>
+			<column name="ROLE" type="STRING"/>
+		</loadData>
+		<rollback>
+			<delete tableName="ROLES"/>
+			<delete tableName="USER_ENTITY"/>
+		</rollback>
+	</changeSet>
+	
+
 </databaseChangeLog>
