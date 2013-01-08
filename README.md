@@ -19,3 +19,5 @@ Build application and run it (application module)
 
 Build application and enable remote debugging
 > mvnDebug clean install jetty:run
+
+
