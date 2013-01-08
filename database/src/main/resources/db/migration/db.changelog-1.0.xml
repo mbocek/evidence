@@ -193,7 +193,7 @@
 	</changeSet>
 
 	<changeSet id="create: roles" author="mbocek">
-		<createTable tableName="ROLES" remarks="Users and roles associateted entity">
+		<createTable tableName="USER_ROLE" remarks="Users and roles associateted entity">
 			<column name="USER_NAME" type="VARCHAR(255)" remarks="User identifierd">
 				<constraints nullable="false"/>
 			</column>
@@ -225,7 +225,7 @@
 			</column>
 		</createTable>
 		
-		<addForeignKeyConstraint baseColumnNames="USER_NAME" baseTableName="ROLES"
+		<addForeignKeyConstraint baseColumnNames="USER_NAME" baseTableName="USER_ROLE"
 			constraintName="FK_USER_ENTITY" deferrable="false" initiallyDeferred="false"
 			onDelete="NO ACTION" onUpdate="NO ACTION" 
 			referencedColumnNames="USER_NAME" referencedTableName="USER_ENTITY"
@@ -253,12 +253,12 @@
 			<column name="SUR_NAME" type="STRING"/>
 			<column name="PASSWORD" type="STRING"/>
 		</loadData>
-		<loadData tableName="ROLES" file="db/migration/roles.csv">
+		<loadData tableName="USER_ROLE" file="db/migration/roles.csv">
 			<column name="USER_ID" type="STRING"/>
 			<column name="ROLE" type="STRING"/>
 		</loadData>
 		<rollback>
-			<delete tableName="ROLES"/>
+			<delete tableName="USER_ROLE"/>
 			<delete tableName="USER_ENTITY"/>
 		</rollback>
 	</changeSet>

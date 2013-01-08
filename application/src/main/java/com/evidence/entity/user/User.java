@@ -74,7 +74,7 @@ public class User implements Serializable {
 	private String email;
 
 	@ElementCollection(targetClass = Role.class)
-	@JoinTable(name = "ROLES", joinColumns = @JoinColumn(name = "USER_NAME"))
+	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_NAME"))
 	@Column(name = "ROLE", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Collection<Role> roles;
