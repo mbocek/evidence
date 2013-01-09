@@ -139,10 +139,10 @@
 <a class="jxr_linenumber" name="129" href="#129">129</a> 
 <a class="jxr_linenumber" name="130" href="#130">130</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> closeDialog() {
 <a class="jxr_linenumber" name="131" href="#131">131</a> 		<em class="jxr_comment">// dismiss the dialog</em>
-<a class="jxr_linenumber" name="132" href="#132">132</a> 		<strong class="jxr_keyword">final</strong> Window applicationWindow = (Window) <strong class="jxr_keyword">this</strong>.dialog.getParent();
+<a class="jxr_linenumber" name="132" href="#132">132</a> 		<strong class="jxr_keyword">final</strong> Window applicationWindow = <strong class="jxr_keyword">this</strong>.dialog.getParent();
 <a class="jxr_linenumber" name="133" href="#133">133</a> 		applicationWindow.removeWindow(<strong class="jxr_keyword">this</strong>.dialog);
-<a class="jxr_linenumber" name="134" href="#134">134</a> 		<em class="jxr_comment">//this.dialog = null;</em>
-<a class="jxr_linenumber" name="135" href="#135">135</a> 		<em class="jxr_comment">//this.kindergartenForm = null;</em>
+<a class="jxr_linenumber" name="134" href="#134">134</a> 		<strong class="jxr_keyword">this</strong>.dialog = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="135" href="#135">135</a> 		<strong class="jxr_keyword">this</strong>.kindergartenForm = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="136" href="#136">136</a> 	}
 <a class="jxr_linenumber" name="137" href="#137">137</a> 
 <a class="jxr_linenumber" name="138" href="#138">138</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> showCreateEditDialog(<strong class="jxr_keyword">final</strong> <a href="../../../../com/evidence/dto/KindergartenDTO.html">KindergartenDTO</a> kindergartenDTO) <strong class="jxr_keyword">throws</strong> ViewFactoryException {

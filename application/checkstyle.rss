@@ -6,12 +6,12 @@
     <link>http://mbocek.github.com/evidence/application/</link>
     <description>Evidence: application - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2012</copyright>
+    <copyright>&#169;2013</copyright>
     <item>
-      <title>File: 92,
-             Errors: 31,
-             Warnings: 192,
-             Infos: 27
+      <title>File: 104,
+             Errors: 49,
+             Warnings: 230,
+             Infos: 30
       </title>
             <link>http://mbocek.github.com/evidence/application//checkstyle.html</link>
       <description>
@@ -29,55 +29,13 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.main.MainPresenter.java">com/evidence/fe/main/MainPresenter.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.service.ChildService.java">com/evidence/service/ChildService.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  5
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.kindergarten.KindergartenListView.java">com/evidence/fe/kindergarten/KindergartenListView.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.EvidenceForm.java">com/evidence/fe/form/EvidenceForm.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.data.CrudRepository.java">com/evidence/repository/data/CrudRepository.java</a>
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  5
+                  7
                 </td>
                 <td>
                   0
@@ -99,27 +57,13 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.kindergarten.IKindergartenDetail.java">com/evidence/fe/kindergarten/IKindergartenDetail.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.ResponsiblePerson.java">com/evidence/entity/ResponsiblePerson.java</a>
                 </td>
                 <td>
                   4
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   3
@@ -127,13 +71,13 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.utility.converter.TeacherConverter.java">com/evidence/utility/converter/TeacherConverter.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.ChildRepository.java">com/evidence/repository/ChildRepository.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
+                  4
                 </td>
                 <td>
                   0
@@ -155,20 +99,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.ResponsiblePersonPresenter.java">com/evidence/fe/responsible/ResponsiblePersonPresenter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.IResponsiblePersonListView.java">com/evidence/fe/responsible/IResponsiblePersonListView.java</a>
                 </td>
                 <td>
@@ -183,58 +113,16 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.Person.java">com/evidence/entity/Person.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.ResponsiblePersonRepository.java">com/evidence/repository/ResponsiblePersonRepository.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.TeacherRepository.java">com/evidence/repository/TeacherRepository.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.service.ResponsiblePersonService.java">com/evidence/service/ResponsiblePersonService.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  7
+                  13
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>
@@ -253,16 +141,16 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.StateDTO.java">com/evidence/dto/StateDTO.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.ResponsiblePersonDTO.java">com/evidence/dto/ResponsiblePersonDTO.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
+                  5
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>
@@ -274,34 +162,6 @@
                 </td>
                 <td>
                   3
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.ResponsiblePersonDTO.java">com/evidence/dto/ResponsiblePersonDTO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.AddressDTO.java">com/evidence/dto/AddressDTO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -365,7 +225,105 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.children.ChildrenListView.java">com/evidence/fe/children/ChildrenListView.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.ChildDetailFormFieldFactory.java">com/evidence/fe/child/ChildDetailFormFieldFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.FieldInfo.java">com/evidence/fe/form/FieldInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.PhoneNumber.java">com/evidence/entity/PhoneNumber.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.user.User.java">com/evidence/entity/user/User.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.kindergarten.KindergartenDetailFormFieldFactory.java">com/evidence/fe/kindergarten/KindergartenDetailFormFieldFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.data.CrudRepositoryImpl.java">com/evidence/repository/data/CrudRepositoryImpl.java</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.teacher.TeacherPresenter.java">com/evidence/fe/teacher/TeacherPresenter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.kindergarten.KindergartenDetail.java">com/evidence/fe/kindergarten/KindergartenDetail.java</a>
                 </td>
                 <td>
                   0
@@ -379,13 +337,573 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.children.IChildrenListView.java">com/evidence/fe/children/IChildrenListView.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.data.ReadOnlyRepository.java">com/evidence/repository/data/ReadOnlyRepository.java</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.ChildView.java">com/evidence/fe/child/ChildView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.user.Role.java">com/evidence/entity/user/Role.java</a>
+                </td>
+                <td>
+                  3
                 </td>
                 <td>
                   0
                 </td>
                 <td>
                   1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.AutomaticForm.java">com/evidence/fe/form/AutomaticForm.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.IChildView.java">com/evidence/fe/child/IChildView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.EvidenceFormException.java">com/evidence/fe/form/EvidenceFormException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.service.UserDetailsServiceImpl.java">com/evidence/service/UserDetailsServiceImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.service.CodeListService.java">com/evidence/service/CodeListService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.service.KindergartenService.java">com/evidence/service/KindergartenService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.ResponsiblePersonDetail.java">com/evidence/fe/responsible/ResponsiblePersonDetail.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.utility.PhoneNumberParser.java">com/evidence/utility/PhoneNumberParser.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.utility.converter.ChildConverter.java">com/evidence/utility/converter/ChildConverter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.IChildDetail.java">com/evidence/fe/child/IChildDetail.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.UserDTO.java">com/evidence/dto/UserDTO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.utility.FieldUtils.java">com/evidence/utility/FieldUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.main.MainView.java">com/evidence/fe/main/MainView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.EmailAddress.java">com/evidence/entity/EmailAddress.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.service.FormMetaModelService.java">com/evidence/service/FormMetaModelService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.IResponsiblePersonDetail.java">com/evidence/fe/responsible/IResponsiblePersonDetail.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.menu.MenuView.java">com/evidence/fe/menu/MenuView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.ValueComparator.java">com/evidence/fe/form/ValueComparator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.FullAddressBuilder.java">com/evidence/dto/FullAddressBuilder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.ChildEventBus.java">com/evidence/fe/child/ChildEventBus.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.teacher.TeacherListView.java">com/evidence/fe/teacher/TeacherListView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.TeacherDTO.java">com/evidence/dto/TeacherDTO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.ApplicationConstants.java">com/evidence/fe/ApplicationConstants.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.teacher.ITeacherDetail.java">com/evidence/fe/teacher/ITeacherDetail.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.Contact.java">com/evidence/entity/Contact.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.main.MainPresenter.java">com/evidence/fe/main/MainPresenter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.kindergarten.KindergartenListView.java">com/evidence/fe/kindergarten/KindergartenListView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.data.CrudRepository.java">com/evidence/repository/data/CrudRepository.java</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.kindergarten.IKindergartenDetail.java">com/evidence/fe/kindergarten/IKindergartenDetail.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.EvidenceForm.java">com/evidence/fe/form/EvidenceForm.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.utility.converter.TeacherConverter.java">com/evidence/utility/converter/TeacherConverter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.Person.java">com/evidence/entity/Person.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.ResponsiblePersonPresenter.java">com/evidence/fe/responsible/ResponsiblePersonPresenter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.ResponsiblePersonRepository.java">com/evidence/repository/ResponsiblePersonRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.ChildListView.java">com/evidence/fe/child/ChildListView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.TeacherRepository.java">com/evidence/repository/TeacherRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.StateDTO.java">com/evidence/dto/StateDTO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.AddressDTO.java">com/evidence/dto/AddressDTO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   0
@@ -449,13 +967,13 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.FieldInfo.java">com/evidence/fe/form/FieldInfo.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.UserRepository.java">com/evidence/repository/UserRepository.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  1
+                  2
                 </td>
                 <td>
                   0
@@ -477,20 +995,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.PhoneNumber.java">com/evidence/entity/PhoneNumber.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.kindergarten.KindergartenEventBus.java">com/evidence/fe/kindergarten/KindergartenEventBus.java</a>
                 </td>
                 <td>
@@ -501,48 +1005,6 @@
                 </td>
                 <td>
                   0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.kindergarten.KindergartenDetailFormFieldFactory.java">com/evidence/fe/kindergarten/KindergartenDetailFormFieldFactory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.data.CrudRepositoryImpl.java">com/evidence/repository/data/CrudRepositoryImpl.java</a>
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.teacher.TeacherPresenter.java">com/evidence/fe/teacher/TeacherPresenter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  1
                 </td>
               </tr>
                           <tr>
@@ -575,20 +1037,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.kindergarten.KindergartenDetail.java">com/evidence/fe/kindergarten/KindergartenDetail.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.EvidenceApplication.java">com/evidence/fe/EvidenceApplication.java</a>
                 </td>
                 <td>
@@ -603,13 +1051,13 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.data.ReadOnlyRepository.java">com/evidence/repository/data/ReadOnlyRepository.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.ContactDTO.java">com/evidence/dto/ContactDTO.java</a>
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -618,20 +1066,6 @@
                           <tr>
                 <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.utility.converter.ResponsiblePersonConverter.java">com/evidence/utility/converter/ResponsiblePersonConverter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.ContactDTO.java">com/evidence/dto/ContactDTO.java</a>
                 </td>
                 <td>
                   0
@@ -687,41 +1121,13 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.children.ChildrenEventBus.java">com/evidence/fe/children/ChildrenEventBus.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.IChildListView.java">com/evidence/fe/child/IChildListView.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  6
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.AutomaticForm.java">com/evidence/fe/form/AutomaticForm.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.ChildrenDTO.java">com/evidence/dto/ChildrenDTO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
+                  3
                 </td>
                 <td>
                   0
@@ -743,16 +1149,30 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.EvidenceFormException.java">com/evidence/fe/form/EvidenceFormException.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.ChildDetailForm.java">com/evidence/fe/child/ChildDetailForm.java</a>
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   2
                 </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.ChildPresenter.java">com/evidence/fe/child/ChildPresenter.java</a>
+                </td>
                 <td>
                   0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  1
                 </td>
               </tr>
                           <tr>
@@ -778,20 +1198,6 @@
                 </td>
                 <td>
                   3
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.service.CodeListService.java">com/evidence/service/CodeListService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
                 </td>
                 <td>
                   0
@@ -827,62 +1233,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.children.ChildrenView.java">com/evidence/fe/children/ChildrenView.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.ResponsiblePersonDetail.java">com/evidence/fe/responsible/ResponsiblePersonDetail.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.service.KindergartenService.java">com/evidence/service/KindergartenService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.utility.PhoneNumberParser.java">com/evidence/utility/PhoneNumberParser.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.Kindergarten.java">com/evidence/entity/Kindergarten.java</a>
                 </td>
                 <td>
@@ -911,34 +1261,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.utility.FieldUtils.java">com/evidence/utility/FieldUtils.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.main.MainView.java">com/evidence/fe/main/MainView.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.Model.java">com/evidence/fe/form/Model.java</a>
                 </td>
                 <td>
@@ -953,6 +1275,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.ChildDTO.java">com/evidence/dto/ChildDTO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.ResponsiblePersonDetailFormFieldFactory.java">com/evidence/fe/responsible/ResponsiblePersonDetailFormFieldFactory.java</a>
                 </td>
                 <td>
@@ -960,20 +1296,6 @@
                 </td>
                 <td>
                   1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.EmailAddress.java">com/evidence/entity/EmailAddress.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -1023,34 +1345,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.IResponsiblePersonDetail.java">com/evidence/fe/responsible/IResponsiblePersonDetail.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.service.FormMetaModelService.java">com/evidence/service/FormMetaModelService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.repository.data.CrudRepositoryFactoryBean.java">com/evidence/repository/data/CrudRepositoryFactoryBean.java</a>
                 </td>
                 <td>
@@ -1061,6 +1355,20 @@
                 </td>
                 <td>
                   4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.child.ChildDetail.java">com/evidence/fe/child/ChildDetail.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
               </tr>
                           <tr>
@@ -1079,20 +1387,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.form.ValueComparator.java">com/evidence/fe/form/ValueComparator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.Child.java">com/evidence/entity/Child.java</a>
                 </td>
                 <td>
@@ -1102,21 +1396,7 @@
                   0
                 </td>
                 <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.menu.MenuView.java">com/evidence/fe/menu/MenuView.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  3
                 </td>
               </tr>
                           <tr>
@@ -1135,48 +1415,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.children.ChildrenPresenter.java">com/evidence/fe/children/ChildrenPresenter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.FullAddressBuilder.java">com/evidence/dto/FullAddressBuilder.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.teacher.TeacherListView.java">com/evidence/fe/teacher/TeacherListView.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.main.IMainView.java">com/evidence/fe/main/IMainView.java</a>
                 </td>
                 <td>
@@ -1187,20 +1425,6 @@
                 </td>
                 <td>
                   0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.dto.TeacherDTO.java">com/evidence/dto/TeacherDTO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  1
                 </td>
               </tr>
                           <tr>
@@ -1233,62 +1457,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.ApplicationConstants.java">com/evidence/fe/ApplicationConstants.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.ResponsiblePersonEventBus.java">com/evidence/fe/responsible/ResponsiblePersonEventBus.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.children.IChildrenView.java">com/evidence/fe/children/IChildrenView.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.teacher.ITeacherDetail.java">com/evidence/fe/teacher/ITeacherDetail.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.menu.MenuEntry.java">com/evidence/fe/menu/MenuEntry.java</a>
                 </td>
                 <td>
@@ -1303,13 +1471,13 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.entity.Contact.java">com/evidence/entity/Contact.java</a>
+                  <a href="http://mbocek.github.com/evidence/application//checkstyle.html#com.evidence.fe.responsible.ResponsiblePersonEventBus.java">com/evidence/fe/responsible/ResponsiblePersonEventBus.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
+                  6
                 </td>
                 <td>
                   0

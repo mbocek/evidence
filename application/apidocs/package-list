@@ -1,7 +1,8 @@
 com.evidence.dto
 com.evidence.entity
+com.evidence.entity.user
 com.evidence.fe
-com.evidence.fe.children
+com.evidence.fe.child
 com.evidence.fe.form
 com.evidence.fe.kindergarten
 com.evidence.fe.main
