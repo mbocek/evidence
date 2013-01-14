@@ -16,22 +16,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
+package com.evidence.dto;
 
-import java.util.List;
+import java.io.Serializable;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import com.evidence.dto.TenantDTO;
-import com.evidence.dto.UserDTO;
+import com.evidence.fe.ApplicationConstants;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface UserService extends UserDetailsService {
+@ToString
+public class TenantDTO implements Serializable {
 
-	void create(final UserDTO userDTO) throws TenantAlreadyExists, UserAlreadyExists;
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
 
-	List<TenantDTO> getTenantList();
+	@Getter @Setter
+	private Long id;
+	
+	@Getter @Setter
+	private String name;
 }

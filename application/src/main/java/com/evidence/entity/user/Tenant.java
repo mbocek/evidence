@@ -16,22 +16,47 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
+package com.evidence.entity.user;
 
-import java.util.List;
+import static com.evidence.fe.ApplicationConstants.VERSION;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+import java.io.Serializable;
 
-import com.evidence.dto.TenantDTO;
-import com.evidence.dto.UserDTO;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface UserService extends UserDetailsService {
+@Entity
+@Table(name = "TENANT")
+@ToString
+@AllArgsConstructor
+public class Tenant implements Serializable {
 
-	void create(final UserDTO userDTO) throws TenantAlreadyExists, UserAlreadyExists;
+	private static final long serialVersionUID = VERSION;
 
-	List<TenantDTO> getTenantList();
+	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Getter
+	private Long id; 
+
+	@Getter
+	@Column(name = "NAME", length = 255, nullable = false, unique = true)
+	private String name;
+	
+	public Tenant() {
+	}
+	
+	public Tenant(Long id) {
+		this.id = id;
+	}
 }

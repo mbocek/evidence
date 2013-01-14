@@ -236,7 +236,12 @@
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-config</artifactId>
 				<version>${springframework.version}</version>
-			</dependency>		
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
+				<version>3.1.2.RELEASE</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
@@ -304,11 +309,17 @@
 				<version>2.5</version>
 				<scope>provided</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jsp-api-2.1</artifactId>
+				<version>7.0.0pre2</version>
+				<scope>provided</scope>
+			</dependency>			
 
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
-				<version>1.1.2</version>
+				<version>1.2</version>
 			</dependency>
 			<dependency>
 				<groupId>taglibs</groupId>

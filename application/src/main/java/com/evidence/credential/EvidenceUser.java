@@ -16,22 +16,31 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
+package com.evidence.credential;
 
-import java.util.List;
+import java.util.Collection;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+import lombok.Getter;
 
-import com.evidence.dto.TenantDTO;
-import com.evidence.dto.UserDTO;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+import com.evidence.fe.ApplicationConstants;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface UserService extends UserDetailsService {
+public class EvidenceUser extends User implements EvidenceUserDetails {
 
-	void create(final UserDTO userDTO) throws TenantAlreadyExists, UserAlreadyExists;
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
 
-	List<TenantDTO> getTenantList();
+	@Getter
+	private final Long tenantId;
+	
+	public EvidenceUser(String username, String password, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities, Long tenantId) {
+		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+		this.tenantId = tenantId;
+	}
 }

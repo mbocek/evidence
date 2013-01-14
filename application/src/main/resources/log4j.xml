@@ -25,16 +25,17 @@
 		<appender-ref ref="console" />
 	</logger>
 
+	<logger name="org.springframework.web" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console" />
+	</logger>
+
+
 	<!-- log to console sql -->
 <!-- 	<logger name="org.hibernate.SQL" additivity="false"> -->
 <!-- 		<level value="debug" /> -->
 <!-- 		<appender-ref ref="console" /> -->
 <!-- 	</logger> -->
-
-	<logger name="" additivity="false">
-		<level value="debug" />
-		<appender-ref ref="app-debug" />
-	</logger>
 
 	<root>
 		<priority value="INFO" />

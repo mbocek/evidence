@@ -203,6 +203,17 @@
 		</createTable>
 	</changeSet>
 		
+	<changeSet id="create: tenant" author="mbocek">
+		<createTable tableName="TENANT" remarks="Table for storing information about tenants">
+			<column autoIncrement="true" name="ID" type="BIGINT" remarks="Primary key">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_TENANT" />
+			</column>
+			<column name="NAME" type="VARCHAR(255)" remarks="Tenant name">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+
 	<changeSet id="create: user" author="mbocek">
 		<createTable tableName="USER_ENTITY" remarks="Table for storing user information">
 			<column name="USER_NAME" type="VARCHAR(255)" remarks="User identifiert">
@@ -223,12 +234,21 @@
 			<column name="PASSWORD" type="VARCHAR(128)" remarks="Encoded password">
 				<constraints nullable="false" />
 			</column>
+			<column name="TENANT_ID" type="BIGINT" remarks="Tenant identifiert">
+				<constraints nullable="true" />
+			</column>
 		</createTable>
 		
 		<addForeignKeyConstraint baseColumnNames="USER_NAME" baseTableName="USER_ROLE"
-			constraintName="FK_USER_ENTITY" deferrable="false" initiallyDeferred="false"
+			constraintName="FK_ROLE_USER" deferrable="false" initiallyDeferred="false"
 			onDelete="NO ACTION" onUpdate="NO ACTION" 
 			referencedColumnNames="USER_NAME" referencedTableName="USER_ENTITY"
+			referencesUniqueColumn="false" />
+		
+		<addForeignKeyConstraint baseColumnNames="TENANT_ID" baseTableName="USER_ENTITY"
+			constraintName="FK_USER_TENANT" deferrable="false" initiallyDeferred="false"
+			onDelete="NO ACTION" onUpdate="NO ACTION" 
+			referencedColumnNames="ID" referencedTableName="TENANT"
 			referencesUniqueColumn="false" />
 	</changeSet>
 
@@ -245,23 +265,28 @@
 
 	<changeSet id="load: users" author="mbocek">
 		<comment>Load initial data</comment>
-		<loadData tableName="USER_ENTITY" file="db/migration/users.csv">
+		<loadData tableName="TENANT" file="db/migration/tenant.csv">
+			<column name="ID" type="NUMERIC"/>
+			<column name="NAME" type="STRING"/>
+		</loadData>
+		<loadData tableName="USER_ENTITY" file="db/migration/user.csv">
 			<column name="USER_NAME" type="STRING"/>
 			<column name="EMAIL" type="STRING"/>
 			<column name="ENABLED" type="BOOLEAN"/>
 			<column name="NAME" type="STRING"/>
 			<column name="SUR_NAME" type="STRING"/>
 			<column name="PASSWORD" type="STRING"/>
+			<column name="TENANT_ID" type="NUMERIC"/>
 		</loadData>
-		<loadData tableName="USER_ROLE" file="db/migration/roles.csv">
+		<loadData tableName="USER_ROLE" file="db/migration/role.csv">
 			<column name="USER_ID" type="STRING"/>
 			<column name="ROLE" type="STRING"/>
 		</loadData>
 		<rollback>
+			<delete tableName="TENANT"/>
 			<delete tableName="USER_ROLE"/>
 			<delete tableName="USER_ENTITY"/>
 		</rollback>
 	</changeSet>
-	
 
 </databaseChangeLog>

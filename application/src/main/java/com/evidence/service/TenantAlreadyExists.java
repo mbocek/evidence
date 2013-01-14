@@ -18,20 +18,15 @@
  */
 package com.evidence.service;
 
-import java.util.List;
-
-import org.springframework.security.core.userdetails.UserDetailsService;
-
-import com.evidence.dto.TenantDTO;
-import com.evidence.dto.UserDTO;
+import com.evidence.fe.ApplicationConstants;
 
 /**
+ * Checked exception for signalization tenant existence.
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface UserService extends UserDetailsService {
+public class TenantAlreadyExists extends Exception {
 
-	void create(final UserDTO userDTO) throws TenantAlreadyExists, UserAlreadyExists;
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
 
-	List<TenantDTO> getTenantList();
 }

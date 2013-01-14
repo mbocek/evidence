@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -30,6 +31,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -57,7 +59,7 @@ public class User implements Serializable {
 	@Column(name = "PASSWORD", nullable = false, length = 64)
 	private String password;
 	
-	@Getter
+	@Getter @Setter
 	@Column(name = "ENABLED", nullable = false)
 	private boolean enabled;
 	
@@ -73,11 +75,17 @@ public class User implements Serializable {
 	@Column(name = "EMAIL", nullable = false, length = 255)
 	private String email;
 
+	@Setter
 	@ElementCollection(targetClass = Role.class)
 	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_NAME"))
 	@Column(name = "ROLE", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Collection<Role> roles;
+
+	@Getter @Setter
+	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.PERSIST }, optional = true)
+	@JoinColumn(name = "TENANT_ID")
+	private Tenant tenant;
 	
 	public Collection<Role> getRoles() {
 		return Collections.unmodifiableCollection(this.roles);

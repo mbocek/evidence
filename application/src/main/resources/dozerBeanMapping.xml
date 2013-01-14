@@ -27,6 +27,10 @@
 				<class-a>com.evidence.entity.Child</class-a>
 				<class-b>com.evidence.dto.ChildDTO</class-b>
 			</converter>
+			<converter type="com.evidence.utility.converter.UserConverter">
+				<class-a>com.evidence.entity.user.User</class-a>
+				<class-b>com.evidence.dto.UserDTO</class-b>
+			</converter>
 		</custom-converters>
 	</configuration>
 	

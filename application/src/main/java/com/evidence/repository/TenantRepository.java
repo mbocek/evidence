@@ -16,22 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
+package com.evidence.repository;
 
 import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.data.jpa.repository.Query;
 
-import com.evidence.dto.TenantDTO;
-import com.evidence.dto.UserDTO;
+import com.evidence.entity.user.Tenant;
+import com.evidence.repository.data.CrudRepository;
 
 /**
+ * Repository for access to tenant.
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface UserService extends UserDetailsService {
+public interface TenantRepository extends CrudRepository<Tenant, Long> {
 
-	void create(final UserDTO userDTO) throws TenantAlreadyExists, UserAlreadyExists;
-
-	List<TenantDTO> getTenantList();
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	@Query("select t from Tenant t where t.name = ?1")
+	List<Tenant> findByName(final String name);
 }

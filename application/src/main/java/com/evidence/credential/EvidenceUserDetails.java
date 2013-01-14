@@ -16,22 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.service;
+package com.evidence.credential;
 
-import java.util.List;
-
-import org.springframework.security.core.userdetails.UserDetailsService;
-
-import com.evidence.dto.TenantDTO;
-import com.evidence.dto.UserDTO;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface UserService extends UserDetailsService {
+public interface EvidenceUserDetails extends UserDetails {
 
-	void create(final UserDTO userDTO) throws TenantAlreadyExists, UserAlreadyExists;
-
-	List<TenantDTO> getTenantList();
+	Long getTenantId();
 }

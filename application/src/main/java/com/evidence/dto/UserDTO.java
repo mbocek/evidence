@@ -18,10 +18,61 @@
  */
 package com.evidence.dto;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import javax.validation.constraints.Size;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import com.evidence.entity.user.Role;
+import com.evidence.fe.ApplicationConstants;
+
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class UserDTO {
+@ToString(exclude = "password")
+public class UserDTO implements Serializable {
 
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
+
+	@Size(min = 6, max = 255)
+	@Getter @Setter
+	private String userName;
+	
+	@Size(min = 8, max = 255)
+	@Getter @Setter
+	private String password;
+	
+	@Getter @Setter
+	private Boolean enabled = Boolean.FALSE;
+
+	@Size(min = 1, max = 255)
+	@Getter @Setter
+	private String name;
+	
+	@Size(min = 1, max = 255)
+	@Getter @Setter
+	private String surName;
+	
+	@Getter @Setter
+	private Long tenantId;
+	
+	@Getter @Setter
+	private String tenantName;
+	
+	@Getter @Setter
+	private List<TenantDTO> tenantList;
+	
+	@Getter
+	private final Collection<Role> roles = new ArrayList<Role>();
+	
+	public void addRole(final Role role) {
+		roles.add(role);
+	}
 }

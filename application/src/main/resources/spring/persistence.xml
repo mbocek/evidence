@@ -16,7 +16,7 @@
 		<property name="persistenceUnitName" value="${persistence-unit}" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" >
-				<property name="generateDdl" value="false" />
+				<property name="generateDdl" value="true" />
 				<property name="showSql" value="false" />
 			</bean>
 		</property>
