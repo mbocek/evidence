@@ -41,6 +41,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.evidence.data.DbUnitTest;
+import com.evidence.dto.UserDTO;
 import com.evidence.entity.user.Role;
 import com.evidence.repository.UserRepository;
 
@@ -95,5 +96,30 @@ public class UserServiceTest extends DbUnitTest {
 	    } catch (BadCredentialsException e) {
 	    	fail("Problem with authentication: user/password");
 	    }
+	}
+	
+	@Test
+	public void testCreateUser() {
+		UserDTO userDTO = new UserDTO();
+		userDTO.setUserName("test@test.test");
+		userDTO.setName("Test");
+		userDTO.setPassword("password");
+		userDTO.setSurName("Test Surname");
+		userDTO.setTenantId(1L);
+		try {
+			userService.create(userDTO );
+		} catch (TenantAlreadyExists e) {
+			fail("Tenant " + userDTO.getTenantName() + " already exists!");
+		} catch (UserAlreadyExists e) {
+			fail("User " + userDTO.getUserName() + " already exists!");
+		}
+		
+		com.evidence.entity.user.User user = userRepository.findByUsername("test@test.test");
+		assertEquals(user.getEmail(), userDTO.getUserName());
+		assertEquals(user.getName(), userDTO.getName());
+		assertEquals(user.getPassword(), "22715fe18085cfa3b9cc492def18a2212998394159c55ccecd050a0b6f17f96a68693d5d261dda9581e669fddf1e002fe0eb78323fcd5d1b24f6bc9c36e1cc79");
+		assertEquals(user.getSurName(), userDTO.getSurName());
+		assertEquals(user.getUsername(), userDTO.getUserName());
+		assertTrue(user.getRoles().size() == 1);
 	}
 }

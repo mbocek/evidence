@@ -38,9 +38,15 @@ public class EvidenceUser extends User implements EvidenceUserDetails {
 	@Getter
 	private final Long tenantId;
 	
-	public EvidenceUser(String username, String password, boolean enabled, boolean accountNonExpired,
-			boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities, Long tenantId) {
+	public EvidenceUser(final String username, final String password, final boolean enabled, final boolean accountNonExpired,
+			final boolean credentialsNonExpired, final boolean accountNonLocked, 
+			final Collection<? extends GrantedAuthority> authorities, final Long tenantId) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		this.tenantId = tenantId;
+	}
+	
+    public EvidenceUser(final String username, final String password, final Collection<? extends GrantedAuthority> authorities) {
+    	super(username, password, authorities);
+		this.tenantId = null;
 	}
 }

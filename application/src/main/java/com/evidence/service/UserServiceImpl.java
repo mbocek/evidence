@@ -26,6 +26,8 @@ import javax.inject.Inject;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.security.authentication.dao.SaltSource;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -59,7 +61,13 @@ public class UserServiceImpl implements UserService {
 	 
 	@Inject
 	private TenantRepository tenantRepository;
-	 
+
+	@Inject
+	private PasswordEncoder passwordEncoder;
+	
+	@Inject
+	private SaltSource saltSource;
+	
 	private static class UserDetailBuilder {
 
 		private final User user;
@@ -131,6 +139,8 @@ public class UserServiceImpl implements UserService {
 		
 		roles.add(Role.ROLE_USER);
 		user.setRoles(roles);
+		UserDetails userDetails = new EvidenceUser(user.getUsername(), "password", new ArrayList<GrantedAuthority>());
+		user.setPassword(passwordEncoder.encodePassword(userDTO.getPassword(), saltSource.getSalt(userDetails)));
 		userRepository.create(user);
 	}
 
