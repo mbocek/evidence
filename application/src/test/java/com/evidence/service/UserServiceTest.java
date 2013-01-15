@@ -38,7 +38,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.evidence.data.DbUnitTest;
 import com.evidence.dto.UserDTO;
@@ -49,7 +48,6 @@ import com.evidence.repository.UserRepository;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@ContextConfiguration({"classpath:spring/security.xml"})
 public class UserServiceTest extends DbUnitTest {
 
 	@Inject
