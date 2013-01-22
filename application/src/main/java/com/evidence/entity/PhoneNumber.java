@@ -28,6 +28,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import com.evidence.fe.ApplicationConstants;
 import com.evidence.utility.PhoneNumberParser;
 
 /**
@@ -40,8 +41,8 @@ import com.evidence.utility.PhoneNumberParser;
 @NoArgsConstructor
 public class PhoneNumber implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
+	
 	@Getter
 	@Column(nullable = false)
 	private String countryCode;

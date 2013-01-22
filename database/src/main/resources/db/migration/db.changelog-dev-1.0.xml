@@ -4,6 +4,32 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 						http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
+	<changeSet id="load: users" author="mbocek">
+		<comment>Load initial data</comment>
+		<loadData tableName="TENANT" file="db/migration/dev/tenant.csv">
+			<column name="ID" type="NUMERIC"/>
+			<column name="NAME" type="STRING"/>
+		</loadData>
+		<loadData tableName="USER_ENTITY" file="db/migration/dev/user.csv">
+			<column name="USER_NAME" type="STRING"/>
+			<column name="EMAIL" type="STRING"/>
+			<column name="ENABLED" type="BOOLEAN"/>
+			<column name="NAME" type="STRING"/>
+			<column name="SUR_NAME" type="STRING"/>
+			<column name="PASSWORD" type="STRING"/>
+			<column name="TENANT_ID" type="NUMERIC"/>
+		</loadData>
+		<loadData tableName="USER_ROLE" file="db/migration/dev/role.csv">
+			<column name="USER_ID" type="STRING"/>
+			<column name="ROLE" type="STRING"/>
+		</loadData>
+		<rollback>
+			<delete tableName="TENANT"/>
+			<delete tableName="USER_ROLE"/>
+			<delete tableName="USER_ENTITY"/>
+		</rollback>
+	</changeSet>
+
 	<changeSet id="load: address" author="mbocek" context="development">
 		<comment>Load initial addresses data</comment>
 		<loadData tableName="ADDRESS" file="db/migration/dev/address.csv" encoding="cp1250">
@@ -42,6 +68,7 @@
 			<column name="name" type="STRING"/>
 			<column name="contact_id" type="NUMERIC"/>
 			<column name="deleted" type="BOOLEAN"/>
+			<column name="tenant_id" type="NUMERIC"/>
 		</loadData>
 		<rollback>
 			<delete tableName="KINDERGARTEN"/>

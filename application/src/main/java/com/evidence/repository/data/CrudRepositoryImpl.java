@@ -23,22 +23,26 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.evidence.credential.EvidenceUserDetails;
+import com.evidence.entity.TenantAware;
+import com.evidence.entity.user.Tenant;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Repository
 public class CrudRepositoryImpl<T, ID extends Serializable> implements CrudRepository<T, ID> {
 
 	private static final Logger log = LoggerFactory.getLogger(CrudRepositoryImpl.class);
 	
-	private EntityManager entityManager;
+	private final EntityManager entityManager;
 
 	private final Class<T> entityClass;
 	
@@ -53,6 +57,11 @@ public class CrudRepositoryImpl<T, ID extends Serializable> implements CrudRepos
 			log.trace("Creating entity: " + entity.getClass());
 			log.trace("  With contents: " + entity); 
 		}
+		if (entity instanceof TenantAware) {
+			Long tenantId = ((EvidenceUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getTenantId();
+			Tenant tenant = this.entityManager.find(Tenant.class, tenantId);
+			((TenantAware)entity).setTenant(tenant);
+		}
 		entityManager.persist(entity);
 	}
 
@@ -61,10 +70,33 @@ public class CrudRepositoryImpl<T, ID extends Serializable> implements CrudRepos
 		if (log.isTraceEnabled()) {
 			log.trace("Reading entity for id: " + id);
 		}
-		final T entry = this.entityManager.find(this.entityClass, id);
+		final T entry ;
+		if (entityClass.isInstance(TenantAware.class)) {
+			entry = readTenantAware(id);
+		} else {
+			entry = this.entityManager.find(this.entityClass, id);
+		}	
 		if (entry == null) {
 			throw new EntityNotFoundException("Entity for class " + this.entityClass + " with id " + id
 					+ " can not be found!");
+		} 
+		return entry;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private T readTenantAware(ID id) {
+		final T entry;
+		final Long tenantId = ((EvidenceUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getTenantId();
+		final Query query = this.entityManager.createQuery("from " + this.entityClass.getName() + " where tenant.id = :tenantId");
+		query.setParameter("tenantId", tenantId);
+		final List resultList = query.getResultList();
+		if (resultList.size() == 1) {
+			entry = (T)resultList.get(0);
+		} else if (resultList.size() > 1) {
+			throw new NonUniqueResultException("Non unique entity for class " + this.entityClass + " with id " + id
+				+ "!");
+		} else {
+			entry = null;
 		}
 		return entry;
 	}
@@ -89,7 +121,13 @@ public class CrudRepositoryImpl<T, ID extends Serializable> implements CrudRepos
 
 	@Override
 	public T findById(ID id) {
-		return this.entityManager.find(entityClass, id);
+		final T result;
+		if (entityClass.isInstance(TenantAware.class)) {
+			result = readTenantAware(id);
+		} else {
+			result = this.entityManager.find(entityClass, id);
+		}
+		return result;
 	}
 
 	@Override
@@ -98,7 +136,16 @@ public class CrudRepositoryImpl<T, ID extends Serializable> implements CrudRepos
 		if (log.isTraceEnabled()) {
 			log.trace("Reading all entities");
 		}
-		final Query query = this.entityManager.createQuery("from " + this.entityClass.getName());
+		final Query query;
+		if (entityClass.isInstance(TenantAware.class)) {
+			final Long tenantId = ((EvidenceUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getTenantId();
+			final String queryString = "from " + this.entityClass.getName() + "where tenant.id = :tenantId";
+			query = this.entityManager.createQuery(queryString);
+			query.setParameter("tenantId", tenantId);
+		} else {
+			final String queryString = "from " + this.entityClass.getName();
+			query = this.entityManager.createQuery(queryString);
+		}
 		return query.getResultList();
 	}
 

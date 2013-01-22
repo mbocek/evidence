@@ -39,6 +39,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.evidence.credential.EvidenceUser;
 import com.evidence.data.DbUnitTest;
 import com.evidence.dto.UserDTO;
 import com.evidence.entity.user.Role;
@@ -99,7 +100,8 @@ public class UserServiceTest extends DbUnitTest {
 	@Test
 	public void testCreateUser() {
 		UserDTO userDTO = new UserDTO();
-		userDTO.setUserName("test@test.test");
+		String name = String.valueOf(System.currentTimeMillis()) + "@test.test";
+		userDTO.setUserName(name);
 		userDTO.setName("Test");
 		userDTO.setPassword("password");
 		userDTO.setSurName("Test Surname");
@@ -112,10 +114,12 @@ public class UserServiceTest extends DbUnitTest {
 			fail("User " + userDTO.getUserName() + " already exists!");
 		}
 		
-		com.evidence.entity.user.User user = userRepository.findByUsername("test@test.test");
+		com.evidence.entity.user.User user = userRepository.findByUsername(name);
 		assertEquals(user.getEmail(), userDTO.getUserName());
 		assertEquals(user.getName(), userDTO.getName());
-		assertEquals(user.getPassword(), "22715fe18085cfa3b9cc492def18a2212998394159c55ccecd050a0b6f17f96a68693d5d261dda9581e669fddf1e002fe0eb78323fcd5d1b24f6bc9c36e1cc79");
+		String password = passwordEncoder.encodePassword("password", 
+				saltSource.getSalt(new EvidenceUser(name, "password", new ArrayList<GrantedAuthority>())));
+		assertEquals(user.getPassword(), password);
 		assertEquals(user.getSurName(), userDTO.getSurName());
 		assertEquals(user.getUsername(), userDTO.getUserName());
 		assertTrue(user.getRoles().size() == 1);

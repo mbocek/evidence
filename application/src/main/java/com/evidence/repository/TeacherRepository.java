@@ -18,10 +18,6 @@
  */
 package com.evidence.repository;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
-
 import com.evidence.entity.Teacher;
 import com.evidence.repository.data.CrudRepository;
 
@@ -30,20 +26,6 @@ import com.evidence.repository.data.CrudRepository;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface TeacherRepository extends CrudRepository<Teacher, Long> {
-	
-	/**
-	 * Find all teachers based on deleted flag.
-	 * @param deleted
-	 * @return
-	 */
-	@Query("select t from Teacher t where t.deleted = ?1")
-	List<Teacher> findAll(final boolean deleted);
-	
-	/**
-	 * Find teachers for specified kindergarten.
-	 * @param id
-	 * @return
-	 */
-	List<Teacher> findByKindergartenId(final Long id);
+public interface TeacherRepository extends CrudRepository<Teacher, Long>, TeacherRepositoryCustom {
+
 }

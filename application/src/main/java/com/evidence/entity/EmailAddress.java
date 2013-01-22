@@ -28,6 +28,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.evidence.fe.ApplicationConstants;
+
 /**
  * @author Michal Bocek
  * @since 1.0.0
@@ -38,7 +40,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class EmailAddress implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
 	
 	@Getter @Setter
 	private String email;

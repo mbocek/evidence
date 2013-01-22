@@ -18,11 +18,6 @@
  */
 package com.evidence.repository;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
-
-import com.evidence.entity.ResponsibilityType;
 import com.evidence.entity.ResponsiblePerson;
 import com.evidence.repository.data.CrudRepository;
 
@@ -31,27 +26,5 @@ import com.evidence.repository.data.CrudRepository;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface ResponsiblePersonRepository extends CrudRepository<ResponsiblePerson, Long> {
-	
-	/**
-	 * Find all responsible persons based on deleted flag.
-	 * @param deleted
-	 * @return
-	 */
-	@Query("select rp from ResponsiblePerson rp where rp.deleted = ?1")
-	List<ResponsiblePerson> findAll(final boolean deleted);
-	
-	/**
-	 * Find all responsible persons for kindergarten id.
-	 * @param id
-	 * @return
-	 */
-	List<ResponsiblePerson> findByKindergartenId(Long id);
-
-	/**
-	 * Find all responsible persons for kindergarten id and specified type.
-	 * @param id
-	 * @return
-	 */
-	List<ResponsiblePerson> findByKindergartenIdAndType(Long id, ResponsibilityType type);
+public interface ResponsiblePersonRepository extends CrudRepository<ResponsiblePerson, Long>, ResponsiblePersonRepositoryCustom {
 }

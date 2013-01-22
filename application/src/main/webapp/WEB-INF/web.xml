@@ -76,6 +76,7 @@
 		<!-- when I add here wild card character it doesn't work -->
 		<url-pattern>/resources-1.0.0/jquery-1.8.3.min.js</url-pattern> 
 		<url-pattern>/resources-1.0.0/register.js</url-pattern> 
+		<url-pattern>/captcha.jpg</url-pattern>
 	</servlet-mapping>    
 
 	<!-- ================================================================= -->

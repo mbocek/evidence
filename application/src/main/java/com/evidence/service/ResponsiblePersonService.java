@@ -51,7 +51,7 @@ public class ResponsiblePersonService {
 	 * @return
 	 */
 	public List<ResponsiblePersonDTO> getAll() {
-		final List<ResponsiblePerson> responsiblePersons = repository.findAll(false);
+		final List<ResponsiblePerson> responsiblePersons = repository.findAll();
 		return DTOConverter.convertList(responsiblePersons, ResponsiblePersonDTO.class);
 	}
 

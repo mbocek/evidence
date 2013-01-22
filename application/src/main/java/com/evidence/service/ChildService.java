@@ -52,7 +52,7 @@ public class ChildService {
 	 * @return
 	 */
 	public List<ChildDTO> getAll() {
-		final List<Child> children = repository.findAll(false);
+		final List<Child> children = repository.findAll();
 		return DTOConverter.convertList(children, ChildDTO.class);
 	}
 

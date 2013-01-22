@@ -29,6 +29,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.evidence.fe.ApplicationConstants;
+
 /**
  * @author Michal Bocek
  * @since 1.0.0
@@ -38,8 +40,8 @@ import lombok.ToString;
 @ToString
 public class State implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
+	
 	@Id
 	@Getter @Setter
 	@Column(name = "CODE", unique = true, nullable = false, length = 2)

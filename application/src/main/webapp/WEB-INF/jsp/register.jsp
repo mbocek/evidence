@@ -49,11 +49,21 @@
 		            </tr>
 		            <tr style="display: none" id="tenantIdRow">
 						<td><label for="tenantId"><spring:message code="screen.register.tenant"/></label><br/><form:errors path="tenantId" cssClass="errors"/></td>
-						<td><form:select path="tenantId">
+						<td>
+							<form:select path="tenantId">
 								<option value=""><spring:message code="screen.tenant.input.empty"/></option>
 								<form:options items="${user.tenantList}" itemValue="id" itemLabel="name" />
 							</form:select>
 						</td>
+		            </tr>
+		            <tr>
+		            	<td colspan="2" align="center">
+		            		<img src="${pageContext.request.contextPath}/captcha.jpg"/>
+		            	</td>
+		            </tr>
+		            <tr>
+		            	<td><label for="captcha"><spring:message code="screen.register.captcha" /></label><br/><form:errors path="captcha" cssClass="errors"/></td>
+		            	<td><input type="text" name="captcha" id="captcha"/></td>
 		            </tr>
 		            <tr>
 		                <td colspan="2"><input type="submit" id="register" value="<spring:message code="screen.register.submit" />" name="register" /></td>

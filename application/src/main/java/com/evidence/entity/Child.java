@@ -25,23 +25,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import com.evidence.fe.ApplicationConstants;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
 @Entity
-@Table(name = "CHILD")
 @ToString
+@NoArgsConstructor
+@Table(name = "CHILD")
+@NamedQueries(value = { 
+		@NamedQuery(name = Child.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG, query = Child.QUERY_FIND_ALL_BY_DELETED_FLAG),  
+		@NamedQuery(name = Child.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG, query = Child.QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG) 
+	})
 public class Child extends Person {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
+
+	public static final String QUERY_NAME_FIND_ALL_BY_DELETED_FLAG = "Child.finaAllByDeletedFlag";   
+	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT c FROM Child c WHERE c.deleted = :deleted AND c.tenant.id = :tenantId";
+
+	public static final String QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "Child.finaByKindergartenIdAndDeltedFlag";
+	public static final String QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "SELECT c FROM Child c " +
+			"WHERE c.kindergarten.id = :kindergartenId AND c.deleted = :deleted AND c.tenant.id = :tenantId";
 
 	@Getter
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)

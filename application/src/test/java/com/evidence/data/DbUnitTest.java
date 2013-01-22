@@ -23,6 +23,7 @@ import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -39,6 +40,10 @@ import org.hibernate.internal.SessionImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,9 +59,15 @@ public class DbUnitTest {
 
 	@PersistenceContext(name = "entityManagerFactory")
 	private EntityManager entityManager;
+	
+	@Inject
+	private AuthenticationManager authenticationManager;
 
 	@Before
 	public void init() throws DatabaseUnitException, SQLException, MalformedURLException {
+	    Authentication authentication = new UsernamePasswordAuthenticationToken("admin@evidence.com", "password");
+    	Authentication authenticate = authenticationManager.authenticate(authentication);
+    	SecurityContextHolder.getContext().setAuthentication(authenticate);
 		// insert data into database
 		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), getDataSet());
 	}
@@ -69,6 +80,7 @@ public class DbUnitTest {
 		con.createStatement().execute("SET DATABASE REFERENTIAL INTEGRITY FALSE;");
 		DatabaseOperation.DELETE_ALL.execute(getConnection(), getDataSet());
 		con.createStatement().execute("SET DATABASE REFERENTIAL INTEGRITY TRUE;");
+		SecurityContextHolder.getContext().setAuthentication(null);
 	}
 
 	private IDatabaseConnection getConnection() throws DatabaseUnitException {

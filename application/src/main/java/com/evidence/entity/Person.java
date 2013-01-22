@@ -32,15 +32,17 @@ import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
+import com.evidence.fe.ApplicationConstants;
+
 /**
  * @author Michal Bocek
  * @since 1.0.0 
  */
 @MappedSuperclass
-public abstract class Person implements Serializable { // NOPMD
+public abstract class Person extends TenantAware implements Serializable {
 
-	private static final long serialVersionUID = -1583374331013986853L;
-
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
+	
 	@Getter	@Setter
 	private String name;
 	

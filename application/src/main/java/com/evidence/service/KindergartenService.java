@@ -50,7 +50,7 @@ public class KindergartenService {
 	 * @return kindergartens
 	 */
 	public List<KindergartenDTO> getAll() {
-		final List<Kindergarten> kindergartens = repository.findAll(false);
+		final List<Kindergarten> kindergartens = repository.findAll();
 		return DTOConverter.convertList(kindergartens, KindergartenDTO.class);
 	}
 

@@ -51,7 +51,7 @@ public class TeacherService {
 	 * @return
 	 */
 	public List<TeacherDTO> getAll() {
-		final List<Teacher> teachers = repository.findAll(false);
+		final List<Teacher> teachers = repository.findAll();
 		return DTOConverter.convertList(teachers, TeacherDTO.class);
 	}
 

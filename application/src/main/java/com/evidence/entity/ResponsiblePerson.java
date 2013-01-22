@@ -20,8 +20,8 @@ package com.evidence.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,6 +37,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.evidence.fe.ApplicationConstants;
+
 /**
  * @author Michal Bocek
  * @since 1.0.0
@@ -51,13 +53,19 @@ import lombok.ToString;
 })
 public class ResponsiblePerson extends Person {
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
+	
 	public static final String QUERY_NAME_FIND_ALL_BY_DELETED_FLAG = "ResponsiblePerson.finaAllByDeletedFlag";   
-	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT r FROM ResponsiblePerson r WHERE r.deleted = :deleted";
+	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT r FROM ResponsiblePerson r " +
+			"WHERE r.deleted = :deleted AND r.tenant.id = :tenantId";
 
-	public static final String QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "ResponsiblePerson.finaAllByKindergartenIdAndDeletedFlag";
-	public static final String QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "SELECT r FROM ResponsiblePerson r WHERE r.kindergarten.id = :kindergartenId AND r.deleted = :deleted";
+	public static final String QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "ResponsiblePerson.finaByKindergartenIdAndDeletedFlag";
+	public static final String QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "SELECT r FROM ResponsiblePerson r " +
+			"WHERE r.kindergarten.id = :kindergartenId AND r.deleted = :deleted AND r.tenant.id = :tenantId";
+
+	public static final String QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_TYPE_AND_DELETE_FLAG = "ResponsiblePerson.finalByKindergartenIdAndTypeAndDeletedFlag";
+	public static final String QUERY_FIND_BY_KINDERGARTEN_ID_AND_TYPE_AND_DELETE_FLAG = "SELECT r FROM ResponsiblePerson r " +
+			"WHERE r.kindergarten.id = :kindergartenId AND r.type = :type AND r.deleted = :deleted AND r.tenant.id = :tenantId";
 	
 	@Getter @Setter
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)

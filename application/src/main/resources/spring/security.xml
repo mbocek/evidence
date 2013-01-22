@@ -10,6 +10,7 @@
 		<intercept-url pattern="/login*" access="isAnonymous()" />
 		<intercept-url pattern="/users/new" access="isAnonymous()" />
 		<intercept-url pattern="/resources-*/*" access="isAnonymous()" />
+		<intercept-url pattern="/captcha.jpg" access="permitAll()" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
 		<form-login login-page='/login' authentication-failure-url="/login?login_error=1" />
 		<logout invalidate-session="true" />

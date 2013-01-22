@@ -65,6 +65,9 @@ public class UserDTO implements Serializable {
 	
 	@Getter @Setter
 	private String tenantName;
+
+	@Getter @Setter
+	private String captcha;
 	
 	@Getter @Setter
 	private List<TenantDTO> tenantList;

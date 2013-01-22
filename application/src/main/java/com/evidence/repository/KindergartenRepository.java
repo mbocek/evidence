@@ -18,10 +18,6 @@
  */
 package com.evidence.repository;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
-
 import com.evidence.entity.Kindergarten;
 import com.evidence.repository.data.CrudRepository;
 
@@ -30,13 +26,6 @@ import com.evidence.repository.data.CrudRepository;
  * @author Michal Bocek
  * @since 1.0.0
  */
-public interface KindergartenRepository extends CrudRepository<Kindergarten, Long> {
+public interface KindergartenRepository extends CrudRepository<Kindergarten, Long>, KindergartenRepositoryCustom {
 	
-	/**
-	 * Find all kindergartens based on deleted flag.
-	 * @param deleted
-	 * @return
-	 */
-	@Query("select k from Kindergarten k where k.deleted = ?1")
-	List<Kindergarten> findAll(final boolean deleted);
 }

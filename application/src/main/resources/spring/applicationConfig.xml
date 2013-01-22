@@ -19,7 +19,9 @@
 
 	<context:component-scan base-package="org.vaadin.mvp" />
 	<context:component-scan base-package="com.evidence.service" />
-	<context:component-scan base-package="com.evidence.fe" />
+	<context:component-scan base-package="com.evidence.fe" >
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 
 	<context:property-placeholder location="classpath:/config.properties"/>
 	

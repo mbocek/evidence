@@ -33,6 +33,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.evidence.fe.ApplicationConstants;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -50,12 +52,12 @@ import lombok.ToString;
 @NamedQueries(value = { 
 		@NamedQuery(name = Kindergarten.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG, query = Kindergarten.QUERY_FIND_ALL_BY_DELETED_FLAG) 
 	})
-public class Kindergarten implements Serializable {
+public class Kindergarten extends TenantAware implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
 
 	public static final String QUERY_NAME_FIND_ALL_BY_DELETED_FLAG = "Kindergarten.finaAllByDeletedFlag";   
-	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT k FROM Kindergarten k WHERE k.deleted = :deleted";   
+	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT k FROM Kindergarten k WHERE k.deleted = :deleted AND k.tenant.id = :tenantId";   
 
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter

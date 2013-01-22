@@ -34,6 +34,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.evidence.fe.ApplicationConstants;
+
 /**
  * @author Michal Bocek
  * @since 1.0.0
@@ -47,13 +49,15 @@ import lombok.ToString;
 })
 public class Teacher extends Person {
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
+	
 	public static final String QUERY_NAME_FIND_ALL_BY_DELETED_FLAG = "Teacher.finaAllByDeletedFlag";   
-	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT t FROM Teacher t WHERE t.deleted = :deleted";
+	public static final String QUERY_FIND_ALL_BY_DELETED_FLAG = "SELECT t FROM Teacher t " +
+			"WHERE t.deleted = :deleted AND t.tenant.id = :tenantId";
 
 	public static final String QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "Teacher.finaAllByKindergartenIdAndDeletedFlag";
-	public static final String QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "SELECT t FROM Teacher t WHERE t.kindergarten.id = :kindergartenId AND t.deleted = :deleted";
+	public static final String QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG = "SELECT t FROM Teacher t " +
+			"WHERE t.kindergarten.id = :kindergartenId AND t.deleted = :deleted AND t.tenant.id = :tenantId";
 	
 	@Id	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter
