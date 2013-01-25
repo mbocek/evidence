@@ -21,8 +21,6 @@ package com.evidence.fe.responsible;
 import java.util.List;
 import java.util.Locale;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.vaadin.mvp.uibinder.IUiMessageSource;
 
 import com.evidence.dto.StateDTO;
@@ -40,7 +38,6 @@ import com.vaadin.ui.Select;
  * @author Michal Bocek
  * @since 1.0.0
  */
-@Slf4j
 public class ResponsiblePersonDetailFormFieldFactory extends EvidenceFormFieldFactory {
 
 	private static final long serialVersionUID = 1L;
@@ -54,7 +51,6 @@ public class ResponsiblePersonDetailFormFieldFactory extends EvidenceFormFieldFa
 	 */
 	@Override
 	public Field createField(final Item item, final Object propertyId, final Component uiContext) {
-		log.debug("Item: {}; Property id: {}; Componet: {}", new Object[] {item, propertyId, uiContext});
 		Field field = null;
 		final String pid = (String) propertyId;
 		if ("contact.address.stateCode".equals(pid)) {
@@ -79,6 +75,7 @@ public class ResponsiblePersonDetailFormFieldFactory extends EvidenceFormFieldFa
 		} else if ("birthDate".equals(pid)) {
 			field = super.createField(item, propertyId, uiContext);
 			((DateField)field).setDateFormat(this.getMessage("date.format"));
+		} else if ("photo".equals(pid)) {
 		} else {
 			field = super.createField(item, propertyId, uiContext);
 		}

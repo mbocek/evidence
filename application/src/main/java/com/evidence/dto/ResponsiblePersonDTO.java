@@ -39,7 +39,7 @@ import com.evidence.fe.responsible.ResponsiblePersonDetailFormFieldFactory;
  * @author Michal Bocek
  * @since 1.0.0 
  */
-@ToString
+@ToString(exclude = "photo")
 @AutomaticForm(formFieldFactory = ResponsiblePersonDetailFormFieldFactory.class)
 public class ResponsiblePersonDTO implements Model { 
 
@@ -77,6 +77,10 @@ public class ResponsiblePersonDTO implements Model {
 	@Caption
 	@Getter @Setter
 	private String type;
+	
+	@Order(7)
+	@Getter @Setter
+	private byte[] photo;
 	
 	public ResponsiblePersonDTO(final Long kindergartenId) {
 		this.kindergartenId = kindergartenId;

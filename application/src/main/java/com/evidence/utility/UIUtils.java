@@ -16,31 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.responsible;
+package com.evidence.utility;
 
-import lombok.Getter;
-
-import org.vaadin.mvp.uibinder.IUiBindable;
-import org.vaadin.mvp.uibinder.annotation.UiField;
-
-import com.evidence.fe.form.EvidenceForm;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.Runo;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class ResponsiblePersonDetail extends VerticalLayout implements IUiBindable, IResponsiblePersonDetail {  
-
-	private static final long serialVersionUID = 6155789894644060488L;
-
-	@Getter
-	@UiField
-	private EvidenceForm responsiblePersonForm;
+public final class UIUtils {
 	
-	@Getter
-	@UiField
-	private Panel container;
-	
+	private UIUtils() {
+	}
+
+	public static void clearBorder(final Panel panel) {
+		panel.addStyleName(Runo.PANEL_LIGHT);
+	}
 }

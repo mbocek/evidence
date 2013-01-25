@@ -19,6 +19,7 @@
 package com.evidence.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,6 +28,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -79,6 +81,11 @@ public class ResponsiblePerson extends Person {
 	@Getter @Setter
 	@Enumerated(value = EnumType.STRING)
 	private ResponsibilityType type;
+	
+	@Getter @Setter
+	@Lob
+	@Column(name = "PHOTO", length = 100000)
+	private byte[] photo;
 	
 	public ResponsiblePerson(final Long id) {
 		this.id = id;

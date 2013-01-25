@@ -62,6 +62,7 @@ public class ResponsiblePersonConverter implements CustomConverter {
 		responsiblePersonDTO.setSurName(source.getSurName());
 		responsiblePersonDTO.setType(source.getType().name());
 		responsiblePersonDTO.setId(source.getId());
+		responsiblePersonDTO.setPhoto(source.getPhoto());
 		return responsiblePersonDTO;
 	}
 
@@ -79,6 +80,7 @@ public class ResponsiblePersonConverter implements CustomConverter {
 		responsiblePerson.setName(sourceDTO.getName());
 		responsiblePerson.setSurName(sourceDTO.getSurName());
 		responsiblePerson.setType(ResponsibilityType.valueOf(sourceDTO.getType()));
+		responsiblePerson.setPhoto(sourceDTO.getPhoto());
 		return responsiblePerson;
 	}
 }

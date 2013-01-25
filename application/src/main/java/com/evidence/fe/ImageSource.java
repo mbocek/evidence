@@ -16,31 +16,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.responsible;
+package com.evidence.fe;
 
-import lombok.Getter;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
-import org.vaadin.mvp.uibinder.IUiBindable;
-import org.vaadin.mvp.uibinder.annotation.UiField;
-
-import com.evidence.fe.form.EvidenceForm;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.terminal.StreamResource.StreamSource;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
-public class ResponsiblePersonDetail extends VerticalLayout implements IUiBindable, IResponsiblePersonDetail {  
+public class ImageSource implements StreamSource {
 
-	private static final long serialVersionUID = 6155789894644060488L;
-
-	@Getter
-	@UiField
-	private EvidenceForm responsiblePersonForm;
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
 	
-	@Getter
-	@UiField
-	private Panel container;
+	private byte[] imagebuffer = null;
+	 
+	 
+	 public ImageSource(final ByteArrayOutputStream baos) {
+		this.imagebuffer = baos.toByteArray();
+	}
 	
+	 public ImageSource(final byte[] byteArray) {
+		this.imagebuffer = byteArray;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.vaadin.terminal.StreamResource.StreamSource#getStream()
+	 */
+	@Override
+	public InputStream getStream() {
+		 return new ByteArrayInputStream(this.imagebuffer);
+	}
 }

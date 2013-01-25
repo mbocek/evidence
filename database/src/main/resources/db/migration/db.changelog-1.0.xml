@@ -25,7 +25,7 @@
 			</column>
 		</createTable>
 	</changeSet>
-		
+
 	<changeSet id="create: tenant" author="mbocek">
 		<createTable tableName="TENANT" remarks="Table for storing information about tenants">
 			<column autoIncrement="true" name="ID" type="BIGINT" remarks="Primary key">
@@ -174,6 +174,7 @@
 			<column name="TENANT_ID" type="BIGINT" remarks="Reference to tenant">
 				<constraints nullable="false" />
 			</column>
+			<column name="PHOTO" type="BLOB" remarks="Personal photo" />
 		</createTable>
 		<addForeignKeyConstraint baseColumnNames="KINDERGARTEN_ID" baseTableName="RESPONSIBLE_PERSON"
 			constraintName="FK_RESPONSIBLE_PERSON_KINDERGARTEN" deferrable="false" initiallyDeferred="false"

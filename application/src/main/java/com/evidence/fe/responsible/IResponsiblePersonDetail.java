@@ -19,6 +19,7 @@
 package com.evidence.fe.responsible;
 
 import com.vaadin.ui.Form;
+import com.vaadin.ui.Panel;
 
 /**
  * @author Michal Bocek
@@ -27,4 +28,6 @@ import com.vaadin.ui.Form;
 public interface IResponsiblePersonDetail {
 	
 	Form getResponsiblePersonForm();
+
+	Panel getContainer();
 }

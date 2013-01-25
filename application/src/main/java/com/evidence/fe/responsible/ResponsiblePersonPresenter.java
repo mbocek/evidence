@@ -32,10 +32,12 @@ import org.vaadin.mvp.presenter.annotation.Presenter;
 import com.evidence.dto.ResponsiblePersonDTO;
 import com.evidence.fe.ApplicationConstants;
 import com.evidence.fe.EvidenceApplication;
+import com.evidence.fe.EvidenceUpload;
 import com.evidence.fe.form.EvidenceForm;
 import com.evidence.fe.form.MetaModel;
 import com.evidence.service.FormMetaModelService;
 import com.evidence.service.ResponsiblePersonService;
+import com.evidence.utility.UIUtils;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
@@ -68,6 +70,8 @@ public class ResponsiblePersonPresenter extends FactoryPresenter<IResponsiblePer
 	
 	@Inject
 	private FormMetaModelService formService;
+	
+	private EvidenceUpload upload;
     
 	@Override
 	public void bind() {
@@ -126,6 +130,7 @@ public class ResponsiblePersonPresenter extends FactoryPresenter<IResponsiblePer
 		final MetaModel metaModel = formService.getMetaModel(responsiblePerson);
 		
 		if (responsiblePersonForm.validate(metaModel, validator, responsiblePerson, this.messageSource, this.getLocale())) {
+			responsiblePerson.setPhoto(upload.getImage());
 			//this.container.addBean(kindergarten);
 			this.responsiblePersonService.createOrUpdateResponsiblePerson(responsiblePerson);
 			// close dialog
@@ -151,24 +156,32 @@ public class ResponsiblePersonPresenter extends FactoryPresenter<IResponsiblePer
 		// dismiss the dialog
 		final Window applicationWindow = this.dialog.getParent();
 		applicationWindow.removeWindow(this.dialog);
-		//this.dialog = null;
+		this.dialog = null;
 		//this.kindergartenForm = null;
 	}
 
 	private void showCreateEditDialog(final ResponsiblePersonDTO responsiblePersonDTO) throws ViewFactoryException {
 		// create view
 		final ResponsiblePersonDetail view = this.createView(ResponsiblePersonDetail.class);
+		UIUtils.clearBorder(view.getContainer());
 		// configure the form with bean item
 		this.responsiblePersonForm = view.getResponsiblePersonForm();
 		final MetaModel metaModel = formService.getMetaModel(responsiblePersonDTO);
-		this.responsiblePersonForm.setItemDataSource(responsiblePersonDTO, metaModel, this.messageSource, "responsiblePerson.detail", this.getLocale());
-
+		this.responsiblePersonForm.setItemDataSource(responsiblePersonDTO, metaModel, this.messageSource, 
+				"responsiblePerson.detail", this.getLocale());
+		// photo upload setup
+		upload = new EvidenceUpload(this.messageSource, this.getLocale());
+		upload.setCaption(this.getMessage("responsiblePerson.detail.upload", this.getLocale()));
+		this.responsiblePersonForm.getLayout().addComponent(upload);
 		// create a window using caption from view
 		this.dialog = new Window(this.getMessage("responsiblePerson.detail.caption", this.getLocale()));
 		this.dialog.setModal(true);
 		this.dialog.addComponent(view);
 		this.dialog.getContent().setSizeUndefined();
 		this.eventBus.showDialog(this.dialog);
+		if (responsiblePersonDTO.getPhoto() != null) {
+			upload.showImage(responsiblePersonDTO.getPhoto());
+		}
 	}
 	
 	public void onSelectKindergarten(ValueChangeEvent event) {

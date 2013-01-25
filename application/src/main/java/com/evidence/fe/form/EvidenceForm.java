@@ -80,8 +80,12 @@ public class EvidenceForm extends Form {
 			final Boolean fieldRequired = metaModel.getFieldRequired(fieldName);
 			final Field field = this.getField(fieldName);
 			log.debug("Field:{} is required:{}", fieldName, fieldRequired);
-			field.setRequired(fieldRequired);
-			field.setRequiredError(messageSource.getMessage("field.required", locale));
+			if (field != null) {
+				field.setRequired(fieldRequired);
+				field.setRequiredError(messageSource.getMessage("field.required", locale));
+			} else {
+				log.debug("Field: {} doesnt exists and will be skiped!", fieldName);
+			}
 		}
 	}
 
