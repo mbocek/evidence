@@ -24,6 +24,6 @@ package com.evidence.fe;
  */
 public interface ApplicationConstants {
 	Long SELECT_ALL = -1L;
-	
 	long VERSION = 1000000L;
+	String NO_PHOTO = "images/no-photo.jpg";
 }

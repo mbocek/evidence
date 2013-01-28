@@ -22,9 +22,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.util.Locale;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.vaadin.mvp.uibinder.IUiMessageSource;
 
 import com.evidence.utility.UIUtils;
+import com.vaadin.terminal.ExternalResource;
 import com.vaadin.terminal.Resource;
 import com.vaadin.terminal.StreamResource;
 import com.vaadin.ui.AbstractLayout;
@@ -34,24 +37,34 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.Upload.FailedEvent;
+import com.vaadin.ui.Upload.StartedEvent;
 import com.vaadin.ui.Upload.SucceededEvent;
 
 /**
  * @author Michal Bocek
  * @since 1.0.0
  */
+@Slf4j
 public class EvidenceUpload extends CustomComponent implements Upload.SucceededListener, Upload.FailedListener,
-		Upload.Receiver {
+		Upload.Receiver, Upload.StartedListener {
+
+	private static final int MAX_FILE_SIZE = 100000;
 
 	private static final long serialVersionUID = ApplicationConstants.VERSION;
 
+	private static final String MIME_TYPE_JPEG = "image/jpeg"; 
+	
 	private final Panel root; // Root element for contained components.
 	private final Panel imagePanel; // Panel that contains the uploaded image.
+	private final Upload upload;
+	private final Label status;
+	private String errorMessage;
 	private ByteArrayOutputStream baos;
 	private final IUiMessageSource messagesource;
 	private final Locale locale;
 	
-	public EvidenceUpload(IUiMessageSource messageSource, Locale locale) {
+	
+	public EvidenceUpload(final IUiMessageSource messageSource, final Locale locale) {
 		this.messagesource = messageSource;
 		this.locale = locale;
 		
@@ -61,7 +74,8 @@ public class EvidenceUpload extends CustomComponent implements Upload.SucceededL
 		((AbstractLayout)root.getContent()).setMargin(false);
 
 		// Create the Upload component.
-		final Upload upload = new Upload(getMessage("upload.upload.caption"), this);
+		upload = new Upload(getMessage("upload.upload.caption"), this);
+		upload.setImmediate(true);
 
 		// Use a custom button caption instead of plain "Upload".
 		upload.setButtonCaption(getMessage("upload.button.caption"));
@@ -69,14 +83,16 @@ public class EvidenceUpload extends CustomComponent implements Upload.SucceededL
 		// Listen for events regarding the success of upload.
 		upload.addListener((Upload.SucceededListener) this);
 		upload.addListener((Upload.FailedListener) this);
+		upload.addListener((Upload.StartedListener) this);
 
 		// Create a panel for displaying the uploaded image.
 		imagePanel = new Panel(getMessage("upload.image.caption"));
 		((AbstractLayout)imagePanel.getContent()).setMargin(false);
-		imagePanel.addComponent(new Label(getMessage("upload.image.notloaded")));
+		status = new Label(getMessage("upload.image.notloaded"));
 		imagePanel.setWidth("200px");
 		imagePanel.setHeight("150px");
 		root.addComponent(imagePanel);
+		root.addComponent(status);
 
 		root.addComponent(upload);
     }	
@@ -85,35 +101,51 @@ public class EvidenceUpload extends CustomComponent implements Upload.SucceededL
 	 * @see com.vaadin.ui.Upload.Succee	dedListener#uploadSucceeded(com.vaadin.ui.Upload.SucceededEvent)
 	 */
 	@Override
-	public void uploadSucceeded(SucceededEvent event) {
+	public void uploadSucceeded(final SucceededEvent event) {
 		// Log the upload on screen.
-		root.addComponent(new Label(getMessage("upload.upload.succeeded")));
+		errorMessage = "";
+		status.setValue(getMessage("upload.upload.succeeded"));
+		root.addComponent(status);
 		// Display the uploaded file in the image panel.
 		showImage(baos.toByteArray());
 	}
 
-	public void showImage(byte[] byteArray) {
-		final Resource imageResource = new StreamResource(new ImageSource(byteArray), "photo.jpg", getApplication());
-		imagePanel.removeAllComponents();
+	public void showImage(String path) {
+		final Resource imageResource = new ExternalResource(path);
 		Embedded image = new Embedded("", imageResource);
+		image.setCaption(null);
 		image.setWidth("200px");
+		imagePanel.setHeight(null);
 		imagePanel.addComponent(image);
+		status.setValue(null);
+	}
+
+	public void showImage(final byte[] byteArray) {
+		final StreamResource imageResource = new StreamResource(new ImageSource(byteArray), "photo.jpg", getApplication());
+		imageResource.setCacheTime(0); // disable cache
+		Embedded image = new Embedded("", imageResource);
+		image.setCaption(null);
+		image.setWidth("200px");
+		imagePanel.setHeight(null);
+		imagePanel.addComponent(image);
+		status.setValue(null);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.vaadin.ui.Upload.FailedListener#uploadFailed(com.vaadin.ui.Upload.FailedEvent)
 	 */
 	@Override
-	public void uploadFailed(FailedEvent event) {
+	public void uploadFailed(final FailedEvent event) {
 		// Log the failure on screen.
-		root.addComponent(new Label(getMessage("upload.upload.failed")));
+		status.setValue(errorMessage + " " + getMessage("upload.upload.failed"));
+		root.addComponent(status);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.vaadin.ui.Upload.Receiver#receiveUpload(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public OutputStream receiveUpload(String filename, String mimeType) {
+	public OutputStream receiveUpload(final String filename, final String mimeType) {
 		if (baos != null) {
 			baos.reset();
 		} else {
@@ -122,11 +154,28 @@ public class EvidenceUpload extends CustomComponent implements Upload.SucceededL
 		return baos;
 	}
 	
-	private String getMessage(String key) {
+	private String getMessage(final String key) {
 		return this.messagesource.getMessage(key, this.locale);
 	}
 	
 	public byte[] getImage() {
 		return baos.toByteArray();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.vaadin.ui.Upload.StartedListener#uploadStarted(com.vaadin.ui.Upload.StartedEvent)
+	 */
+	@Override
+	public void uploadStarted(final StartedEvent event) {
+		if (event.getMIMEType().compareTo(MIME_TYPE_JPEG) != 0) {
+			log.debug("Wrong mime type. ({})", event.getMIMEType());
+			errorMessage = getMessage("upload.upload.notjpeg");
+			upload.interruptUpload();
+		}
+		if (event.getContentLength() > MAX_FILE_SIZE) {
+			log.debug("Too big file for upload. ({})", event.getContentLength());
+			errorMessage = getMessage("upload.upload.filesizeexceeded");
+			upload.interruptUpload();
+		}
 	}
 }

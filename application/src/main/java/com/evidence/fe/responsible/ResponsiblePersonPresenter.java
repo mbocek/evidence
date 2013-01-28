@@ -181,6 +181,8 @@ public class ResponsiblePersonPresenter extends FactoryPresenter<IResponsiblePer
 		this.eventBus.showDialog(this.dialog);
 		if (responsiblePersonDTO.getPhoto() != null) {
 			upload.showImage(responsiblePersonDTO.getPhoto());
+		} else {
+			upload.showImage(ApplicationConstants.NO_PHOTO);
 		}
 	}
 	
