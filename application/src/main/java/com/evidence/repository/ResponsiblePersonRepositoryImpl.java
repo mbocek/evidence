@@ -72,10 +72,11 @@ public class ResponsiblePersonRepositoryImpl implements ResponsiblePersonReposit
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ResponsiblePerson> findByKindergartenIdAndType(final Long id, final ResponsibilityType type) {
+	public List<ResponsiblePerson> findByKindergartenIdAndType(final Long kindergartenId, final ResponsibilityType type) {
 		final Long tenantId = ((EvidenceUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getTenantId();
 		Query query = this.entityManager.createNamedQuery(ResponsiblePerson.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_TYPE_AND_DELETE_FLAG);
 		query.setParameter("deleted", Boolean.FALSE);
+		query.setParameter("kindergartenId", kindergartenId);
 		query.setParameter("type", type);
 		query.setParameter("tenantId", tenantId);
         return query.getResultList();

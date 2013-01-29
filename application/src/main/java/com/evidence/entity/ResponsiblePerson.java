@@ -51,7 +51,8 @@ import com.evidence.fe.ApplicationConstants;
 @NoArgsConstructor
 @NamedQueries(value = { 
 	@NamedQuery(name = ResponsiblePerson.QUERY_NAME_FIND_ALL_BY_DELETED_FLAG, query = ResponsiblePerson.QUERY_FIND_ALL_BY_DELETED_FLAG), 
-	@NamedQuery(name = ResponsiblePerson.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG, query = ResponsiblePerson.QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG) 
+	@NamedQuery(name = ResponsiblePerson.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG, query = ResponsiblePerson.QUERY_FIND_BY_KINDERGARTEN_ID_AND_DELETED_FLAG), 
+	@NamedQuery(name = ResponsiblePerson.QUERY_NAME_FIND_BY_KINDERGARTEN_ID_AND_TYPE_AND_DELETE_FLAG, query = ResponsiblePerson.QUERY_FIND_BY_KINDERGARTEN_ID_AND_TYPE_AND_DELETE_FLAG) 
 })
 public class ResponsiblePerson extends Person {
 

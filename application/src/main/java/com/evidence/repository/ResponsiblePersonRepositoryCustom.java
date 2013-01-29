@@ -48,5 +48,5 @@ public interface ResponsiblePersonRepositoryCustom {
 	 * @param id
 	 * @return
 	 */
-	List<ResponsiblePerson> findByKindergartenIdAndType(Long id, ResponsibilityType type);
+	List<ResponsiblePerson> findByKindergartenIdAndType(Long kindergartenId, ResponsibilityType type);
 }
