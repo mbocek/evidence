@@ -85,7 +85,7 @@ public class ResponsiblePerson extends Person {
 	
 	@Getter @Setter
 	@Lob
-	@Column(name = "PHOTO", length = 100000)
+	@Column(name = "PHOTO", length = 102400)
 	private byte[] photo;
 	
 	public ResponsiblePerson(final Long id) {

@@ -16,12 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe;
+package com.evidence.fe.components;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
+import com.evidence.fe.ApplicationConstants;
 import com.vaadin.terminal.StreamResource.StreamSource;
 
 /**

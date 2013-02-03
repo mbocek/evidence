@@ -80,6 +80,10 @@ public class ChildDTO implements Model {
 	@Order(7) @Caption("responsiblePerson")
 	private Long responsiblePersonId;
 	
+	@Order(8)
+	@Getter @Setter
+	private byte[] photo;
+	
 	public ChildDTO(final Long kindergartenId) {
 		this.kindergartenId = kindergartenId;
 	}

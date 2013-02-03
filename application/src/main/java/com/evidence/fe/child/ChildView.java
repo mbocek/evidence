@@ -18,9 +18,12 @@
  */
 package com.evidence.fe.child;
 
+import lombok.Getter;
+
 import org.vaadin.mvp.uibinder.IUiBindable;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
+import com.evidence.fe.ApplicationConstants;
 import com.vaadin.ui.Form;
 import com.vaadin.ui.VerticalLayout;
 
@@ -30,13 +33,9 @@ import com.vaadin.ui.VerticalLayout;
  */
 public class ChildView extends VerticalLayout implements IUiBindable, IChildView {
 
-	private static final long serialVersionUID = 6155789894644060488L;
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
 
+	@Getter
 	@UiField
 	private Form childrenForm;
-
-	@Override
-	public Form getChildrenForm() {
-		return this.childrenForm;
-	}
 }

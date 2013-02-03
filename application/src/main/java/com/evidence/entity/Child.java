@@ -19,12 +19,14 @@
 package com.evidence.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -77,5 +79,10 @@ public class Child extends Person {
 	@Getter @Setter
 	@OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "RESPONSIBLE_PERSON_ID")
-	private ResponsiblePerson responsiblePerson;	
+	private ResponsiblePerson responsiblePerson;
+	
+	@Getter @Setter
+	@Lob
+	@Column(name = "PHOTO", length = 102400)
+	private byte[] photo;
 }

@@ -32,6 +32,7 @@ import org.vaadin.mvp.presenter.annotation.Presenter;
 import com.evidence.dto.ChildDTO;
 import com.evidence.fe.ApplicationConstants;
 import com.evidence.fe.EvidenceApplication;
+import com.evidence.fe.components.EvidenceUpload;
 import com.evidence.fe.form.MetaModel;
 import com.evidence.service.ChildService;
 import com.evidence.service.FormMetaModelService;
@@ -69,6 +70,8 @@ public class ChildPresenter extends FactoryPresenter<IChildListView, ChildEventB
 	@Inject
 	private FormMetaModelService formService;
     
+	private EvidenceUpload upload;
+	
 	@Override
 	public void bind() {
 		final HorizontalLayout buttonBar = this.view.getButtonBar();
@@ -126,7 +129,7 @@ public class ChildPresenter extends FactoryPresenter<IChildListView, ChildEventB
 		final MetaModel metaModel = formService.getMetaModel(child);
 		
 		if (childForm.validate(metaModel, validator, child, this.messageSource, this.getLocale())) {
-			//this.container.addBean(kindergarten);
+			child.setPhoto(upload.getImage());
 			this.childService.createOrUpdateChild(child);
 			// close dialog
 			this.closeDialog();
@@ -164,12 +167,21 @@ public class ChildPresenter extends FactoryPresenter<IChildListView, ChildEventB
 		final MetaModel metaModel = formService.getMetaModel(childDTO);
 		this.childForm.setItemDataSource(childDTO, metaModel, this.messageSource, "child.detail", this.getLocale());
 
+		// photo upload setup
+		upload = new EvidenceUpload(this.messageSource, this.getLocale());
+		upload.setCaption(this.getMessage("child.detail.upload", this.getLocale()));
+		this.childForm.addUpload(upload);
 		// create a window using caption from view
 		this.dialog = new Window(this.getMessage("child.detail.caption", this.getLocale()));
 		this.dialog.setModal(true);
 		this.dialog.addComponent(view);
 		this.dialog.getContent().setSizeUndefined();
 		this.eventBus.showDialog(this.dialog);
+		if (childDTO.getPhoto() != null) {
+			upload.showImage(childDTO.getPhoto());
+		} else {
+			upload.showImage(ApplicationConstants.NO_PHOTO);
+		}
 	}
 	
 	public void onSelectKindergarten(ValueChangeEvent event) {

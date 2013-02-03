@@ -70,21 +70,21 @@ public class EvidenceForm extends Form {
 		setupFormFieldFactory(model, metaModel, messageSource, locale);
 		this.setVisibleItemProperties(metaModel.getOrderedFields());
 		for (String fieldName : metaModel.getCaptionedFields()) {
-			log.debug("Processing caption for field:{}", fieldName);
+			log.trace("Processing caption for field:{}", fieldName);
 			final String fieldCaption = messagePrefix + NESTED_SEPARATOR + metaModel.getFieldCaption(fieldName);
 			final Field field = this.getField(fieldName);
 			field.setCaption(messageSource.getMessage(fieldCaption, locale));
 		}
 		for (String fieldName : metaModel.getRequiredFields()) {
-			log.debug("Processing required for field:{}", fieldName);
+			log.trace("Processing required for field:{}", fieldName);
 			final Boolean fieldRequired = metaModel.getFieldRequired(fieldName);
 			final Field field = this.getField(fieldName);
-			log.debug("Field:{} is required:{}", fieldName, fieldRequired);
+			log.trace("Field:{} is required:{}", fieldName, fieldRequired);
 			if (field != null) {
 				field.setRequired(fieldRequired);
 				field.setRequiredError(messageSource.getMessage("field.required", locale));
 			} else {
-				log.debug("Field: {} doesnt exists and will be skiped!", fieldName);
+				log.trace("Field: {} doesnt exists and will be skiped!", fieldName);
 			}
 		}
 	}
@@ -126,11 +126,11 @@ public class EvidenceForm extends Form {
 		final Collection<String> validatedFields = metaModel.getValidatedFields();
 		for (String fieldName : validatedFields) {
 			final boolean isFieldValidated = metaModel.getFieldValidated(fieldName);
-			log.debug("Field: {} will be validated: {}", fieldName, isFieldValidated);
+			log.trace("Field: {} will be validated: {}", fieldName, isFieldValidated);
 			if (isFieldValidated) {
 				final Field fieldComponent = this.getField(fieldName);
 				if (fieldComponent instanceof AbstractField) {
-					log.debug("Cleanup error for field:{}", fieldName);
+					log.trace("Cleanup error for field:{}", fieldName);
 					((AbstractField)fieldComponent).setComponentError(null);
 				}
 			}

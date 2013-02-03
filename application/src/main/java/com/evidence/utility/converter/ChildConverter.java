@@ -67,6 +67,7 @@ public class ChildConverter implements CustomConverter {
 		childDTO.setName(source.getName());
 		childDTO.setSurName(source.getSurName());
 		childDTO.setId(source.getId());
+		childDTO.setPhoto(source.getPhoto());
 		return childDTO;
 	}
 
@@ -85,6 +86,7 @@ public class ChildConverter implements CustomConverter {
 		child.setKindergarten(new Kindergarten(sourceDTO.getKindergartenId()));
 		child.setName(sourceDTO.getName());
 		child.setSurName(sourceDTO.getSurName());
+		child.setPhoto(sourceDTO.getPhoto());
 		return child;
 	}
 }

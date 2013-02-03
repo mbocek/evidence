@@ -213,6 +213,7 @@
 			<column name="TENANT_ID" type="BIGINT" remarks="Reference to tenant">
 				<constraints nullable="false" />
 			</column>
+			<column name="PHOTO" type="BLOB" remarks="Personal photo" />
 		</createTable>
 
 		<addForeignKeyConstraint baseColumnNames="FATHER_ID" baseTableName="CHILD"
@@ -264,6 +265,7 @@
 			<column name="TENANT_ID" type="BIGINT" remarks="Reference to tenant">
 				<constraints nullable="false" />
 			</column>
+			<column name="PHOTO" type="BLOB" remarks="Personal photo" />
 		</createTable>
 
 		<addForeignKeyConstraint baseColumnNames="CONTACT_ID" baseTableName="TEACHER"

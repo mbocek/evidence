@@ -19,12 +19,14 @@
 package com.evidence.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -67,4 +69,9 @@ public class Teacher extends Person {
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, optional = false)
 	@JoinColumn(name = "CONTACT_ID")
 	private Contact contact;
+	
+	@Getter @Setter
+	@Lob
+	@Column(name = "PHOTO", length = 102400)
+	private byte[] photo;
 }

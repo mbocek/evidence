@@ -32,6 +32,7 @@ import org.vaadin.mvp.presenter.annotation.Presenter;
 import com.evidence.dto.TeacherDTO;
 import com.evidence.fe.ApplicationConstants;
 import com.evidence.fe.EvidenceApplication;
+import com.evidence.fe.components.EvidenceUpload;
 import com.evidence.fe.form.EvidenceForm;
 import com.evidence.fe.form.MetaModel;
 import com.evidence.service.FormMetaModelService;
@@ -69,6 +70,8 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 	@Inject
 	private FormMetaModelService formService;
     
+	private EvidenceUpload upload;
+	
 	@Override
 	public void bind() {
 		final HorizontalLayout buttonBar = this.view.getButtonBar();
@@ -125,7 +128,7 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 		final MetaModel metaModel = formService.getMetaModel(teacher);
 		
 		if (teacherForm.validate(metaModel, validator, teacher, this.messageSource, this.getLocale())) {
-			//this.container.addBean(kindergarten);
+			teacher.setPhoto(upload.getImage());
 			this.teacherService.createOrUpdateTeacher(teacher);
 			// close dialog
 			this.closeDialog();
@@ -162,12 +165,22 @@ public class TeacherPresenter extends FactoryPresenter<ITeacherListView, Teacher
 		final MetaModel metaModel = formService.getMetaModel(teacherDTO);
 		this.teacherForm.setItemDataSource(teacherDTO, metaModel, this.messageSource, "teacher.detail", this.getLocale());
 
+		// photo upload setup
+		upload = new EvidenceUpload(this.messageSource, this.getLocale());
+		upload.setCaption(this.getMessage("teacher.detail.upload", this.getLocale()));
+		this.teacherForm.getLayout().addComponent(upload);
+		this.teacherForm.getFooter().setMargin(true, false, false, false);
 		// create a window using caption from view
 		this.dialog = new Window(this.getMessage("teacher.detail.caption", this.getLocale()));
 		this.dialog.setModal(true);
 		this.dialog.addComponent(view);
 		this.dialog.getContent().setSizeUndefined();
 		this.eventBus.showDialog(this.dialog);
+		if (teacherDTO.getPhoto() != null) {
+			upload.showImage(teacherDTO.getPhoto());
+		} else {
+			upload.showImage(ApplicationConstants.NO_PHOTO);
+		}
 	}
 	
 	public void onSelectKindergarten(ValueChangeEvent event) {

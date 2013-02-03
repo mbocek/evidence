@@ -72,6 +72,10 @@ public class TeacherDTO implements Model {
 	@Getter @Setter
 	private ContactDTO contact = new ContactDTO();
 	
+	@Order(6)
+	@Getter @Setter
+	private byte[] photo;
+	
 	public TeacherDTO(final Long kindergartenId) {
 		this.kindergartenId = kindergartenId;
 	}

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe.child;
+package com.evidence.fe.teacher;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +32,7 @@ import com.vaadin.ui.VerticalLayout;
  * @since 1.0.0
  */
 @Slf4j
-public class ChildDetailForm extends EvidenceForm {
+public class TeacherDetailForm extends EvidenceForm {
 
 	private static final long serialVersionUID = ApplicationConstants.VERSION;
 	
@@ -40,9 +40,10 @@ public class ChildDetailForm extends EvidenceForm {
 	
 	private final VerticalLayout vLayout;
 	
-	public ChildDetailForm() {
-		layout = new GridLayout(2, 4);
+	public TeacherDetailForm() {
+		layout = new GridLayout(2, 6);
 		vLayout = new VerticalLayout();
+		vLayout.setSizeUndefined();
 		vLayout.setSpacing(true);
         //layout.setMargin(false, false, false, false);
         layout.setSpacing(true);
@@ -60,12 +61,22 @@ public class ChildDetailForm extends EvidenceForm {
 			vLayout.addComponent(field);
 		} else if (propertyId.equals("birthDate")) {
 			vLayout.addComponent(field);
-		} else if (propertyId.equals("motherId")) {
-			layout.addComponent(field, 0, 1, 1, 1);
-		} else if (propertyId.equals("fatherId")) {
-			layout.addComponent(field, 0, 2, 1, 2);
-		} else if (propertyId.equals("responsiblePersonId")) {
-			layout.addComponent(field, 0, 3, 1, 3);
+		} else if (propertyId.equals("contact.email")) {
+			layout.addComponent(field, 0, 1, 0, 2);
+		} else if (propertyId.equals("contact.mobileNumber")) {
+			layout.addComponent(field, 1, 1, 1, 1);
+		} else if (propertyId.equals("contact.landLine")) {
+			layout.addComponent(field, 1, 2, 1, 2);
+		} else if (propertyId.equals("contact.address.street")) {
+			layout.addComponent(field, 0, 3);
+		} else if (propertyId.equals("contact.address.houseNumber")) {
+			layout.addComponent(field, 1, 3);
+		} else if (propertyId.equals("contact.address.city")) {
+			layout.addComponent(field, 0, 4);
+		} else if (propertyId.equals("contact.address.zipCode")) {
+			layout.addComponent(field, 1, 4);
+		} else if (propertyId.equals("contact.address.stateCode")) {
+			layout.addComponent(field, 0, 5, 1, 5);
 		}
 	}
 	

@@ -23,6 +23,7 @@ import lombok.Getter;
 import org.vaadin.mvp.uibinder.IUiBindable;
 import org.vaadin.mvp.uibinder.annotation.UiField;
 
+import com.evidence.fe.ApplicationConstants;
 import com.evidence.fe.form.EvidenceForm;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -33,7 +34,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 public class ResponsiblePersonDetail extends VerticalLayout implements IUiBindable, IResponsiblePersonDetail {  
 
-	private static final long serialVersionUID = 6155789894644060488L;
+	private static final long serialVersionUID = ApplicationConstants.VERSION;
 
 	@Getter
 	@UiField
@@ -42,5 +43,4 @@ public class ResponsiblePersonDetail extends VerticalLayout implements IUiBindab
 	@Getter
 	@UiField
 	private Panel container;
-	
 }

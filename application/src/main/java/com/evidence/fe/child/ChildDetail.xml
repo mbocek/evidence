@@ -6,13 +6,15 @@
 	xmlns:i="urn:org.vaadin.mvp.uibinder.method"
 	v:sizeFull="" v:spacing="true" v:margin="true">
 
-	<f:ChildDetailForm ui:field="childForm">
-		<i:addFooter>
-			<v:HorizontalLayout spacing="true" width="100%">
-				<v:Button caption="addResponsiblePerson" styleName="small" e:click="addResponsiblePerson" />
-				<v:Button caption="save" styleName="small" e:click="saveChild" />
-				<v:Button caption="cancel" styleName="small" e:click="cancelEditChild" />
-			</v:HorizontalLayout>	
-		</i:addFooter>
-	</f:ChildDetailForm>
+	<v:Panel ui:field="container">
+		<f:ChildDetailForm ui:field="childForm">
+			<i:addFooter>
+				<v:HorizontalLayout spacing="true" width="100%">
+					<v:Button caption="addResponsiblePerson" styleName="small" e:click="addResponsiblePerson" />
+					<v:Button caption="save" styleName="small" e:click="saveChild" />
+					<v:Button caption="cancel" styleName="small" e:click="cancelEditChild" />
+				</v:HorizontalLayout>	
+			</i:addFooter>
+		</f:ChildDetailForm>
+	</v:Panel>
 </ui:UiBinder>

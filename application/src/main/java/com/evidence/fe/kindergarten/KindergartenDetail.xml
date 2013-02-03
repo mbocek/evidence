@@ -6,12 +6,14 @@
 	xmlns:i="urn:org.vaadin.mvp.uibinder.method"
 	v:sizeFull="" v:spacing="true" v:margin="true">
 
-	<f:EvidenceForm ui:field="kindergartenForm">
-		<i:addFooter>
-			<v:HorizontalLayout spacing="true">
-				<v:Button caption="save" styleName="small" e:click="saveKindergarten" />
-				<v:Button caption="cancel" styleName="small" e:click="cancelEditKindergarten" />
-			</v:HorizontalLayout>	
-		</i:addFooter>
-	</f:EvidenceForm>
+	<v:Panel ui:field="container">
+		<f:EvidenceForm ui:field="kindergartenForm">
+			<i:addFooter>
+				<v:HorizontalLayout spacing="true">
+					<v:Button caption="save" styleName="small" e:click="saveKindergarten" />
+					<v:Button caption="cancel" styleName="small" e:click="cancelEditKindergarten" />
+				</v:HorizontalLayout>	
+			</i:addFooter>
+		</f:EvidenceForm>
+	</v:Panel>
 </ui:UiBinder>

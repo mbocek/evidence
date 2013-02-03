@@ -29,10 +29,12 @@ import com.evidence.dto.StateDTO;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
 import com.evidence.service.ServiceHolder;
 import com.vaadin.data.Item;
+import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Select;
+import com.vaadin.ui.TextField;
 
 /**
  * @author Michal Bocek
@@ -64,12 +66,18 @@ public class TeacherDetailFormFieldFactory extends EvidenceFormFieldFactory {
 			}
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);
+			select.setWidth(100, Sizeable.UNITS_PERCENTAGE);
 			field = select;
 		} else if ("birthDate".equals(pid)) {
 			field = super.createField(item, propertyId, uiContext);
 			((DateField)field).setDateFormat(this.getMessage("date.format"));
+			field.setWidth(100, Sizeable.UNITS_PERCENTAGE);
+		} else if ("photo".equals(pid)) {
 		} else {
 			field = super.createField(item, propertyId, uiContext);
+			if (field instanceof TextField) {
+				field.setWidth(100, Sizeable.UNITS_PERCENTAGE);
+			}
 		}
 		return field;
 	}

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.evidence.fe;
+package com.evidence.fe.components;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.vaadin.mvp.uibinder.IUiMessageSource;
 
+import com.evidence.fe.ApplicationConstants;
 import com.evidence.utility.UIUtils;
 import com.vaadin.terminal.ExternalResource;
 import com.vaadin.terminal.Resource;
@@ -67,6 +68,8 @@ public class EvidenceUpload extends CustomComponent implements Upload.SucceededL
 	public EvidenceUpload(final IUiMessageSource messageSource, final Locale locale) {
 		this.messagesource = messageSource;
 		this.locale = locale;
+		
+		this.setSizeUndefined();
 		
 		root = new Panel(getMessage("upload.component.caption"));
 		setCompositionRoot(root);
@@ -116,6 +119,7 @@ public class EvidenceUpload extends CustomComponent implements Upload.SucceededL
 		image.setCaption(null);
 		image.setWidth("200px");
 		imagePanel.setHeight(null);
+		imagePanel.removeAllComponents();
 		imagePanel.addComponent(image);
 		status.setValue(null);
 	}

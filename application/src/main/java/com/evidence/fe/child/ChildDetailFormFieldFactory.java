@@ -29,6 +29,7 @@ import com.evidence.dto.ResponsiblePersonDTO;
 import com.evidence.fe.form.EvidenceFormFieldFactory;
 import com.evidence.service.ServiceHolder;
 import com.vaadin.data.Item;
+import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.Field;
@@ -57,7 +58,7 @@ public class ChildDetailFormFieldFactory extends EvidenceFormFieldFactory {
 		final String pid = (String) propertyId;
 		if ("birthDate".equals(pid)) {
 			field = super.createField(item, propertyId, uiContext);
-			field.setWidth("100%");
+			field.setWidth(100, Sizeable.UNITS_PERCENTAGE);
 			((DateField)field).setDateFormat(this.getMessage("date.format"));
 		} else if ("motherId".equals(pid)) {
 			final Select select = new Select(pid);
@@ -65,7 +66,7 @@ public class ChildDetailFormFieldFactory extends EvidenceFormFieldFactory {
 			reloadMothers(kindergartenId, select);
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);
-			select.setWidth("100%");
+			select.setWidth(100, Sizeable.UNITS_PERCENTAGE);
 			field = select;
 		} else if ("fatherId".equals(pid)) {
 			final Select select = new Select(pid);
@@ -73,7 +74,7 @@ public class ChildDetailFormFieldFactory extends EvidenceFormFieldFactory {
 			reloadFathers(kindergartenId, select);
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);
-			select.setWidth("100%");
+			select.setWidth(100, Sizeable.UNITS_PERCENTAGE);
 			field = select;
 		} else if ("responsiblePersonId".equals(pid)) {
 			final Select select = new Select(pid);
@@ -81,8 +82,9 @@ public class ChildDetailFormFieldFactory extends EvidenceFormFieldFactory {
 			reloadResponsiblePersons(kindergartenId, select);
 			select.setNewItemsAllowed(false);
 			select.setNullSelectionAllowed(false);
-			select.setWidth("100%");
+			select.setWidth(100, Sizeable.UNITS_PERCENTAGE);
 			field = select;
+		} else if ("photo".equals(pid)) {
 		} else {
 			field = super.createField(item, propertyId, uiContext);
 		}

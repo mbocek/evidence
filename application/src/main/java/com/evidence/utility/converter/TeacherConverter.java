@@ -60,6 +60,7 @@ public class TeacherConverter implements CustomConverter {
 		teacherDTO.setName(source.getName());
 		teacherDTO.setSurName(source.getSurName());
 		teacherDTO.setId(source.getId());
+		teacherDTO.setPhoto(source.getPhoto());
 		return teacherDTO;
 	}
 
@@ -76,6 +77,7 @@ public class TeacherConverter implements CustomConverter {
 		teacher.setKindergarten(new Kindergarten(sourceDTO.getKindergartenId()));
 		teacher.setName(sourceDTO.getName());
 		teacher.setSurName(sourceDTO.getSurName());
+		teacher.setPhoto(sourceDTO.getPhoto());
 		return teacher;
 	}
 }
