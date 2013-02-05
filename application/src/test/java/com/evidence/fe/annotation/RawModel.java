@@ -18,7 +18,7 @@
  */
 package com.evidence.fe.annotation;
 
-import com.evidence.fe.form.Model;
+import com.tapas.evidence.fe.form.Model;
 
 /**
  * @author Michal Bocek

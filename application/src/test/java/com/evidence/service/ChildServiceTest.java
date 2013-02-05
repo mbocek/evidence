@@ -29,7 +29,9 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.evidence.data.DbUnitTest;
-import com.evidence.dto.ChildDTO;
+import com.tapas.evidence.dto.ChildDTO;
+import com.tapas.evidence.service.ChildService;
+import com.tapas.evidence.service.ResponsiblePersonService;
 
 /**
  * @author Michal Bocek
@@ -44,7 +46,7 @@ public class ChildServiceTest extends DbUnitTest {
 	private ResponsiblePersonService responsiblePersonService;
 	
 	/**
-	 * Test method for {@link com.evidence.service.ChildService#getAll()}.
+	 * Test method for {@link com.tapas.evidence.service.ChildService#getAll()}.
 	 */
 	@Test
 	public void testGetAll() {
@@ -53,7 +55,7 @@ public class ChildServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.ChildService#findByKindergartenId(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.ChildService#findByKindergartenId(java.lang.Long)}.
 	 */
 	@Test
 	public void testFindByKindergartenId() {
@@ -62,7 +64,7 @@ public class ChildServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.ChildService#createOrUpdateTeacher(com.evidence.dto.ChildDTO)}.
+	 * Test method for {@link com.tapas.evidence.service.ChildService#createOrUpdateTeacher(com.tapas.evidence.dto.ChildDTO)}.
 	 */
 	@Test
 	//@Rollback(false)
@@ -80,7 +82,7 @@ public class ChildServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.ChildService#getById(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.ChildService#getById(java.lang.Long)}.
 	 */
 	@Test
 	public void testGetById() {
@@ -89,7 +91,7 @@ public class ChildServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.ChildService#delete(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.ChildService#delete(java.lang.Long)}.
 	 */
 	@Test
 	public void testDelete() {

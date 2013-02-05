@@ -9,7 +9,7 @@
 
 	<import resource="classpath:/spring/applicationConfig.xml"/>
 	
-	<jpa:repositories base-package="com.evidence.repository" factory-class="com.evidence.repository.data.CrudRepositoryFactoryBean" />
+	<jpa:repositories base-package="com.tapas.evidence.repository" factory-class="com.tapas.evidence.repository.data.CrudRepositoryFactoryBean" />
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />

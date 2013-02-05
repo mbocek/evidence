@@ -29,9 +29,10 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.evidence.data.DbUnitTest;
-import com.evidence.dto.AddressDTO;
-import com.evidence.dto.ContactDTO;
-import com.evidence.dto.TeacherDTO;
+import com.tapas.evidence.dto.AddressDTO;
+import com.tapas.evidence.dto.ContactDTO;
+import com.tapas.evidence.dto.TeacherDTO;
+import com.tapas.evidence.service.TeacherService;
 
 /**
  * @author Michal Bocek
@@ -43,7 +44,7 @@ public class TeacherServiceTest extends DbUnitTest {
 	private TeacherService teacherService;
 	
 	/**
-	 * Test method for {@link com.evidence.service.TeacherService#getAll()}.
+	 * Test method for {@link com.tapas.evidence.service.TeacherService#getAll()}.
 	 */
 	@Test
 	public void testGetAll() {
@@ -52,7 +53,7 @@ public class TeacherServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.TeacherService#findByKindergartenId(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.TeacherService#findByKindergartenId(java.lang.Long)}.
 	 */
 	@Test
 	public void testFindByKindergartenId() {
@@ -61,7 +62,7 @@ public class TeacherServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.TeacherService#createOrUpdateTeacher(com.evidence.dto.TeacherDTO)}.
+	 * Test method for {@link com.tapas.evidence.service.TeacherService#createOrUpdateTeacher(com.tapas.evidence.dto.TeacherDTO)}.
 	 */
 	@Test
 	public void testCreateOrUpdateTeacher() {
@@ -86,7 +87,7 @@ public class TeacherServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.TeacherService#getById(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.TeacherService#getById(java.lang.Long)}.
 	 */
 	@Test
 	public void testGetById() {
@@ -95,7 +96,7 @@ public class TeacherServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.TeacherService#delete(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.TeacherService#delete(java.lang.Long)}.
 	 */
 	@Test
 	public void testDelete() {

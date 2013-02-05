@@ -3,41 +3,41 @@
 	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
 	<configuration>
 		<custom-converters>
-			<converter type="com.evidence.utility.converter.ContactConverter">
-				<class-a>com.evidence.entity.Contact</class-a>
-				<class-b>com.evidence.dto.ContactDTO</class-b>
+			<converter type="com.tapas.evidence.utility.converter.ContactConverter">
+				<class-a>com.tapas.evidence.entity.Contact</class-a>
+				<class-b>com.tapas.evidence.dto.ContactDTO</class-b>
 			</converter>
 
-			<converter type="com.evidence.utility.converter.AddressConverter">
-				<class-a>com.evidence.entity.Address</class-a>
-				<class-b>com.evidence.dto.AddressDTO</class-b>
+			<converter type="com.tapas.evidence.utility.converter.AddressConverter">
+				<class-a>com.tapas.evidence.entity.Address</class-a>
+				<class-b>com.tapas.evidence.dto.AddressDTO</class-b>
 			</converter>
 
-			<converter type="com.evidence.utility.converter.TeacherConverter">
-				<class-a>com.evidence.entity.Teacher</class-a>
-				<class-b>com.evidence.dto.TeacherDTO</class-b>
+			<converter type="com.tapas.evidence.utility.converter.TeacherConverter">
+				<class-a>com.tapas.evidence.entity.Teacher</class-a>
+				<class-b>com.tapas.evidence.dto.TeacherDTO</class-b>
 			</converter>
 
-			<converter type="com.evidence.utility.converter.ResponsiblePersonConverter">
-				<class-a>com.evidence.entity.ResponsiblePerson</class-a>
-				<class-b>com.evidence.dto.ResponsiblePersonDTO</class-b>
+			<converter type="com.tapas.evidence.utility.converter.ResponsiblePersonConverter">
+				<class-a>com.tapas.evidence.entity.ResponsiblePerson</class-a>
+				<class-b>com.tapas.evidence.dto.ResponsiblePersonDTO</class-b>
 			</converter>
 
-			<converter type="com.evidence.utility.converter.ChildConverter">
-				<class-a>com.evidence.entity.Child</class-a>
-				<class-b>com.evidence.dto.ChildDTO</class-b>
+			<converter type="com.tapas.evidence.utility.converter.ChildConverter">
+				<class-a>com.tapas.evidence.entity.Child</class-a>
+				<class-b>com.tapas.evidence.dto.ChildDTO</class-b>
 			</converter>
-			<converter type="com.evidence.utility.converter.UserConverter">
-				<class-a>com.evidence.entity.user.User</class-a>
-				<class-b>com.evidence.dto.UserDTO</class-b>
+			<converter type="com.tapas.evidence.utility.converter.UserConverter">
+				<class-a>com.tapas.evidence.entity.user.User</class-a>
+				<class-b>com.tapas.evidence.dto.UserDTO</class-b>
 			</converter>
 		</custom-converters>
 	</configuration>
 	
 <!-- 	<mapping> -->
-<!-- 		<class-a>com.evidence.entity.Kindergarten</class-a> -->
-<!-- 		<class-b>com.evidence.dto.KindergartenDTO</class-b> -->
-<!-- 		<field custom-converter="com.evidence.utility.converter.ContactConverter"> -->
+<!-- 		<class-a>com.tapas.evidence.entity.Kindergarten</class-a> -->
+<!-- 		<class-b>com.tapas.evidence.dto.KindergartenDTO</class-b> -->
+<!-- 		<field custom-converter="com.tapas.evidence.utility.converter.ContactConverter"> -->
 <!-- 			<a>contact</a> -->
 <!-- 			<b>contact</b> -->
 <!-- 		</field> -->

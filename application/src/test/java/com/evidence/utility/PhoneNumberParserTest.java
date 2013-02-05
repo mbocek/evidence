@@ -22,6 +22,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.tapas.evidence.utility.PhoneNumberParser;
+
 /**
  * @author Michal Bocek
  * @since 1.0.0

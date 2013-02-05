@@ -29,9 +29,10 @@ import javax.persistence.EntityNotFoundException;
 import org.junit.Test;
 
 import com.evidence.data.DbUnitTest;
-import com.evidence.dto.AddressDTO;
-import com.evidence.dto.ContactDTO;
-import com.evidence.dto.KindergartenDTO;
+import com.tapas.evidence.dto.AddressDTO;
+import com.tapas.evidence.dto.ContactDTO;
+import com.tapas.evidence.dto.KindergartenDTO;
+import com.tapas.evidence.service.KindergartenService;
 
 /**
  * @author Michal Bocek
@@ -43,7 +44,7 @@ public class KindergartenServiceTest extends DbUnitTest {
 	private KindergartenService kindergartenService;
 	
 	/**
-	 * Test method for {@link com.evidence.service.KindergartenService#getAll()}.
+	 * Test method for {@link com.tapas.evidence.service.KindergartenService#getAll()}.
 	 */
 	@Test
 	public void testGetAll() {
@@ -52,7 +53,7 @@ public class KindergartenServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.KindergartenService#createOrUpdateKindergarten(com.evidence.dto.KindergartenDTO)}.
+	 * Test method for {@link com.tapas.evidence.service.KindergartenService#createOrUpdateKindergarten(com.tapas.evidence.dto.KindergartenDTO)}.
 	 */
 	@Test
 	public void testCreateOrUpdateKindergarten() {
@@ -75,7 +76,7 @@ public class KindergartenServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.KindergartenService#getById(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.KindergartenService#getById(java.lang.Long)}.
 	 */
 	@Test
 	public void testGetById() {
@@ -87,7 +88,7 @@ public class KindergartenServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.KindergartenService#delete(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.KindergartenService#delete(java.lang.Long)}.
 	 */
 	@Test
 	public void testDelete() {

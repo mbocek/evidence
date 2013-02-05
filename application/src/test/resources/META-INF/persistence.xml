@@ -6,8 +6,8 @@
 	<persistence-unit name="EvidencePersistenceUnit-test" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
-		<class>com.evidence.entity.Person</class>
-		<class>com.evidence.entity.Teacher</class>
-		<class>com.evidence.entity.Kindergarten</class>
+		<class>com.tapas.evidence.entity.Person</class>
+		<class>com.tapas.evidence.entity.Teacher</class>
+		<class>com.tapas.evidence.entity.Kindergarten</class>
 	</persistence-unit>
 </persistence>

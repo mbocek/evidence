@@ -30,9 +30,10 @@ import javax.persistence.EntityNotFoundException;
 import org.junit.Test;
 
 import com.evidence.data.DbUnitTest;
-import com.evidence.dto.AddressDTO;
-import com.evidence.dto.ContactDTO;
-import com.evidence.dto.ResponsiblePersonDTO;
+import com.tapas.evidence.dto.AddressDTO;
+import com.tapas.evidence.dto.ContactDTO;
+import com.tapas.evidence.dto.ResponsiblePersonDTO;
+import com.tapas.evidence.service.ResponsiblePersonService;
 
 /**
  * @author Michal Bocek
@@ -44,7 +45,7 @@ public class ResponsiblePersonServiceTest extends DbUnitTest {
 	private ResponsiblePersonService responsiblePersonService;
 
 	/**
-	 * Test method for {@link com.evidence.service.ResponsiblePersonService#getAll()}.
+	 * Test method for {@link com.tapas.evidence.service.ResponsiblePersonService#getAll()}.
 	 */
 	@Test
 	public void testGetAll() {
@@ -53,7 +54,7 @@ public class ResponsiblePersonServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.ResponsiblePersonService#findByKindergartenId(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.ResponsiblePersonService#findByKindergartenId(java.lang.Long)}.
 	 */
 	@Test
 	public void testFindByKindergartenId() {
@@ -62,7 +63,7 @@ public class ResponsiblePersonServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.ResponsiblePersonService#createOrUpdateResponsiblePerson(com.evidence.dto.ResponsiblePersonDTO)}.
+	 * Test method for {@link com.tapas.evidence.service.ResponsiblePersonService#createOrUpdateResponsiblePerson(com.tapas.evidence.dto.ResponsiblePersonDTO)}.
 	 */
 	@Test
 	public void testCreateOrUpdateResponsiblePersons() {
@@ -88,7 +89,7 @@ public class ResponsiblePersonServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.ResponsiblePersonService#getById(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.ResponsiblePersonService#getById(java.lang.Long)}.
 	 */
 	@Test
 	public void testGetById() {
@@ -100,7 +101,7 @@ public class ResponsiblePersonServiceTest extends DbUnitTest {
 	}
 
 	/**
-	 * Test method for {@link com.evidence.service.ResponsiblePersonService#delete(java.lang.Long)}.
+	 * Test method for {@link com.tapas.evidence.service.ResponsiblePersonService#delete(java.lang.Long)}.
 	 */
 	@Test
 	public void testDelete() {

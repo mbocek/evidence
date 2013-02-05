@@ -22,10 +22,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import com.evidence.fe.form.AutomaticForm;
-import com.evidence.fe.form.Caption;
-import com.evidence.fe.form.Model;
-import com.evidence.fe.form.Order;
+import com.tapas.evidence.fe.form.AutomaticForm;
+import com.tapas.evidence.fe.form.Caption;
+import com.tapas.evidence.fe.form.Model;
+import com.tapas.evidence.fe.form.Order;
 
 /**
  * @author Michal Bocek

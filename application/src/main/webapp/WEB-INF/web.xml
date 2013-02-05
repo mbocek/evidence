@@ -89,7 +89,7 @@
         <init-param>
             <description>Vaadin application class to start</description>
             <param-name>application</param-name>
-            <param-value>com.evidence.fe.EvidenceApplication</param-value>
+            <param-value>com.tapas.evidence.fe.EvidenceApplication</param-value>
         </init-param>
 		<load-on-startup>2</load-on-startup>
     </servlet>

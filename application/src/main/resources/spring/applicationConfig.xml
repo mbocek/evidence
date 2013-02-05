@@ -18,8 +18,8 @@
 	<context:annotation-config />
 
 	<context:component-scan base-package="org.vaadin.mvp" />
-	<context:component-scan base-package="com.evidence.service" />
-	<context:component-scan base-package="com.evidence.fe" >
+	<context:component-scan base-package="com.tapas.evidence.service" />
+	<context:component-scan base-package="com.tapas.evidence.fe" >
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 
@@ -44,5 +44,5 @@
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
 	
-	<bean id="serviceHolder" class="com.evidence.service.ServiceHolder" factory-method="getInstance" /> 
+	<bean id="serviceHolder" class="com.tapas.evidence.service.ServiceHolder" factory-method="getInstance" /> 
 </beans>

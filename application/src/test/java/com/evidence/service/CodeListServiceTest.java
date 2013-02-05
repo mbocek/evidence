@@ -27,7 +27,8 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.evidence.data.DbUnitTest;
-import com.evidence.dto.StateDTO;
+import com.tapas.evidence.dto.StateDTO;
+import com.tapas.evidence.service.CodeListService;
 
 /**
  * @author Michal Bocek
@@ -39,7 +40,7 @@ public class CodeListServiceTest extends DbUnitTest {
 	private CodeListService codeListService;
 	
 	/**
-	 * Test method for {@link com.evidence.service.CodeListService#getStates()}.
+	 * Test method for {@link com.tapas.evidence.service.CodeListService#getStates()}.
 	 */
 	@Test
 	public void testGetStates() {

@@ -39,11 +39,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.evidence.credential.EvidenceUser;
 import com.evidence.data.DbUnitTest;
-import com.evidence.dto.UserDTO;
-import com.evidence.entity.user.Role;
-import com.evidence.repository.UserRepository;
+import com.tapas.evidence.credential.EvidenceUser;
+import com.tapas.evidence.dto.UserDTO;
+import com.tapas.evidence.entity.user.Role;
+import com.tapas.evidence.repository.UserRepository;
+import com.tapas.evidence.service.TenantAlreadyExists;
+import com.tapas.evidence.service.UserAlreadyExists;
+import com.tapas.evidence.service.UserService;
 
 /**
  * @author Michal Bocek
@@ -67,7 +70,7 @@ public class UserServiceTest extends DbUnitTest {
 	private AuthenticationManager authenticationManager;
 	
 	/**
-	 * Test method for {@link com.evidence.service.UserServiceImpl#loadUserByUsername(java.lang.String)}.
+	 * Test method for {@link com.tapas.evidence.service.UserServiceImpl#loadUserByUsername(java.lang.String)}.
 	 */
 	@Test
 	public void testLoadUserByUsername() {
@@ -87,7 +90,7 @@ public class UserServiceTest extends DbUnitTest {
 		list.add(new SimpleGrantedAuthority(Role.ROLE_ADMINISTRATOR.name()));
 		User u = new User("admin@evidence.com", "password", list);
 		String password = passwordEncoder.encodePassword("password", saltSource.getSalt(u));
-		com.evidence.entity.user.User user = userRepository.read(u.getUsername());
+		com.tapas.evidence.entity.user.User user = userRepository.read(u.getUsername());
 		assertEquals(password, user.getPassword());
 	    Authentication authentication = new UsernamePasswordAuthenticationToken("admin@evidence.com", "password");
 	    try {
@@ -114,7 +117,7 @@ public class UserServiceTest extends DbUnitTest {
 			fail("User " + userDTO.getUserName() + " already exists!");
 		}
 		
-		com.evidence.entity.user.User user = userRepository.findByUsername(name);
+		com.tapas.evidence.entity.user.User user = userRepository.findByUsername(name);
 		assertEquals(user.getEmail(), userDTO.getUserName());
 		assertEquals(user.getName(), userDTO.getName());
 		String password = passwordEncoder.encodePassword("password", 

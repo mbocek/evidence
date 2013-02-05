@@ -22,7 +22,7 @@
 	<!-- Scans within the base package of the application for @Components -->
 	<!-- to configure as beans -->
 	<!-- ================================================================= -->
-	<context:component-scan base-package="com.evidence.fe.controller" />
+	<context:component-scan base-package="com.tapas.evidence.fe.controllerroller" />
 	
 	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		<property name="paramName" value="lang" />
