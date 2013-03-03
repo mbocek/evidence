@@ -54,6 +54,7 @@
 	</developers>
 
 	<build>
+		<directory>${target.directory}</directory>
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.scm</groupId>
@@ -406,5 +407,6 @@
 		<slf4j.version>1.7.0</slf4j.version>
 		<spring-data.version>1.2.0.RELEASE</spring-data.version>
 		<sonar.host.url>https://soso-gateway.dyndns.org/sonar</sonar.host.url>
+		<target.directory>target</target.directory>
 	</properties>
 </project>

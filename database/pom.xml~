@@ -46,7 +46,7 @@
 				<configuration>
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
  					<propertyFileWillOverride>true</propertyFileWillOverride>
- 					<propertyFile>${target.directory}/classes/liquibase.properties</propertyFile>
+ 					<propertyFile>${target.directory}</propertyFile>
 				</configuration>
 			</plugin>			
 		</plugins>
