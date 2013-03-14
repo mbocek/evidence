@@ -32,6 +32,7 @@ import org.vaadin.mvp.presenter.spring.SpringMvpApplication;
 import org.vaadin.mvp.uibinder.resource.spring.SpringUiMessageSource;
 
 import com.tapas.evidence.fe.main.MainPresenter;
+import com.vaadin.terminal.gwt.server.WebApplicationContext;
 
 /**
  * Entry point to application.
@@ -67,6 +68,8 @@ public class EvidenceApplication extends SpringMvpApplication {
 	public void postInit() {
 		mainPresenter = (MainPresenter) presenterFactory.createPresenter("mainPresenter");
 		mainPresenter.getEventBus().start(this);
-		this.setLogoutURL("j_spring_security_logout");
+		WebApplicationContext context = (WebApplicationContext)getContext();
+		String contextPath = context.getHttpSession().getServletContext().getContextPath();
+		this.setLogoutURL(contextPath + "/" + "j_spring_security_logout");
 	}
 }
