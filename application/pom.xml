@@ -443,7 +443,7 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
-				<definition.database.jdbc.url>jdbc:hsqldb:file:/tmp/testdb/ekolandiaDB;shutdown=true</definition.database.jdbc.url>
+				<definition.database.jdbc.url>jdbc:hsqldb:file:/tmp/testdb/evidence;shutdown=true</definition.database.jdbc.url>
 			</properties>
 		</profile>
 	</profiles>
